@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <title>ЛК - мои подписки</title>
+    {% include 'blocks/head.njk' %}
+</head>
+
+<body class="preload mp">
+    <div class="main-wrapper-outer">
+        {% include 'blocks/header.njk' %}
+        <main class="main">
+
+            <div class="block-cabinet">
+                <div class="container">
+                    <div class="block-cabinet__content">
+                        <div class="cabinet-menu">
+                            <div class="cabinet-menu__body">
+                                <div class="cabinet-menu__column">
+                                    <ul>
+                                        <li>
+                                            <span class="cabinet-menu__link active">
+                                                <img src="img/icons/cabinet1.svg" alt="" class="cabinet-menu-icon1">
+                                                <img src="img/icons/cabinet2.svg" alt="" class="cabinet-menu-icon2">
+                                                <div class="cabinet-menu__name">
+                                                    <span>Личный</span> кабинет
+                                                </div>
+                                            </span>
+                                        </li>
+                                        <li>
+                                            <a href="./" class="cabinet-menu__link">
+                                                <img src="img/icons/documents1.svg" alt="" class="cabinet-menu-icon1">
+                                                <img src="img/icons/documents2.svg" alt="" class="cabinet-menu-icon2">
+                                                <div class="cabinet-menu__name">
+                                                    Счета<span>, документы</span>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="./" class="cabinet-menu__link">
+                                                <img src="img/icons/databases1.svg" alt="" class="cabinet-menu-icon1">
+                                                <img src="img/icons/databases2.svg" alt="" class="cabinet-menu-icon2">
+                                                <div class="cabinet-menu__name">
+                                                    Базы <span>данных</span>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="./" class="cabinet-menu__link">
+                                                <img src="img/icons/users1.svg" alt="" class="cabinet-menu-icon1">
+                                                <img src="img/icons/users2.svg" alt="" class="cabinet-menu-icon2">
+                                                <div class="cabinet-menu__name">
+                                                    Пользователи
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="./" class="cabinet-menu__link">
+                                                <img src="img/icons/support1.svg" alt="" class="cabinet-menu-icon1">
+                                                <img src="img/icons/support2.svg" alt="" class="cabinet-menu-icon2">
+                                                <div class="cabinet-menu__name">
+                                                    Поддержка
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="cabinet-menu__column column-service">
+                                    <ul>
+                                        <li>
+                                            <a href="./" class="cabinet-menu__link link-service">
+                                                <img src="img/icons/service1.svg" alt="">
+                                                <div class="cabinet-menu__titles">
+                                                    Услуги+
+                                                    <div class="cabinet-menu__number">
+                                                        <span>843</span>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="cabinet-menu__column column-download">
+                                    <ul>
+                                        <li>
+                                            <a href="./" download="#download" class="cabinet-menu__link link-download">
+                                                <img src="img/icons/download.svg" alt="">
+                                                Программа для<br> входа 1С
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="cabinet-menu__cards">
+                                <div class="card-news">
+                                    <div class="card-news__image">
+                                        <img src="img/image1.webp" alt="">
+                                    </div>
+                                    <div class="card-news__item">
+                                        <div class="card-news__title">
+                                            Помощь в создании первой БД
+                                        </div>
+                                        <p>
+                                            Запустить мастер-помощник и настроить первую базу данных
+                                        </p>
+                                        <a href="./" class="btn">Начать</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="block-cabinet__body">
+                            <div class="block-cabinet__news">
+                                <a href="./" class="card-news2 card-news-link">
+                                    <div class="card-news2__badge">
+                                        Статьи
+                                    </div>
+                                    <p>
+                                        Тест Гилева на серверах ITsheff: как мы обновляем инфраструктуру и что это
+                                        дает клиентам 1С
+                                    </p>
+                                </a>
+                                <a href="./" class="card-news2 card-news-link">
+                                    <div class="card-news2__badge">
+                                        Новости
+                                    </div>
+                                    <p>
+                                        Налоговые льготы и особенности налогообложения сельхозпроизводителей в 2026
+                                        году: полный разбор нового Налогового кодекса РК
+                                    </p>
+                                </a>
+                                <a href="./" class="card-news card-news-mob">
+                                    <div class="card-news__image image-other image5">
+                                        <img src="img/image5.webp" alt="">
+                                    </div>
+                                    <div class="card-news__item">
+                                        <div class="card-news__title">
+                                            Автоматическое списание
+                                        </div>
+                                        <p>
+                                            Активируйте ежемесячный автоплатеж. Отмена в любой момент
+                                        </p>
+                                    </div>
+                                </a>
+                                <a href="./" class="card-news card-news-mob">
+                                    <div class="card-news__image image-other image3">
+                                        <img src="img/image4.webp" alt="">
+                                    </div>
+                                    <div class="card-news__item">
+                                        <div class="card-news__title">
+                                            Пора переходить на тариф
+                                        </div>
+                                        <p>
+                                            Добавить короткий текст в несколько строк
+                                        </p>
+                                    </div>
+                                </a>
+                                <a href="./" class="card-news card-news-mob">
+                                    <div class="card-news__image">
+                                        <img src="img/image1.webp" alt="">
+                                    </div>
+                                    <div class="card-news__item news-item-other">
+                                        <div class="card-news__title">
+                                            Помощь в создании первой БД
+                                        </div>
+                                        <p>
+                                            Запустить мастер-помощник и настроить первую базу данных
+                                        </p>
+                                    </div>
+                                </a>
+                                <a href="./" class="card-news card-news-mob">
+                                    <div class="card-news__image image-other image4">
+                                        <img src="img/image3.webp" alt="">
+                                    </div>
+                                    <div class="card-news__item">
+                                        <div class="card-news__title">
+                                            Поздравляем!
+                                        </div>
+                                        <p>
+                                            Мы активировали платный тариф в подарок
+                                        </p>
+                                        <div class="card-news__data">
+                                            <div class="card-news__number">
+                                                14
+                                            </div>
+                                            <span>
+                                                дней<br>
+                                                осталось
+                                            </span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="cabinet-news">
+                            <div class="cabinet-news__cards1">
+                                <div class="card-news">
+                                    <div class="card-news__image image-other image2">
+                                        <img src="img/image2.webp" alt="">
+                                    </div>
+                                    <div class="card-news__item">
+                                        <div class="card-news__title">
+                                            Автоматическое списание
+                                        </div>
+                                        <p>
+                                            Активируйте ежемесячный автоплатеж. Отмена в любой момент
+                                        </p>
+                                        <a href="./" class="btn">Подключить</a>
+                                    </div>
+                                </div>
+                                <div class="card-news">
+                                    <div class="card-news__image image-other image3">
+                                        <img src="img/image4.webp" alt="">
+                                    </div>
+                                    <div class="card-news__item">
+                                        <div class="card-news__title">
+                                            Пора переходить на тариф
+                                        </div>
+                                        <p>
+                                            Добавить короткий текст в несколько строк
+                                        </p>
+                                        <a href="./" class="btn">Перейти</a>
+                                    </div>
+                                </div>
+                                <div class="card-news">
+                                    <div class="card-news__image image-other image4">
+                                        <img src="img/image3.webp" alt="">
+                                    </div>
+                                    <div class="card-news__item">
+                                        <div class="card-news__title">
+                                            Поздравляем!
+                                        </div>
+                                        <p>
+                                            Мы активировали платный тариф в подарок
+                                        </p>
+                                        <div class="card-news__data">
+                                            <div class="card-news__number">
+                                                14
+                                            </div>
+                                            <span>
+                                                дней<br>
+                                                осталось
+                                            </span>
+                                        </div>
+                                        <a href="./" class="btn">Подробнее</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="cabinet-news__cards2">
+                                <div class="card-history">
+                                    <div class="card-history__title">
+                                        <span>Часто<br>
+                                            используемые БД:</span>
+                                    </div>
+                                    <div class="card-history__body">
+                                        <a href="./" class="card-history__column column-link">
+                                            <p>
+                                                Учет и поставки «ТОО Тулпар»
+                                            </p>
+                                        </a>
+                                        <a href="./" class="card-history__column column-link">
+                                            <p>
+                                                Бухгалтерия и склад «ТОО Алматы Логистик» до 3ех строк текста
+                                                Бухгалтерия и склад «ТОО Алматы Логистик» до 3ех строк текста...
+                                            </p>
+                                        </a>
+                                        <a href="./" class="card-history__column column-link">
+                                            <p>
+                                                Налоговый учет «ТОО НурКапитал»
+                                            </p>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="card-history">
+                                    <div class="card-history__title">
+                                        <span>Неоплаченные счета:</span>
+                                    </div>
+                                    <div class="card-history__body">
+                                        <div class="card-history__column">
+                                            <div class="card-history__data">
+                                                14.30.56
+                                            </div>
+                                            <p>
+                                                Бухгалтерия и склад «ТОО Алматы Логистик» длинны текст до 4 строк потом
+                                                обрезается мно Бухгалтерия и склад «ТОО Алматы Логистик» длинны текст до
+                                                4 строк потом обрезается мно...
+                                            </p>
+                                            <a href="./" class="btn">Оплатить</a>
+                                        </div>
+                                        <div class="card-history__column">
+                                            <div class="card-history__data">
+                                                09.01.2025
+                                            </div>
+                                            <p>
+                                                СЧЕТ № 12345 Консультация 30 мин
+                                            </p>
+                                            <a href="./" class="btn">Оплатить</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-history">
+                                    <div class="card-history__title">
+                                        <span>Неоплаченные счета:</span>
+                                    </div>
+                                    <div class="card-history__body">
+                                        <div class="card-history__column">
+                                            <div class="card-history__data">
+                                                14.30.56
+                                            </div>
+                                            <p>
+                                                Бухгалтерия и склад «ТОО Алматы Логистик» длинны текст до 4 строк потом
+                                                обрезается мно Бухгалтерия и склад «ТОО Алматы Логистик» длинны текст до
+                                                4 строк потом обрезается мно...
+                                            </p>
+                                            <a href="./" class="btn">Оплатить</a>
+                                        </div>
+                                        <div class="card-history__column">
+                                            <div class="card-history__data">
+                                                09.01.2025
+                                            </div>
+                                            <p>
+                                                СЧЕТ № 12345 Консультация 30 мин
+                                            </p>
+                                            <a href="./" class="btn">Оплатить</a>
+                                        </div>
+                                        <div class="card-history__column">
+                                            <div class="card-history__data">
+                                                09.01.2025
+                                            </div>
+                                            <p>
+                                                СЧЕТ № 12345 Консультация 30 мин
+                                            </p>
+                                            <a href="./" class="btn">Оплатить</a>
+                                        </div>
+                                        <a href="./" class="card-history__column column-link">
+                                            <p>
+                                                Все счета +2
+                                            </p>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+        {% include 'blocks/footer.njk' %}
+    </div>
+    {% include 'blocks/scripts.njk' %}
+</body>
+
+</html>

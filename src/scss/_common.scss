@@ -1,0 +1,121 @@
+body {
+  color: var(--black);
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 120%;
+  padding: 0px 0px 0px 0px !important;
+  background: #f0f2f4;
+  &.hide-scrollbar {
+    margin: 0px 0px 0px 0px !important;
+  }
+  .lock & {
+    overflow: hidden;
+  }
+  .popup-show & {
+    overflow: hidden;
+  }
+  &::before {
+    content: "";
+    cursor: pointer;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 97;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+  }
+  .menu-open & {
+    overflow: hidden;
+    &::before {
+      content: "";
+      opacity: 1;
+      pointer-events: auto;
+      @media (max-width: 500px) {
+        display: none;
+      }
+    }
+  }
+}
+
+body.noscroll {
+  overflow: hidden;
+}
+
+input,
+button,
+textarea {
+  font-family: inherit;
+  font-weight: 400;
+  font-size: 16px;
+}
+
+fieldset,
+fieldset legend {
+  margin: 0;
+  border: none;
+  padding: 0;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  outline: none;
+  color: currentcolor;
+}
+
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 143%;
+  min-height: 36px;
+  text-align: center;
+  border: 2px solid #f26135;
+  border-radius: 40px;
+  padding: 5px 20px;
+  color: var(--theme-color-accent);
+  transition:
+    background-color 0.3s,
+    color 0.3s;
+  &:hover {
+    background-color: #f26135;
+    color: #fff;
+  }
+}
+
+.socials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 36px;
+  @media (max-width: 1200px) {
+    gap: 10px 66px;
+  }
+  a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 0 0 36px;
+    svg {
+      path {
+        transition: fill 0.3s;
+      }
+    }
+    &:hover {
+      svg {
+        path {
+          fill: #d9481c;
+        }
+      }
+    }
+  }
+}
