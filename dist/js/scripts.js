@@ -310,3 +310,375 @@ if (triggers) {
     });
   }
 }
+
+//========================================================================================================================================================
+
+//Спойлер
+function spollers() {
+  const spollersArray = document.querySelectorAll("[data-spollers]");
+  if (spollersArray.length > 0) {
+    const spollersRegular = Array.from(spollersArray).filter((function (item, index, self) {
+      return !item.dataset.spollers.split(",")[0];
+    }));
+    if (spollersRegular.length) initSpollers(spollersRegular);
+
+    spollersArray.forEach(spollersBlock => {
+      const mediaQuery = spollersBlock.dataset.spollers;
+      if (mediaQuery) {
+        const [maxWidth, type] = mediaQuery.split(",");
+        const width = parseInt(maxWidth);
+
+        if (type === "max" && window.innerWidth <= width) {
+          if (!spollersBlock.classList.contains("_spoller-init")) {
+            initSpollers([spollersBlock]);
+          }
+        } else if (type === "max" && window.innerWidth > width) {
+          if (spollersBlock.classList.contains("_spoller-init")) {
+            spollersBlock.classList.remove("_spoller-init");
+            initSpollerBody(spollersBlock, false);
+            spollersBlock.removeEventListener("click", setSpollerAction);
+          }
+        }
+      }
+    });
+
+    function initSpollers(spollersArray, matchMedia = false) {
+      spollersArray.forEach((spollersBlock => {
+        spollersBlock = matchMedia ? spollersBlock.item : spollersBlock;
+        if (matchMedia.matches || !matchMedia) {
+          spollersBlock.classList.add("_spoller-init");
+          initSpollerBody(spollersBlock);
+          spollersBlock.addEventListener("click", setSpollerAction);
+
+          initCloseButtons(spollersBlock);
+        } else {
+          spollersBlock.classList.remove("_spoller-init");
+          initSpollerBody(spollersBlock, false);
+          spollersBlock.removeEventListener("click", setSpollerAction);
+        }
+      }));
+    }
+
+    function initSpollerBody(spollersBlock, hideSpollerBody = true) {
+      let spollerTitles = spollersBlock.querySelectorAll("[data-spoller]");
+      if (spollerTitles.length) {
+        spollerTitles = Array.from(spollerTitles).filter((item => item.closest("[data-spollers]") === spollersBlock));
+        spollerTitles.forEach((spollerTitle => {
+          if (hideSpollerBody) {
+            spollerTitle.removeAttribute("tabindex");
+            if (!spollerTitle.classList.contains("_spoller-active")) {
+              if (spollerTitle.nextElementSibling) {
+                spollerTitle.nextElementSibling.hidden = true;
+              }
+            }
+          } else {
+            spollerTitle.setAttribute("tabindex", "-1");
+            if (spollerTitle.nextElementSibling) {
+              spollerTitle.nextElementSibling.hidden = false;
+            }
+          }
+        }));
+      }
+    }
+
+    function initCloseButtons(spollersBlock) {
+      const closeButtons = spollersBlock.querySelectorAll('.cabinet-orders-spollers__button');
+
+      closeButtons.forEach(button => {
+        button.removeEventListener('click', closeSpollerHandler);
+        button.addEventListener('click', closeSpollerHandler);
+      });
+    }
+
+    function closeSpollerHandler(e) {
+      e.preventDefault();
+      e.stopPropagation();
+
+      const button = e.currentTarget;
+      const spollersBlock = button.closest('[data-spollers]');
+      const spollerItem = button.closest('.cabinet-orders-spollers__item');
+
+      if (spollersBlock && spollerItem) {
+        const spollerTitle = spollerItem.querySelector('[data-spoller]');
+
+        if (spollerTitle && spollerTitle.classList.contains('_spoller-active')) {
+          const spollerSpeed = spollersBlock.dataset.spollersSpeed ? parseInt(spollersBlock.dataset.spollersSpeed) : 500;
+
+          spollerTitle.classList.remove('_spoller-active');
+          spollerItem.classList.remove('_spoller-active');
+
+          const contentBlock = spollerTitle.nextElementSibling;
+          _slideUp(contentBlock, spollerSpeed);
+        }
+      }
+    }
+
+    function setSpollerAction(e) {
+      const el = e.target;
+
+      const isLink = el.closest('a');
+      if (isLink) {
+        return;
+      }
+
+      if (el.closest("[data-spoller]")) {
+        const spollerTitle = el.closest("[data-spoller]");
+
+        const spollerItem = spollerTitle.closest(".spollers__item, .cabinet-orders-spollers__item");
+        const spollersBlock = spollerTitle.closest("[data-spollers]");
+
+        const oneSpoller = spollersBlock.hasAttribute("data-one-spoller");
+        const spollerSpeed = spollersBlock.dataset.spollersSpeed ? parseInt(spollersBlock.dataset.spollersSpeed) : 500;
+
+        if (!spollersBlock.querySelectorAll("._slide").length) {
+          if (oneSpoller && !spollerTitle.classList.contains("_spoller-active")) {
+            hideSpollersBody(spollersBlock);
+          }
+
+          spollerTitle.classList.toggle("_spoller-active");
+          if (spollerItem) spollerItem.classList.toggle("_spoller-active");
+
+          const contentBlock = spollerTitle.nextElementSibling;
+          _slideToggle(contentBlock, spollerSpeed);
+
+          e.preventDefault();
+        }
+      }
+    }
+
+    function hideSpollersBody(spollersBlock) {
+      const spollerActiveTitle = spollersBlock.querySelector("[data-spoller]._spoller-active");
+      const spollerSpeed = spollersBlock.dataset.spollersSpeed ? parseInt(spollersBlock.dataset.spollersSpeed) : 500;
+      if (spollerActiveTitle && !spollersBlock.querySelectorAll("._slide").length) {
+        const spollerItem = spollerActiveTitle.closest(".spollers__item, .cabinet-orders-spollers__item");
+
+        spollerActiveTitle.classList.remove("_spoller-active");
+        if (spollerItem) spollerItem.classList.remove("_spoller-active");
+        _slideUp(spollerActiveTitle.nextElementSibling, spollerSpeed);
+      }
+    }
+
+    const spollersClose = document.querySelectorAll("[data-spoller-close]");
+    if (spollersClose.length) {
+      document.addEventListener("click", (function (e) {
+        const el = e.target;
+        if (!el.closest("[data-spollers]")) {
+          spollersClose.forEach((spollerClose => {
+            const spollersBlock = spollerClose.closest("[data-spollers]");
+            const spollerSpeed = spollersBlock.dataset.spollersSpeed ? parseInt(spollersBlock.dataset.spollersSpeed) : 500;
+            spollerClose.classList.remove("_spoller-active");
+
+            const spollerItem = spollerClose.closest(".spollers__item, .cabinet-orders-spollers__item");
+            if (spollerItem) spollerItem.classList.remove("_spoller-active");
+
+            _slideUp(spollerClose.nextElementSibling, spollerSpeed);
+          }));
+        }
+      }));
+    }
+  }
+}
+spollers();
+window.addEventListener('resize', function () {
+  spollers();
+});
+
+//========================================================================================================================================================
+
+const notificationIcon = document.querySelector('.header-notifications');
+
+if (notificationIcon) {
+  const documentElement = document.documentElement;
+
+  function isDesktop() {
+    return window.innerWidth >= 1201;
+  }
+
+  function isMobile() {
+    return window.innerWidth <= 1200;
+  }
+
+  function closeOtherMenu() {
+    if (isMobile()) {
+      if (documentElement.classList.contains('menu-open')) {
+        documentElement.classList.remove('menu-open');
+      }
+    }
+  }
+
+  function handleClick(event) {
+    event.stopPropagation();
+    event.preventDefault();
+
+    closeOtherMenu();
+
+    if (documentElement.classList.contains('open-notifications')) {
+      documentElement.classList.remove('open-notifications');
+    } else {
+      documentElement.classList.add('open-notifications');
+    }
+  }
+
+  function handleMouseEnter() {
+    documentElement.classList.add('open-notifications');
+  }
+
+  function handleMouseLeave() {
+    documentElement.classList.remove('open-notifications');
+  }
+
+  function handleClickOutside(event) {
+    const notifications = document.querySelector('.header-notifications');
+    if (notifications && !notifications.contains(event.target)) {
+      documentElement.classList.remove('open-notifications');
+    }
+  }
+
+  if (isDesktop()) {
+    notificationIcon.addEventListener('mouseenter', handleMouseEnter);
+    notificationIcon.addEventListener('mouseleave', handleMouseLeave);
+  } else {
+    notificationIcon.addEventListener('click', handleClick);
+  }
+
+  document.addEventListener('click', handleClickOutside);
+
+  let resizeTimer;
+  window.addEventListener('resize', function () {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function () {
+      if (isDesktop()) {
+        notificationIcon.removeEventListener('click', handleClick);
+        notificationIcon.addEventListener('mouseenter', handleMouseEnter);
+        notificationIcon.addEventListener('mouseleave', handleMouseLeave);
+        documentElement.classList.remove('open-notifications');
+      } else {
+        notificationIcon.removeEventListener('mouseenter', handleMouseEnter);
+        notificationIcon.removeEventListener('mouseleave', handleMouseLeave);
+        notificationIcon.addEventListener('click', handleClick);
+        documentElement.classList.remove('open-notifications');
+      }
+
+      if (documentElement.classList.contains('menu-open')) {
+        documentElement.classList.remove('menu-open');
+      }
+    }, 250);
+  });
+}
+
+const headerMenu = document.querySelector('.header-menu');
+
+if (headerMenu) {
+  const burger = document.querySelector('.header__burger');
+  const menuButton = document.querySelector('.header-menu-button');
+  const documentElement = document.documentElement;
+  let isHoverActive = false;
+
+  function isDesktop() {
+    return window.innerWidth >= 1201;
+  }
+
+  function isMobile() {
+    return window.innerWidth <= 1200;
+  }
+
+  function closeNotifications() {
+    if (isMobile()) {
+      if (documentElement.classList.contains('open-notifications')) {
+        documentElement.classList.remove('open-notifications');
+      }
+    }
+  }
+
+  function onMouseEnter() {
+    if (isDesktop()) {
+      documentElement.classList.add('menu-open');
+    }
+  }
+
+  function onMouseLeave() {
+    if (isDesktop()) {
+      documentElement.classList.remove('menu-open');
+    }
+  }
+
+  function onBurgerClick(e) {
+    if (isMobile()) {
+      e.preventDefault();
+      e.stopPropagation();
+
+      if (documentElement.classList.contains('menu-open')) {
+        documentElement.classList.remove('menu-open');
+      } else {
+        closeNotifications();
+        documentElement.classList.add('menu-open');
+      }
+    }
+  }
+
+  function updateHandlers() {
+    if (!menuButton) return;
+
+    if (isDesktop() && !isHoverActive) {
+      menuButton.addEventListener('mouseenter', onMouseEnter);
+      menuButton.addEventListener('mouseleave', onMouseLeave);
+      isHoverActive = true;
+    } else if (isMobile() && isHoverActive) {
+      menuButton.removeEventListener('mouseenter', onMouseEnter);
+      menuButton.removeEventListener('mouseleave', onMouseLeave);
+      documentElement.classList.remove('menu-open');
+      isHoverActive = false;
+    }
+  }
+
+  if (burger) {
+    burger.addEventListener('click', onBurgerClick);
+  }
+
+  document.addEventListener('click', (e) => {
+    if (isMobile()) {
+      const isClickInsideMenu = headerMenu && headerMenu.contains(e.target);
+      const isClickOnBurger = burger && burger.contains(e.target);
+
+      if (!isClickInsideMenu && !isClickOnBurger) {
+        documentElement.classList.remove('menu-open');
+      }
+    }
+  });
+
+  if (headerMenu) {
+    const menuLinks = headerMenu.querySelectorAll('a');
+    menuLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        if (isMobile()) {
+          documentElement.classList.remove('menu-open');
+        }
+      });
+    });
+
+    headerMenu.addEventListener('click', (e) => {
+      e.stopPropagation();
+    });
+  }
+
+  updateHandlers();
+
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      updateHandlers();
+
+      if (isMobile()) {
+        if (documentElement.classList.contains('menu-open')) {
+          documentElement.classList.remove('menu-open');
+        }
+        if (documentElement.classList.contains('open-notifications')) {
+          documentElement.classList.remove('open-notifications');
+        }
+      } else if (isDesktop() && documentElement.classList.contains('menu-open')) {
+        documentElement.classList.remove('menu-open');
+      }
+    }, 150);
+  });
+}
