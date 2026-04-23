@@ -150,3 +150,163 @@ function uniqArray(array) {
 }
 
 //========================================================================================================================================================
+
+const moreButtons = document.querySelectorAll('.btn-more');
+
+if (moreButtons) {
+  moreButtons.forEach(button => {
+    const cabinetBlock = button.closest('.block-cabinet-bottom');
+    if (!cabinetBlock) return;
+
+    const dropdown = cabinetBlock.querySelector('.block-cabinet-bottom__dropdown');
+    if (!dropdown) return;
+
+    dropdown.hidden = true;
+
+    button.addEventListener('click', (e) => {
+      e.preventDefault();
+
+      const span = button.querySelector('span');
+      const isOpening = dropdown.hidden;
+
+      _slideToggle(dropdown, 300);
+
+      if (span) {
+        span.textContent = isOpening ? 'Свернуть' : 'Развернуть';
+      }
+    });
+  });
+}
+
+//========================================================================================================================================================
+
+//Количество
+function formQuantity() {
+  document.addEventListener("click", function (e) {
+    let targetElement = e.target;
+    if (targetElement.closest('[data-quantity-plus]') || targetElement.closest('[data-quantity-minus]')) {
+      const quantityElement = targetElement.closest('[data-quantity]');
+      const valueElement = quantityElement.querySelector('input[type="text"]');
+      let value = parseInt(valueElement.value) || 0;
+
+      if (targetElement.closest('[data-quantity-plus]')) {
+        value++;
+        if (quantityElement.dataset.quantityMax && +quantityElement.dataset.quantityMax < value) {
+          value = quantityElement.dataset.quantityMax;
+        }
+      } else {
+        value--;
+        if (quantityElement.dataset.quantityMin) {
+          if (+quantityElement.dataset.quantityMin > value) {
+            value = quantityElement.dataset.quantityMin;
+          }
+        } else if (value < 1) {
+          value = 1;
+        }
+      }
+      valueElement.value = value;
+    }
+  });
+}
+formQuantity();
+
+//========================================================================================================================================================
+
+const cardsSubscriptions = document.querySelectorAll('.card-subscriptions');
+
+if (cardsSubscriptions) {
+  function isMobile() {
+    return window.innerWidth <= 992;
+  }
+
+  function closeAllCards() {
+    cardsSubscriptions.forEach(card => {
+      card.classList.remove('active');
+    });
+    document.body.classList.remove('card-subscriptions-open');
+  }
+
+  function openCard(card) {
+    closeAllCards();
+    card.classList.add('active');
+    document.body.classList.add('card-subscriptions-open');
+  }
+
+  cardsSubscriptions.forEach(card => {
+    const clickableArea = card.querySelector('.card-subscriptions__items');
+
+    if (clickableArea) {
+      clickableArea.addEventListener('click', function (e) {
+        e.stopPropagation();
+        if (isMobile()) {
+          if (card.classList.contains('active')) {
+            closeAllCards();
+          } else {
+            openCard(card);
+          }
+        }
+      });
+    }
+  });
+
+  document.body.addEventListener('click', function (e) {
+    if (isMobile()) {
+      const activeCard = document.querySelector('.card-subscriptions.active');
+      if (activeCard) {
+        const isClickInsideCard = activeCard.contains(e.target);
+        const isClickInsideHover = activeCard.querySelector('.card-subscriptions-hover')?.contains(e.target);
+
+        if (!isClickInsideCard && !isClickInsideHover) {
+          closeAllCards();
+        }
+      }
+    }
+  });
+
+  window.addEventListener('resize', function () {
+    if (!isMobile()) {
+      closeAllCards();
+    }
+  });
+
+  document.querySelectorAll('.card-subscriptions-hover button, .card-subscriptions-hover .quantity').forEach(element => {
+    element.addEventListener('click', function (e) {
+      e.stopPropagation();
+    });
+  });
+}
+
+//========================================================================================================================================================
+
+const triggers = document.querySelectorAll('.heading-complex-meatballs__icon');
+
+if (triggers) {
+  triggers.forEach(trigger => {
+    trigger.addEventListener('click', function (event) {
+      event.stopPropagation();
+      const meatballsBlock = this.closest('.heading-complex-meatballs');
+      if (meatballsBlock) {
+        closeOtherMeatballs(meatballsBlock);
+
+        meatballsBlock.classList.toggle('active');
+      }
+    });
+  });
+
+  document.addEventListener('click', function (event) {
+    const isClickInside = event.target.closest('.heading-complex-meatballs');
+    if (!isClickInside) {
+      document.querySelectorAll('.heading-complex-meatballs.active').forEach(block => {
+        block.classList.remove('active');
+      });
+    }
+  });
+
+  function closeOtherMeatballs(currentBlock) {
+    document.querySelectorAll('.heading-complex-meatballs.active').forEach(block => {
+      if (block !== currentBlock) {
+        block.classList.remove('active');
+      }
+    });
+  }
+}

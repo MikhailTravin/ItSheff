@@ -16,6 +16,9 @@
   flex-grow: 1;
   flex-shrink: 1;
   margin-top: 56px;
+  @media (max-width: 700px) {
+    margin-bottom: 48px;
+  }
 }
 
 .container {

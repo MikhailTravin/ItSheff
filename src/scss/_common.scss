@@ -82,11 +82,19 @@ a {
   text-align: center;
   border: 2px solid #f26135;
   border-radius: 40px;
-  padding: 5px 20px;
+  padding: 5px 18px;
   color: var(--theme-color-accent);
   transition:
     background-color 0.3s,
     color 0.3s;
+  &.btn-bg {
+    background-color: #f26135;
+    color: #fff;
+    &:hover {
+      background-color: #fff;
+      color: #f26135;
+    }
+  }
   &:hover {
     background-color: #f26135;
     color: #fff;
@@ -114,6 +122,118 @@ a {
       svg {
         path {
           fill: #d9481c;
+        }
+      }
+    }
+  }
+}
+
+.block1 {
+  margin: 0px 0px 24px 0px;
+  @media (max-width: 700px) {
+    margin: 0px 0px 16px 0px;
+  }
+}
+
+.title2 {
+  font-weight: 450;
+  font-size: 20px;
+  line-height: 140%;
+  @media (max-width: 992px) {
+    font-size: 18px;
+    line-height: 144%;
+  }
+  @media (max-width: 700px) {
+    font-size: 17px;
+    line-height: 129%;
+  }
+}
+
+.heading-complex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  border-bottom: 1px solid #e5e5e5;
+  padding: 0px 0px 14px 0px;
+  @media (max-width: 700px) {
+    padding: 8px 0px;
+  }
+  // .heading-complex__buttons
+
+  &__buttons {
+    display: flex;
+    gap: 16px;
+    .btn-desc {
+      @media (max-width: 700px) {
+        display: none;
+      }
+    }
+    .btn {
+      @media (max-width: 700px) {
+        font-size: 14px;
+        line-height: 143%;
+        color: #f26135;
+        background: transparent;
+        min-height: 100%;
+        padding: 0px 0px 0px 0px;
+        border: none;
+      }
+    }
+  }
+}
+
+.heading-complex-meatballs {
+  position: relative;
+  display: none;
+  @media (max-width: 700px) {
+    display: flex;
+  }
+  &.active {
+    .heading-complex-meatballs__dropdown {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  }
+  // .heading-complex-meatballs__icon
+
+  &__icon {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 0 0 20px;
+    width: 20px;
+    height: 20px;
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  // .heading-complex-meatballs__dropdown
+
+  &__dropdown {
+    position: absolute;
+    right: 0;
+    width: 172px;
+    z-index: 20;
+    top: 100%;
+    margin: 15px 0px 0px 0px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+    ul {
+      box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.12);
+      background: #fff;
+      border: 1px solid #e5e5e5;
+      border-radius: 4px;
+      padding: 11px 14px 14px 14px;
+      li {
+        a {
+          font-weight: 400;
+          font-size: 14px;
+          line-height: 114%;
         }
       }
     }
