@@ -26,16 +26,18 @@
 								</div>
 							</div>
 							<a href="./" class="header__logo">
-								<img src="img/icons/logo1.svg" alt="">
+								<svg aria-hidden="true" width="122" height="26">
+									<use xlink:href="img/sprite.svg#logo1"></use>
+								</svg>
 							</a>
 							<div class="header-menu">
 								<div class="header-menu__body">
 									<ul data-spollers="1200,max" class="header-menu__list">
 										<li class="header-menu__item header-menu-button">
 											<div data-spoller class="header-menu__button">
-												<a href="./">
+												<span>
 													1С Продукты
-												</a>
+												</span>
 												<div class="header-menu__arrow">
 													<img src="img/icons/arrow1.svg" alt="">
 												</div>
@@ -318,9 +320,9 @@
 							</div>
 						</div>
 						<div class="header-score">
-							<div class="header-score__sum">
+							<a href="./" class="header-score__sum">
 								21 500 ₸
-							</div>
+							</a>
 							<a href="./" class="btn">Пополнить</a>
 						</div>
 						<div class="header__right">
@@ -406,22 +408,22 @@
 								</a>
 								<div class="header-account__dropdown header-dropdown">
 									<div class="header-account__content">
-										<a href="./" class="header-account-top">
-											<div class="header-account-top__titles">
+										<div class="header-account-top">
+											<a href="./" class="header-account-top__titles">
 												<div class="header-account-top__name">Username</div>
 												<div class="header-account-top__subname">
 													Бухгалтер
 												</div>
-											</div>
-											<div class="header-account-top__icon">
+											</a>
+											<a href="./" class="header-account-top__icon">
 												<img loading="lazy" src="img/icons/exit.svg" alt="" class="icon1">
 												<img loading="lazy" src="img/icons/exit-hover.svg" alt="" class="icon2">
-											</div>
-										</a>
+											</a>
+										</div>
 										<div class="header-account__body">
 											<a href="./" class="header-account__column">
 												<div class="header-account__icon">
-													<img loading="lazy" src="img/icons/documents2.svg" alt="" class="icon1">
+													<img loading="lazy" src="img/icons/documents.svg" alt="" class="icon1">
 													<img loading="lazy" src="img/icons/documents-active.svg" alt="" class="icon2">
 												</div>
 												<span>Счета, документы</span>
@@ -429,21 +431,21 @@
 											</a>
 											<a href="./" class="header-account__column">
 												<div class="header-account__icon">
-													<img loading="lazy" src="img/icons/databases2.svg" alt="" class="icon1">
+													<img loading="lazy" src="img/icons/databases.svg" alt="" class="icon1">
 													<img loading="lazy" src="img/icons/databases-active.svg" alt="" class="icon2">
 												</div>
 												<span>Базы данных</span>
 											</a>
 											<a href="./" class="header-account__column">
 												<div class="header-account__icon">
-													<img loading="lazy" src="img/icons/users2.svg" alt="" class="icon1">
+													<img loading="lazy" src="img/icons/users.svg" alt="" class="icon1">
 													<img loading="lazy" src="img/icons/users-active.svg" alt="" class="icon2">
 												</div>
 												<span>Пользователи</span>
 											</a>
 											<a href="./" class="header-account__column">
 												<div class="header-account__icon">
-													<img loading="lazy" src="img/icons/support2.svg" alt="" class="icon1">
+													<img loading="lazy" src="img/icons/support.svg" alt="" class="icon1">
 													<img loading="lazy" src="img/icons/support-active.svg" alt="" class="icon2">
 												</div>
 												<span>Поддержка</span>
@@ -467,8 +469,10 @@
 										<ul>
 											<li>
 												<span class="cabinet-menu__link active">
-													<img src="img/icons/cabinet1.svg" alt="" class="cabinet-menu-icon1">
-													<img src="img/icons/cabinet2.svg" alt="" class="cabinet-menu-icon2">
+													<div class="cabinet-menu__icon">
+														<img src="img/icons/cabinet.svg" alt="" class="cabinet-menu-def">
+														<img src="img/icons/cabinet-active.svg" alt="" class="cabinet-menu-active">
+													</div>
 													<div class="cabinet-menu__name">
 														<span>Личный</span> кабинет
 													</div>
@@ -476,8 +480,11 @@
 											</li>
 											<li>
 												<a href="./" class="cabinet-menu__link">
-													<img src="img/icons/documents1.svg" alt="" class="cabinet-menu-icon1">
-													<img src="img/icons/documents2.svg" alt="" class="cabinet-menu-icon2">
+													<div class="cabinet-menu__icon">
+														<img src="img/icons/documents.svg" alt="" class="cabinet-menu-def">
+														<img src="img/icons/documents-active.svg" alt="" class="cabinet-menu-active">
+														<div class="cabinet-menu__circle"></div>
+													</div>
 													<div class="cabinet-menu__name">
 														Счета<span>, документы</span>
 													</div>
@@ -485,8 +492,10 @@
 											</li>
 											<li>
 												<a href="./" class="cabinet-menu__link">
-													<img src="img/icons/databases1.svg" alt="" class="cabinet-menu-icon1">
-													<img src="img/icons/databases2.svg" alt="" class="cabinet-menu-icon2">
+													<div class="cabinet-menu__icon">
+														<img src="img/icons/databases.svg" alt="" class="cabinet-menu-def">
+														<img src="img/icons/databases-active.svg" alt="" class="cabinet-menu-active">
+													</div>
 													<div class="cabinet-menu__name">
 														Базы <span>данных</span>
 													</div>
@@ -494,8 +503,10 @@
 											</li>
 											<li>
 												<a href="./" class="cabinet-menu__link">
-													<img src="img/icons/users1.svg" alt="" class="cabinet-menu-icon1">
-													<img src="img/icons/users2.svg" alt="" class="cabinet-menu-icon2">
+													<div class="cabinet-menu__icon">
+														<img src="img/icons/users.svg" alt="" class="cabinet-menu-def">
+														<img src="img/icons/users-active.svg" alt="" class="cabinet-menu-active">
+													</div>
 													<div class="cabinet-menu__name">
 														Пользователи
 													</div>
@@ -503,8 +514,10 @@
 											</li>
 											<li>
 												<a href="./" class="cabinet-menu__link">
-													<img src="img/icons/support1.svg" alt="" class="cabinet-menu-icon1">
-													<img src="img/icons/support2.svg" alt="" class="cabinet-menu-icon2">
+													<div class="cabinet-menu__icon">
+														<img src="img/icons/support.svg" alt="" class="cabinet-menu-def">
+														<img src="img/icons/support-active.svg" alt="" class="cabinet-menu-active">
+													</div>
 													<div class="cabinet-menu__name">
 														Поддержка
 													</div>
@@ -516,7 +529,10 @@
 										<ul>
 											<li>
 												<a href="./" class="cabinet-menu__link link-service">
-													<img src="img/icons/service1.svg" alt="">
+													<div class="cabinet-menu__icon">
+														<img src="img/icons/service.svg" alt="" class="cabinet-menu-def">
+														<img src="img/icons/service-active.svg" alt="" class="cabinet-menu-active">
+													</div>
 													<div class="cabinet-menu__titles">
 														Услуги+
 														<div class="cabinet-menu__number">
@@ -531,7 +547,11 @@
 										<ul>
 											<li>
 												<a href="./" download="#download" class="cabinet-menu__link link-download">
-													<img src="img/icons/download.svg" alt="">
+													<div class="cabinet-menu__icon">
+														<svg aria-hidden="true" width="14" height="17">
+															<use xlink:href="img/sprite.svg#download"></use>
+														</svg>
+													</div>
 													Программа для<br> входа 1С
 												</a>
 											</li>
@@ -732,9 +752,9 @@
 												<div class="block-cabinet-top__title">
 													1С Хостинг
 												</div>
-												<div class="block-cabinet-top__badge">
+												<a href="./" class="block-cabinet-top__badge badge-link">
 													Остановлена
-												</div>
+												</a>
 											</div>
 											<img src="img/logo/logo1.webp" alt="" class="block-cabinet-top__pic1">
 										</div>
@@ -979,7 +999,7 @@
 														(Plan 1)
 													</div>
 													<div class="card-subscriptions-hover__text">
-														<span>Остановить подписку</span>
+														<a href="./">Остановить подписку</a>
 														<p>
 															Остерегающий сопроводительный текст
 														</p>
@@ -1021,7 +1041,7 @@
 														(Plan 1)
 													</div>
 													<div class="card-subscriptions-hover__text">
-														<span>Остановить подписку</span>
+														<a href="./">Остановить подписку</a>
 														<p>
 															Остерегающий сопроводительный текст
 														</p>
@@ -1064,7 +1084,7 @@
 														(Plan 1)
 													</div>
 													<div class="card-subscriptions-hover__text">
-														<span>Остановить подписку</span>
+														<a href="./">Остановить подписку</a>
 														<p>
 															Остерегающий сопроводительный текст
 														</p>
@@ -1106,7 +1126,7 @@
 														(Plan 1)
 													</div>
 													<div class="card-subscriptions-hover__text">
-														<span>Остановить подписку</span>
+														<a href="./">Остановить подписку</a>
 														<p>
 															Остерегающий сопроводительный текст
 														</p>
@@ -1148,7 +1168,7 @@
 														(Plan 1)
 													</div>
 													<div class="card-subscriptions-hover__text">
-														<span>Остановить подписку</span>
+														<a href="./">Остановить подписку</a>
 														<p>
 															Остерегающий сопроводительный текст
 														</p>
@@ -1191,7 +1211,7 @@
 														(Plan 1)
 													</div>
 													<div class="card-subscriptions-hover__text">
-														<span>Остановить подписку</span>
+														<a href="./">Остановить подписку</a>
 														<p>
 															Остерегающий сопроводительный текст
 														</p>
@@ -1234,7 +1254,7 @@
 														(Plan 1)
 													</div>
 													<div class="card-subscriptions-hover__text">
-														<span>Остановить подписку</span>
+														<a href="./">Остановить подписку</a>
 														<p>
 															Остерегающий сопроводительный текст
 														</p>
@@ -1420,20 +1440,8 @@
 									Рекомендуем
 								</h2>
 								<div class="heading-complex__buttons">
-									<a href="./" class="btn btn-desc">Помощь менеджера</a>
+									<a href="./" class="btn">Помощь<span>менеджера</span></a>
 									<a href="./" class="btn btn-bg">Услуги+</a>
-									<div class="heading-complex-meatballs">
-										<div class="heading-complex-meatballs__icon">
-											<img loading="lazy" src="img/icons/meatballs.svg" alt="">
-										</div>
-										<div class="heading-complex-meatballs__dropdown">
-											<ul>
-												<li>
-													<a href="./">Помощь менеджера</a>
-												</li>
-											</ul>
-										</div>
-									</div>
 								</div>
 							</div>
 							<div class="block-recommend__cards">
@@ -1783,9 +1791,11 @@
 							</div>
 						</div>
 						<div class="footer-bottom">
-							<div class="footer-bottom__left">
+							<div data-da=".footer-bottom__right, 1200, first" class="footer-bottom__left">
 								<a href="./" class="footer-bottom__logo">
-									<img loading="lazy" src="img/icons/logo2.svg" alt="">
+									<svg aria-hidden="true" width="122" height="26">
+										<use xlink:href="img/sprite.svg#logo1"></use>
+									</svg>
 								</a>
 								<div class="footer-bottom__copy">
 									© 2011-2024 ITSheff.<br> Все права защищены

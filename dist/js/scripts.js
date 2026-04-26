@@ -186,7 +186,7 @@ function formQuantity() {
     let targetElement = e.target;
     if (targetElement.closest('[data-quantity-plus]') || targetElement.closest('[data-quantity-minus]')) {
       const quantityElement = targetElement.closest('[data-quantity]');
-      const valueElement = quantityElement.querySelector('input[type="text"]');
+      const valueElement = quantityElement.querySelector('[data-quantity-value]');
       let value = parseInt(valueElement.value) || 0;
 
       if (targetElement.closest('[data-quantity-plus]')) {
@@ -271,44 +271,9 @@ if (cardsSubscriptions) {
 
   document.querySelectorAll('.card-subscriptions-hover button, .card-subscriptions-hover .quantity').forEach(element => {
     element.addEventListener('click', function (e) {
-      e.stopPropagation();
+      //e.stopPropagation();
     });
   });
-}
-
-//========================================================================================================================================================
-
-const triggers = document.querySelectorAll('.heading-complex-meatballs__icon');
-
-if (triggers) {
-  triggers.forEach(trigger => {
-    trigger.addEventListener('click', function (event) {
-      event.stopPropagation();
-      const meatballsBlock = this.closest('.heading-complex-meatballs');
-      if (meatballsBlock) {
-        closeOtherMeatballs(meatballsBlock);
-
-        meatballsBlock.classList.toggle('active');
-      }
-    });
-  });
-
-  document.addEventListener('click', function (event) {
-    const isClickInside = event.target.closest('.heading-complex-meatballs');
-    if (!isClickInside) {
-      document.querySelectorAll('.heading-complex-meatballs.active').forEach(block => {
-        block.classList.remove('active');
-      });
-    }
-  });
-
-  function closeOtherMeatballs(currentBlock) {
-    document.querySelectorAll('.heading-complex-meatballs.active').forEach(block => {
-      if (block !== currentBlock) {
-        block.classList.remove('active');
-      }
-    });
-  }
 }
 
 //========================================================================================================================================================
