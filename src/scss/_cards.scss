@@ -89,6 +89,58 @@
     @media (max-width: 992px) {
         display: flex;
     }
+    &.card-news-other {
+        .card-news__image {
+            border: none;
+            height: 114px;
+            background: radial-gradient(181.45% 133.96% at 100% 7.89%, #bac7d5 0%, #d8e4ef 100%);
+            &.image4 {
+                img {
+                    margin-right: -5px;
+                    margin-top: -83px;
+                    height: 220px;
+                    @media (max-width: 1300px) {
+                        height: 200px;
+                        margin-top: -67px;
+                        margin-right: 0px;
+                    }
+                    @media (max-width: 992px) {
+                        height: 101px;
+                        margin-top: 0px;
+                        margin-bottom: -8px;
+                    }
+                }
+            }
+        }
+        .card-news__item {
+            gap: 18px;
+            padding: 20px 18px 26px 18px;
+            @media (max-width: 1300px) {
+                padding: 14.5px 13px 18px 13px;
+            }
+            p {
+                font-size: 14px;
+                line-height: 114%;
+            }
+            .btn {
+                width: 100%;
+            }
+        }
+        .card-news__data {
+            padding: 0px 0px 0px 0px;
+            margin-top: 4px;
+            background: transparent;
+            gap: 16px;
+        }
+        .card-news__number {
+            font-size: 36px;
+        }
+        .card-news__title {
+            font-weight: 450;
+            font-size: 20px;
+            line-height: 140%;
+        }
+    }
     // .card-news__image
 
     &__image {
@@ -341,8 +393,8 @@
     }
     &.card-news-link {
         &:hover {
-            p {
-                color: #000;
+            .card-news2__badge {
+                color: #d9481c;
             }
         }
     }
@@ -381,6 +433,7 @@
         line-height: 100%;
         color: #f26135;
         background: #feead8;
+        transition: color 0.3s;
         @media (max-width: 700px) {
             font-size: 10px;
             padding: 2px 8px;
@@ -392,7 +445,8 @@
     position: relative;
     border-radius: 10px;
     min-height: 241px;
-    &.active {
+    &.active,
+    &:hover {
         .card-subscriptions-hover {
             opacity: 1;
             pointer-events: auto;
@@ -407,6 +461,10 @@
         }
     }
     @media (max-width: 1200px) {
+        min-height: 227px;
+        flex: 1 1 calc(50% - 12px);
+    }
+    @media (max-width: 992px) {
         min-height: 227px;
         flex: 1 1 calc(33.3333% - 8px);
     }
@@ -530,6 +588,7 @@
     top: 0;
     left: 0;
     width: 100%;
+    z-index: 20;
     height: 100%;
     backdrop-filter: blur(10px);
     background: rgba(0, 0, 0, 0.7);
@@ -540,7 +599,6 @@
     justify-content: space-between;
     gap: 20px;
     opacity: 0;
-    z-index: 15;
     transition: opacity 0.3s;
     pointer-events: none;
     @media (max-width: 1200px) {
@@ -577,11 +635,18 @@
         @media (max-width: 1200px) {
             gap: 6px;
         }
-        span {
+        a {
             font-weight: 600;
             font-size: 14px;
             line-height: 114%;
+            transition: color 0.3s;
             color: #f26135;
+            &:hover {
+                color: #d9481c;
+            }
+            &:active {
+                color: #c03b12;
+            }
             @media (max-width: 1200px) {
                 font-size: 12px;
                 line-height: 100%;

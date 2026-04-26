@@ -6,7 +6,6 @@
     background: #fff;
     z-index: 101;
     border-bottom: 1px solid #e5e5e5;
-    min-height: 56px;
     // .header__content
 
     &__content {
@@ -47,14 +46,6 @@
         color: #000;
         padding: 0px 0px 0px 40px;
         border-left: 1px solid #d9d9d9;
-        a {
-            transition: color 0.3s;
-        }
-        &:hover {
-            a {
-                color: var(--theme-color-accent);
-            }
-        }
         @media (max-width: 1350px) {
             padding: 0px 0px 0px 28px;
         }
@@ -80,14 +71,29 @@
     // .header__logo
 
     &__logo {
-        height: 30px;
+        flex: 0 0 auto;
         display: flex;
-        @media (max-width: 370px) {
-            height: 25px;
+        margin-top: -6px;
+        @media (max-width: 1200px) {
+            margin-top: -5px;
         }
-        img {
-            height: 100%;
-            width: auto;
+        svg {
+            fill: #f26135;
+            transition: fill 0.3s;
+            @media (max-width: 370px) {
+                width: 100px;
+                height: auto;
+            }
+        }
+        &:hover {
+            svg {
+                fill: #d9481c;
+            }
+        }
+        &:active {
+            svg {
+                fill: #c03b12;
+            }
         }
     }
 
@@ -313,8 +319,9 @@
         gap: 8px;
         position: relative;
         @media (max-width: 1200px) {
+            min-height: 64px;
             justify-content: space-between;
-            padding: 17px 30px 22px 30px;
+            padding: 10px 30px 10px 30px;
             transition: background-color 0.3s;
             &:hover {
                 background-color: #f8f8f8;
@@ -373,6 +380,7 @@
         flex: 0 0 12px;
         width: 12px;
         height: auto;
+        margin-top: 2.5px;
         img {
             width: 100%;
             height: auto;
@@ -460,6 +468,7 @@
             padding: 0px 0px 0px 0px;
             border-radius: 10px;
             background: #f0f2f4;
+            min-height: 66px;
             margin: 0px 0px 18px 0px;
         }
         ul {
@@ -587,8 +596,11 @@
             display: block;
             width: 16px;
             height: 16px;
+            transform: translateX(0);
             background-size: 100% 100%;
-            transition: background-image 0.3s;
+            transition:
+                background-image 0.3s,
+                transform 0.3s;
             background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cGF0aCBkPSJNOC4zMDY0MiAxM0wxMy44MDY0IDcuNUw4LjMwNjQyIDJNMTMuMTk1MyA3LjVIMi4xOTUzMSIgc3Ryb2tlPSIjRDlEOUQ5IiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgLz4KPC9zdmc+");
             @media (max-width: 1200px) {
                 background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iOCIgaGVpZ2h0PSIxNCIgdmlld0JveD0iMCAwIDggMTQiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPHBhdGggZD0iTTEgMTNMNyA3TDEgMSIgc3Ryb2tlPSIjNDI0MjQyIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgLz4KPC9zdmc+");
@@ -599,6 +611,7 @@
                 color: #000;
                 &::after {
                     content: "";
+                    transform: translateX(3px);
                     background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cGF0aCBkPSJNOC4zMDY0MiAxM0wxMy44MDY0IDcuNUw4LjMwNjQyIDJNMTMuMTk1MyA3LjVIMi4xOTUzMSIgc3Ryb2tlPSIjRjI2MTM1IiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgLz4KPC9zdmc+");
                 }
             }
@@ -785,12 +798,18 @@
     @media (max-width: 1500px) {
         flex: 0 1 166px;
     }
+    @media (max-width: 1200px) {
+        flex: 0 1 auto;
+    }
     @media (max-width: 992px) {
         display: none;
     }
     .btn {
         @media (max-width: 1500px) {
             display: none;
+        }
+        @media (max-width: 1200px) {
+            display: flex;
         }
     }
     // .header-score__sum
@@ -971,16 +990,7 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    &:hover {
-        .header-account-top__icon {
-            .icon1 {
-                opacity: 0;
-            }
-            .icon2 {
-                opacity: 1;
-            }
-        }
-    }
+
     // .header-account-top__titles
 
     &__titles {
@@ -1014,6 +1024,14 @@
         flex: 0 0 24px;
         width: 24px;
         height: 24px;
+        &:hover {
+            .icon1 {
+                opacity: 0;
+            }
+            .icon2 {
+                opacity: 1;
+            }
+        }
         img {
             width: 100%;
             height: auto;
