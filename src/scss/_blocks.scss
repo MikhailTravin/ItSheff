@@ -26,6 +26,9 @@
         display: flex;
         flex-direction: column;
         gap: 24px;
+        &.body-long {
+            flex: 1 1 auto;
+        }
         @media (max-width: 992px) {
             width: calc(100% - 122px);
             gap: 10px;
@@ -115,6 +118,9 @@
         flex-direction: column;
         gap: 27.5px;
         height: 100%;
+        &.columns2 {
+            padding: 0px 28px 28px;
+        }
         @media (max-width: 992px) {
             gap: 19.5px;
             padding: 9px 20px 9px 20px;
@@ -1352,6 +1358,119 @@
         display: flex;
         flex-direction: column;
         gap: 24.5px;
+    }
+}
+
+//========================================================================================================================================================
+
+.cabinet-tabs {
+    // .cabinet-tabs__navigation
+
+    &__navigation {
+        display: flex;
+    }
+
+    // .cabinet-tabs__titles
+
+    &__titles {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        padding: 10px 16px;
+        position: relative;
+        min-height: 65px;
+        &._tab-active {
+            .cabinet-tabs__title {
+                color: #000;
+            }
+            &::after {
+                content: "";
+                opacity: 1;
+            }
+        }
+        &::after {
+            content: "";
+            position: absolute;
+            bottom: 0px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--theme-color-accent);
+            opacity: 0;
+        }
+    }
+
+    // .cabinet-tabs__title
+
+    &__title {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 150%;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+    }
+
+    // .cabinet-tabs__number
+
+    &__number {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #fee0cc;
+        border-radius: 5px;
+        padding: 6px;
+        font-weight: 600;
+        font-size: 12px;
+        line-height: 100%;
+        color: #9a3110;
+    }
+
+    // .cabinet-tabs__arrow
+
+    &__arrow {
+        display: none;
+    }
+
+    // .cabinet-tabs__content
+
+    &__content {
+    }
+
+    // .cabinet-tabs__body
+
+    &__body {
+    }
+}
+.cabinet-tabs-invoices {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+}
+.cabinet-invoices-table {
+    // .cabinet-invoices-table__main
+
+    &__main {
+    }
+
+    // .cabinet-invoices-table__title
+
+    &__title {
+    }
+
+    // .cabinet-invoices-table__item
+
+    &__item {
+    }
+
+    // .cabinet-invoices-table__documents
+
+    &__documents {
+    }
+
+    // .cabinet-invoices-table__document
+
+    &__document {
     }
 }
 

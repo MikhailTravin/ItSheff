@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <title>Счета и документы</title>
+    {% include 'blocks/head.njk' %}
+</head>
+
+<body class="preload mp">
+    <div class="main-wrapper-outer">
+        {% include 'blocks/header.njk' %}
+        <main class="main">
+
+            <div class="block-cabinet">
+                <div class="container">
+                    <div class="block-cabinet__content">
+                        <div class="cabinet-menu">
+                            <div class="cabinet-menu__body">
+                                <div class="cabinet-menu__column">
+                                    <ul>
+                                        <li>
+                                            <span class="cabinet-menu__link">
+                                                <div class="cabinet-menu__icon">
+                                                    <img src="img/icons/cabinet.svg" alt="" class="cabinet-menu-def">
+                                                    <img src="img/icons/cabinet-active.svg" alt=""
+                                                        class="cabinet-menu-active">
+                                                </div>
+                                                <div class="cabinet-menu__name">
+                                                    <span>Личный</span> кабинет
+                                                </div>
+                                            </span>
+                                        </li>
+                                        <li>
+                                            <a href="./" class="cabinet-menu__link active">
+                                                <div class="cabinet-menu__icon">
+                                                    <img src="img/icons/documents.svg" alt="" class="cabinet-menu-def">
+                                                    <img src="img/icons/documents-active.svg" alt=""
+                                                        class="cabinet-menu-active">
+                                                </div>
+                                                <div class="cabinet-menu__name">
+                                                    Счета<span>, документы</span>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="./" class="cabinet-menu__link">
+                                                <div class="cabinet-menu__icon">
+                                                    <img src="img/icons/databases.svg" alt="" class="cabinet-menu-def">
+                                                    <img src="img/icons/databases-active.svg" alt=""
+                                                        class="cabinet-menu-active">
+                                                </div>
+                                                <div class="cabinet-menu__name">
+                                                    Базы <span>данных</span>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="./" class="cabinet-menu__link">
+                                                <div class="cabinet-menu__icon">
+                                                    <img src="img/icons/users.svg" alt="" class="cabinet-menu-def">
+                                                    <img src="img/icons/users-active.svg" alt=""
+                                                        class="cabinet-menu-active">
+                                                </div>
+                                                <div class="cabinet-menu__name">
+                                                    Пользователи
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="./" class="cabinet-menu__link">
+                                                <div class="cabinet-menu__icon">
+                                                    <img src="img/icons/support.svg" alt="" class="cabinet-menu-def">
+                                                    <img src="img/icons/support-active.svg" alt=""
+                                                        class="cabinet-menu-active">
+                                                </div>
+                                                <div class="cabinet-menu__name">
+                                                    Поддержка
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="cabinet-menu__column column-service">
+                                    <ul>
+                                        <li>
+                                            <a href="./" class="cabinet-menu__link link-service">
+                                                <div class="cabinet-menu__icon">
+                                                    <img src="img/icons/service.svg" alt="" class="cabinet-menu-def">
+                                                    <img src="img/icons/service-active.svg" alt=""
+                                                        class="cabinet-menu-active">
+                                                </div>
+                                                <div class="cabinet-menu__titles">
+                                                    Услуги+
+                                                    <div class="cabinet-menu__number">
+                                                        <span>843</span>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="cabinet-menu__column column-download">
+                                    <ul>
+                                        <li>
+                                            <a href="./" download="#download" class="cabinet-menu__link link-download">
+                                                <div class="cabinet-menu__icon">
+                                                    <svg aria-hidden="true" width="14" height="17">
+                                                        <use xlink:href="img/sprite.svg#download"></use>
+                                                    </svg>
+                                                </div>
+                                                Программа для<br> входа 1С
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="block-cabinet__body body-long">
+                            <div class="block-cabinet__columns columns2">
+                                <div data-tabs="992,max" class="cabinet-tabs">
+                                    <nav data-tabs-titles class="cabinet-tabs__navigation">
+                                        <button type="button" class="cabinet-tabs__titles _tab-active">
+                                            <div class="cabinet-tabs__title">
+                                                Счета и документы
+                                                <span class="cabinet-tabs__number">
+                                                    3
+                                                </span>
+                                            </div>
+                                            <span class="cabinet-tabs__arrow">
+                                                <img src="img/icons/arrow1.svg" alt="">
+                                            </span>
+                                        </button>
+                                        <button type="button" class="cabinet-tabs__titles">
+                                            <div class="cabinet-tabs__title">
+                                                Акт сверки взаиморасчетов
+                                            </div>
+                                            <span class="cabinet-tabs__arrow">
+                                                <img src="img/icons/arrow1.svg" alt="">
+                                            </span>
+                                        </button>
+                                        <button type="button" class="cabinet-tabs__titles">
+                                            <div class="cabinet-tabs__title">
+                                                Ваши реквизиты
+                                            </div>
+                                            <span class="cabinet-tabs__arrow">
+                                                <img src="img/icons/arrow1.svg" alt="">
+                                            </span>
+                                        </button>
+                                        <button type="button" class="cabinet-tabs__titles">
+                                            <div class="cabinet-tabs__title">
+                                                Автоплатёж
+                                            </div>
+                                            <span class="cabinet-tabs__arrow">
+                                                <img src="img/icons/arrow1.svg" alt="">
+                                            </span>
+                                        </button>
+                                    </nav>
+                                    <div data-tabs-body class="cabinet-tabs__content">
+                                        <div class="cabinet-tabs__body">
+                                            <div class="cabinet-tabs-invoices">
+                                                <div class="cabinet-invoices-table">
+                                                    <div class="cabinet-invoices-table__main">
+                                                        <div class="cabinet-invoices-table__title">
+                                                            №
+                                                        </div>
+                                                        <div class="cabinet-invoices-table__title">
+                                                            Описание
+                                                        </div>
+                                                        <div class="cabinet-invoices-table__title">
+                                                            Сумма
+                                                        </div>
+                                                        <div class="cabinet-invoices-table__title">
+                                                            Документы
+                                                        </div>
+                                                        <div class="cabinet-invoices-table__title">
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="cabinet-invoices-table__item">
+                                                        <div class="cabinet-invoices-table__title">
+                                                            5
+                                                        </div>
+                                                        <div class="cabinet-invoices-table__title">
+                                                            <p>
+                                                                Счет № 111261 <span>от 2025-02-01 01:03:37</span>
+                                                            </p>
+                                                        </div>
+                                                        <div class="cabinet-invoices-table__title">
+                                                            163 565 ₸
+                                                        </div>
+                                                        <div class="cabinet-invoices-table__title">
+                                                            <div class="cabinet-invoices-table__documents">
+                                                                <a href="./" class="cabinet-invoices-table__document">
+                                                                    <img src="img/icons/documents.svg" alt="">
+                                                                    <span>Счет</span>
+                                                                </a>
+                                                                <a href="./" class="cabinet-invoices-table__document">
+                                                                    <img src="img/icons/documents.svg" alt="">
+                                                                    <span>АВР</span>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="cabinet-invoices-table__title">
+                                                            <a href="./" class="btn btn-bg">
+                                                                <span>Оплатить</span>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="pagging">
+                                                    <a class="pagging__item pagging__item_active" href="./">1</a>
+                                                    <a class="pagging__item" href="./">2</a>
+                                                    <a class="pagging__item" href="./">3</a>
+                                                    <a class="pagging__item" href="./">4</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="cabinet-tabs__body">
+                                            Содержимое второго таба
+                                        </div>
+                                        <div class="cabinet-tabs__body">
+                                            Содержимое третьего таба
+                                        </div>
+                                        <div class="cabinet-tabs__body">
+                                            Содержимое третьего таба
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+        {% include 'blocks/footer.njk' %}
+    </div>
+    {% include 'blocks/scripts.njk' %}
+</body>
+
+</html>
