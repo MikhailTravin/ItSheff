@@ -2,7 +2,7 @@
 <html lang="ru">
 
 	<head>
-		<title>ЛК - мои подписки (восстановление доступа2)</title>
+		<title>Счета и документы (пусто)</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -460,7 +460,7 @@
 			</header>
 			<main class="main">
 
-				<div class="block-cabinet">
+				<div class="block-cabinet block-cabinet-invoices">
 					<div class="container">
 						<div class="block-cabinet__content">
 							<div class="cabinet-menu">
@@ -468,7 +468,7 @@
 									<div class="cabinet-menu__column">
 										<ul>
 											<li>
-												<span class="cabinet-menu__link active">
+												<span class="cabinet-menu__link">
 													<div class="cabinet-menu__icon">
 														<img src="img/icons/cabinet.svg" alt="" class="cabinet-menu-def">
 														<img src="img/icons/cabinet-active.svg" alt="" class="cabinet-menu-active">
@@ -479,11 +479,10 @@
 												</span>
 											</li>
 											<li>
-												<a href="./" class="cabinet-menu__link">
+												<a href="./" class="cabinet-menu__link active">
 													<div class="cabinet-menu__icon">
 														<img src="img/icons/documents.svg" alt="" class="cabinet-menu-def">
 														<img src="img/icons/documents-active.svg" alt="" class="cabinet-menu-active">
-														<div class="cabinet-menu__circle"></div>
 													</div>
 													<div class="cabinet-menu__name">
 														Счета<span>, документы</span>
@@ -559,19 +558,64 @@
 									</div>
 								</div>
 							</div>
-							<div class="block-cabinet__body">
-								<div class="block-cabinet__columns">
-									<div class="block-cabinet__title">
-										Мои подписки
-									</div>
-									<div class="block-cabinet__text-offer text-offer-send">
-										<p class="text1">
-											Текст о прекращении действия оферты
-										</p>
-										<a href="./" class="btn btn-bg disabled">Восстановить доступ к 1С</a>
-										<p class="text2">
-											Обращение отправлено, с вами свяжется менеджер
-										</p>
+							<div class="block-cabinet__body body-long">
+								<div class="block-cabinet__columns columns2">
+									<div data-tabs="1200,max" class="cabinet-tabs">
+										<nav data-tabs-titles class="cabinet-tabs__navigation">
+											<button type="button" class="cabinet-tabs__titles _tab-active">
+												<div class="cabinet-tabs__title">
+													Счета и документы
+												</div>
+												<span class="cabinet-tabs__arrow">
+													<img src="img/icons/arrow3.svg" alt="">
+												</span>
+											</button>
+											<button type="button" class="cabinet-tabs__titles">
+												<div class="cabinet-tabs__title">
+													Акт сверки взаиморасчетов
+												</div>
+												<span class="cabinet-tabs__arrow">
+													<img src="img/icons/arrow3.svg" alt="">
+												</span>
+											</button>
+											<button type="button" class="cabinet-tabs__titles">
+												<div class="cabinet-tabs__title">
+													Ваши реквизиты
+												</div>
+												<span class="cabinet-tabs__arrow">
+													<img src="img/icons/arrow3.svg" alt="">
+												</span>
+											</button>
+											<button type="button" class="cabinet-tabs__titles">
+												<div class="cabinet-tabs__title">
+													Автоплатёж
+												</div>
+												<span class="cabinet-tabs__arrow">
+													<img src="img/icons/arrow3.svg" alt="">
+												</span>
+											</button>
+										</nav>
+										<div data-tabs-body class="cabinet-tabs__content">
+											<div class="cabinet-tabs__body">
+												<div class="cabinet-tabs-invoices">
+													<div class="cabinet-tabs-invoices-empty">
+														<div class="cabinet-tabs-invoices-empty__title">
+															Счета и документы отсутствуют
+														</div>
+														<p>
+															Если у вас остались вопросы, пожалуйста, <a href="./">свяжитесь
+																с нами</a>
+														</p>
+													</div>
+												</div>
+											</div>
+											<div class="cabinet-tabs__body">
+											</div>
+											<div class="cabinet-tabs__body">
+											</div>
+											<div class="cabinet-tabs__body">
+											</div>
+										</div>
 									</div>
 								</div>
 							</div>

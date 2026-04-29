@@ -492,9 +492,18 @@ function tabs() {
           tabsContent.append(tabsTitleItems[index]);
           tabsContent.append(tabsContentItem);
           tabsMediaItem.classList.add('_tab-spoller');
+          tabsTitleItems[index].classList.remove('_tab-active');
+          tabsContentItem.hidden = true;
         } else {
           tabsTitles.append(tabsTitleItems[index]);
           tabsMediaItem.classList.remove('_tab-spoller');
+          if (index === 0) {
+            tabsTitleItems[index].classList.add('_tab-active');
+            tabsContentItem.hidden = false;
+          } else {
+            tabsTitleItems[index].classList.remove('_tab-active');
+            tabsContentItem.hidden = true;
+          }
         }
       });
     });
@@ -515,9 +524,18 @@ function tabs() {
         tabsTitles[index].setAttribute('data-tabs-title', '');
         tabsContentItem.setAttribute('data-tabs-item', '');
 
-        if (tabsActiveHashBlock && index == tabsActiveHash[1]) {
-          tabsTitles[index].classList.add('_tab-active');
+        const isSpollerMode = tabsBlock.classList.contains('_tab-spoller');
+
+        if (!isSpollerMode) {
+          if (tabsActiveHashBlock && index == tabsActiveHash[1]) {
+            tabsTitles[index].classList.add('_tab-active');
+          } else if (!tabsActiveHashBlock && index === 0) {
+            tabsTitles[index].classList.add('_tab-active');
+          }
+        } else {
+          tabsTitles[index].classList.remove('_tab-active');
         }
+
         tabsContentItem.hidden = !tabsTitles[index].classList.contains('_tab-active');
       });
     }
@@ -567,11 +585,29 @@ function tabs() {
     if (el.closest('[data-tabs-title]')) {
       const tabTitle = el.closest('[data-tabs-title]');
       const tabsBlock = tabTitle.closest('[data-tabs]');
-      if (!tabTitle.classList.contains('_tab-active') && !tabsBlock.querySelector('._slide')) {
-        let tabActiveTitle = tabsBlock.querySelectorAll('[data-tabs-title]._tab-active');
-        tabActiveTitle = Array.from(tabActiveTitle).filter(item => item.closest('[data-tabs]') === tabsBlock);
-        if (tabActiveTitle.length) tabActiveTitle[0].classList.remove('_tab-active');
-        tabTitle.classList.add('_tab-active');
+      const isSpollerMode = tabsBlock.classList.contains('_tab-spoller');
+
+      if (!tabsBlock.querySelector('._slide')) {
+        if (isSpollerMode) {
+          const contentItem = tabsBlock.querySelector(`[data-tabs-item="${tabTitle.getAttribute('data-tabs-title')}"]`);
+
+          if (tabTitle.classList.contains('_tab-active')) {
+            tabTitle.classList.remove('_tab-active');
+          } else {
+            let activeTitles = tabsBlock.querySelectorAll('[data-tabs-title]._tab-active');
+            activeTitles.forEach(activeTitle => {
+              activeTitle.classList.remove('_tab-active');
+            });
+            tabTitle.classList.add('_tab-active');
+          }
+        } else {
+          if (!tabTitle.classList.contains('_tab-active')) {
+            let tabActiveTitle = tabsBlock.querySelectorAll('[data-tabs-title]._tab-active');
+            tabActiveTitle = Array.from(tabActiveTitle).filter(item => item.closest('[data-tabs]') === tabsBlock);
+            if (tabActiveTitle.length) tabActiveTitle[0].classList.remove('_tab-active');
+            tabTitle.classList.add('_tab-active');
+          }
+        }
         setTabsStatus(tabsBlock);
       }
       e.preventDefault();
@@ -714,15 +750,20 @@ if (headerMenu) {
   }
 
   function updateHandlers() {
-    if (!menuButton) return;
+    const menuButtons = document.querySelectorAll('.header-menu-button');
+    if (!menuButtons.length) return;
 
     if (isDesktop() && !isHoverActive) {
-      menuButton.addEventListener('mouseenter', onMouseEnter);
-      menuButton.addEventListener('mouseleave', onMouseLeave);
+      menuButtons.forEach(button => {
+        button.addEventListener('mouseenter', onMouseEnter);
+        button.addEventListener('mouseleave', onMouseLeave);
+      });
       isHoverActive = true;
     } else if (isMobile() && isHoverActive) {
-      menuButton.removeEventListener('mouseenter', onMouseEnter);
-      menuButton.removeEventListener('mouseleave', onMouseLeave);
+      menuButtons.forEach(button => {
+        button.removeEventListener('mouseenter', onMouseEnter);
+        button.removeEventListener('mouseleave', onMouseLeave);
+      });
       documentElement.classList.remove('menu-open');
       isHoverActive = false;
     }
@@ -777,5 +818,67 @@ if (headerMenu) {
         documentElement.classList.remove('menu-open');
       }
     }, 150);
+  });
+}
+
+//========================================================================================================================================================
+
+const paginationBlocks = document.querySelectorAll('.block-pagination');
+
+if (paginationBlocks) {
+  paginationBlocks.forEach(block => {
+    const button = block.querySelector('.btn-more');
+    const loader = block.querySelector('.orange-loader');
+
+    if (button && loader) {
+      button.addEventListener('click', () => {
+        button.style.display = 'none';
+        loader.style.display = 'flex';
+
+        setTimeout(() => {
+          button.style.display = 'flex';
+          loader.style.display = 'none';
+        }, 2000);
+      });
+    }
+  });
+}
+
+//========================================================================================================================================================
+
+const meatballsButtons = document.querySelectorAll('.cabinet-table-meatballs__button');
+
+if (meatballsButtons) {
+  meatballsButtons.forEach(button => {
+    button.addEventListener('click', function (event) {
+      event.stopPropagation();
+
+      const parentBlock = this.closest('.cabinet-table-meatballs');
+
+      if (parentBlock) {
+        if (parentBlock.classList.contains('active')) {
+          parentBlock.classList.remove('active');
+          return;
+        }
+
+        const allActiveMenus = document.querySelectorAll('.cabinet-table-meatballs.active');
+        allActiveMenus.forEach(menu => {
+          menu.classList.remove('active');
+        });
+
+        parentBlock.classList.add('active');
+      }
+    });
+  });
+
+  document.addEventListener('click', function (event) {
+    const isInsideMeatballs = event.target.closest('.cabinet-table-meatballs');
+
+    if (!isInsideMeatballs) {
+      const allActiveMenus = document.querySelectorAll('.cabinet-table-meatballs.active');
+      allActiveMenus.forEach(menu => {
+        menu.classList.remove('active');
+      });
+    }
   });
 }
