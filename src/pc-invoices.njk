@@ -8,10 +8,10 @@
 
 <body class="preload mp">
     <div class="main-wrapper-outer">
-        {% include 'blocks/header.njk' %}
+        {% include 'blocks/header2.njk' %}
         <main class="main">
 
-            <div class="block-cabinet">
+            <div class="block-cabinet block-cabinet-invoices">
                 <div class="container">
                     <div class="block-cabinet__content">
                         <div class="cabinet-menu">
@@ -117,9 +117,9 @@
                         </div>
                         <div class="block-cabinet__body body-long">
                             <div class="block-cabinet__columns columns2">
-                                <div data-tabs="992,max" class="cabinet-tabs">
+                                <div data-tabs="1200,max" class="cabinet-tabs">
                                     <nav data-tabs-titles class="cabinet-tabs__navigation">
-                                        <button type="button" class="cabinet-tabs__titles _tab-active">
+                                        <button type="button" class="cabinet-tabs__titles">
                                             <div class="cabinet-tabs__title">
                                                 Счета и документы
                                                 <span class="cabinet-tabs__number">
@@ -127,15 +127,15 @@
                                                 </span>
                                             </div>
                                             <span class="cabinet-tabs__arrow">
-                                                <img src="img/icons/arrow1.svg" alt="">
+                                                <img src="img/icons/arrow3.svg" alt="">
                                             </span>
                                         </button>
-                                        <button type="button" class="cabinet-tabs__titles">
+                                        <button type="button" class="cabinet-tabs__titles _tab-active">
                                             <div class="cabinet-tabs__title">
-                                                Акт сверки взаиморасчетов
+                                                Акт сверки и взаиморасчетов
                                             </div>
                                             <span class="cabinet-tabs__arrow">
-                                                <img src="img/icons/arrow1.svg" alt="">
+                                                <img src="img/icons/arrow3.svg" alt="">
                                             </span>
                                         </button>
                                         <button type="button" class="cabinet-tabs__titles">
@@ -143,7 +143,7 @@
                                                 Ваши реквизиты
                                             </div>
                                             <span class="cabinet-tabs__arrow">
-                                                <img src="img/icons/arrow1.svg" alt="">
+                                                <img src="img/icons/arrow3.svg" alt="">
                                             </span>
                                         </button>
                                         <button type="button" class="cabinet-tabs__titles">
@@ -151,72 +151,367 @@
                                                 Автоплатёж
                                             </div>
                                             <span class="cabinet-tabs__arrow">
-                                                <img src="img/icons/arrow1.svg" alt="">
+                                                <img src="img/icons/arrow3.svg" alt="">
                                             </span>
                                         </button>
                                     </nav>
                                     <div data-tabs-body class="cabinet-tabs__content">
                                         <div class="cabinet-tabs__body">
                                             <div class="cabinet-tabs-invoices">
-                                                <div class="cabinet-invoices-table">
-                                                    <div class="cabinet-invoices-table__main">
-                                                        <div class="cabinet-invoices-table__title">
+                                                <div class="cabinet-table">
+                                                    <div class="cabinet-table__item item-main">
+                                                        <div class="cabinet-table__title">
                                                             №
                                                         </div>
-                                                        <div class="cabinet-invoices-table__title">
+                                                        <div class="cabinet-table__title">
                                                             Описание
                                                         </div>
-                                                        <div class="cabinet-invoices-table__title">
+                                                        <div class="cabinet-table__title">
                                                             Сумма
                                                         </div>
-                                                        <div class="cabinet-invoices-table__title">
-                                                            Документы
+                                                        <div class="cabinet-table__title title-documents">
+                                                            <span class="desc">Документы</span>
+                                                            <span class="mob">Докум.</span>
                                                         </div>
-                                                        <div class="cabinet-invoices-table__title">
+                                                        <div class="cabinet-table__title">
 
                                                         </div>
                                                     </div>
-                                                    <div class="cabinet-invoices-table__item">
-                                                        <div class="cabinet-invoices-table__title">
+                                                    <div class="cabinet-table__item">
+                                                        <div class="cabinet-table__title">
                                                             5
                                                         </div>
-                                                        <div class="cabinet-invoices-table__title">
+                                                        <div class="cabinet-table__title">
                                                             <p>
                                                                 Счет № 111261 <span>от 2025-02-01 01:03:37</span>
                                                             </p>
                                                         </div>
-                                                        <div class="cabinet-invoices-table__title">
+                                                        <div class="cabinet-table__title">
                                                             163 565 ₸
                                                         </div>
-                                                        <div class="cabinet-invoices-table__title">
-                                                            <div class="cabinet-invoices-table__documents">
-                                                                <a href="./" class="cabinet-invoices-table__document">
+                                                        <div class="cabinet-table__title title-documents">
+                                                            <div class="cabinet-table__documents">
+                                                                <a href="./" download="#download"
+                                                                    class="cabinet-table__document">
                                                                     <img src="img/icons/documents.svg" alt="">
-                                                                    <span>Счет</span>
+                                                                    Счет
                                                                 </a>
-                                                                <a href="./" class="cabinet-invoices-table__document">
+                                                                <a href="./" download="#download"
+                                                                    class="cabinet-table__document">
                                                                     <img src="img/icons/documents.svg" alt="">
-                                                                    <span>АВР</span>
+                                                                    АВР
                                                                 </a>
                                                             </div>
                                                         </div>
-                                                        <div class="cabinet-invoices-table__title">
+                                                        <div class="cabinet-table__title">
                                                             <a href="./" class="btn btn-bg">
                                                                 <span>Оплатить</span>
                                                             </a>
                                                         </div>
                                                     </div>
+                                                    <div class="cabinet-table__item">
+                                                        <div class="cabinet-table__title">
+                                                            4
+                                                        </div>
+                                                        <div class="cabinet-table__title">
+                                                            <p>
+                                                                Счет № 110207 <span>от 2025-01-10 11:01:48</span>
+                                                            </p>
+                                                        </div>
+                                                        <div class="cabinet-table__title">
+                                                            163 565 ₸
+                                                        </div>
+                                                        <div class="cabinet-table__title title-documents">
+                                                            <div class="cabinet-table__documents">
+                                                                <a href="./" download="#download"
+                                                                    class="cabinet-table__document">
+                                                                    <img src="img/icons/documents.svg" alt="">
+                                                                    Счет
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="cabinet-table__title">
+                                                            <a href="./" class="btn btn-bg">
+                                                                <span>Оплатить</span>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="cabinet-table__item">
+                                                        <div class="cabinet-table__title">
+                                                            3
+                                                        </div>
+                                                        <div class="cabinet-table__title">
+                                                            <p>
+                                                                Счет № 111261 <span>от 2025-02-01 01:03:37</span>
+                                                            </p>
+                                                        </div>
+                                                        <div class="cabinet-table__title">
+                                                            163 565 ₸
+                                                        </div>
+                                                        <div class="cabinet-table__title title-documents">
+                                                            <div class="cabinet-table__documents">
+                                                                <a href="./" download="#download"
+                                                                    class="cabinet-table__document">
+                                                                    <img src="img/icons/documents.svg" alt="">
+                                                                    Счет
+                                                                </a>
+                                                                <a href="./" download="#download"
+                                                                    class="cabinet-table__document">
+                                                                    <img src="img/icons/documents.svg" alt="">
+                                                                    АВР
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="cabinet-table__title">
+                                                            <a href="./" class="btn btn-bg">
+                                                                <span>Оплатить</span>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="cabinet-table__item">
+                                                        <div class="cabinet-table__title">
+                                                            2
+                                                        </div>
+                                                        <div class="cabinet-table__title">
+                                                            <p>
+                                                                Счет № 111261 <span>от 2025-02-01 01:03:37</span>
+                                                            </p>
+                                                        </div>
+                                                        <div class="cabinet-table__title">
+                                                            163 565 ₸
+                                                        </div>
+                                                        <div class="cabinet-table__title title-documents">
+                                                            <div class="cabinet-table__documents">
+                                                                <a href="./" download="#download"
+                                                                    class="cabinet-table__document">
+                                                                    <img src="img/icons/documents.svg" alt="">
+                                                                    Счет
+                                                                </a>
+                                                                <a href="./" download="#download"
+                                                                    class="cabinet-table__document">
+                                                                    <img src="img/icons/documents.svg" alt="">
+                                                                    АВР
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="cabinet-table__title">
+                                                            <a href="./" class="btn btn-bg disabled">
+                                                                <span>Оплачено</span>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="cabinet-table__item">
+                                                        <div class="cabinet-table__title">
+                                                            1
+                                                        </div>
+                                                        <div class="cabinet-table__title">
+                                                            <p>
+                                                                Счет № 111261 <span>от 2025-02-01 01:03:37</span>
+                                                            </p>
+                                                        </div>
+                                                        <div class="cabinet-table__title">
+                                                            163 565 ₸
+                                                        </div>
+                                                        <div class="cabinet-table__title title-documents">
+                                                            <div class="cabinet-table__documents">
+                                                                <a href="./" download="#download"
+                                                                    class="cabinet-table__document">
+                                                                    <img src="img/icons/documents.svg" alt="">
+                                                                    Счет
+                                                                </a>
+                                                                <a href="./" download="#download"
+                                                                    class="cabinet-table__document">
+                                                                    <img src="img/icons/documents.svg" alt="">
+                                                                    АВР
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="cabinet-table__title">
+                                                            <a href="./" class="btn btn-bg disabled">
+                                                                <span>Оплачено</span>
+                                                            </a>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <div class="pagging">
-                                                    <a class="pagging__item pagging__item_active" href="./">1</a>
-                                                    <a class="pagging__item" href="./">2</a>
-                                                    <a class="pagging__item" href="./">3</a>
-                                                    <a class="pagging__item" href="./">4</a>
+                                                <div class="block-pagination">
+                                                    <button type="button" class="btn btn-bg btn-more">
+                                                        <span>Показать еще счета</span>
+                                                    </button>
+                                                    <div class="orange-loader" style="display: none;">
+                                                        <div class="mini-loader-orange"></div>
+                                                    </div>
+                                                    <div class="pagging">
+                                                        <a class="pagging__item pagging__item_active" href="./">1</a>
+                                                        <a class="pagging__item" href="./">2</a>
+                                                        <a class="pagging__item" href="./">3</a>
+                                                        <a class="pagging__item" href="./">4</a>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="cabinet-tabs__body">
-                                            Содержимое второго таба
+                                            <div class="cabinet-tabs-act">
+                                                <div class="cabinet-tabs-act-order">
+                                                    <div class="cabinet-tabs-act-order__content">
+                                                        <div class="cabinet-tabs-act-order__title">
+                                                            Заказать акт сверки
+                                                        </div>
+                                                        <div class="cabinet-tabs-act-order__body">
+                                                            <div class="cabinet-tabs-act-order__calendars">
+                                                                <div class="calendar">
+                                                                    <div class="calendar__title">
+                                                                        Начало периода:
+                                                                    </div>
+                                                                    <div class="calendar__input"></div>
+                                                                </div>
+                                                                <div class="calendar">
+                                                                    <div class="calendar__title">
+                                                                        Завершение периода:
+                                                                    </div>
+                                                                    <div class="calendar__input"></div>
+                                                                </div>
+                                                            </div>
+                                                            <a href="./" class="btn btn-bg">
+                                                                <span>Заказать</span>
+                                                            </a>
+                                                        </div>
+                                                        <div class="cabinet-tabs-act-order__buttons">
+                                                            <button type="button"
+                                                                class="cabinet-tabs-act-order__button">
+                                                                <span class="desc">За последние 7 дней</span>
+                                                                <span class="mob">За последние 7д.</span>
+                                                            </button>
+                                                            <button type="button"
+                                                                class="cabinet-tabs-act-order__button">
+                                                                <span class="desc">За последний месяц</span>
+                                                                <span class="mob">За последний 1м.</span>
+                                                            </button>
+                                                            <button type="button"
+                                                                class="cabinet-tabs-act-order__button">
+                                                                <span class="desc">За последние 3 месяца</span>
+                                                                <span class="mob">За последние 3м.</span>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="cabinet-tabs-act-table">
+                                                    <div class="cabinet-tabs-act-table__title">
+                                                        Готовые акты сверки:
+                                                    </div>
+                                                    <div class="cabinet-table cabinet-table-act"> 
+                                                        <div class="cabinet-table__item item-main">
+                                                            <div class="cabinet-table__title">
+                                                                Начало <span>периода</span>
+                                                            </div>
+                                                            <div class="cabinet-table__title">
+                                                                Завершение <span>периода</span>
+                                                            </div>
+                                                            <div class="cabinet-table__title">
+                                                                Дата исполнения
+                                                            </div>
+                                                            <div class="cabinet-table__title">
+                                                                Действие
+                                                            </div>
+                                                        </div>
+                                                        <div class="cabinet-table__item">
+                                                            <div class="cabinet-table__title">
+                                                                1.05.2018
+                                                            </div>
+                                                            <div class="cabinet-table__title">
+                                                                22.05.2018
+                                                            </div>
+                                                            <div class="cabinet-table__title">
+                                                                <p>
+                                                                    23.05.2018 <span>15:16</span>
+                                                                </p>
+                                                            </div>
+                                                            <div class="cabinet-table__title btn-title">
+                                                                <a href="./" download="#download" class="btn btn-bg">
+                                                                    <span>Скачать</span>
+                                                                </a>
+                                                                <div class="cabinet-table-meatballs">
+                                                                    <div class="cabinet-table-meatballs__button">
+                                                                        <img src="img/icons/meatballs.svg" alt="">
+                                                                    </div>
+                                                                    <div class="cabinet-table-meatballs__body">
+                                                                        <a href="./" class="cabinet-table__link">
+                                                                            Получить<br>
+                                                                            подписанный
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="cabinet-table__item">
+                                                            <div class="cabinet-table__title">
+                                                                1.05.2018
+                                                            </div>
+                                                            <div class="cabinet-table__title">
+                                                                22.05.2018
+                                                            </div>
+                                                            <div class="cabinet-table__title">
+                                                                <p>
+                                                                    23.05.2018 <span>15:16</span>
+                                                                </p>
+                                                            </div>
+                                                            <div class="cabinet-table__title btn-title">
+                                                                <a href="./" download="#download" class="btn btn-bg">
+                                                                    <span>Скачать</span>
+                                                                </a>
+                                                                <div class="cabinet-table-meatballs active">
+                                                                    <div class="cabinet-table-meatballs__button">
+                                                                        <img src="img/icons/meatballs.svg" alt="">
+                                                                    </div>
+                                                                    <div class="cabinet-table-meatballs__body">
+                                                                        <a href="./" class="cabinet-table__link">
+                                                                            Получить<br>
+                                                                            подписанный
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="cabinet-table__item">
+                                                            <div class="cabinet-table__title">
+                                                                1.05.2018
+                                                            </div>
+                                                            <div class="cabinet-table__title">
+                                                                22.05.2018
+                                                            </div>
+                                                            <div class="cabinet-table__title">
+                                                                <p>
+                                                                    23.05.2018 <span>15:16</span>
+                                                                </p>
+                                                            </div>
+                                                            <div class="cabinet-table__title btn-title">
+                                                                <a href="./" download="#download" class="btn btn-bg">
+                                                                    <span>Скачать</span>
+                                                                </a>
+                                                                <div class="cabinet-table-meatballs">
+                                                                    <div class="cabinet-table-meatballs__button">
+                                                                        <img src="img/icons/meatballs.svg" alt="">
+                                                                    </div>
+                                                                    <div class="cabinet-table-meatballs__body">
+                                                                        <a href="./" class="cabinet-table__link">
+                                                                            Получить<br>
+                                                                            подписанный
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="block-pagination">
+                                                        <div class="pagging">
+                                                            <a class="pagging__item pagging__item_active"
+                                                                href="./">1</a>
+                                                            <a class="pagging__item" href="./">2</a>
+                                                            <a class="pagging__item" href="./">3</a>
+                                                            <a class="pagging__item" href="./">4</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="cabinet-tabs__body">
                                             Содержимое третьего таба
