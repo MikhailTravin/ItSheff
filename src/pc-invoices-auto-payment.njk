@@ -2,7 +2,7 @@
 <html lang="ru">
 
 <head>
-    <title>Счета и документы</title>
+    <title>Счета и документы (автоплатеж карта)</title>
     {% include 'blocks/head.njk' %}
 </head>
 
@@ -576,7 +576,7 @@
                                                                     </svg>
                                                                     <span>Оферта</span>
                                                                 </a>
-                                                                <button data-popup="#popup-unsubscribe2" type="button"
+                                                                <button data-popup="#popup-unsubscribe" type="button"
                                                                     class="cabinet-details-subscriptions__btn">
                                                                     <svg aria-hidden="true" width="16" height="16">
                                                                         <use xlink:href="img/sprite.svg#close2"></use>
@@ -650,12 +650,25 @@
                                                         Пополним баланс, когда не будет хватать денег на оплату услуг
                                                         тарифа: <span>1С Онлайн</span>
                                                     </div>
+                                                    <div class="cabinet-payment-card">
+                                                        <div class="cabinet-payment-card__icon">
+                                                            <svg aria-hidden="true" width="16" height="16">
+                                                                <use xlink:href="img/sprite.svg#tenge"></use>
+                                                            </svg>
+                                                        </div>
+                                                        <div class="cabinet-payment-card__number">
+                                                            4400 **** **** 4637
+                                                            <span>Карт-счет</span>
+                                                        </div>
+                                                        <div class="cabinet-payment-card__check">
+                                                            <svg aria-hidden="true" width="16" height="16">
+                                                                <use xlink:href="img/sprite.svg#check1"></use>
+                                                            </svg>
+                                                        </div>
+                                                    </div>
                                                     <div class="cabinet-auto-payment__buttons">
                                                         <a href="./" class="btn btn-bg">
-                                                            <svg aria-hidden="true" width="20" height="20">
-                                                                <use xlink:href="img/sprite.svg#card1"></use>
-                                                            </svg>
-                                                            <span>Добавить карту</span>
+                                                            Отключить
                                                         </a>
                                                         <p>
                                                             Продолжая, вы соглашаетесь с <a href="./">условиями</a>
@@ -1137,41 +1150,6 @@
                     </button>
                     <button data-close type="button" class="btn btn-bg">
                         <span>Отмена</span>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div id="popup-unsubscribe2" aria-hidden="false" class="popup popup-unsubscribe popup-unsubscribe2">
-        <div class="popup__wrapper">
-            <div class="popup__content">
-                <div class="popup__top">
-                    <div class="popup__titles">
-                        <div class="popup__title">
-                            Отменить подписку?
-                        </div>
-                    </div>
-                    <div data-close class="popup__close">
-                        <svg aria-hidden="true" width="20" height="20">
-                            <use xlink:href="img/sprite.svg#close1"></use>
-                        </svg>
-                    </div>
-                </div>
-                <div class="popup-unsubscribe__body">
-                    <div class="popup-unsubscribe__name">
-                        Отменить подписку?
-                    </div>
-                    <div class="popup-unsubscribe__title">
-                        Сопроводительный короткий текст
-                        можно в две строки
-                    </div>
-                </div>
-                <div class="popup__buttons">
-                    <button type="button" class="link">
-                        <span>Отменить подписку</span>
-                    </button>
-                    <button data-close type="button" class="btn btn-bg">
-                        <span>Назад</span>
                     </button>
                 </div>
             </div>

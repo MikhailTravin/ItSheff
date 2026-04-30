@@ -161,6 +161,24 @@ a {
   }
 }
 
+.link {
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 111%;
+  color: #f26135;
+  transition: color 0.3s;
+  @media (max-width: 650px) {
+    font-size: 14px;
+    line-height: 143%;
+  }
+  &:hover {
+    color: #d9481c;
+  }
+  &:active {
+    color: #c03b12;
+  }
+}
+
 .orange-loader {
   display: flex;
   align-items: center;
