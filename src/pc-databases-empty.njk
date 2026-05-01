@@ -2,7 +2,7 @@
 <html lang="ru">
 
 <head>
-    <title>ЛК - мои подписки (восстановление доступа2)</title>
+    <title>ЛК - базы данных (пусто)</title>
     {% include 'blocks/head.njk' %}
 </head>
 
@@ -11,7 +11,7 @@
         {% include 'blocks/header.njk' %}
         <main class="main">
 
-            <div class="block-cabinet">
+            <div class="block-cabinet block-cabinet-databases">
                 <div class="container">
                     <div class="block-cabinet__content">
                         <div class="cabinet-menu">
@@ -19,7 +19,7 @@
                                 <div class="cabinet-menu__column">
                                     <ul>
                                         <li>
-                                            <span class="cabinet-menu__link active">
+                                            <span class="cabinet-menu__link ">
                                                 <div class="cabinet-menu__icon">
                                                     <img src="img/icons/cabinet.svg" alt="" class="cabinet-menu-def">
                                                     <img src="img/icons/cabinet-active.svg" alt=""
@@ -44,7 +44,7 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="./" class="cabinet-menu__link">
+                                            <a href="./" class="cabinet-menu__link active">
                                                 <div class="cabinet-menu__icon">
                                                     <img src="img/icons/databases.svg" alt="" class="cabinet-menu-def">
                                                     <img src="img/icons/databases-active.svg" alt=""
@@ -116,21 +116,26 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="block-cabinet__body">
+                        <div class="block-cabinet__body body-long">
                             <div class="block-cabinet__columns">
                                 <div class="block-cabinet__titles">
                                     <div class="block-cabinet__title">
-                                        Мои подписки
+                                        Мои базы данных
                                     </div>
                                 </div>
-                                <div class="block-cabinet__text-offer text-offer-send">
-                                    <p class="text1">
-                                        Текст о прекращении действия оферты
-                                    </p>
-                                    <a href="./" class="btn btn-bg disabled">Восстановить доступ к 1С</a>
-                                    <p class="text2">
-                                        Обращение отправлено, с вами свяжется менеджер
-                                    </p>
+                                <div class="cabinet-databases-empty">
+                                    <a href="./" class="btn">
+                                        <svg aria-hidden="true" width="18" height="18">
+                                            <use xlink:href="img/sprite.svg#plus3"></use>
+                                        </svg>
+                                        <span>Создать новую БД</span>
+                                    </a>
+                                    <a href="./" class="btn btn-bg">
+                                        <svg aria-hidden="true" width="18" height="18">
+                                            <use xlink:href="img/sprite.svg#upload"></use>
+                                        </svg>
+                                        <span>Загрузить свою БД</span>
+                                    </a>
                                 </div>
                             </div>
                         </div>

@@ -434,9 +434,8 @@
         }
         &._spoller-active {
             .header-menu__arrow {
-                img {
-                    filter: none;
-                    transform: rotate(0deg);
+                svg {
+                    transform: rotate(90deg);
                 }
             }
         }
@@ -482,15 +481,25 @@
         flex: 0 0 12px;
         width: 12px;
         height: auto;
-        margin-top: 2.5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 1.5px 0px 0px 0px;
+        svg {
+            fill: #c0c0c0;
+            transition: fill 0.3s;
+            transform: rotate(90deg);
+            @media (max-width: 1200px) {
+                transform: rotate(0deg);
+                transition: transform 0.3s;
+                fill: #000;
+                width: 11px;
+                height: auto;
+            }
+        }
         img {
             width: 100%;
             height: auto;
-            @media (max-width: 1200px) {
-                transform: rotate(-90deg);
-                transition: transform 0.3s;
-                filter: invert(0%) brightness(0%);
-            }
         }
         @media (max-width: 1200px) {
             flex: 0 0 16px;

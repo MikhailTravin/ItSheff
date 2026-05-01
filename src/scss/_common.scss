@@ -114,6 +114,7 @@ a {
   &.disabled {
     pointer-events: none;
     color: #424242;
+    
     background-color: #f8f8f8;
   }
 }
@@ -356,14 +357,33 @@ a {
       color: #fff;
     }
 
-    // .pagging__item_ellipsis
-
-    &_ellipsis {
+    // .pagging__arrow
+  }
+  &__arrow {
+    width: 36px;
+    height: 36px;
+    flex: 0 0 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    svg {
+      fill: #424242;
+      transition: fill 0.3s;
+    }
+    &:hover {
+      svg {
+        fill: #000;
+      }
     }
 
-    // .pagging__item_nav-next
+    // .pagging_arrow-next
 
-    &_nav-next {
+    &_arrow-next {
+    }
+
+    // .pagging_arrow-last
+
+    &_arrow-last {
     }
   }
 }
