@@ -122,16 +122,16 @@
                                     <div class="block-cabinet__title">
                                         Мои базы данных
                                     </div>
-                                    <a href="./" class="btn btn-bg">
+                                    <a href="./" data-popup="#add-base" class="btn btn-bg">
                                         <img src="img/icons/plus2.svg" alt="">
                                         <span>Добавить базу</span>
                                     </a>
                                 </div>
                                 <div class="block-cabinet__column">
-                                    <div class="cabinet-databases">
-                                        <div class="cabinet-databases-top">
-                                            <div class="cabinet-databases-top__titles">
-                                                <div class="cabinet-databases-top__title">
+                                    <div class="cabinet-objects">
+                                        <div class="cabinet-objects-top">
+                                            <div class="cabinet-objects-top__titles">
+                                                <div class="cabinet-objects-top__title">
                                                     Название БД №1
                                                 </div>
                                                 <ul>
@@ -141,7 +141,7 @@
                                                     </li>
                                                 </ul>
                                             </div>
-                                            <div class="cabinet-databases-top__buttons">
+                                            <div class="cabinet-objects-top__buttons">
                                                 <div class="databases-disk-space">
                                                     <div class="databases-disk-space__title">
                                                         <span> 1.8 из 5 ГБ</span>
@@ -150,30 +150,22 @@
                                                         <span style="width: 30%;"></span>
                                                     </div>
                                                 </div>
-                                                <div class="cabinet-databases-top__picker">
+                                                <div class="cabinet-objects-top__picker">
                                                     <svg aria-hidden="true" width="28" height="28">
                                                         <use xlink:href="img/sprite.svg#picker"></use>
                                                     </svg>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="cabinet-databases-bottom">
-                                            <div class="cabinet-databases-bottom__body">
-                                                <div class="cabinet-databases-bottom__list">
-                                                    <div class="cabinet-databases-bottom__main">
-                                                        <div class="cabinet-databases-bottom__titles">
-                                                            <div class="cabinet-databases-bottom__arrow">
-                                                                <svg aria-hidden="true" width="6" height="9">
-                                                                    <use xlink:href="img/sprite.svg#arrow1"></use>
-                                                                </svg>
-                                                            </div>
-                                                            <span>Настройки БД</span>
-                                                        </div>
-                                                        <div class="cabinet-databases-bottom__dropdown">
+                                        <div class="cabinet-objects-bottom">
+                                            <div class="cabinet-objects-bottom__contents">
+                                                <div class="cabinet-objects-bottom__body">
+                                                    <div class="cabinet-objects-bottom__list">
+                                                        <div class="cabinet-objects-bottom__main">
                                                             <ul>
                                                                 <li>
                                                                     <button type="button"
-                                                                        class="cabinet-databases-bottom__button">
+                                                                        class="cabinet-objects-bottom__button">
                                                                         <svg aria-hidden="true" width="20" height="20">
                                                                             <use xlink:href="img/sprite.svg#rename">
                                                                             </use>
@@ -183,7 +175,7 @@
                                                                 </li>
                                                                 <li>
                                                                     <button type="button"
-                                                                        class="cabinet-databases-bottom__button">
+                                                                        class="cabinet-objects-bottom__button">
                                                                         <svg aria-hidden="true" width="20" height="20">
                                                                             <use xlink:href="img/sprite.svg#refresh">
                                                                             </use>
@@ -193,7 +185,7 @@
                                                                 </li>
                                                                 <li>
                                                                     <button type="button"
-                                                                        class="cabinet-databases-bottom__button">
+                                                                        class="cabinet-objects-bottom__button">
                                                                         <svg aria-hidden="true" width="20" height="20">
                                                                             <use xlink:href="img/sprite.svg#users">
                                                                             </use>
@@ -203,7 +195,7 @@
                                                                 </li>
                                                                 <li>
                                                                     <button type="button"
-                                                                        class="cabinet-databases-bottom__button">
+                                                                        class="cabinet-objects-bottom__button">
                                                                         <svg aria-hidden="true" width="20" height="20">
                                                                             <use xlink:href="img/sprite.svg#databases">
                                                                             </use>
@@ -213,7 +205,7 @@
                                                                 </li>
                                                                 <li class="desc">
                                                                     <button type="button"
-                                                                        class="cabinet-databases-bottom__button">
+                                                                        class="cabinet-objects-bottom__button">
                                                                         <svg aria-hidden="true" width="20" height="20">
                                                                             <use xlink:href="img/sprite.svg#trash">
                                                                             </use>
@@ -223,7 +215,7 @@
                                                                 </li>
                                                                 <li class="desc">
                                                                     <button type="button"
-                                                                        class="cabinet-databases-bottom__button">
+                                                                        class="cabinet-objects-bottom__button">
                                                                         <svg aria-hidden="true" width="20" height="20">
                                                                             <use xlink:href="img/sprite.svg#download2">
                                                                             </use>
@@ -233,39 +225,21 @@
                                                                 </li>
                                                             </ul>
                                                         </div>
-                                                    </div>
-                                                    <div class="cabinet-databases-bottom__more">
-                                                        <div class="cabinet-databases-bottom__titles">
-                                                            <div class="cabinet-databases-bottom__arrow">
-                                                                <svg aria-hidden="true" width="6" height="9">
-                                                                    <use xlink:href="img/sprite.svg#arrow1"></use>
-                                                                </svg>
+                                                        <div class="cabinet-objects-bottom__more">
+                                                            <div class="cabinet-objects-bottom__titles">
+                                                                <div class="cabinet-objects-bottom__arrow">
+                                                                    <svg aria-hidden="true" width="6" height="9">
+                                                                        <use xlink:href="img/sprite.svg#arrow1"></use>
+                                                                    </svg>
+                                                                </div>
+                                                                <span class="desc">Еще</span>
+                                                                <span class="mob">Настройки БД</span>
                                                             </div>
-                                                            <span>Еще</span>
-                                                        </div>
-                                                        <div class="cabinet-databases-bottom__dropdown">
-                                                            <ul>
-                                                                <li>
-                                                                    <button type="button"
-                                                                        class="cabinet-databases-bottom__button">
-                                                                        <svg aria-hidden="true" width="20" height="20">
-                                                                            <use xlink:href="img/sprite.svg#trash">
-                                                                            </use>
-                                                                        </svg>
-                                                                        Удалить
-                                                                    </button>
-                                                                </li>
-                                                                <li>
-                                                                    <button type="button"
-                                                                        class="cabinet-databases-bottom__button">
-                                                                        <svg aria-hidden="true" width="20" height="20">
-                                                                            <use xlink:href="img/sprite.svg#download2">
-                                                                            </use>
-                                                                        </svg>
-                                                                        Скачать
-                                                                    </button>
-                                                                </li>
-                                                            </ul>
+                                                            <div class="cabinet-objects-bottom__dropdown">
+                                                                <ul class="cabinet-objects-bottom__more-list">
+
+                                                                </ul>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -277,17 +251,17 @@
                                     </div>
                                 </div>
                                 <div class="block-cabinet__column">
-                                    <div class="cabinet-databases">
-                                        <div class="cabinet-databases-top">
-                                            <div class="cabinet-databases-top__titles">
-                                                <div class="cabinet-databases-top__title title-two">
+                                    <div class="cabinet-objects">
+                                        <div class="cabinet-objects-top">
+                                            <div class="cabinet-objects-top__titles">
+                                                <div class="cabinet-objects-top__title title-two">
                                                     Название БД №2.<br> Если название длинное, то пишем в две строки
                                                 </div>
                                                 <ul>
                                                     <li>Серверный тип</li>
                                                 </ul>
                                             </div>
-                                            <div class="cabinet-databases-top__buttons">
+                                            <div class="cabinet-objects-top__buttons">
                                                 <div class="databases-disk-space">
                                                     <div class="databases-disk-space__title">
                                                         <span>1.8 из 5 ГБ</span>
@@ -297,30 +271,22 @@
                                                         <span style="width: 80%;"></span>
                                                     </div>
                                                 </div>
-                                                <div class="cabinet-databases-top__picker">
+                                                <div class="cabinet-objects-top__picker">
                                                     <svg aria-hidden="true" width="28" height="28">
                                                         <use xlink:href="img/sprite.svg#picker"></use>
                                                     </svg>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="cabinet-databases-bottom">
-                                            <div class="cabinet-databases-bottom__body">
-                                                <div class="cabinet-databases-bottom__list">
-                                                    <div class="cabinet-databases-bottom__main">
-                                                        <div class="cabinet-databases-bottom__titles">
-                                                            <div class="cabinet-databases-bottom__arrow">
-                                                                <svg aria-hidden="true" width="6" height="9">
-                                                                    <use xlink:href="img/sprite.svg#arrow1"></use>
-                                                                </svg>
-                                                            </div>
-                                                            <span>Настройки БД</span>
-                                                        </div>
-                                                        <div class="cabinet-databases-bottom__dropdown">
+                                        <div class="cabinet-objects-bottom">
+                                            <div class="cabinet-objects-bottom__contents">
+                                                <div class="cabinet-objects-bottom__body">
+                                                    <div class="cabinet-objects-bottom__list">
+                                                        <div class="cabinet-objects-bottom__main">
                                                             <ul>
                                                                 <li>
                                                                     <button type="button"
-                                                                        class="cabinet-databases-bottom__button">
+                                                                        class="cabinet-objects-bottom__button">
                                                                         <svg aria-hidden="true" width="20" height="20">
                                                                             <use xlink:href="img/sprite.svg#rename">
                                                                             </use>
@@ -330,7 +296,7 @@
                                                                 </li>
                                                                 <li>
                                                                     <button type="button"
-                                                                        class="cabinet-databases-bottom__button">
+                                                                        class="cabinet-objects-bottom__button">
                                                                         <svg aria-hidden="true" width="20" height="20">
                                                                             <use xlink:href="img/sprite.svg#refresh">
                                                                             </use>
@@ -340,7 +306,7 @@
                                                                 </li>
                                                                 <li>
                                                                     <button type="button"
-                                                                        class="cabinet-databases-bottom__button">
+                                                                        class="cabinet-objects-bottom__button">
                                                                         <svg aria-hidden="true" width="20" height="20">
                                                                             <use xlink:href="img/sprite.svg#users">
                                                                             </use>
@@ -350,7 +316,7 @@
                                                                 </li>
                                                                 <li>
                                                                     <button type="button"
-                                                                        class="cabinet-databases-bottom__button">
+                                                                        class="cabinet-objects-bottom__button">
                                                                         <svg aria-hidden="true" width="20" height="20">
                                                                             <use xlink:href="img/sprite.svg#databases">
                                                                             </use>
@@ -360,7 +326,7 @@
                                                                 </li>
                                                                 <li class="desc">
                                                                     <button type="button"
-                                                                        class="cabinet-databases-bottom__button">
+                                                                        class="cabinet-objects-bottom__button">
                                                                         <svg aria-hidden="true" width="20" height="20">
                                                                             <use xlink:href="img/sprite.svg#trash">
                                                                             </use>
@@ -370,7 +336,7 @@
                                                                 </li>
                                                                 <li class="desc">
                                                                     <button type="button"
-                                                                        class="cabinet-databases-bottom__button">
+                                                                        class="cabinet-objects-bottom__button">
                                                                         <svg aria-hidden="true" width="20" height="20">
                                                                             <use xlink:href="img/sprite.svg#download2">
                                                                             </use>
@@ -380,39 +346,21 @@
                                                                 </li>
                                                             </ul>
                                                         </div>
-                                                    </div>
-                                                    <div class="cabinet-databases-bottom__more">
-                                                        <div class="cabinet-databases-bottom__titles">
-                                                            <div class="cabinet-databases-bottom__arrow">
-                                                                <svg aria-hidden="true" width="6" height="9">
-                                                                    <use xlink:href="img/sprite.svg#arrow1"></use>
-                                                                </svg>
+                                                        <div class="cabinet-objects-bottom__more">
+                                                            <div class="cabinet-objects-bottom__titles">
+                                                                <div class="cabinet-objects-bottom__arrow">
+                                                                    <svg aria-hidden="true" width="6" height="9">
+                                                                        <use xlink:href="img/sprite.svg#arrow1"></use>
+                                                                    </svg>
+                                                                </div>
+                                                                <span class="desc">Еще</span>
+                                                                <span class="mob">Настройки БД</span>
                                                             </div>
-                                                            <span>Еще</span>
-                                                        </div>
-                                                        <div class="cabinet-databases-bottom__dropdown">
-                                                            <ul>
-                                                                <li>
-                                                                    <button type="button"
-                                                                        class="cabinet-databases-bottom__button">
-                                                                        <svg aria-hidden="true" width="20" height="20">
-                                                                            <use xlink:href="img/sprite.svg#trash">
-                                                                            </use>
-                                                                        </svg>
-                                                                        Удалить
-                                                                    </button>
-                                                                </li>
-                                                                <li>
-                                                                    <button type="button"
-                                                                        class="cabinet-databases-bottom__button">
-                                                                        <svg aria-hidden="true" width="20" height="20">
-                                                                            <use xlink:href="img/sprite.svg#download2">
-                                                                            </use>
-                                                                        </svg>
-                                                                        Скачать
-                                                                    </button>
-                                                                </li>
-                                                            </ul>
+                                                            <div class="cabinet-objects-bottom__dropdown">
+                                                                <ul class="cabinet-objects-bottom__more-list">
+
+                                                                </ul>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -424,17 +372,17 @@
                                     </div>
                                 </div>
                                 <div class="block-cabinet__column">
-                                    <div class="cabinet-databases">
-                                        <div class="cabinet-databases-top">
-                                            <div class="cabinet-databases-top__titles">
-                                                <div class="cabinet-databases-top__title">
+                                    <div class="cabinet-objects">
+                                        <div class="cabinet-objects-top">
+                                            <div class="cabinet-objects-top__titles">
+                                                <div class="cabinet-objects-top__title">
                                                     Название БД №3
                                                 </div>
                                                 <ul>
                                                     <li>Серверный тип</li>
                                                 </ul>
                                             </div>
-                                            <div class="cabinet-databases-top__buttons">
+                                            <div class="cabinet-objects-top__buttons">
                                                 <div class="databases-disk-space">
                                                     <div class="databases-disk-space__title">
                                                         <span>1.8 из 5 ГБ</span>
@@ -443,30 +391,22 @@
                                                         <span style="width: 80%;"></span>
                                                     </div>
                                                 </div>
-                                                <div class="cabinet-databases-top__picker">
+                                                <div class="cabinet-objects-top__picker">
                                                     <svg aria-hidden="true" width="28" height="28">
                                                         <use xlink:href="img/sprite.svg#picker"></use>
                                                     </svg>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="cabinet-databases-bottom">
-                                            <div class="cabinet-databases-bottom__body">
-                                                <div class="cabinet-databases-bottom__list">
-                                                    <div class="cabinet-databases-bottom__main">
-                                                        <div class="cabinet-databases-bottom__titles">
-                                                            <div class="cabinet-databases-bottom__arrow">
-                                                                <svg aria-hidden="true" width="6" height="9">
-                                                                    <use xlink:href="img/sprite.svg#arrow1"></use>
-                                                                </svg>
-                                                            </div>
-                                                            <span>Настройки БД</span>
-                                                        </div>
-                                                        <div class="cabinet-databases-bottom__dropdown">
+                                        <div class="cabinet-objects-bottom">
+                                            <div class="cabinet-objects-bottom__contents">
+                                                <div class="cabinet-objects-bottom__body">
+                                                    <div class="cabinet-objects-bottom__list">
+                                                        <div class="cabinet-objects-bottom__main">
                                                             <ul>
                                                                 <li>
                                                                     <button type="button"
-                                                                        class="cabinet-databases-bottom__button disabled">
+                                                                        class="cabinet-objects-bottom__button disabled">
                                                                         <svg aria-hidden="true" width="20" height="20">
                                                                             <use xlink:href="img/sprite.svg#rename">
                                                                             </use>
@@ -476,7 +416,7 @@
                                                                 </li>
                                                                 <li>
                                                                     <button type="button"
-                                                                        class="cabinet-databases-bottom__button disabled">
+                                                                        class="cabinet-objects-bottom__button disabled">
                                                                         <svg aria-hidden="true" width="20" height="20">
                                                                             <use xlink:href="img/sprite.svg#refresh">
                                                                             </use>
@@ -486,7 +426,7 @@
                                                                 </li>
                                                                 <li>
                                                                     <button type="button"
-                                                                        class="cabinet-databases-bottom__button disabled">
+                                                                        class="cabinet-objects-bottom__button disabled">
                                                                         <svg aria-hidden="true" width="20" height="20">
                                                                             <use xlink:href="img/sprite.svg#users">
                                                                             </use>
@@ -496,7 +436,7 @@
                                                                 </li>
                                                                 <li>
                                                                     <button type="button"
-                                                                        class="cabinet-databases-bottom__button">
+                                                                        class="cabinet-objects-bottom__button">
                                                                         <svg aria-hidden="true" width="20" height="20">
                                                                             <use xlink:href="img/sprite.svg#databases">
                                                                             </use>
@@ -506,7 +446,7 @@
                                                                 </li>
                                                                 <li class="desc">
                                                                     <button type="button"
-                                                                        class="cabinet-databases-bottom__button">
+                                                                        class="cabinet-objects-bottom__button">
                                                                         <svg aria-hidden="true" width="20" height="20">
                                                                             <use xlink:href="img/sprite.svg#trash">
                                                                             </use>
@@ -516,7 +456,7 @@
                                                                 </li>
                                                                 <li class="desc">
                                                                     <button type="button"
-                                                                        class="cabinet-databases-bottom__button">
+                                                                        class="cabinet-objects-bottom__button">
                                                                         <svg aria-hidden="true" width="20" height="20">
                                                                             <use xlink:href="img/sprite.svg#download2">
                                                                             </use>
@@ -526,39 +466,21 @@
                                                                 </li>
                                                             </ul>
                                                         </div>
-                                                    </div>
-                                                    <div class="cabinet-databases-bottom__more">
-                                                        <div class="cabinet-databases-bottom__titles">
-                                                            <div class="cabinet-databases-bottom__arrow">
-                                                                <svg aria-hidden="true" width="6" height="9">
-                                                                    <use xlink:href="img/sprite.svg#arrow1"></use>
-                                                                </svg>
+                                                        <div class="cabinet-objects-bottom__more">
+                                                            <div class="cabinet-objects-bottom__titles">
+                                                                <div class="cabinet-objects-bottom__arrow">
+                                                                    <svg aria-hidden="true" width="6" height="9">
+                                                                        <use xlink:href="img/sprite.svg#arrow1"></use>
+                                                                    </svg>
+                                                                </div>
+                                                                <span class="desc">Еще</span>
+                                                                <span class="mob">Настройки БД</span>
                                                             </div>
-                                                            <span>Еще</span>
-                                                        </div>
-                                                        <div class="cabinet-databases-bottom__dropdown">
-                                                            <ul>
-                                                                <li>
-                                                                    <button type="button"
-                                                                        class="cabinet-databases-bottom__button">
-                                                                        <svg aria-hidden="true" width="20" height="20">
-                                                                            <use xlink:href="img/sprite.svg#trash">
-                                                                            </use>
-                                                                        </svg>
-                                                                        Удалить
-                                                                    </button>
-                                                                </li>
-                                                                <li>
-                                                                    <button type="button"
-                                                                        class="cabinet-databases-bottom__button">
-                                                                        <svg aria-hidden="true" width="20" height="20">
-                                                                            <use xlink:href="img/sprite.svg#download2">
-                                                                            </use>
-                                                                        </svg>
-                                                                        Скачать
-                                                                    </button>
-                                                                </li>
-                                                            </ul>
+                                                            <div class="cabinet-objects-bottom__dropdown">
+                                                                <ul class="cabinet-objects-bottom__more-list">
+
+                                                                </ul>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -566,13 +488,13 @@
                                                     <span>Открыть</span>
                                                 </a>
                                             </div>
-                                            <div class="cabinet-databases-changes">
-                                                <div class="cabinet-databases-changes__title">
+                                            <div class="cabinet-objects-changes">
+                                                <div class="cabinet-objects-changes__title">
                                                     Запланированные изменения
                                                 </div>
                                                 <ul>
                                                     <li>
-                                                        <div class="cabinet-databases-changes__delete">
+                                                        <div class="cabinet-objects-changes__delete">
                                                             <svg aria-hidden="true" width="13" height="13">
                                                                 <use xlink:href="img/sprite.svg#close1"></use>
                                                             </svg>
@@ -582,7 +504,7 @@
                                                         </span>
                                                     </li>
                                                     <li>
-                                                        <div class="cabinet-databases-changes__delete">
+                                                        <div class="cabinet-objects-changes__delete">
                                                             <svg aria-hidden="true" width="13" height="13">
                                                                 <use xlink:href="img/sprite.svg#close1"></use>
                                                             </svg>
@@ -593,7 +515,7 @@
                                                         </span>
                                                     </li>
                                                     <li>
-                                                        <div class="cabinet-databases-changes__delete">
+                                                        <div class="cabinet-objects-changes__delete">
                                                             <svg aria-hidden="true" width="13" height="13">
                                                                 <use xlink:href="img/sprite.svg#close1"></use>
                                                             </svg>
@@ -603,7 +525,7 @@
                                                         </span>
                                                     </li>
                                                     <li>
-                                                        <div class="cabinet-databases-changes__delete">
+                                                        <div class="cabinet-objects-changes__delete">
                                                             <svg aria-hidden="true" width="13" height="13">
                                                                 <use xlink:href="img/sprite.svg#close1"></use>
                                                             </svg>
@@ -620,18 +542,18 @@
                                     </div>
                                 </div>
                                 <div class="block-cabinet__column">
-                                    <div class="cabinet-databases">
-                                        <div class="cabinet-databases-top top-other">
-                                            <div class="cabinet-databases-top__titles">
-                                                <div class="cabinet-databases-top__title title-three">
+                                    <div class="cabinet-objects">
+                                        <div class="cabinet-objects-top top-other">
+                                            <div class="cabinet-objects-top__titles">
+                                                <div class="cabinet-objects-top__title title-three">
                                                     Название БД №4.<br> Ограниченные функции БД для пользователя
                                                 </div>
                                             </div>
-                                            <div class="cabinet-databases-top__buttons">
+                                            <div class="cabinet-objects-top__buttons">
                                                 <a href="./" class="btn">
                                                     <span>Открыть</span>
                                                 </a>
-                                                <div class="cabinet-databases-top__picker">
+                                                <div class="cabinet-objects-top__picker">
                                                     <svg aria-hidden="true" width="28" height="28">
                                                         <use xlink:href="img/sprite.svg#picker"></use>
                                                     </svg>
@@ -641,7 +563,7 @@
                                     </div>
                                 </div>
                                 <div class="block-cabinet__bottom">
-                                    <a href="./" class="btn">
+                                    <a href="./" data-popup="#add-base" class="btn">
                                         <svg aria-hidden="true" width="18" height="18">
                                             <use xlink:href="img/sprite.svg#plus3"></use>
                                         </svg>
@@ -676,14 +598,345 @@
                                 </div>
                                 <div class="block-service-recommend__body">
                                     <div class="block-service-recommend__column">
+                                        <div class="block-service-recommend__items">
+                                            <div class="block-service-recommend__icon">
+                                                <svg aria-hidden="true" width="54" height="56">
+                                                    <use xlink:href="img/sprite.svg#database-icon"></use>
+                                                </svg>
+                                            </div>
+                                            <div class="block-service-recommend__item">
+                                                <div class="block-service-recommend__title">
+                                                    Первоначальная настройка
+                                                </div>
+                                                <p>
+                                                    Дополнительный текст об услуге кратко или в пару строку. Можно
+                                                    уместить
+                                                    в одну строчку.
+                                                </p>
+                                                <div class="block-service-recommend__bottom">
+                                                    <div class="block-service-recommend__prices">
+                                                        <div class="block-service-recommend__price">
+                                                            10 000 ₸
+                                                        </div>
+                                                    </div>
+                                                    <a href="./" class="btn">
+                                                        <span>Заказать</span>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="block-service-recommend__column">
+                                        <div class="block-service-recommend__items">
+                                            <div class="block-service-recommend__icon">
+                                                <svg aria-hidden="true" width="51" height="54">
+                                                    <use xlink:href="img/sprite.svg#tax"></use>
+                                                </svg>
+                                            </div>
+                                            <div class="block-service-recommend__item">
+                                                <div class="block-service-recommend__title">
+                                                    Настройка налоговой отчетности
+                                                </div>
+                                                <p>
+                                                    Базовый подзаголовок в две и более строки
+                                                </p>
+                                                <div class="block-service-recommend__bottom">
+                                                    <div class="block-service-recommend__prices">
+                                                        <div class="block-service-recommend__price">
+                                                            15 000 ₸
+                                                        </div>
+                                                    </div>
+                                                    <a href="./" class="btn">
+                                                        <span>Заказать</span>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="block-service-recommend__column">
+                                        <div class="block-service-recommend__items">
+                                            <div class="block-service-recommend__icon">
+                                                <svg aria-hidden="true" width="57" height="53">
+                                                    <use xlink:href="img/sprite.svg#esf"></use>
+                                                </svg>
+                                            </div>
+                                            <div class="block-service-recommend__item">
+                                                <div class="block-service-recommend__title">
+                                                    Сервис 1С ЭСФ
+                                                </div>
+                                                <p>
+                                                    Дополнительный текст об услуге кратко или в пару строку. Можно
+                                                    уместить
+                                                    в одну строчку.
+                                                </p>
+                                                <div class="block-service-recommend__bottom">
+                                                    <div class="block-service-recommend__prices">
+                                                        <div class="block-service-recommend__price">
+                                                            600 ₸
+                                                        </div>
+                                                        <span>оплата<br>
+                                                            в месяц</span>
+                                                    </div>
+                                                    <a href="./" class="btn disabled">
+                                                        <span>Заказать</span>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+        {% include 'blocks/footer.njk' %}
+    </div>
+    <div id="add-base" aria-hidden="false" class="popup popup-add-base">
+        <div class="popup__wrapper">
+            <div class="popup__content">
+                <div class="popup__top">
+                    <div class="popup__titles">
+                        <div class="popup__title">
+                            Добавить базу
+                        </div>
+                    </div>
+                    <div data-close class="popup__close">
+                        <svg aria-hidden="true" width="20" height="20">
+                            <use xlink:href="img/sprite.svg#close1"></use>
+                        </svg>
+                    </div>
+                </div>
+                <div class="popup-add-base__buttons">
+                    <a href="./" class="btn">
+                        <svg aria-hidden="true" width="24" height="21">
+                            <use xlink:href="img/sprite.svg#download3"></use>
+                        </svg>
+                        <span>Загрузить свою БД</span>
+                    </a>
+                    <a href="./" data-popup="#create-new-base" class="btn btn-bg">
+                        <svg aria-hidden="true" width="20" height="20">
+                            <use xlink:href="img/sprite.svg#plus3"></use>
+                        </svg>
+                        <span>Создать новую БД</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="create-new-base" aria-hidden="false" class="popup popup-add-base">
+        <div class="popup__wrapper">
+            <div class="popup__content">
+                <div class="popup__top">
+                    <div class="popup__titles">
+                        <div class="popup__title">
+                            Создать новую БД
+                        </div>
+                    </div>
+                    <div data-close class="popup__close">
+                        <svg aria-hidden="true" width="20" height="20">
+                            <use xlink:href="img/sprite.svg#close1"></use>
+                        </svg>
+                    </div>
+                </div>
+                <form action="#" class="popup-add-base__body">
+                    <div class="form">
+                        <div class="form__inputs">
+                            <div class="form__input">
+                                <label for="name1">
+                                    Название базы данных<span class="placeholder">*</span>
+                                </label>
+                                <input data-required id="name1" autocomplete="off" type="text" name="form[]"
+                                    placeholder="Например: Бухгалтерия ООО «Ромашка»" value="" class="input">
+                            </div>
+                            <div class="form__input">
+                                <label for="conf1">
+                                    Конфигурация
+                                </label>
+                                <div class="form-select">
+                                    <div class="form-select__titles">
+                                        <span>Бухгалтерия для Казахстана, редакция 3</span>
+                                        <div class="form-select__arrow"></div>
+                                    </div>
+                                    <div class="form-select__dropdown">
+                                        <div data-simplebar class="form-select__simplebar">
+                                            <div class="form-select__body">
+                                                <div class="form-select__column">
+                                                    <div class="form-select__title">
+                                                        Типовые конфигурации для Казахстана
+                                                    </div>
+                                                    <ul>
+                                                        <li>
+                                                            <a href="./">
+                                                                Бухгалтерия для Казахстана, редакция 3
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="./">Документооборот</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="./">
+                                                                Зарплата и управление персоналом для Казахстана,
+                                                                редакция 3
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="./">Комплексная автоматизация для Казахстана</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="./">Розница для Казахстана 2.3</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="./">
+                                                                Управление небольшой фирмой для Казахстана
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="form-select__column">
+                                                    <div class="form-select__title">
+                                                        Отраслевые конфигурации для Казахстана
+                                                    </div>
+                                                    <ul>
+                                                        <li>
+                                                            <a href="./">
+                                                                Бухгалтерия сельскохозяйственного предприятия для
+                                                                Казахстана, редакция 3.0
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="./">Аптеки для Казахстана</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="./">
+                                                                Аптеки для Казахстана
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="./">Аптеки для Казахстана</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form__checkbox">
+                                <label class="checkbox disabled">
+                                    <input data-error="Ошибка" class="checkbox__input" type="checkbox" value="1"
+                                        name="form[]">
+                                    <span class="checkbox__label">
+                                        <span class="checkbox__icon">
+                                            <svg aria-hidden="true" width="10" height="8">
+                                                <use xlink:href="img/sprite.svg#check2">
+                                                </use>
+                                            </svg>
+                                        </span>
+                                        <span class="checkbox__text">Автообновление</span></span>
+                                </label>
+                                <p>
+                                    Сопроводительный текст о причине недоступного автообновления, <a href="./">
+                                        перерейти
+                                        на тариф</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="popup__buttons">
+                        <div class="popup__buttons-bottom">
+                            <button data-popup="#add-base" type="button" class="popup__arrow popup-arrow-text">
+                                <svg aria-hidden="true" width="19" height="17">
+                                    <use xlink:href="img/sprite.svg#arrow2"></use>
+                                </svg>
+                                <span>Назад</span>
+                            </button>
+                            <button data-popup="#add-base-created" type="button" class="btn btn-bg">
+                                <span>Создать базу</span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div id="add-base-created" aria-hidden="false" class="popup popup-add-base popup-base-created">
+        <div class="popup__wrapper">
+            <div class="popup__content popup-content-creat">
+                <div class="add-base-creat">
+                    <div class="popup__top">
+                        <div class="popup__titles">
+                            <div class="popup__title">
+                                Создать БД
+                            </div>
+                        </div>
+                        <div data-close class="popup__close">
+                            <svg aria-hidden="true" width="20" height="20">
+                                <use xlink:href="img/sprite.svg#close1"></use>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="add-base-creat__body">
+                        <div class="add-base-creat__line">
+                            <span></span>
+                        </div>
+                        <div class="add-base-creat__title">
+                            Подождите, база разворачивается
+                        </div>
+                    </div>
+                </div>
+                <div class="add-base-created">
+                    <div class="popup__top">
+                        <div class="popup__titles">
+                            <div class="popup__title">
+                                База создана
+                            </div>
+                            <p>
+                                Название БД
+                            </p>
+                        </div>
+                        <div data-close class="popup__close">
+                            <svg aria-hidden="true" width="20" height="20">
+                                <use xlink:href="img/sprite.svg#close1"></use>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="add-base-created__content">
+                        <div class="add-base-created__body">
+                            <div class="add-base-created__items">
+                                <div class="add-base-created__icon">
+                                    <svg aria-hidden="true" width="60" height="60">
+                                        <use xlink:href="img/sprite.svg#success"></use>
+                                    </svg>
+                                </div>
+                                <div class="add-base-created__item">
+                                    <div class="add-base-created__title">
+                                        База успешно создана
+                                    </div>
+                                    <ul>
+                                        <li>Пользователь: <span>Бухгалтер</span></li>
+                                        <li>Пароль: <span>Не задан</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="block-service-recommend">
+                            <h2 class="title2">
+                                Возможно, вам пригодятся следующие услуги:
+                            </h2>
+                            <div class="block-service-recommend__body">
+                                <div class="block-service-recommend__column">
+                                    <div class="block-service-recommend__items">
                                         <div class="block-service-recommend__icon">
-                                            <svg aria-hidden="true" width="54" height="56">
+                                            <svg aria-hidden="true" width="36" height="38">
                                                 <use xlink:href="img/sprite.svg#database-icon"></use>
                                             </svg>
                                         </div>
                                         <div class="block-service-recommend__item">
                                             <div class="block-service-recommend__title">
-                                                Первоначальная настройка
+                                                Первоначальный настройка (новой) БД 1С: Бухгалтерия
                                             </div>
                                             <p>
                                                 Дополнительный текст об услуге кратко или в пару строку. Можно уместить
@@ -701,9 +954,11 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="block-service-recommend__column">
+                                </div>
+                                <div class="block-service-recommend__column">
+                                    <div class="block-service-recommend__items">
                                         <div class="block-service-recommend__icon">
-                                            <svg aria-hidden="true" width="51" height="54">
+                                            <svg aria-hidden="true" width="34" height="36">
                                                 <use xlink:href="img/sprite.svg#tax"></use>
                                             </svg>
                                         </div>
@@ -720,15 +975,20 @@
                                                         15 000 ₸
                                                     </div>
                                                 </div>
-                                                <a href="./" class="btn">
+                                                <a href="./" class="btn disabled">
                                                     <span>Заказать</span>
                                                 </a>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="block-service-recommend__column">
+                                    <div class="block-service-recommend__text">
+                                        Счет на оплату сформирован. <a href="./">Перейти</a>
+                                    </div>
+                                </div>
+                                <div class="block-service-recommend__column">
+                                    <div class="block-service-recommend__items">
                                         <div class="block-service-recommend__icon">
-                                            <svg aria-hidden="true" width="57" height="53">
+                                            <svg aria-hidden="true" width="38" height="35">
                                                 <use xlink:href="img/sprite.svg#esf"></use>
                                             </svg>
                                         </div>
@@ -748,7 +1008,7 @@
                                                     <span>оплата<br>
                                                         в месяц</span>
                                                 </div>
-                                                <a href="./" class="btn disabled">
+                                                <a href="./" class="btn">
                                                     <span>Заказать</span>
                                                 </a>
                                             </div>
@@ -758,11 +1018,15 @@
                             </div>
                         </div>
                     </div>
+                    <div class="popup__buttons">
+                        <a href="./" type="button" class="btn btn-bg">
+                            <span>Позвоните мне</span>
+                        </a>
+                        <button data-close class="link"><span>Закрыть</span></button>
+                    </div>
                 </div>
             </div>
-
-        </main>
-        {% include 'blocks/footer.njk' %}
+        </div>
     </div>
     {% include 'blocks/scripts.njk' %}
 </body>
