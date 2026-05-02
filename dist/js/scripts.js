@@ -1672,9 +1672,120 @@ formSubmit();
 
 //========================================================================================================================================================
 
-const databasesЕitles = document.querySelectorAll('.cabinet-databases-bottom__titles');
-if (databasesЕitles) {
-  databasesЕitles.forEach(title => {
+const titlesList = document.querySelectorAll('.form-select__titles');
+
+if (titlesList) {
+  function closeAllDropdowns(exceptElement = null) {
+    const allSelects = document.querySelectorAll('.form-select');
+    allSelects.forEach(select => {
+      if (exceptElement === null || !select.contains(exceptElement)) {
+        select.classList.remove('active');
+      }
+    });
+  }
+
+  titlesList.forEach(title => {
+    title.addEventListener('click', function (e) {
+      e.stopPropagation();
+
+      const parentSelect = this.closest('.form-select');
+
+      if (parentSelect) {
+        parentSelect.classList.toggle('active');
+      }
+    });
+  });
+
+  document.addEventListener('click', function (e) {
+    if (!e.target.closest('.form-select')) {
+      const allSelects = document.querySelectorAll('.form-select');
+      allSelects.forEach(select => {
+        select.classList.remove('active');
+      });
+    }
+  });
+}
+
+//========================================================================================================================================================
+
+const observer = new MutationObserver(() => {
+  const popupBaseCreated = document.querySelector('.popup-base-created.popup_show');
+
+  if (popupBaseCreated) {
+    const addBaseCreat = popupBaseCreated.querySelector('.add-base-creat');
+    const popupContent = popupBaseCreated.querySelector('.popup-content-creat');
+
+    if (addBaseCreat && !addBaseCreat.classList.contains('active')) {
+      addBaseCreat.classList.add('active');
+
+      const animatedLine = addBaseCreat.querySelector('.add-base-creat__line span');
+      if (animatedLine && popupContent) {
+        animatedLine.addEventListener('animationend', () => {
+          popupContent.classList.add('hidden');
+        }, { once: true });
+      }
+    }
+  }
+});
+observer.observe(document.body, {
+  childList: true,
+  subtree: true,
+  attributes: true
+});
+
+//========================================================================================================================================================
+
+const questionButtons = document.querySelectorAll('.block-question__button');
+
+if (questionButtons) {
+  function handleButtonClick() {
+    if (window.innerWidth <= 992) {
+      questionButtons.forEach(button => {
+        button.addEventListener('click', function (e) {
+          e.stopPropagation();
+          const parent = this.closest('.block-question');
+          if (parent) {
+            parent.classList.toggle('active');
+          }
+        });
+      });
+    } else {
+      questionButtons.forEach(button => {
+        const newButton = button.cloneNode(true);
+        button.parentNode.replaceChild(newButton, button);
+      });
+    }
+  }
+
+  window.addEventListener('DOMContentLoaded', handleButtonClick);
+  window.addEventListener('resize', handleButtonClick);
+}
+
+//========================================================================================================================================================
+
+const btnCheck = document.querySelectorAll('.btn-check');
+
+if (btnCheck) {
+  btnCheck.forEach(button => {
+    button.addEventListener('click', function () {
+      const parent = this.closest('.input-btn-check');
+
+      if (!parent) return;
+
+      parent.classList.add('active');
+
+      setTimeout(() => {
+        parent.classList.remove('active');
+      }, 5000);
+    });
+  });
+}
+
+//========================================================================================================================================================
+
+const objectsTitles = document.querySelectorAll('.cabinet-objects-bottom__titles');
+if (objectsTitles) {
+  objectsTitles.forEach(title => {
     title.addEventListener('click', function (e) {
       e.stopPropagation();
       const parent = this.parentElement;
@@ -1685,10 +1796,337 @@ if (databasesЕitles) {
   });
 
   document.addEventListener('click', function (e) {
-    if (!e.target.closest('.cabinet-databases-bottom__titles')) {
-      document.querySelectorAll('.cabinet-databases-bottom__main.active, .cabinet-databases-bottom__more.active').forEach(item => {
+    if (!e.target.closest('.cabinet-objects-bottom__titles') && !e.target.closest('.cabinet-objects-bottom__dropdown')) {
+      document.querySelectorAll('.cabinet-objects-bottom__more.active').forEach(item => {
         item.classList.remove('active');
       });
     }
   });
 }
+
+//========================================================================================================================================================
+
+(function () {
+  const SAFETY_MARGIN = 50;
+  let resizeTimeout;
+  let isUpdating = false;
+  let updateScheduled = false;
+
+  function manageMenuItemsForContainer(container) {
+    const bodyContainer = container.querySelector('.cabinet-objects-bottom__body');
+    if (!bodyContainer) return;
+
+    const listContainer = bodyContainer.querySelector('.cabinet-objects-bottom__list');
+    const mainBlock = bodyContainer.querySelector('.cabinet-objects-bottom__main');
+    const moreBlock = bodyContainer.querySelector('.cabinet-objects-bottom__more');
+    const moreList = bodyContainer.querySelector('.cabinet-objects-bottom__more-list');
+    const checkboxesBlock = bodyContainer.querySelector('.cabinet-objects-bottom__checkboxes');
+    const dropdownUl = mainBlock ? mainBlock.querySelector('ul') : null;
+
+    if (!listContainer || !moreBlock || !moreList) return;
+
+    // Определяем, находится ли элемент внутри block-cabinet-databases
+    const isInsideDatabases = container.closest('.block-cabinet-databases') !== null;
+    // Устанавливаем брейкпоинт: 992px для баз данных, иначе 750px
+    const MOBILE_BREAKPOINT = isInsideDatabases ? 992 : 750;
+    const isMobile = window.innerWidth <= MOBILE_BREAKPOINT;
+
+    // Сохраняем состояние для каждого контейнера
+    if (bodyContainer._isMobileMode === undefined) {
+      bodyContainer._isMobileMode = false;
+      bodyContainer._lastKnownState = null;
+    }
+
+    const currentMobileMode = bodyContainer._isMobileMode;
+
+    // Мобильный режим: все кнопки в more-list, main скрыт
+    if (isMobile) {
+      if (!currentMobileMode) {
+        bodyContainer._isMobileMode = true;
+
+        // Скрываем main блок
+        if (mainBlock) {
+          mainBlock.style.display = 'none';
+        }
+
+        // Показываем more блок
+        moreBlock.style.display = 'flex';
+
+        // Перемещаем все кнопки из main ul в more-list
+        if (dropdownUl && moreList) {
+          const buttons = Array.from(dropdownUl.querySelectorAll('li'));
+          buttons.forEach(button => {
+            dropdownUl.removeChild(button);
+            moreList.appendChild(button);
+          });
+        }
+
+        // Перемещаем чекбоксы в more-list, если их там еще нет
+        if (checkboxesBlock && moreList && checkboxesBlock.parentNode !== moreList) {
+          moreList.insertBefore(checkboxesBlock, moreList.firstChild);
+        }
+
+        bodyContainer._visibleCount = -1;
+      }
+      return; // Выходим - больше ничего не делаем в мобильном режиме
+    }
+
+    // Десктопный режим: возвращаем всё на место
+    if (!isMobile && currentMobileMode) {
+      bodyContainer._isMobileMode = false;
+
+      // Возвращаем чекбоксы обратно
+      if (checkboxesBlock && listContainer && checkboxesBlock.parentNode !== listContainer) {
+        listContainer.insertBefore(checkboxesBlock, mainBlock || moreBlock);
+      }
+
+      // Возвращаем кнопки из more-list обратно в main ul
+      if (dropdownUl && moreList) {
+        const moreButtons = Array.from(moreList.querySelectorAll('li:not(.cabinet-objects-bottom__checkboxes)'));
+        moreButtons.forEach(button => {
+          moreList.removeChild(button);
+          dropdownUl.appendChild(button);
+        });
+      }
+
+      // Показываем main блок
+      if (mainBlock) {
+        mainBlock.style.display = 'flex';
+      }
+
+      // Сбрасываем счетчик
+      bodyContainer._visibleCount = -1;
+    }
+
+    // Если нет основного блока или он пуст - пропускаем
+    if (!mainBlock || !dropdownUl) return;
+
+    // Получаем ВСЕ элементы
+    const mainItems = Array.from(dropdownUl.querySelectorAll('li'));
+    const moreItems = Array.from(moreList.querySelectorAll('li:not(.cabinet-objects-bottom__checkboxes)'));
+    const allItems = [...mainItems, ...moreItems];
+
+    if (allItems.length === 0) return;
+
+    // Сохраняем текущее состояние для сравнения
+    const currentState = allItems.map(item => item.textContent).join('|');
+    if (bodyContainer._lastKnownState === currentState && bodyContainer._visibleCount !== -1) {
+      return; // Состояние не изменилось - выходим
+    }
+    bodyContainer._lastKnownState = currentState;
+
+    try {
+      // Расчет доступной ширины
+      let otherBlocks = Array.from(listContainer.children).filter(child =>
+        child !== mainBlock && child !== moreBlock && child.offsetWidth > 0
+      );
+
+      if (checkboxesBlock && checkboxesBlock.parentNode !== moreList) {
+        otherBlocks = otherBlocks.filter(child => child !== checkboxesBlock);
+      }
+
+      let otherBlocksWidth = 0;
+      const gap = 40;
+      otherBlocks.forEach((block, index) => {
+        otherBlocksWidth += block.offsetWidth;
+        if (index < otherBlocks.length - 1) otherBlocksWidth += gap;
+      });
+
+      const bodyRect = bodyContainer.getBoundingClientRect();
+      let availableWidth = bodyRect.width;
+
+      const bodyStyles = window.getComputedStyle(bodyContainer);
+      const paddingLeft = parseInt(bodyStyles.paddingLeft) || 0;
+      const paddingRight = parseInt(bodyStyles.paddingRight) || 0;
+      availableWidth -= (paddingLeft + paddingRight);
+
+      const rightButtons = bodyContainer.querySelectorAll(':scope > .btn, :scope > button:not(.cabinet-objects-bottom__button)');
+      let rightButtonsWidth = 0;
+      rightButtons.forEach(btn => {
+        if (btn.offsetWidth > 0 && btn !== listContainer && !btn.closest('.cabinet-objects-bottom__list')) {
+          rightButtonsWidth += btn.offsetWidth;
+        }
+      });
+      if (rightButtonsWidth > 0) {
+        availableWidth -= (rightButtonsWidth + gap);
+      }
+
+      availableWidth -= otherBlocksWidth;
+
+      if (availableWidth <= 0) return;
+
+      // Измеряем ширину элементов
+      const itemsWidth = allItems.map(item => {
+        const originalDisplay = item.style.display;
+        const originalPosition = item.style.position;
+        const originalVisibility = item.style.visibility;
+
+        item.style.display = 'inline-block';
+        item.style.position = 'static';
+        item.style.visibility = 'hidden';
+
+        const width = item.offsetWidth;
+
+        item.style.display = originalDisplay;
+        item.style.position = originalPosition;
+        item.style.visibility = originalVisibility;
+
+        return width;
+      });
+
+      const moreWidth = moreBlock.offsetWidth > 0 ? moreBlock.offsetWidth : 80;
+
+      // Расчет максимального количества видимых элементов
+      let maxVisibleCount = 0;
+      for (let visibleCount = 0; visibleCount <= allItems.length; visibleCount++) {
+        let width = 0;
+        for (let i = 0; i < visibleCount; i++) {
+          if (i > 0) width += gap;
+          width += itemsWidth[i];
+        }
+
+        const needMore = visibleCount < allItems.length;
+        const totalNeeded = needMore ? width + gap + moreWidth : width;
+
+        if (totalNeeded <= availableWidth - SAFETY_MARGIN) {
+          maxVisibleCount = visibleCount;
+        } else {
+          break;
+        }
+      }
+
+      // Проверка, помещаются ли все элементы
+      let totalWidth = 0;
+      for (let i = 0; i < itemsWidth.length; i++) {
+        if (i > 0) totalWidth += gap;
+        totalWidth += itemsWidth[i];
+      }
+
+      const allFit = totalWidth <= availableWidth - SAFETY_MARGIN;
+
+      if (allFit) {
+        // Все помещается
+        if (moreList.children.length > 0) {
+          moveAllToMain(dropdownUl, moreList);
+        }
+        moreBlock.style.display = 'none';
+        mainBlock.style.display = 'flex';
+        bodyContainer._visibleCount = allItems.length;
+        return;
+      }
+
+      // Если количество не изменилось - ничего не делаем
+      if (maxVisibleCount === bodyContainer._visibleCount) {
+        return;
+      }
+
+      // Перемещаем элементы
+      moveAllToMain(dropdownUl, moreList);
+
+      // Перемещаем лишние в more
+      const itemsToMove = allItems.slice(maxVisibleCount);
+      itemsToMove.forEach(item => {
+        if (dropdownUl.contains(item)) {
+          dropdownUl.removeChild(item);
+          moreList.appendChild(item);
+        }
+      });
+
+      // Обновляем видимость блоков
+      moreBlock.style.display = moreList.children.length > 0 ? 'flex' : 'none';
+      mainBlock.style.display = dropdownUl.children.length === 0 ? 'none' : 'flex';
+
+      bodyContainer._visibleCount = maxVisibleCount;
+
+    } catch (error) {
+      console.error('Ошибка:', error);
+    }
+  }
+
+  function moveAllToMain(dropdownUl, moreList) {
+    const moreItems = Array.from(moreList.querySelectorAll('li:not(.cabinet-objects-bottom__checkboxes)'));
+    moreItems.forEach(item => {
+      moreList.removeChild(item);
+      dropdownUl.appendChild(item);
+    });
+  }
+
+  function manageAllMenuItems() {
+    if (isUpdating) return;
+    isUpdating = true;
+
+    try {
+      const containers = document.querySelectorAll('.cabinet-objects-bottom');
+      containers.forEach(container => {
+        manageMenuItemsForContainer(container);
+      });
+    } finally {
+      isUpdating = false;
+      updateScheduled = false;
+    }
+  }
+
+  function debouncedManage() {
+    if (updateScheduled) return;
+    updateScheduled = true;
+
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(manageAllMenuItems, 150);
+  }
+
+  // Инициализация
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', manageAllMenuItems);
+  } else {
+    manageAllMenuItems();
+  }
+
+  window.addEventListener('resize', debouncedManage);
+
+  // Более умный MutationObserver
+  if (window.MutationObserver) {
+    let observerTimeout;
+    const observer = new MutationObserver((mutations) => {
+      // Пропускаем, если сейчас идет обновление
+      if (isUpdating) return;
+
+      // Проверяем, есть ли релевантные изменения
+      let hasRelevantChanges = false;
+
+      for (const mutation of mutations) {
+        // Игнорируем изменения стилей
+        if (mutation.type === 'attributes' && mutation.attributeName === 'style') {
+          continue;
+        }
+
+        // Игнорируем изменения, вызванные нашим скриптом
+        if (mutation.target.classList &&
+          (mutation.target.classList.contains('cabinet-objects-bottom__main') ||
+            mutation.target.classList.contains('cabinet-objects-bottom__more') ||
+            mutation.target.classList.contains('cabinet-objects-bottom__more-list'))) {
+          continue;
+        }
+
+        hasRelevantChanges = true;
+        break;
+      }
+
+      if (hasRelevantChanges) {
+        // Делаем задержку, чтобы избежать множественных срабатываний
+        clearTimeout(observerTimeout);
+        observerTimeout = setTimeout(() => {
+          if (!isUpdating) {
+            manageAllMenuItems();
+          }
+        }, 200);
+      }
+    });
+
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true,
+      attributes: true,
+      attributeFilter: ['style', 'class']
+    });
+  }
+})();
