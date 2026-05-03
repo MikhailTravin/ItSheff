@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" class="popup-show lock">
 
 <head>
     <title>ЛК - базы данных</title>
@@ -164,7 +164,7 @@
                                                         <div class="cabinet-objects-bottom__main">
                                                             <ul>
                                                                 <li>
-                                                                    <button type="button"
+                                                                    <button data-popup="#rename-base" type="button"
                                                                         class="cabinet-objects-bottom__button">
                                                                         <svg aria-hidden="true" width="20" height="20">
                                                                             <use xlink:href="img/sprite.svg#rename">
@@ -174,7 +174,7 @@
                                                                     </button>
                                                                 </li>
                                                                 <li>
-                                                                    <button type="button"
+                                                                    <button data-popup="#update-base-auto" type="button"
                                                                         class="cabinet-objects-bottom__button">
                                                                         <svg aria-hidden="true" width="20" height="20">
                                                                             <use xlink:href="img/sprite.svg#refresh">
@@ -184,7 +184,7 @@
                                                                     </button>
                                                                 </li>
                                                                 <li>
-                                                                    <button type="button"
+                                                                    <button data-popup="#available-users" type="button"
                                                                         class="cabinet-objects-bottom__button">
                                                                         <svg aria-hidden="true" width="20" height="20">
                                                                             <use xlink:href="img/sprite.svg#users">
@@ -203,7 +203,7 @@
                                                                         Архив
                                                                     </button>
                                                                 </li>
-                                                                <li class="desc">
+                                                                <li>
                                                                     <button type="button"
                                                                         class="cabinet-objects-bottom__button">
                                                                         <svg aria-hidden="true" width="20" height="20">
@@ -213,7 +213,7 @@
                                                                         Удалить
                                                                     </button>
                                                                 </li>
-                                                                <li class="desc">
+                                                                <li>
                                                                     <button type="button"
                                                                         class="cabinet-objects-bottom__button">
                                                                         <svg aria-hidden="true" width="20" height="20">
@@ -285,7 +285,7 @@
                                                         <div class="cabinet-objects-bottom__main">
                                                             <ul>
                                                                 <li>
-                                                                    <button type="button"
+                                                                    <button data-popup="#rename-base" type="button"
                                                                         class="cabinet-objects-bottom__button">
                                                                         <svg aria-hidden="true" width="20" height="20">
                                                                             <use xlink:href="img/sprite.svg#rename">
@@ -295,7 +295,7 @@
                                                                     </button>
                                                                 </li>
                                                                 <li>
-                                                                    <button type="button"
+                                                                    <button data-popup="#update-base" type="button"
                                                                         class="cabinet-objects-bottom__button">
                                                                         <svg aria-hidden="true" width="20" height="20">
                                                                             <use xlink:href="img/sprite.svg#refresh">
@@ -305,7 +305,7 @@
                                                                     </button>
                                                                 </li>
                                                                 <li>
-                                                                    <button type="button"
+                                                                    <button data-popup="#available-users" type="button"
                                                                         class="cabinet-objects-bottom__button">
                                                                         <svg aria-hidden="true" width="20" height="20">
                                                                             <use xlink:href="img/sprite.svg#users">
@@ -324,7 +324,7 @@
                                                                         Архив
                                                                     </button>
                                                                 </li>
-                                                                <li class="desc">
+                                                                <li>
                                                                     <button type="button"
                                                                         class="cabinet-objects-bottom__button">
                                                                         <svg aria-hidden="true" width="20" height="20">
@@ -334,7 +334,7 @@
                                                                         Удалить
                                                                     </button>
                                                                 </li>
-                                                                <li class="desc">
+                                                                <li>
                                                                     <button type="button"
                                                                         class="cabinet-objects-bottom__button">
                                                                         <svg aria-hidden="true" width="20" height="20">
@@ -405,7 +405,7 @@
                                                         <div class="cabinet-objects-bottom__main">
                                                             <ul>
                                                                 <li>
-                                                                    <button type="button"
+                                                                    <button data-popup="#rename-base" type="button"
                                                                         class="cabinet-objects-bottom__button disabled">
                                                                         <svg aria-hidden="true" width="20" height="20">
                                                                             <use xlink:href="img/sprite.svg#rename">
@@ -415,7 +415,7 @@
                                                                     </button>
                                                                 </li>
                                                                 <li>
-                                                                    <button type="button"
+                                                                    <button data-popup="#update-base-auto" type="button"
                                                                         class="cabinet-objects-bottom__button disabled">
                                                                         <svg aria-hidden="true" width="20" height="20">
                                                                             <use xlink:href="img/sprite.svg#refresh">
@@ -425,7 +425,7 @@
                                                                     </button>
                                                                 </li>
                                                                 <li>
-                                                                    <button type="button"
+                                                                    <button data-popup="#available-users" type="button"
                                                                         class="cabinet-objects-bottom__button disabled">
                                                                         <svg aria-hidden="true" width="20" height="20">
                                                                             <use xlink:href="img/sprite.svg#users">
@@ -444,7 +444,7 @@
                                                                         Архив
                                                                     </button>
                                                                 </li>
-                                                                <li class="desc">
+                                                                <li>
                                                                     <button type="button"
                                                                         class="cabinet-objects-bottom__button">
                                                                         <svg aria-hidden="true" width="20" height="20">
@@ -454,7 +454,7 @@
                                                                         Удалить
                                                                     </button>
                                                                 </li>
-                                                                <li class="desc">
+                                                                <li>
                                                                     <button type="button"
                                                                         class="cabinet-objects-bottom__button">
                                                                         <svg aria-hidden="true" width="20" height="20">
@@ -691,10 +691,1468 @@
                 </div>
             </div>
 
+            <!--
+            <div class="btn-application-sent">
+                <span>Время автообновления установлено</span>
+            </div>
+
+            <div class="btn-application-sent btn-application-sent2">
+                <span>Время автообновления установлено</span>
+                <button class="btn-application-sent__btn">Отменить</button>
+            </div>
+            -->
+
         </main>
         {% include 'blocks/footer.njk' %}
     </div>
-    <div id="add-base" aria-hidden="false" class="popup popup-add-base">
+    <!--Обновление базы(авто)-->
+    <div id="update-base-auto" aria-hidden="false" class="popup popup-base">
+        <div class="popup__wrapper">
+            <div class="popup__content">
+                <div class="popup__top top-other">
+                    <div class="popup__titles">
+                        <div class="popup__title">
+                            Принудительно обновить базу данных
+                        </div>
+                        <p>
+                            Название настраиваемой БД
+                        </p>
+                    </div>
+                    <div data-close class="popup__close">
+                        <svg aria-hidden="true" width="20" height="20">
+                            <use xlink:href="img/sprite.svg#close1"></use>
+                        </svg>
+                    </div>
+                </div>
+                <div class="popup-base__warning">
+                    <div class="popup-warning">
+                        <div class="popup-warning__item">
+                            <div class="popup-warning__title">
+                                Внимание!
+                            </div>
+                            <div class="popup-warning__text">
+                                <p>
+                                    Предупреждение, чтобы в БД никто не должен работать. Попадет в очередь в указанное
+                                    время. Обновление занимает до 60 минут
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="popup__buttons">
+                    <div class="popup__buttons-bottom">
+                        <button data-popup="#start-update-base" type="button" class="btn btn-bg">
+                            <span>Начать обновление</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="start-update-base" aria-hidden="false" class="popup popup-base">
+        <div class="popup__wrapper">
+            <div class="popup__content">
+                <div class="popup__top top-other">
+                    <div class="popup__titles">
+                        <div class="popup__title">
+                            Принудительно обновить базу данных
+                        </div>
+                        <p>
+                            Название настраиваемой БД
+                        </p>
+                    </div>
+                    <div data-close class="popup__close">
+                        <svg aria-hidden="true" width="20" height="20">
+                            <use xlink:href="img/sprite.svg#close1"></use>
+                        </svg>
+                    </div>
+                </div>
+                <div class="popup-base__warning">
+                    <div class="popup-warning">
+                        <div class="popup-warning__item">
+                            <div class="popup-warning__title">
+                                Внимание!
+                            </div>
+                            <div class="popup-warning__text">
+                                <p>
+                                    Предупреждение, чтобы в БД никто не должен работать. Попадет в очередь в указанное
+                                    время. Обновление занимает до 60 минут
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="popup-start-update">
+                        <div class="popup-start-update__content">
+                            <div class="popup-start-update__body">
+                                <div class="calendar calendar-one">
+                                    <div class="calendar__title">
+                                        Дата обновления
+                                    </div>
+                                    <div class="calendar__input">
+                                        <input readonly autocomplete="off" type="text" class="input-calendar" data-start
+                                            name="form[]" placeholder="">
+                                        <div class="calendar__value">
+                                            15 <span>/</span> 08 <span>/</span> 2025
+                                        </div>
+                                        <div class="calendar__icon">
+                                            <svg aria-hidden="true" width="18" height="20">
+                                                <use xlink:href="img/sprite.svg#calendar">
+                                                </use>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="calendar__content">
+                                        <div class="calendar-header">
+                                            <div class="calendar-header__column calendar-month">
+                                                <div class="calendar-header__button">
+                                                    <button type="button"
+                                                        class="calendar-header__btn-prev calendar-btn">
+                                                        <svg aria-hidden="true" width="8" height="12">
+                                                            <use xlink:href="img/sprite.svg#arrow1">
+                                                            </use>
+                                                        </svg>
+                                                    </button>
+                                                    <span>Авг</span>
+                                                    <button type="button"
+                                                        class="calendar-header__btn-next calendar-btn">
+                                                        <svg aria-hidden="true" width="8" height="12">
+                                                            <use xlink:href="img/sprite.svg#arrow1">
+                                                            </use>
+                                                        </svg>
+                                                    </button>
+                                                </div>
+                                                <div class="calendar-header__dropdown">
+                                                    <ul data-simplebar>
+                                                        <li class="calendar-header__item">
+                                                            <div class="calendar-header__icon">
+                                                                <svg aria-hidden="true" width="17" height="13">
+                                                                    <use xlink:href="img/sprite.svg#check1">
+                                                                    </use>
+                                                                </svg>
+                                                            </div>
+                                                            <span>Апрель</span>
+                                                        </li>
+                                                        <li class="calendar-header__item">
+                                                            <div class="calendar-header__icon">
+                                                                <svg aria-hidden="true" width="17" height="13">
+                                                                    <use xlink:href="img/sprite.svg#check1">
+                                                                    </use>
+                                                                </svg>
+                                                            </div>
+                                                            <span>Май</span>
+                                                        </li>
+                                                        <li class="calendar-header__item">
+                                                            <div class="calendar-header__icon">
+                                                                <svg aria-hidden="true" width="17" height="13">
+                                                                    <use xlink:href="img/sprite.svg#check1">
+                                                                    </use>
+                                                                </svg>
+                                                            </div>
+                                                            <span>Июнь</span>
+                                                        </li>
+                                                        <li class="calendar-header__item">
+                                                            <div class="calendar-header__icon">
+                                                                <svg aria-hidden="true" width="17" height="13">
+                                                                    <use xlink:href="img/sprite.svg#check1">
+                                                                    </use>
+                                                                </svg>
+                                                            </div>
+                                                            <span>Июль</span>
+                                                        </li>
+                                                        <li class="calendar-header__item active">
+                                                            <div class="calendar-header__icon">
+                                                                <svg aria-hidden="true" width="17" height="13">
+                                                                    <use xlink:href="img/sprite.svg#check1">
+                                                                    </use>
+                                                                </svg>
+                                                            </div>
+                                                            <span>Август</span>
+                                                        </li>
+                                                        <li class="calendar-header__item">
+                                                            <div class="calendar-header__icon">
+                                                                <svg aria-hidden="true" width="17" height="13">
+                                                                    <use xlink:href="img/sprite.svg#check1">
+                                                                    </use>
+                                                                </svg>
+                                                            </div>
+                                                            <span>Сентябрь</span>
+                                                        </li>
+                                                        <li class="calendar-header__item">
+                                                            <div class="calendar-header__icon">
+                                                                <svg aria-hidden="true" width="17" height="13">
+                                                                    <use xlink:href="img/sprite.svg#check1">
+                                                                    </use>
+                                                                </svg>
+                                                            </div>
+                                                            <span>Октябрь</span>
+                                                        </li>
+                                                        <li class="calendar-header__item">
+                                                            <div class="calendar-header__icon">
+                                                                <svg aria-hidden="true" width="17" height="13">
+                                                                    <use xlink:href="img/sprite.svg#check1">
+                                                                    </use>
+                                                                </svg>
+                                                            </div>
+                                                            <span>Ноябрь</span>
+                                                        </li>
+                                                        <li class="calendar-header__item">
+                                                            <div class="calendar-header__icon">
+                                                                <svg aria-hidden="true" width="17" height="13">
+                                                                    <use xlink:href="img/sprite.svg#check1">
+                                                                    </use>
+                                                                </svg>
+                                                            </div>
+                                                            <span>Декабрь</span>
+                                                        </li>
+                                                        <li class="calendar-header__item">
+                                                            <div class="calendar-header__icon">
+                                                                <svg aria-hidden="true" width="17" height="13">
+                                                                    <use xlink:href="img/sprite.svg#check1">
+                                                                    </use>
+                                                                </svg>
+                                                            </div>
+                                                            <span>Январь</span>
+                                                        </li>
+                                                        <li class="calendar-header__item">
+                                                            <div class="calendar-header__icon">
+                                                                <svg aria-hidden="true" width="17" height="13">
+                                                                    <use xlink:href="img/sprite.svg#check1">
+                                                                    </use>
+                                                                </svg>
+                                                            </div>
+                                                            <span>Февраль</span>
+                                                        </li>
+                                                        <li class="calendar-header__item">
+                                                            <div class="calendar-header__icon">
+                                                                <svg aria-hidden="true" width="17" height="13">
+                                                                    <use xlink:href="img/sprite.svg#check1">
+                                                                    </use>
+                                                                </svg>
+                                                            </div>
+                                                            <span>Март</span>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="calendar-header__column calendar-data">
+                                                <div class="calendar-header__button">
+                                                    <button type="button"
+                                                        class="calendar-header__btn-prev calendar-btn">
+                                                        <svg aria-hidden="true" width="8" height="12">
+                                                            <use xlink:href="img/sprite.svg#arrow1">
+                                                            </use>
+                                                        </svg>
+                                                    </button>
+                                                    <span>2025</span>
+                                                    <button type="button"
+                                                        class="calendar-header__btn-next calendar-btn">
+                                                        <svg aria-hidden="true" width="8" height="12">
+                                                            <use xlink:href="img/sprite.svg#arrow1">
+                                                            </use>
+                                                        </svg>
+                                                    </button>
+                                                </div>
+                                                <div class="calendar-header__dropdown">
+                                                    <ul data-simplebar>
+                                                        <li class="calendar-header__item">
+                                                            <div class="calendar-header__icon">
+                                                                <svg aria-hidden="true" width="17" height="13">
+                                                                    <use xlink:href="img/sprite.svg#check1">
+                                                                    </use>
+                                                                </svg>
+                                                            </div>
+                                                            <span>2021</span>
+                                                        </li>
+                                                        <li class="calendar-header__item">
+                                                            <div class="calendar-header__icon">
+                                                                <svg aria-hidden="true" width="17" height="13">
+                                                                    <use xlink:href="img/sprite.svg#check1">
+                                                                    </use>
+                                                                </svg>
+                                                            </div>
+                                                            <span>2022</span>
+                                                        </li>
+                                                        <li class="calendar-header__item">
+                                                            <div class="calendar-header__icon">
+                                                                <svg aria-hidden="true" width="17" height="13">
+                                                                    <use xlink:href="img/sprite.svg#check1">
+                                                                    </use>
+                                                                </svg>
+                                                            </div>
+                                                            <span>2023</span>
+                                                        </li>
+                                                        <li class="calendar-header__item">
+                                                            <div class="calendar-header__icon">
+                                                                <svg aria-hidden="true" width="17" height="13">
+                                                                    <use xlink:href="img/sprite.svg#check1">
+                                                                    </use>
+                                                                </svg>
+                                                            </div>
+                                                            <span>2024</span>
+                                                        </li>
+                                                        <li class="calendar-header__item active">
+                                                            <div class="calendar-header__icon">
+                                                                <svg aria-hidden="true" width="17" height="13">
+                                                                    <use xlink:href="img/sprite.svg#check1">
+                                                                    </use>
+                                                                </svg>
+                                                            </div>
+                                                            <span>2025</span>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="calendar__wrapper">
+                                            <div class="calendar__days">
+                                                <div class="cell_wrapper cal_days"><span class="cell_item">Пн</span>
+                                                </div>
+                                                <div class="cell_wrapper cal_days"><span class="cell_item">Вт</span>
+                                                </div>
+                                                <div class="cell_wrapper cal_days"><span class="cell_item">Ср</span>
+                                                </div>
+                                                <div class="cell_wrapper cal_days"><span class="cell_item">Чт</span>
+                                                </div>
+                                                <div class="cell_wrapper cal_days"><span class="cell_item">Пт</span>
+                                                </div>
+                                                <div class="cell_wrapper cal_days"><span class="cell_item">Сб</span>
+                                                </div>
+                                                <div class="cell_wrapper cal_days"><span class="cell_item">Вс</span>
+                                                </div>
+                                            </div>
+                                            <div class="calendar__main"></div>
+                                        </div>
+                                        <div class="calendar-buttons">
+                                            <button type="button" class="calendar-buttons__btn calendar-clear">
+                                                Очистить
+                                            </button>
+                                            <div class="calendar-buttons__button">
+                                                <button type="button" class="calendar-buttons__btn calendar-close">
+                                                    Отмена
+                                                </button>
+                                                <button type="button" class="calendar-buttons__btn calendar-apply">
+                                                    OK
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="timer">
+                                    <div class="timer__title">
+                                        Время обновления
+                                    </div>
+                                    <div class="timer__input">
+                                        <input readonly autocomplete="off" type="text" class="input-timer" name="form[]"
+                                            placeholder="">
+                                        <div class="timer__value">
+                                            00 <span>:</span> 00
+                                        </div>
+                                        <div class="timer__icon">
+                                            <svg aria-hidden="true" width="18" height="18">
+                                                <use xlink:href="img/sprite.svg#time">
+                                                </use>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="timer__content">
+                                        <ul data-simplebar>
+                                            <li class="timer__item">
+                                                <div class="timer__check">
+                                                    <svg aria-hidden="true" width="17" height="13">
+                                                        <use xlink:href="img/sprite.svg#check1">
+                                                        </use>
+                                                    </svg>
+                                                </div>
+                                                <span>01:00</span>
+                                            </li>
+                                            <li class="timer__item">
+                                                <div class="timer__check">
+                                                    <svg aria-hidden="true" width="17" height="13">
+                                                        <use xlink:href="img/sprite.svg#check1">
+                                                        </use>
+                                                    </svg>
+                                                </div>
+                                                <span>01:30</span>
+                                            </li>
+                                            <li class="timer__item">
+                                                <div class="timer__check">
+                                                    <svg aria-hidden="true" width="17" height="13">
+                                                        <use xlink:href="img/sprite.svg#check1">
+                                                        </use>
+                                                    </svg>
+                                                </div>
+                                                <span>02:00</span>
+                                            </li>
+                                            <li class="timer__item">
+                                                <div class="timer__check">
+                                                    <svg aria-hidden="true" width="17" height="13">
+                                                        <use xlink:href="img/sprite.svg#check1">
+                                                        </use>
+                                                    </svg>
+                                                </div>
+                                                <span>02:30</span>
+                                            </li>
+                                            <li class="timer__item active">
+                                                <div class="timer__check">
+                                                    <svg aria-hidden="true" width="17" height="13">
+                                                        <use xlink:href="img/sprite.svg#check1">
+                                                        </use>
+                                                    </svg>
+                                                </div>
+                                                <span>03:00</span>
+                                            </li>
+                                            <li class="timer__item">
+                                                <div class="timer__check">
+                                                    <svg aria-hidden="true" width="17" height="13">
+                                                        <use xlink:href="img/sprite.svg#check1">
+                                                        </use>
+                                                    </svg>
+                                                </div>
+                                                <span>03:30</span>
+                                            </li>
+                                            <li class="timer__item">
+                                                <div class="timer__check">
+                                                    <svg aria-hidden="true" width="17" height="13">
+                                                        <use xlink:href="img/sprite.svg#check1">
+                                                        </use>
+                                                    </svg>
+                                                </div>
+                                                <span>04:00</span>
+                                            </li>
+                                            <li class="timer__item">
+                                                <div class="timer__check">
+                                                    <svg aria-hidden="true" width="17" height="13">
+                                                        <use xlink:href="img/sprite.svg#check1">
+                                                        </use>
+                                                    </svg>
+                                                </div>
+                                                <span>04:30</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="popup-start-update__buttons">
+                                <button type="button" class="popup-start-update__btn">
+                                    <span class="desc">Через 5 мин</span>
+                                    <span class="mob">Через 5м</span>
+                                </button>
+                                <button type="button" class="popup-start-update__btn">
+                                    <span class="desc">Через час</span>
+                                    <span class="mob">Через 1ч</span>
+                                </button>
+                                <button type="button" class="popup-start-update__btn">
+                                    После 18:00
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="popup__buttons">
+                    <div class="popup__buttons-bottom">
+                        <button type="button" class="btn btn-bg">
+                            <span>Обновить</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Обновление базы-->
+    <div id="update-base" aria-hidden="false" class="popup popup-base">
+        <div class="popup__wrapper">
+            <div class="popup__content">
+                <div class="popup__top top-other">
+                    <div class="popup__titles">
+                        <div class="popup__title">
+                            Установить БД на автоматическое обновление
+                        </div>
+                        <p>
+                            Название настраиваемой БД
+                        </p>
+                    </div>
+                    <div data-close class="popup__close">
+                        <svg aria-hidden="true" width="20" height="20">
+                            <use xlink:href="img/sprite.svg#close1"></use>
+                        </svg>
+                    </div>
+                </div>
+                <div class="popup-base__warning">
+                    <div class="popup-warning">
+                        <div class="popup-warning__item">
+                            <div class="popup-warning__title">
+                                Внимание!
+                            </div>
+                            <div class="popup-warning__text">
+                                <p>
+                                    В течение суток база будет обновлена.
+                                </p>
+                                <p>
+                                    Далее База будет обновляться автоматически после рассылки о выходе релиза.
+                                </p>
+                                <p>
+                                    В Базе будет создан пользователь Update его нельзя удалять или менять пароль, иначе
+                                    база
+                                    не будет обновлена и снимется с режима “Автообновления”.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="popup__buttons">
+                    <div class="popup__buttons-bottom">
+                        <button data-popup="#update-base-created" type="button" class="btn btn-bg">
+                            <span>Начать обновление</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="update-base-created" aria-hidden="false" class="popup popup-base popup-base-created">
+        <div class="popup__wrapper">
+            <div class="popup__content popup-content-creat">
+                <div class="popup__top top-other">
+                    <div class="popup__titles">
+                        <div class="popup__title">
+                            Установить БД на автоматическое обновление
+                        </div>
+                        <p>
+                            Название настраиваемой БД
+                        </p>
+                    </div>
+                    <div data-close class="popup__close">
+                        <svg aria-hidden="true" width="20" height="20">
+                            <use xlink:href="img/sprite.svg#close1"></use>
+                        </svg>
+                    </div>
+                </div>
+                <div class="add-base-creat">
+                    <div class="add-base-creat__body">
+                        <div class="add-base-creat__title">
+                            Настраиваем автообновление
+                        </div>
+                        <div class="line">
+                            <span></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="add-base-created update-base-created">
+                    <form action="#" class="popup-base__body">
+                        <div class="form">
+                            <div class="form__inputs">
+                                <div class="form__input">
+                                    <label for="name2">
+                                        Пользователь в базе данных
+                                    </label>
+                                    <div class="form-select">
+                                        <div class="form-select__titles">
+                                            <span>Администратор</span>
+                                            <div class="form-select__arrow"></div>
+                                        </div>
+                                        <div class="form-select__dropdown">
+                                            <div data-simplebar class="form-select__simplebar">
+                                                <div class="form-select__body">
+                                                    <div class="form-select__column">
+                                                        <div class="options">
+                                                            <label class="options__item">
+                                                                <input hidden class="options__input" checked
+                                                                    type="radio" value="1" name="option2">
+                                                                <span class="options__label options-label2">
+                                                                    <span class="options__text">
+                                                                        Администратор
+                                                                    </span>
+                                                                    <span class="options__icon">
+                                                                        <svg aria-hidden="true" width="12" height="9">
+                                                                            <use xlink:href="img/sprite.svg#check1">
+                                                                            </use>
+                                                                        </svg>
+                                                                    </span>
+                                                            </label>
+                                                            <label class="options__item">
+                                                                <input hidden class="options__input" type="radio"
+                                                                    value="2" name="option2">
+                                                                <span class="options__label options-label2">
+                                                                    <span class="options__text">
+                                                                        Администратор2
+                                                                    </span>
+                                                                    <span class="options__icon">
+                                                                        <svg aria-hidden="true" width="12" height="9">
+                                                                            <use xlink:href="img/sprite.svg#check1">
+                                                                            </use>
+                                                                        </svg>
+                                                                    </span>
+                                                            </label>
+                                                            <label class="options__item">
+                                                                <input hidden class="options__input" type="radio"
+                                                                    value="3" name="option2">
+                                                                <span class="options__label options-label2">
+                                                                    <span class="options__text">
+                                                                        Администратор3
+                                                                    </span>
+                                                                    <span class="options__icon">
+                                                                        <svg aria-hidden="true" width="12" height="9">
+                                                                            <use xlink:href="img/sprite.svg#check1">
+                                                                            </use>
+                                                                        </svg>
+                                                                    </span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form__input big">
+                                    <label for="password1" class="big">
+                                        Пароль базы данных<span class="placeholder">*</span>
+                                        <a href="./" class="link forgot-password">Забыли пароль?</a>
+                                    </label>
+                                    <div class="form__input-pass">
+                                        <input data-required id="password1" autocomplete="off" type="password"
+                                            name="form[]" placeholder="" value="" class="input">
+                                        <button type="button" class="form__viewpass">
+                                            <svg aria-hidden="true" width="20" height="20">
+                                                <use xlink:href="img/sprite.svg#eye1"></use>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="popup__buttons">
+                            <button type="submit" data-popup="#updated-base" class="btn btn-bg">
+                                <span>Подтвердить</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="updated-base" aria-hidden="false" class="popup popup-base popup-base-created">
+        <div class="popup__wrapper">
+            <div class="popup__content">
+                <div class="popup__top top-other">
+                    <div class="popup__titles">
+                        <div class="popup__title">
+                            Установить БД на автоматическое обновление
+                        </div>
+                        <p>
+                            Название настраиваемой БД
+                        </p>
+                    </div>
+                    <div data-close class="popup__close">
+                        <svg aria-hidden="true" width="20" height="20">
+                            <use xlink:href="img/sprite.svg#close1"></use>
+                        </svg>
+                    </div>
+                </div>
+                <div class="popup-updated-base">
+                    <div class="add-base-created__content">
+                        <div class="add-base-created__body">
+                            <div class="add-base-created__items">
+                                <div class="add-base-created__icon">
+                                    <svg aria-hidden="true" width="60" height="60">
+                                        <use xlink:href="img/sprite.svg#success"></use>
+                                    </svg>
+                                </div>
+                                <div class="add-base-created__item">
+                                    <div class="add-base-created__title">
+                                        Готово
+                                    </div>
+                                    <ul>
+                                        <li>
+                                            База «Название БД» успешно настроена на <span>
+                                                автоматическое обновление
+                                            </span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="popup-warning">
+                            <div class="popup-warning__item">
+                                <div class="popup-warning__title">
+                                    Внимание!
+                                </div>
+                                <div class="popup-warning__text">
+                                    <p>
+                                        Текст предупреждение об обновлении ночью
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="popup__buttons">
+                    <button type="button" data-close class="btn btn-bg">
+                        <span>Закрыть</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Доступно пользователям-->
+    <div id="available-users" aria-hidden="false" class="popup popup-base popup-select-bases">
+        <div class="popup__wrapper">
+            <div class="popup__content">
+                <div class="popup__top top-other">
+                    <div class="popup__titles">
+                        <div class="popup__title">
+                            Доступно пользователям
+                        </div>
+                        <p>
+                            Название настраиваемой БД
+                        </p>
+                    </div>
+                    <div data-close class="popup__close">
+                        <svg aria-hidden="true" width="20" height="20">
+                            <use xlink:href="img/sprite.svg#close1"></use>
+                        </svg>
+                    </div>
+                </div>
+                <div class="popup-select-bases__content">
+                    <div class="select-bases-top">
+                        <div class="select-bases-top__title">Выберите базы</div>
+                        <div class="select-bases-top__button">
+                            <button type="button" class="select-bases-top__btn select-btn-reset link">
+                                Сбросить
+                            </button>
+                            <button type="button" class="select-bases-top__btn select-btn-all link">
+                                Выбрать все
+                            </button>
+                        </div>
+                    </div>
+                    <div data-showmore="items" class="select-bases-showmore">
+                        <div data-showmore-content="5" class="select-bases-showmore__checkboxes">
+                            <label class="checkbox">
+                                <input class="checkbox__input" type="checkbox" value="1" name="checkbox1">
+                                <span class="checkbox__label">
+                                    <span class="checkbox__icon">
+                                        <svg aria-hidden="true" width="10" height="9">
+                                            <use xlink:href="img/sprite.svg#check2">
+                                            </use>
+                                        </svg>
+                                    </span>
+                                    <span class="checkbox__text">Бестерекова Гаухар -
+                                        <strong>gbesterekova</strong></span>
+                                </span>
+                            </label>
+                            <label class="checkbox">
+                                <input checked class="checkbox__input" type="checkbox" value="2" name="checkbox1">
+                                <span class="checkbox__label">
+                                    <span class="checkbox__icon">
+                                        <svg aria-hidden="true" width="10" height="9">
+                                            <use xlink:href="img/sprite.svg#check2">
+                                            </use>
+                                        </svg>
+                                    </span>
+                                    <span class="checkbox__text">
+                                        Александровский-Черноморцев Владислав Викентьевич -
+                                        <strong>tarkhaevvladimir</strong>
+                                    </span>
+                                </span>
+                            </label>
+                            <label class="checkbox">
+                                <input class="checkbox__input" type="checkbox" value="3" name="checkbox1">
+                                <span class="checkbox__label">
+                                    <span class="checkbox__icon">
+                                        <svg aria-hidden="true" width="10" height="9">
+                                            <use xlink:href="img/sprite.svg#check2">
+                                            </use>
+                                        </svg>
+                                    </span>
+                                    <span class="checkbox__text">
+                                        Михавич Юлия Александровна - <strong>mikhaevichyuliya</strong>
+                                    </span>
+                                </span>
+                            </label>
+                            <label class="checkbox">
+                                <input class="checkbox__input" type="checkbox" value="4" name="checkbox1">
+                                <span class="checkbox__label">
+                                    <span class="checkbox__icon">
+                                        <svg aria-hidden="true" width="10" height="9">
+                                            <use xlink:href="img/sprite.svg#check2">
+                                            </use>
+                                        </svg>
+                                    </span>
+                                    <span class="checkbox__text">
+                                        Ирина Охлопкова - <strong>irinaokhlopkova</strong>
+                                    </span>
+                                </span>
+                            </label>
+                            <label class="checkbox">
+                                <input class="checkbox__input" type="checkbox" value="5" name="checkbox1">
+                                <span class="checkbox__label">
+                                    <span class="checkbox__icon">
+                                        <svg aria-hidden="true" width="10" height="9">
+                                            <use xlink:href="img/sprite.svg#check2">
+                                            </use>
+                                        </svg>
+                                    </span>
+                                    <span class="checkbox__text">
+                                        Гусев Сергей Владимирович - <strong>gusevsergeyvlad</strong>
+                                    </span>
+                                </span>
+                            </label>
+                            <label class="checkbox">
+                                <input class="checkbox__input" type="checkbox" value="6" name="checkbox1">
+                                <span class="checkbox__label">
+                                    <span class="checkbox__icon">
+                                        <svg aria-hidden="true" width="10" height="9">
+                                            <use xlink:href="img/sprite.svg#check2">
+                                            </use>
+                                        </svg>
+                                    </span>
+                                    <span class="checkbox__text">
+                                        Гусев Сергей Владимирович - <strong>gusevsergeyvlad</strong>
+                                    </span>
+                                </span>
+                            </label>
+                            <label class="checkbox">
+                                <input class="checkbox__input" type="checkbox" value="7" name="checkbox1">
+                                <span class="checkbox__label">
+                                    <span class="checkbox__icon">
+                                        <svg aria-hidden="true" width="10" height="9">
+                                            <use xlink:href="img/sprite.svg#check2">
+                                            </use>
+                                        </svg>
+                                    </span>
+                                    <span class="checkbox__text">
+                                        Гусев Сергей Владимирович - <strong>gusevsergeyvlad</strong>
+                                    </span>
+                                </span>
+                            </label>
+                            <label class="checkbox">
+                                <input class="checkbox__input" type="checkbox" value="8" name="checkbox1">
+                                <span class="checkbox__label">
+                                    <span class="checkbox__icon">
+                                        <svg aria-hidden="true" width="10" height="9">
+                                            <use xlink:href="img/sprite.svg#check2">
+                                            </use>
+                                        </svg>
+                                    </span>
+                                    <span class="checkbox__text">
+                                        Гусев Сергей Владимирович - <strong>gusevsergeyvlad</strong>
+                                    </span>
+                                </span>
+                            </label>
+                            <label class="checkbox">
+                                <input class="checkbox__input" type="checkbox" value="9" name="checkbox1">
+                                <span class="checkbox__label">
+                                    <span class="checkbox__icon">
+                                        <svg aria-hidden="true" width="10" height="9">
+                                            <use xlink:href="img/sprite.svg#check2">
+                                            </use>
+                                        </svg>
+                                    </span>
+                                    <span class="checkbox__text">
+                                        Гусев Сергей Владимирович - <strong>gusevsergeyvlad</strong>
+                                    </span>
+                                </span>
+                            </label>
+                            <label class="checkbox">
+                                <input class="checkbox__input" type="checkbox" value="10" name="checkbox1">
+                                <span class="checkbox__label">
+                                    <span class="checkbox__icon">
+                                        <svg aria-hidden="true" width="10" height="9">
+                                            <use xlink:href="img/sprite.svg#check2">
+                                            </use>
+                                        </svg>
+                                    </span>
+                                    <span class="checkbox__text">
+                                        Гусев Сергей Владимирович - <strong>gusevsergeyvlad</strong>
+                                    </span>
+                                </span>
+                            </label>
+                        </div>
+                        <button hidden data-showmore-button type="button" class="select-bases-showmore__more">
+                            <svg aria-hidden="true" width="14" height="14">
+                                <use xlink:href="img/sprite.svg#plus3"></use>
+                            </svg>
+                            Показать еще (7)
+                        </button>
+                    </div>
+                </div>
+                <div class="popup__buttons">
+                    <div class="popup__buttons-bottom">
+                        <button type="button" class="btn btn-bg">
+                            <span>Сохранить</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Переименовать БД-->
+    <div id="rename-base" aria-hidden="false" class="popup popup-base popup-rename-base">
+        <div class="popup__wrapper">
+            <form action="#" class="popup__content">
+                <div class="popup__top top-other">
+                    <div class="popup__titles">
+                        <div class="popup__title">
+                            Переименовать БД
+                        </div>
+                        <p>
+                            Название настраиваемой БД
+                        </p>
+                    </div>
+                    <div data-close class="popup__close">
+                        <svg aria-hidden="true" width="20" height="20">
+                            <use xlink:href="img/sprite.svg#close1"></use>
+                        </svg>
+                    </div>
+                </div>
+                <div class="popup-base__warning">
+                    <div class="popup-warning">
+                        <div class="popup-warning__item">
+                            <div class="popup-warning__title">
+                                Внимание!
+                            </div>
+                            <div class="popup-warning__text">
+                                <p>
+                                    Процедура может занять продолжительное время. В этот момент работа с информационной
+                                    базой будет невозможна. Просьба сохранить документы и завершить работу с данной
+                                    базой у всех пользователей.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="popup-block">
+                        <div class="popup-block__title">
+                            Старое название базы данных
+                        </div>
+                        <div class="popup-block__subtitle">
+                            Старое название базы данных
+                        </div>
+                    </div>
+                    <div class="popup-start-update">
+                        <div class="popup-start-update__content">
+                            <div class="form">
+                                <div class="form__inputs">
+                                    <div class="form__input">
+                                        <label for="name3">
+                                            Новое имя базы данных<span class="placeholder">*</span>
+                                        </label>
+                                        <input data-required id="name3" autocomplete="off" type="text" name="form[]"
+                                            placeholder="" value="" class="input">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="popup-start-update__body">
+                                <div class="calendar calendar-one">
+                                    <div class="calendar__title">
+                                        Дата обновления
+                                    </div>
+                                    <div class="calendar__input">
+                                        <input readonly autocomplete="off" type="text" class="input-calendar" data-start
+                                            name="form[]" placeholder="">
+                                        <div class="calendar__value">
+                                            15 <span>/</span> 08 <span>/</span> 2025
+                                        </div>
+                                        <div class="calendar__icon">
+                                            <svg aria-hidden="true" width="18" height="20">
+                                                <use xlink:href="img/sprite.svg#calendar">
+                                                </use>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="calendar__content">
+                                        <div class="calendar-header">
+                                            <div class="calendar-header__column calendar-month">
+                                                <div class="calendar-header__button">
+                                                    <button type="button"
+                                                        class="calendar-header__btn-prev calendar-btn">
+                                                        <svg aria-hidden="true" width="8" height="12">
+                                                            <use xlink:href="img/sprite.svg#arrow1">
+                                                            </use>
+                                                        </svg>
+                                                    </button>
+                                                    <span>Авг</span>
+                                                    <button type="button"
+                                                        class="calendar-header__btn-next calendar-btn">
+                                                        <svg aria-hidden="true" width="8" height="12">
+                                                            <use xlink:href="img/sprite.svg#arrow1">
+                                                            </use>
+                                                        </svg>
+                                                    </button>
+                                                </div>
+                                                <div class="calendar-header__dropdown">
+                                                    <ul data-simplebar>
+                                                        <li class="calendar-header__item">
+                                                            <div class="calendar-header__icon">
+                                                                <svg aria-hidden="true" width="17" height="13">
+                                                                    <use xlink:href="img/sprite.svg#check1">
+                                                                    </use>
+                                                                </svg>
+                                                            </div>
+                                                            <span>Апрель</span>
+                                                        </li>
+                                                        <li class="calendar-header__item">
+                                                            <div class="calendar-header__icon">
+                                                                <svg aria-hidden="true" width="17" height="13">
+                                                                    <use xlink:href="img/sprite.svg#check1">
+                                                                    </use>
+                                                                </svg>
+                                                            </div>
+                                                            <span>Май</span>
+                                                        </li>
+                                                        <li class="calendar-header__item">
+                                                            <div class="calendar-header__icon">
+                                                                <svg aria-hidden="true" width="17" height="13">
+                                                                    <use xlink:href="img/sprite.svg#check1">
+                                                                    </use>
+                                                                </svg>
+                                                            </div>
+                                                            <span>Июнь</span>
+                                                        </li>
+                                                        <li class="calendar-header__item">
+                                                            <div class="calendar-header__icon">
+                                                                <svg aria-hidden="true" width="17" height="13">
+                                                                    <use xlink:href="img/sprite.svg#check1">
+                                                                    </use>
+                                                                </svg>
+                                                            </div>
+                                                            <span>Июль</span>
+                                                        </li>
+                                                        <li class="calendar-header__item active">
+                                                            <div class="calendar-header__icon">
+                                                                <svg aria-hidden="true" width="17" height="13">
+                                                                    <use xlink:href="img/sprite.svg#check1">
+                                                                    </use>
+                                                                </svg>
+                                                            </div>
+                                                            <span>Август</span>
+                                                        </li>
+                                                        <li class="calendar-header__item">
+                                                            <div class="calendar-header__icon">
+                                                                <svg aria-hidden="true" width="17" height="13">
+                                                                    <use xlink:href="img/sprite.svg#check1">
+                                                                    </use>
+                                                                </svg>
+                                                            </div>
+                                                            <span>Сентябрь</span>
+                                                        </li>
+                                                        <li class="calendar-header__item">
+                                                            <div class="calendar-header__icon">
+                                                                <svg aria-hidden="true" width="17" height="13">
+                                                                    <use xlink:href="img/sprite.svg#check1">
+                                                                    </use>
+                                                                </svg>
+                                                            </div>
+                                                            <span>Октябрь</span>
+                                                        </li>
+                                                        <li class="calendar-header__item">
+                                                            <div class="calendar-header__icon">
+                                                                <svg aria-hidden="true" width="17" height="13">
+                                                                    <use xlink:href="img/sprite.svg#check1">
+                                                                    </use>
+                                                                </svg>
+                                                            </div>
+                                                            <span>Ноябрь</span>
+                                                        </li>
+                                                        <li class="calendar-header__item">
+                                                            <div class="calendar-header__icon">
+                                                                <svg aria-hidden="true" width="17" height="13">
+                                                                    <use xlink:href="img/sprite.svg#check1">
+                                                                    </use>
+                                                                </svg>
+                                                            </div>
+                                                            <span>Декабрь</span>
+                                                        </li>
+                                                        <li class="calendar-header__item">
+                                                            <div class="calendar-header__icon">
+                                                                <svg aria-hidden="true" width="17" height="13">
+                                                                    <use xlink:href="img/sprite.svg#check1">
+                                                                    </use>
+                                                                </svg>
+                                                            </div>
+                                                            <span>Январь</span>
+                                                        </li>
+                                                        <li class="calendar-header__item">
+                                                            <div class="calendar-header__icon">
+                                                                <svg aria-hidden="true" width="17" height="13">
+                                                                    <use xlink:href="img/sprite.svg#check1">
+                                                                    </use>
+                                                                </svg>
+                                                            </div>
+                                                            <span>Февраль</span>
+                                                        </li>
+                                                        <li class="calendar-header__item">
+                                                            <div class="calendar-header__icon">
+                                                                <svg aria-hidden="true" width="17" height="13">
+                                                                    <use xlink:href="img/sprite.svg#check1">
+                                                                    </use>
+                                                                </svg>
+                                                            </div>
+                                                            <span>Март</span>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="calendar-header__column calendar-data">
+                                                <div class="calendar-header__button">
+                                                    <button type="button"
+                                                        class="calendar-header__btn-prev calendar-btn">
+                                                        <svg aria-hidden="true" width="8" height="12">
+                                                            <use xlink:href="img/sprite.svg#arrow1">
+                                                            </use>
+                                                        </svg>
+                                                    </button>
+                                                    <span>2025</span>
+                                                    <button type="button"
+                                                        class="calendar-header__btn-next calendar-btn">
+                                                        <svg aria-hidden="true" width="8" height="12">
+                                                            <use xlink:href="img/sprite.svg#arrow1">
+                                                            </use>
+                                                        </svg>
+                                                    </button>
+                                                </div>
+                                                <div class="calendar-header__dropdown">
+                                                    <ul data-simplebar>
+                                                        <li class="calendar-header__item">
+                                                            <div class="calendar-header__icon">
+                                                                <svg aria-hidden="true" width="17" height="13">
+                                                                    <use xlink:href="img/sprite.svg#check1">
+                                                                    </use>
+                                                                </svg>
+                                                            </div>
+                                                            <span>2021</span>
+                                                        </li>
+                                                        <li class="calendar-header__item">
+                                                            <div class="calendar-header__icon">
+                                                                <svg aria-hidden="true" width="17" height="13">
+                                                                    <use xlink:href="img/sprite.svg#check1">
+                                                                    </use>
+                                                                </svg>
+                                                            </div>
+                                                            <span>2022</span>
+                                                        </li>
+                                                        <li class="calendar-header__item">
+                                                            <div class="calendar-header__icon">
+                                                                <svg aria-hidden="true" width="17" height="13">
+                                                                    <use xlink:href="img/sprite.svg#check1">
+                                                                    </use>
+                                                                </svg>
+                                                            </div>
+                                                            <span>2023</span>
+                                                        </li>
+                                                        <li class="calendar-header__item">
+                                                            <div class="calendar-header__icon">
+                                                                <svg aria-hidden="true" width="17" height="13">
+                                                                    <use xlink:href="img/sprite.svg#check1">
+                                                                    </use>
+                                                                </svg>
+                                                            </div>
+                                                            <span>2024</span>
+                                                        </li>
+                                                        <li class="calendar-header__item active">
+                                                            <div class="calendar-header__icon">
+                                                                <svg aria-hidden="true" width="17" height="13">
+                                                                    <use xlink:href="img/sprite.svg#check1">
+                                                                    </use>
+                                                                </svg>
+                                                            </div>
+                                                            <span>2025</span>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="calendar__wrapper">
+                                            <div class="calendar__days">
+                                                <div class="cell_wrapper cal_days"><span class="cell_item">Пн</span>
+                                                </div>
+                                                <div class="cell_wrapper cal_days"><span class="cell_item">Вт</span>
+                                                </div>
+                                                <div class="cell_wrapper cal_days"><span class="cell_item">Ср</span>
+                                                </div>
+                                                <div class="cell_wrapper cal_days"><span class="cell_item">Чт</span>
+                                                </div>
+                                                <div class="cell_wrapper cal_days"><span class="cell_item">Пт</span>
+                                                </div>
+                                                <div class="cell_wrapper cal_days"><span class="cell_item">Сб</span>
+                                                </div>
+                                                <div class="cell_wrapper cal_days"><span class="cell_item">Вс</span>
+                                                </div>
+                                            </div>
+                                            <div class="calendar__main"></div>
+                                        </div>
+                                        <div class="calendar-buttons">
+                                            <button type="button" class="calendar-buttons__btn calendar-clear">
+                                                Очистить
+                                            </button>
+                                            <div class="calendar-buttons__button">
+                                                <button type="button" class="calendar-buttons__btn calendar-close">
+                                                    Отмена
+                                                </button>
+                                                <button type="button" class="calendar-buttons__btn calendar-apply">
+                                                    OK
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="timer">
+                                    <div class="timer__title">
+                                        Время обновления
+                                    </div>
+                                    <div class="timer__input">
+                                        <input readonly autocomplete="off" type="text" class="input-timer" name="form[]"
+                                            placeholder="">
+                                        <div class="timer__value">
+                                            00 <span>:</span> 00
+                                        </div>
+                                        <div class="timer__icon">
+                                            <svg aria-hidden="true" width="18" height="18">
+                                                <use xlink:href="img/sprite.svg#time">
+                                                </use>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="timer__content">
+                                        <ul data-simplebar>
+                                            <li class="timer__item">
+                                                <div class="timer__check">
+                                                    <svg aria-hidden="true" width="17" height="13">
+                                                        <use xlink:href="img/sprite.svg#check1">
+                                                        </use>
+                                                    </svg>
+                                                </div>
+                                                <span>01:00</span>
+                                            </li>
+                                            <li class="timer__item">
+                                                <div class="timer__check">
+                                                    <svg aria-hidden="true" width="17" height="13">
+                                                        <use xlink:href="img/sprite.svg#check1">
+                                                        </use>
+                                                    </svg>
+                                                </div>
+                                                <span>01:30</span>
+                                            </li>
+                                            <li class="timer__item">
+                                                <div class="timer__check">
+                                                    <svg aria-hidden="true" width="17" height="13">
+                                                        <use xlink:href="img/sprite.svg#check1">
+                                                        </use>
+                                                    </svg>
+                                                </div>
+                                                <span>02:00</span>
+                                            </li>
+                                            <li class="timer__item">
+                                                <div class="timer__check">
+                                                    <svg aria-hidden="true" width="17" height="13">
+                                                        <use xlink:href="img/sprite.svg#check1">
+                                                        </use>
+                                                    </svg>
+                                                </div>
+                                                <span>02:30</span>
+                                            </li>
+                                            <li class="timer__item active">
+                                                <div class="timer__check">
+                                                    <svg aria-hidden="true" width="17" height="13">
+                                                        <use xlink:href="img/sprite.svg#check1">
+                                                        </use>
+                                                    </svg>
+                                                </div>
+                                                <span>03:00</span>
+                                            </li>
+                                            <li class="timer__item">
+                                                <div class="timer__check">
+                                                    <svg aria-hidden="true" width="17" height="13">
+                                                        <use xlink:href="img/sprite.svg#check1">
+                                                        </use>
+                                                    </svg>
+                                                </div>
+                                                <span>03:30</span>
+                                            </li>
+                                            <li class="timer__item">
+                                                <div class="timer__check">
+                                                    <svg aria-hidden="true" width="17" height="13">
+                                                        <use xlink:href="img/sprite.svg#check1">
+                                                        </use>
+                                                    </svg>
+                                                </div>
+                                                <span>04:00</span>
+                                            </li>
+                                            <li class="timer__item">
+                                                <div class="timer__check">
+                                                    <svg aria-hidden="true" width="17" height="13">
+                                                        <use xlink:href="img/sprite.svg#check1">
+                                                        </use>
+                                                    </svg>
+                                                </div>
+                                                <span>04:30</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="popup-start-update__buttons">
+                                <button type="button" class="popup-start-update__btn">
+                                    <span class="desc">Через 5 мин</span>
+                                    <span class="mob">Через 5м</span>
+                                </button>
+                                <button type="button" class="popup-start-update__btn">
+                                    <span class="desc">Через час</span>
+                                    <span class="mob">Через 1ч</span>
+                                </button>
+                                <button type="button" class="popup-start-update__btn">
+                                    После 18:00
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="popup__buttons">
+                    <div class="popup__buttons-bottom">
+                        <button type="submit" class="btn btn-bg">
+                            <span>Переименовать</span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!--Архив-->
+    <div id="archive-base" aria-hidden="false" class="popup popup-base popup-archive-base popup_show">
+        <div class="popup__wrapper">
+            <div class="popup__content">
+                <div class="popup__top top-other">
+                    <div class="popup__titles">
+                        <div class="popup__title">
+                            Архив
+                        </div>
+                        <p>
+                            Название БД
+                        </p>
+                    </div>
+                    <div data-close class="popup__close">
+                        <svg aria-hidden="true" width="20" height="20">
+                            <use xlink:href="img/sprite.svg#close1"></use>
+                        </svg>
+                    </div>
+                </div>
+                <div class="popup-archive-base__content">
+                    <div class="popup-archive-base__column">
+                        <div class="popup-archive-base__left">
+                            <div class="popup-archive-base__data">
+                                31.01.2025
+                            </div>
+                            <div class="popup-archive-base__title">
+                                ipsaas-31_01_2025_0116
+                            </div>
+                        </div>
+                        <a href="#" download="#download" class="link">Скачать (1.4 Мб)</a>
+                    </div>
+                    <div class="popup-archive-base__column">
+                        <div class="popup-archive-base__left">
+                            <div class="popup-archive-base__data">
+                                30.01.2025
+                            </div>
+                            <div class="popup-archive-base__title">
+                                ipsaas-30_01_2025_0140
+                            </div>
+                        </div>
+                        <a href="#" download="#download" class="link">Скачать (1.3 Мб)</a>
+                    </div>
+                    <div class="popup-archive-base__column">
+                        <div class="popup-archive-base__left">
+                            <div class="popup-archive-base__data">
+                                29.01.2025
+                            </div>
+                            <div class="popup-archive-base__title">
+                                ipsaas-29_01_2025_0128
+                            </div>
+                        </div>
+                        <a href="#" download="#download" class="link">Скачать (1.2 Мб)</a>
+                    </div>
+                    <div class="popup-archive-base__column">
+                        <div class="popup-archive-base__left">
+                            <div class="popup-archive-base__data">
+                                28.01.2025
+                            </div>
+                            <div class="popup-archive-base__title">
+                                ipsaas-28_01_2025_0124
+                            </div>
+                        </div>
+                        <a href="#" download="#download" class="link">Скачать (1.3 Мб)</a>
+                    </div>
+                    <div class="popup-archive-base__column">
+                        <div class="popup-archive-base__left">
+                            <div class="popup-archive-base__data">
+                                27.01.2025
+                            </div>
+                            <div class="popup-archive-base__title">
+                                ipsaas-27_01_2025_0049
+                            </div>
+                        </div>
+                        <a href="#" download="#download" class="link">Скачать (1.1 Мб)</a>
+                    </div>
+                    <div class="popup-archive-base__column">
+                        <div class="popup-archive-base__left">
+                            <div class="popup-archive-base__data">
+                                26.01.2025
+                            </div>
+                            <div class="popup-archive-base__title">
+                                ipsaas-26_01_2025_0117
+                            </div>
+                        </div>
+                        <a href="#" download="#download" class="link">Скачать (1.3 Мб)</a>
+                    </div>
+                    <div class="popup-archive-base__column">
+                        <div class="popup-archive-base__left">
+                            <div class="popup-archive-base__data">
+                                25.01.2025
+                            </div>
+                            <div class="popup-archive-base__title">
+                                ipsaas-25_01_2025_0119
+                            </div>
+                        </div>
+                        <a href="#" download="#download" class="link">Скачать (1.4 Мб)</a>
+                    </div>
+                    <div class="popup-archive-base__column">
+                        <div class="popup-archive-base__left">
+                            <div class="popup-archive-base__data">
+                                24.01.2025
+                            </div>
+                            <div class="popup-archive-base__title">
+                                ipsaas-24_01_2025_0117
+                            </div>
+                        </div>
+                        <a href="#" download="#download" class="link">Скачать (1.2 Мб)</a>
+                    </div>
+                    <div class="popup-archive-base__column">
+                        <div class="popup-archive-base__left">
+                            <div class="popup-archive-base__data">
+                                22.01.2025
+                            </div>
+                            <div class="popup-archive-base__title">
+                                ipsaas-22_01_2025_0133
+                            </div>
+                        </div>
+                        <a href="#" download="#download" class="link">Скачать (1.5 Мб)</a>
+                    </div>
+                </div>
+                <div class="popup__buttons">
+                    <div class="popup__buttons-bottom">
+                        <button type="buttom" data-close class="btn btn-bg">
+                            <span>Закрыть</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Добавить БД-->
+    <div id="add-base" aria-hidden="false" class="popup popup-base">
         <div class="popup__wrapper">
             <div class="popup__content">
                 <div class="popup__top">
@@ -709,8 +2167,8 @@
                         </svg>
                     </div>
                 </div>
-                <div class="popup-add-base__buttons">
-                    <a href="./" class="btn">
+                <div class="popup-base__buttons">
+                    <a href="./" data-popup="#upload-base" class="btn">
                         <svg aria-hidden="true" width="24" height="21">
                             <use xlink:href="img/sprite.svg#download3"></use>
                         </svg>
@@ -726,13 +2184,15 @@
             </div>
         </div>
     </div>
-    <div id="create-new-base" aria-hidden="false" class="popup popup-add-base">
+
+    <!--Загрузить свою БД-->
+    <div id="upload-base" aria-hidden="false" class="popup popup-base">
         <div class="popup__wrapper">
             <div class="popup__content">
                 <div class="popup__top">
                     <div class="popup__titles">
                         <div class="popup__title">
-                            Создать новую БД
+                            Загрузить свою базу
                         </div>
                     </div>
                     <div data-close class="popup__close">
@@ -741,7 +2201,7 @@
                         </svg>
                     </div>
                 </div>
-                <form action="#" class="popup-add-base__body">
+                <form action="#" class="popup-base__body">
                     <div class="form">
                         <div class="form__inputs">
                             <div class="form__input">
@@ -845,6 +2305,221 @@
                             </div>
                         </div>
                     </div>
+                </form>
+                <div class="popup__buttons">
+                    <div class="popup__buttons-bottom">
+                        <button data-popup="#add-base" type="button" class="popup__arrow popup-arrow-text">
+                            <svg aria-hidden="true" width="19" height="17">
+                                <use xlink:href="img/sprite.svg#arrow2"></use>
+                            </svg>
+                            <span>Назад</span>
+                        </button>
+                        <button data-popup="#add-base-created" type="button" class="btn btn-bg">
+                            <span>Далее</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Создать новую БД-->
+    <div id="create-new-base" aria-hidden="false" class="popup popup-base">
+        <div class="popup__wrapper">
+            <div class="popup__content">
+                <div class="popup__top">
+                    <div class="popup__titles">
+                        <div class="popup__title">
+                            Создать новую БД
+                        </div>
+                    </div>
+                    <div data-close class="popup__close">
+                        <svg aria-hidden="true" width="20" height="20">
+                            <use xlink:href="img/sprite.svg#close1"></use>
+                        </svg>
+                    </div>
+                </div>
+                <form action="#" class="popup-base__body">
+                    <div class="form">
+                        <div class="form__inputs">
+                            <div class="form__input big">
+                                <label for="name1 big">
+                                    Название базы данных<span class="placeholder">*</span>
+                                </label>
+                                <input data-required id="name1" autocomplete="off" type="text" name="form[]"
+                                    placeholder="Например: Бухгалтерия ООО «Ромашка»" value="" class="input">
+                            </div>
+                            <div class="form__input">
+                                <label for="conf1">
+                                    Конфигурация
+                                </label>
+                                <div class="form-select">
+                                    <div class="form-select__titles">
+                                        <span>Бухгалтерия для Казахстана, редакция 3</span>
+                                        <div class="form-select__arrow"></div>
+                                    </div>
+                                    <div class="form-select__dropdown">
+                                        <div data-simplebar class="form-select__simplebar">
+                                            <div class="form-select__body">
+                                                <div class="form-select__column">
+                                                    <div class="form-select__title">
+                                                        Типовые конфигурации для Казахстана
+                                                    </div>
+                                                    <div class="options">
+                                                        <label class="options__item">
+                                                            <input hidden class="options__input" checked type="radio"
+                                                                value="1" name="option1">
+                                                            <span class="options__label">
+                                                                <span class="options__text">
+                                                                    Бухгалтерия для Казахстана, редакция 3
+                                                                </span>
+                                                                <span class="options__icon">
+                                                                    <svg aria-hidden="true" width="12" height="9">
+                                                                        <use xlink:href="img/sprite.svg#check1"></use>
+                                                                    </svg>
+                                                                </span>
+                                                        </label>
+                                                        <label class="options__item">
+                                                            <input hidden class="options__input" type="radio" value="2"
+                                                                name="option1">
+                                                            <span class="options__label">
+                                                                <span class="options__text">
+                                                                    Документооборот
+                                                                </span>
+                                                                <span class="options__icon">
+                                                                    <svg aria-hidden="true" width="12" height="9">
+                                                                        <use xlink:href="img/sprite.svg#check1"></use>
+                                                                    </svg>
+                                                                </span>
+                                                        </label>
+                                                        <label class="options__item">
+                                                            <input hidden class="options__input" type="radio" value="3"
+                                                                name="option1">
+                                                            <span class="options__label">
+                                                                <span class="options__text">
+                                                                    Зарплата и управление персоналом для Казахстана,
+                                                                    редакция 3
+                                                                </span>
+                                                                <span class="options__icon">
+                                                                    <svg aria-hidden="true" width="12" height="9">
+                                                                        <use xlink:href="img/sprite.svg#check1"></use>
+                                                                    </svg>
+                                                                </span>
+                                                        </label>
+                                                        <label class="options__item">
+                                                            <input hidden class="options__input" type="radio" value="4"
+                                                                name="option1">
+                                                            <span class="options__label">
+                                                                <span class="options__text">
+                                                                    Комплексная автоматизация для Казахстана
+                                                                </span>
+                                                                <span class="options__icon">
+                                                                    <svg aria-hidden="true" width="12" height="9">
+                                                                        <use xlink:href="img/sprite.svg#check1"></use>
+                                                                    </svg>
+                                                                </span>
+                                                        </label>
+                                                        <label class="options__item">
+                                                            <input hidden class="options__input" type="radio" value="5"
+                                                                name="option1">
+                                                            <span class="options__label">
+                                                                <span class="options__text">
+                                                                    Розница для Казахстана 2.3
+                                                                </span>
+                                                                <span class="options__icon">
+                                                                    <svg aria-hidden="true" width="12" height="9">
+                                                                        <use xlink:href="img/sprite.svg#check1"></use>
+                                                                    </svg>
+                                                                </span>
+                                                        </label>
+                                                        <label class="options__item">
+                                                            <input hidden class="options__input" type="radio" value="6"
+                                                                name="option1">
+                                                            <span class="options__label">
+                                                                <span class="options__text">
+                                                                    Управление небольшой фирмой для Казахстана
+                                                                </span>
+                                                                <span class="options__icon">
+                                                                    <svg aria-hidden="true" width="12" height="9">
+                                                                        <use xlink:href="img/sprite.svg#check1"></use>
+                                                                    </svg>
+                                                                </span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-select__column">
+                                                    <div class="form-select__title">
+                                                        Отраслевые конфигурации для Казахстана
+                                                    </div>
+                                                    <div class="options">
+                                                        <label class="options__item">
+                                                            <input hidden class="options__input" type="radio" value="7"
+                                                                name="option1">
+                                                            <span class="options__label">
+                                                                <span class="options__text">
+                                                                    Бухгалтерия сельскохозяйственного предприятия для
+                                                                    Казахстана, редакция 3.0
+                                                                </span>
+                                                                <span class="options__icon">
+                                                                    <svg aria-hidden="true" width="12" height="9">
+                                                                        <use xlink:href="img/sprite.svg#check1"></use>
+                                                                    </svg>
+                                                                </span>
+                                                        </label>
+                                                        <label class="options__item">
+                                                            <input hidden class="options__input" type="radio" value="8"
+                                                                name="option1">
+                                                            <span class="options__label">
+                                                                <span class="options__text">
+                                                                    Аптеки для Казахстана
+                                                                </span>
+                                                                <span class="options__icon">
+                                                                    <svg aria-hidden="true" width="12" height="9">
+                                                                        <use xlink:href="img/sprite.svg#check1"></use>
+                                                                    </svg>
+                                                                </span>
+                                                        </label>
+                                                        <label class="options__item">
+                                                            <input hidden class="options__input" type="radio" value="9"
+                                                                name="option1">
+                                                            <span class="options__label">
+                                                                <span class="options__text">
+                                                                    Аптеки для Казахстана
+                                                                </span>
+                                                                <span class="options__icon">
+                                                                    <svg aria-hidden="true" width="12" height="9">
+                                                                        <use xlink:href="img/sprite.svg#check1"></use>
+                                                                    </svg>
+                                                                </span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form__checkbox">
+                                <label class="checkbox disabled">
+                                    <input data-error="Ошибка" class="checkbox__input" type="checkbox" value="1"
+                                        name="form[]">
+                                    <span class="checkbox__label">
+                                        <span class="checkbox__icon">
+                                            <svg aria-hidden="true" width="10" height="8">
+                                                <use xlink:href="img/sprite.svg#check2">
+                                                </use>
+                                            </svg>
+                                        </span>
+                                        <span class="checkbox__text">Автообновление</span></span>
+                                </label>
+                                <p>
+                                    Сопроводительный текст о причине недоступного автообновления, <a href="./">
+                                        перерейти
+                                        на тариф</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                     <div class="popup__buttons">
                         <div class="popup__buttons-bottom">
                             <button data-popup="#add-base" type="button" class="popup__arrow popup-arrow-text">
@@ -862,7 +2537,7 @@
             </div>
         </div>
     </div>
-    <div id="add-base-created" aria-hidden="false" class="popup popup-add-base popup-base-created">
+    <div id="add-base-created" aria-hidden="false" class="popup popup-base popup-base-created">
         <div class="popup__wrapper">
             <div class="popup__content popup-content-creat">
                 <div class="add-base-creat">
@@ -879,7 +2554,7 @@
                         </div>
                     </div>
                     <div class="add-base-creat__body">
-                        <div class="add-base-creat__line">
+                        <div class="line">
                             <span></span>
                         </div>
                         <div class="add-base-creat__title">
@@ -1019,7 +2694,7 @@
                         </div>
                     </div>
                     <div class="popup__buttons">
-                        <a href="./" type="button" class="btn btn-bg">
+                        <a href="./" class="btn btn-bg">
                             <span>Позвоните мне</span>
                         </a>
                         <button data-close class="link"><span>Закрыть</span></button>
