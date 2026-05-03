@@ -182,32 +182,73 @@ if (moreButtons) {
 
 //Количество
 function formQuantity() {
+  function updateButtonsState(quantityElement) {
+    const valueElement = quantityElement.querySelector('[data-quantity-value]');
+    const plusButton = quantityElement.querySelector('[data-quantity-plus]');
+    const minusButton = quantityElement.querySelector('[data-quantity-minus]');
+
+    if (!valueElement) return;
+
+    const value = parseInt(valueElement.value) || 0;
+    const min = quantityElement.dataset.quantityMin ? +quantityElement.dataset.quantityMin : 1;
+    const max = quantityElement.dataset.quantityMax ? +quantityElement.dataset.quantityMax : null;
+
+    if (value <= min) {
+      minusButton?.classList.add('disabled');
+    } else {
+      minusButton?.classList.remove('disabled');
+    }
+
+    if (max !== null && value >= max) {
+      plusButton?.classList.add('disabled');
+    } else {
+      plusButton?.classList.remove('disabled');
+    }
+  }
+
+  function initAllQuantity() {
+    document.querySelectorAll('[data-quantity]').forEach(quantityElement => {
+      updateButtonsState(quantityElement);
+    });
+  }
+
   document.addEventListener("click", function (e) {
     let targetElement = e.target;
-    if (targetElement.closest('[data-quantity-plus]') || targetElement.closest('[data-quantity-minus]')) {
+    const plusBtn = targetElement.closest('[data-quantity-plus]');
+    const minusBtn = targetElement.closest('[data-quantity-minus]');
+
+    if (plusBtn || minusBtn) {
+      if ((plusBtn && plusBtn.classList.contains('disabled')) ||
+        (minusBtn && minusBtn.classList.contains('disabled'))) {
+        e.preventDefault();
+        return;
+      }
+
       const quantityElement = targetElement.closest('[data-quantity]');
       const valueElement = quantityElement.querySelector('[data-quantity-value]');
       let value = parseInt(valueElement.value) || 0;
 
-      if (targetElement.closest('[data-quantity-plus]')) {
+      if (plusBtn) {
         value++;
         if (quantityElement.dataset.quantityMax && +quantityElement.dataset.quantityMax < value) {
           value = quantityElement.dataset.quantityMax;
         }
-      } else {
+      } else if (minusBtn) {
         value--;
-        if (quantityElement.dataset.quantityMin) {
-          if (+quantityElement.dataset.quantityMin > value) {
-            value = quantityElement.dataset.quantityMin;
-          }
-        } else if (value < 1) {
-          value = 1;
+        const minValue = quantityElement.dataset.quantityMin ? +quantityElement.dataset.quantityMin : 1;
+        if (value < minValue) {
+          value = minValue;
         }
       }
+
       valueElement.value = value;
+      updateButtonsState(quantityElement);
     }
   });
+
+  initAllQuantity();
 }
+
 formQuantity();
 
 //========================================================================================================================================================
@@ -1684,6 +1725,13 @@ if (titlesList) {
     });
   }
 
+  function updateSelectedText(selectContainer, selectedText) {
+    const titleSpan = selectContainer.querySelector('.form-select__titles span');
+    if (titleSpan) {
+      titleSpan.textContent = selectedText;
+    }
+  }
+
   titlesList.forEach(title => {
     title.addEventListener('click', function (e) {
       e.stopPropagation();
@@ -1704,6 +1752,36 @@ if (titlesList) {
       });
     }
   });
+
+  const allRadioInputs = document.querySelectorAll('.options__input');
+  allRadioInputs.forEach(radio => {
+    radio.addEventListener('change', function (e) {
+      if (this.checked) {
+        const parentSelect = this.closest('.form-select');
+        const label = this.closest('.options__item');
+        const selectedTextElement = label.querySelector('.options__text');
+
+        if (selectedTextElement && parentSelect) {
+          const selectedText = selectedTextElement.textContent;
+          updateSelectedText(parentSelect, selectedText);
+
+          parentSelect.classList.remove('active');
+        }
+      }
+    });
+  });
+
+  const checkedRadios = document.querySelectorAll('.options__input:checked');
+  checkedRadios.forEach(radio => {
+    const parentSelect = radio.closest('.form-select');
+    const label = radio.closest('.options__item');
+    const selectedTextElement = label?.querySelector('.options__text');
+
+    if (selectedTextElement && parentSelect) {
+      const selectedText = selectedTextElement.textContent;
+      updateSelectedText(parentSelect, selectedText);
+    }
+  });
 }
 
 //========================================================================================================================================================
@@ -1718,7 +1796,7 @@ const observer = new MutationObserver(() => {
     if (addBaseCreat && !addBaseCreat.classList.contains('active')) {
       addBaseCreat.classList.add('active');
 
-      const animatedLine = addBaseCreat.querySelector('.add-base-creat__line span');
+      const animatedLine = addBaseCreat.querySelector('.line span');
       if (animatedLine && popupContent) {
         animatedLine.addEventListener('animationend', () => {
           popupContent.classList.add('hidden');
@@ -1739,27 +1817,40 @@ const questionButtons = document.querySelectorAll('.block-question__button');
 
 if (questionButtons) {
   function handleButtonClick() {
+    const currentButtons = document.querySelectorAll('.block-question__button');
+
     if (window.innerWidth <= 992) {
-      questionButtons.forEach(button => {
-        button.addEventListener('click', function (e) {
+      currentButtons.forEach(button => {
+        button.removeEventListener('click', button.clickHandler);
+
+        button.clickHandler = function (e) {
           e.stopPropagation();
           const parent = this.closest('.block-question');
           if (parent) {
             parent.classList.toggle('active');
           }
-        });
+        };
+
+        button.addEventListener('click', button.clickHandler);
       });
     } else {
-      questionButtons.forEach(button => {
+      currentButtons.forEach(button => {
+        if (button.clickHandler) {
+          button.removeEventListener('click', button.clickHandler);
+        }
+
         const newButton = button.cloneNode(true);
-        button.parentNode.replaceChild(newButton, button);
+        if (button.parentNode) {
+          button.parentNode.replaceChild(newButton, button);
+        }
       });
     }
   }
-
-  window.addEventListener('DOMContentLoaded', handleButtonClick);
-  window.addEventListener('resize', handleButtonClick);
 }
+window.addEventListener('DOMContentLoaded', handleButtonClick);
+window.addEventListener('resize', () => {
+  handleButtonClick();
+});
 
 //========================================================================================================================================================
 
@@ -1783,350 +1874,1194 @@ if (btnCheck) {
 
 //========================================================================================================================================================
 
-const objectsTitles = document.querySelectorAll('.cabinet-objects-bottom__titles');
-if (objectsTitles) {
-  objectsTitles.forEach(title => {
-    title.addEventListener('click', function (e) {
-      e.stopPropagation();
-      const parent = this.parentElement;
-      if (parent) {
-        parent.classList.toggle('active');
+function CabinetMenus() {
+  const allContainers = document.querySelectorAll('.cabinet-objects-bottom');
+
+  if (allContainers.length === 0) return;
+
+  function saveOriginalOrder(container) {
+    const mainList = container.querySelector('.cabinet-objects-bottom__main ul');
+    if (!mainList) return;
+
+    if (!container._originalHTML) {
+      container._originalHTML = mainList.innerHTML;
+    }
+  }
+
+  function restoreOriginalOrder(container) {
+    const mainList = container.querySelector('.cabinet-objects-bottom__main ul');
+    const moreList = container.querySelector('.cabinet-objects-bottom__more-list');
+    const mainBlock = container.querySelector('.cabinet-objects-bottom__main');
+    const checkboxesBlock = container.querySelector('.cabinet-objects-bottom__checkboxes');
+
+    if (!mainList || !moreList) return;
+
+    if (checkboxesBlock) {
+      checkboxesBlock.style.display = '';
+      const clonedCheckboxes = moreList.querySelector('.cabinet-objects-bottom__more-checkboxes');
+      if (clonedCheckboxes) {
+        clonedCheckboxes.remove();
       }
+    }
+
+    const itemsInMain = Array.from(mainList.querySelectorAll('li'));
+    const itemsInMore = Array.from(moreList.querySelectorAll('li'));
+    const allItems = [...itemsInMain, ...itemsInMore];
+
+    if (allItems.length === 0) return;
+
+    allItems.sort((a, b) => {
+      const indexA = parseInt(a.getAttribute('data-original-index')) || 0;
+      const indexB = parseInt(b.getAttribute('data-original-index')) || 0;
+      return indexA - indexB;
     });
+
+    mainList.innerHTML = '';
+    moreList.innerHTML = '';
+
+    allItems.forEach(item => {
+      mainList.appendChild(item);
+    });
+
+    if (mainBlock) {
+      mainBlock.style.display = '';
+    }
+  }
+
+  function handleResponsiveMenu(container) {
+    const body = container.querySelector('.cabinet-objects-bottom__body');
+    const listContainer = container.querySelector('.cabinet-objects-bottom__list');
+    const mainList = container.querySelector('.cabinet-objects-bottom__main ul');
+    const moreBlock = container.querySelector('.cabinet-objects-bottom__more');
+    const moreList = container.querySelector('.cabinet-objects-bottom__more-list');
+    const btn = container.querySelector('.cabinet-objects-bottom__contents .btn');
+    const mainBlock = container.querySelector('.cabinet-objects-bottom__main');
+
+    if (!body || !mainList || !moreBlock || !moreList || !listContainer) return;
+
+    function markOriginalOrder() {
+      const items = mainList.querySelectorAll('li');
+      items.forEach((item, index) => {
+        if (!item.hasAttribute('data-original-index')) {
+          item.setAttribute('data-original-index', index);
+        }
+      });
+    }
+
+    function getGap(list) {
+      const style = window.getComputedStyle(list);
+      const gap = parseInt(style.gap) || 20;
+      return gap;
+    }
+
+    function getElementWidths(list) {
+      const items = list.querySelectorAll('li');
+      const widths = [];
+
+      items.forEach((item, index) => {
+        const width = item.offsetWidth;
+        const computedStyle = window.getComputedStyle(item);
+        const marginLeft = parseInt(computedStyle.marginLeft) || 0;
+        const marginRight = parseInt(computedStyle.marginRight) || 0;
+        const totalWidth = width + marginLeft + marginRight;
+
+        widths.push({
+          index,
+          originalIndex: parseInt(item.getAttribute('data-original-index')) || index,
+          width,
+          totalWidth,
+        });
+      });
+
+      return widths;
+    }
+
+    function moveAllToMore() {
+      restoreOriginalOrder(container);
+      markOriginalOrder();
+
+      const items = Array.from(mainList.querySelectorAll('li'));
+      const checkboxesBlock = container.querySelector('.cabinet-objects-bottom__checkboxes');
+
+      if (checkboxesBlock && window.innerWidth <= 750) {
+        moreList.innerHTML = '';
+        const checkboxesClone = checkboxesBlock.cloneNode(true);
+        const checkboxesLi = document.createElement('li');
+        checkboxesLi.className = 'cabinet-objects-bottom__more-checkboxes';
+        checkboxesLi.appendChild(checkboxesClone);
+        moreList.appendChild(checkboxesLi);
+        checkboxesBlock.style.display = 'none';
+      }
+
+      if (items.length === 0) return;
+
+      items.forEach((item) => {
+        moreList.appendChild(item);
+      });
+
+      if (mainBlock) {
+        mainBlock.style.display = 'none';
+      }
+
+      moreBlock.style.display = 'flex';
+    }
+
+    function checkAndMoveItems() {
+      const windowWidth = window.innerWidth;
+
+      if (windowWidth >= 1501) {
+        restoreOriginalOrder(container);
+        markOriginalOrder();
+
+        if (mainBlock) {
+          mainBlock.style.display = '';
+        }
+
+        moreBlock.style.display = 'none';
+        return;
+      }
+
+      if (windowWidth <= 992) {
+        moveAllToMore();
+        return;
+      }
+
+      restoreOriginalOrder(container);
+      markOriginalOrder();
+
+      if (mainBlock) {
+        mainBlock.style.display = '';
+      }
+
+      moreBlock.style.display = 'none';
+
+      const contents = container.querySelector('.cabinet-objects-bottom__contents');
+      if (!contents) return;
+
+      const contentsWidth = contents.clientWidth;
+      const contentsStyle = window.getComputedStyle(contents);
+      const contentsPaddingLeft = parseInt(contentsStyle.paddingLeft) || 0;
+      const contentsPaddingRight = parseInt(contentsStyle.paddingRight) || 0;
+      const contentsGap = parseInt(contentsStyle.gap) || 40;
+
+      let btnWidth = 0;
+      if (btn) {
+        btnWidth = btn.offsetWidth;
+      }
+
+      let checkboxesWidth = 0;
+      const checkboxesBlock = container.querySelector('.cabinet-objects-bottom__checkboxes');
+      if (checkboxesBlock) {
+        checkboxesWidth = checkboxesBlock.offsetWidth;
+      }
+
+      const availableForList = contentsWidth - contentsPaddingLeft - contentsPaddingRight - btnWidth - contentsGap - checkboxesWidth;
+      const elementWidths = getElementWidths(mainList);
+
+      if (elementWidths.length === 0) return;
+
+      const gap = getGap(mainList);
+      const totalElementsWidth = elementWidths.reduce((sum, item) => sum + item.totalWidth, 0);
+      const totalWithGaps = totalElementsWidth + (elementWidths.length - 1) * gap;
+      const moreBlockWidth = 150;
+      const listGap = 40;
+      const effectiveAvailable = availableForList - moreBlockWidth - listGap;
+
+      if (totalWithGaps > effectiveAvailable) {
+        moreBlock.style.display = 'flex';
+
+        const items = Array.from(mainList.querySelectorAll('li'));
+        let currentWidth = totalWithGaps;
+        let movedItems = [];
+
+        for (let i = items.length - 1; i >= 1; i--) {
+          if (currentWidth <= effectiveAvailable) break;
+
+          const item = items[i];
+          const itemWidth = elementWidths[i];
+
+          movedItems.unshift(item);
+          currentWidth -= (itemWidth.totalWidth + gap);
+        }
+
+        if (movedItems.length > 0) {
+          movedItems.forEach(item => {
+            moreList.appendChild(item);
+          });
+        } else {
+          moreBlock.style.display = 'none';
+        }
+      }
+    }
+
+    container._checkAndMoveItems = checkAndMoveItems;
+    markOriginalOrder();
+  }
+
+  function initGlobalDropdownHandler() {
+    if (document._dropdownClickHandler) {
+      document.removeEventListener('click', document._dropdownClickHandler);
+    }
+
+    const clickHandler = function (e) {
+      const titleButton = e.target.closest('.cabinet-objects-bottom__titles');
+
+      if (titleButton) {
+        e.stopPropagation();
+        e.preventDefault();
+
+        const parent = titleButton.closest('.cabinet-objects-bottom__more');
+
+        if (parent) {
+          document.querySelectorAll('.cabinet-objects-bottom__more.active').forEach(item => {
+            if (item !== parent) {
+              item.classList.remove('active');
+            }
+          });
+
+          parent.classList.toggle('active');
+        }
+      } else {
+        const isInsideDropdown = e.target.closest('.cabinet-objects-bottom__dropdown');
+
+        if (!isInsideDropdown) {
+          document.querySelectorAll('.cabinet-objects-bottom__more.active').forEach(item => {
+            item.classList.remove('active');
+          });
+        }
+      }
+    };
+
+    document.addEventListener('click', clickHandler);
+    document._dropdownClickHandler = clickHandler;
+
+    document.querySelectorAll('.cabinet-objects-bottom__dropdown').forEach(dropdown => {
+      dropdown.addEventListener('click', function (e) {
+        e.stopPropagation();
+      });
+    });
+  }
+
+  allContainers.forEach((container) => {
+    saveOriginalOrder(container);
+    handleResponsiveMenu(container);
   });
 
-  document.addEventListener('click', function (e) {
-    if (!e.target.closest('.cabinet-objects-bottom__titles') && !e.target.closest('.cabinet-objects-bottom__dropdown')) {
-      document.querySelectorAll('.cabinet-objects-bottom__more.active').forEach(item => {
-        item.classList.remove('active');
+  initGlobalDropdownHandler();
+
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      const containers = document.querySelectorAll('.cabinet-objects-bottom');
+      if (containers.length === 0) return;
+      containers.forEach((container) => {
+        if (container._checkAndMoveItems) {
+          container._checkAndMoveItems();
+        }
       });
+    }, 250);
+  });
+
+  setTimeout(() => {
+    const containers = document.querySelectorAll('.cabinet-objects-bottom');
+    if (containers.length === 0) return;
+    containers.forEach(container => {
+      if (container._checkAndMoveItems) {
+        container._checkAndMoveItems();
+      }
+    });
+  }, 100);
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', CabinetMenus);
+} else {
+  CabinetMenus();
+}
+
+//========================================================================================================================================================
+
+const calendars = document.querySelectorAll(".calendar");
+if (calendars.length > 0) {
+
+  const closeAllCalendarStates = () => {
+    calendars.forEach(calendar => {
+      calendar.classList.remove('active');
+      calendar.classList.remove('calendar-month-active');
+      calendar.classList.remove('calendar-data-active');
+    });
+    document.documentElement.classList.remove('open-calendar');
+  };
+
+  calendars.forEach((calendar, calendarIndex) => {
+    const calendarMain = calendar.querySelector(".calendar__main");
+    const calHeaderTitle = calendar.querySelector(".calendar__header span");
+
+    const calendarValueBlock = calendar.querySelector(".calendar__value");
+    const calendarInput = calendar.querySelector(".input-calendar");
+
+    const isSingleSelect = calendar.classList.contains('calendar-one');
+
+    const monthItems = calendar.querySelectorAll('.calendar-month .calendar-header__dropdown .calendar-header__item');
+    const monthsList = [];
+    monthItems.forEach(item => {
+      const monthSpan = item.querySelector('span');
+      if (monthSpan) {
+        monthsList.push(monthSpan.textContent.trim());
+      }
+    });
+
+    const yearItems = calendar.querySelectorAll('.calendar-data .calendar-header__dropdown .calendar-header__item');
+    const yearsList = [];
+    yearItems.forEach(item => {
+      const yearSpan = item.querySelector('span');
+      if (yearSpan) {
+        yearsList.push(parseInt(yearSpan.textContent.trim()));
+      }
+    });
+    yearsList.sort((a, b) => a - b);
+
+    const getShortMonth = (fullMonthName) => {
+      return fullMonthName.substring(0, 3);
+    };
+
+    const todayTimestamp = Date.now() - (Date.now() % (24 * 60 * 60 * 1000));
+
+    const getTodayDateString = () => {
+      const today = new Date();
+      const day = String(today.getDate()).padStart(2, '0');
+      const month = String(today.getMonth() + 1).padStart(2, '0');
+      const year = today.getFullYear();
+      return `${day} <span>/</span> ${month} <span>/</span> ${year}`;
+    };
+
+    const getTodayValueString = () => {
+      const today = new Date();
+      const day = String(today.getDate()).padStart(2, '0');
+      const month = String(today.getMonth() + 1).padStart(2, '0');
+      const year = today.getFullYear();
+      return `${day}-${month}-${year}`;
+    };
+
+    const getDateObjectFromTimestamp = (timestamp) => {
+      let dateObject = new Date(timestamp);
+      return {
+        year: dateObject.getUTCFullYear(),
+        month: String(dateObject.getUTCMonth() + 1).padStart(2, '0'),
+        day: String(dateObject.getUTCDate()).padStart(2, '0')
+      };
+    };
+
+    let selectedStartDate = todayTimestamp;
+    let selectedEndDate = null;
+    let tempStartDate = null;
+    let tempEndDate = null;
+    let isSelectingRange = false;
+
+    const getNumberOfDays = (year, month) => {
+      return new Date(year, month + 1, 0).getDate();
+    };
+
+    const getDayDetails = (args) => {
+      let date = args.index - args.firstDay;
+      let dayOfWeek = (args.index % 7 + 7) % 7;
+      let prevMonth = args.month - 1;
+      let nextMonth = args.month + 1;
+      let prevYear = args.year;
+      let nextYear = args.year;
+
+      if (prevMonth < 0) {
+        prevMonth = 11;
+        prevYear--;
+      }
+      if (nextMonth > 11) {
+        nextMonth = 0;
+        nextYear++;
+      }
+
+      let prevMonthDays = getNumberOfDays(prevYear, prevMonth);
+      let currentMonthDays = getNumberOfDays(args.year, args.month);
+
+      let displayDate, displayMonth, displayYear;
+      if (date < 0) {
+        displayDate = prevMonthDays + date + 1;
+        displayMonth = prevMonth;
+        displayYear = prevYear;
+      } else if (date >= currentMonthDays) {
+        displayDate = date - currentMonthDays + 1;
+        displayMonth = nextMonth;
+        displayYear = nextYear;
+      } else {
+        displayDate = date + 1;
+        displayMonth = args.month;
+        displayYear = args.year;
+      }
+
+      let timestamp = new Date(Date.UTC(displayYear, displayMonth, displayDate)).getTime();
+      return {
+        date: displayDate,
+        day: dayOfWeek,
+        month: displayMonth === args.month ? 0 : displayMonth < args.month ? -1 : 1,
+        timestamp: timestamp
+      };
+    };
+
+    const getMonthDetails = (year, month) => {
+      let firstDay = new Date(Date.UTC(year, month, 1)).getUTCDay();
+      firstDay = firstDay === 0 ? 6 : firstDay - 1;
+      let monthArray = [];
+      for (let i = 0; i < 42; i++) {
+        monthArray.push(getDayDetails({
+          index: i,
+          firstDay: firstDay,
+          year: year,
+          month: month
+        }));
+      }
+      return monthArray;
+    };
+
+    let currentMonthIndex = 0;
+
+    const now = new Date();
+    const currentMonthName = monthsList[now.getMonth()];
+    if (currentMonthName) {
+      currentMonthIndex = monthsList.findIndex(m => m === currentMonthName);
+      if (currentMonthIndex === -1) currentMonthIndex = 0;
+    }
+
+    let currentYear = yearsList[0] || now.getFullYear();
+    if (yearsList.length > 0) {
+      const closestYear = yearsList.reduce((prev, curr) => {
+        return (Math.abs(curr - now.getFullYear()) < Math.abs(prev - now.getFullYear()) ? curr : prev);
+      });
+      currentYear = closestYear;
+    }
+
+    let year = currentYear;
+    let month = currentMonthIndex;
+    let monthDetails = getMonthDetails(year, month);
+
+    const isDateInRange = (timestamp, start, end) => {
+      if (isSingleSelect) {
+        return timestamp === start;
+      }
+      if (!start) return false;
+      if (end) {
+        return timestamp >= start && timestamp <= end;
+      }
+      return timestamp === start;
+    };
+
+    const setCalBody = (monthDetails, startDate = tempStartDate, endDate = tempEndDate) => {
+      if (!calendarMain) return;
+
+      calendarMain.innerHTML = "";
+      monthDetails.forEach(day => {
+        let div = document.createElement("div");
+        let span = document.createElement("span");
+
+        div.classList.add("cell_wrapper");
+        div.classList.add("cal_date");
+
+        if (day.month === 0) {
+          div.classList.add("current");
+        } else if (day.month === -1) {
+          div.classList.add("prev-month");
+          div.classList.add("other-month");
+        } else if (day.month === 1) {
+          div.classList.add("next-month");
+          div.classList.add("other-month");
+        }
+
+        if (day.timestamp === todayTimestamp && day.month === 0) {
+          div.classList.add("isCurrent");
+        }
+
+        if (isDateInRange(day.timestamp, startDate, endDate)) {
+          div.classList.add("in-range");
+
+          if (!isSingleSelect && startDate && endDate && day.timestamp === startDate) {
+            div.classList.add("range-start");
+          }
+          if (!isSingleSelect && endDate && day.timestamp === endDate && startDate !== endDate) {
+            div.classList.add("range-end");
+          }
+        }
+
+        span.classList.add("cell_item");
+        span.innerText = day.date;
+        div.setAttribute("data-timestamp", day.timestamp);
+        div.appendChild(span);
+        calendarMain.appendChild(div);
+      });
+    };
+
+    const updateMonthSpan = () => {
+      const monthSpan = calendar.querySelector('.calendar-month .calendar-header__button span');
+      if (monthSpan && monthsList[month]) {
+        monthSpan.textContent = getShortMonth(monthsList[month]);
+      }
+
+      const yearSpan = calendar.querySelector('.calendar-data .calendar-header__button span');
+      if (yearSpan) {
+        yearSpan.textContent = year;
+      }
+
+      if (calHeaderTitle && monthsList[month]) {
+        calHeaderTitle.innerHTML = `${monthsList[month]} ${year}`;
+      }
+    };
+
+    const updateActiveMonthInDropdown = () => {
+      monthItems.forEach((item, index) => {
+        if (index === month) {
+          item.classList.add('active');
+        } else {
+          item.classList.remove('active');
+        }
+      });
+    };
+
+    const updateActiveYearInDropdown = () => {
+      yearItems.forEach(item => {
+        const yearSpan = item.querySelector('span');
+        if (yearSpan && parseInt(yearSpan.textContent) === year) {
+          item.classList.add('active');
+        } else {
+          item.classList.remove('active');
+        }
+      });
+    };
+
+    const changeMonth = (offset) => {
+      let newMonth = month + offset;
+      let newYear = year;
+
+      if (newMonth === -1) {
+        newMonth = monthsList.length - 1;
+        newYear--;
+        if (yearsList.length > 0) {
+          const currentYearIndex = yearsList.indexOf(newYear);
+          if (currentYearIndex !== -1) {
+            newYear = yearsList[currentYearIndex];
+          } else {
+            if (newYear < yearsList[0]) {
+              newYear = yearsList[yearsList.length - 1];
+            } else if (newYear > yearsList[yearsList.length - 1]) {
+              newYear = yearsList[0];
+            }
+          }
+        }
+      } else if (newMonth === monthsList.length) {
+        newMonth = 0;
+        newYear++;
+        if (yearsList.length > 0) {
+          const currentYearIndex = yearsList.indexOf(newYear);
+          if (currentYearIndex !== -1) {
+            newYear = yearsList[currentYearIndex];
+          } else {
+            if (newYear < yearsList[0]) {
+              newYear = yearsList[yearsList.length - 1];
+            } else if (newYear > yearsList[yearsList.length - 1]) {
+              newYear = yearsList[0];
+            }
+          }
+        }
+      }
+
+      month = newMonth;
+      year = newYear;
+
+      monthDetails = getMonthDetails(year, month);
+      updateMonthSpan();
+      updateActiveMonthInDropdown();
+      updateActiveYearInDropdown();
+      setCalBody(monthDetails, tempStartDate, tempEndDate);
+    };
+
+    const changeYear = (offset) => {
+      if (yearsList.length === 0) return;
+
+      const currentIndex = yearsList.indexOf(year);
+
+      if (currentIndex !== -1) {
+        let newIndex = currentIndex + offset;
+
+        if (newIndex < 0) {
+          newIndex = yearsList.length - 1;
+        } else if (newIndex >= yearsList.length) {
+          newIndex = 0;
+        }
+
+        year = yearsList[newIndex];
+      } else {
+        if (offset === -1) {
+          year = yearsList[yearsList.length - 1];
+        } else {
+          year = yearsList[0];
+        }
+      }
+
+      monthDetails = getMonthDetails(year, month);
+      updateMonthSpan();
+      updateActiveYearInDropdown();
+      setCalBody(monthDetails, tempStartDate, tempEndDate);
+    };
+
+    updateMonthSpan();
+    updateActiveMonthInDropdown();
+    updateActiveYearInDropdown();
+    setCalBody(monthDetails);
+
+    const monthPrevBtn = calendar.querySelector('.calendar-month .calendar-header__btn-prev');
+    const monthNextBtn = calendar.querySelector('.calendar-month .calendar-header__btn-next');
+
+    if (monthPrevBtn) {
+      monthPrevBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        changeMonth(-1);
+      });
+    }
+
+    if (monthNextBtn) {
+      monthNextBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        changeMonth(1);
+      });
+    }
+
+    const yearPrevBtn = calendar.querySelector('.calendar-data .calendar-header__btn-prev');
+    const yearNextBtn = calendar.querySelector('.calendar-data .calendar-header__btn-next');
+
+    if (yearPrevBtn) {
+      yearPrevBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        changeYear(-1);
+      });
+    }
+
+    if (yearNextBtn) {
+      yearNextBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        changeYear(1);
+      });
+    }
+
+    if (monthItems.length > 0) {
+      monthItems.forEach((item, index) => {
+        item.addEventListener('click', (e) => {
+          e.stopPropagation();
+          month = index;
+          monthDetails = getMonthDetails(year, month);
+          updateMonthSpan();
+          updateActiveMonthInDropdown();
+          setCalBody(monthDetails, tempStartDate, tempEndDate);
+          calendar.classList.remove('calendar-month-active');
+        });
+      });
+    }
+
+    if (yearItems.length > 0) {
+      yearItems.forEach(item => {
+        item.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const selectedYear = parseInt(item.querySelector('span').textContent);
+          if (!isNaN(selectedYear) && yearsList.includes(selectedYear)) {
+            year = selectedYear;
+            monthDetails = getMonthDetails(year, month);
+            updateMonthSpan();
+            updateActiveYearInDropdown();
+            setCalBody(monthDetails, tempStartDate, tempEndDate);
+            calendar.classList.remove('calendar-data-active');
+          }
+        });
+      });
+    }
+
+    const updateCalendarValueDisplay = () => {
+      if (calendarValueBlock) {
+        if (selectedStartDate && selectedEndDate) {
+          const startDate = getDateObjectFromTimestamp(selectedStartDate);
+          const endDate = getDateObjectFromTimestamp(selectedEndDate);
+          calendarValueBlock.innerHTML = `${startDate.day} <span>/</span> ${startDate.month} <span>/</span> ${startDate.year} - ${endDate.day} <span>/</span> ${endDate.month} <span>/</span> ${endDate.year}`;
+        } else if (selectedStartDate) {
+          const date = getDateObjectFromTimestamp(selectedStartDate);
+          calendarValueBlock.innerHTML = `${date.day} <span>/</span> ${date.month} <span>/</span> ${date.year}`;
+        } else {
+          calendarValueBlock.innerHTML = getTodayDateString();
+        }
+      }
+
+      if (calendarInput) {
+        if (selectedStartDate && selectedEndDate) {
+          const startDate = getDateObjectFromTimestamp(selectedStartDate);
+          const endDate = getDateObjectFromTimestamp(selectedEndDate);
+          calendarInput.value = `${startDate.day}-${startDate.month}-${startDate.year} - ${endDate.day}-${endDate.month}-${endDate.year}`;
+        } else if (selectedStartDate) {
+          const date = getDateObjectFromTimestamp(selectedStartDate);
+          calendarInput.value = `${date.day}-${date.month}-${date.year}`;
+        } else {
+          calendarInput.value = getTodayValueString();
+        }
+      }
+    };
+
+    const clearTempSelection = () => {
+      tempStartDate = null;
+      tempEndDate = null;
+      isSelectingRange = false;
+      setCalBody(monthDetails, tempStartDate, tempEndDate);
+    };
+
+    const applySelection = () => {
+      if (tempStartDate) {
+        selectedStartDate = tempStartDate;
+        if (isSingleSelect) {
+          selectedEndDate = null;
+        } else {
+          selectedEndDate = tempEndDate;
+        }
+      } else {
+        selectedStartDate = todayTimestamp;
+        selectedEndDate = null;
+      }
+      updateCalendarValueDisplay();
+      closeCalendar();
+    };
+
+    const cancelSelection = () => {
+      tempStartDate = selectedStartDate;
+      tempEndDate = selectedEndDate;
+      setCalBody(monthDetails, tempStartDate, tempEndDate);
+      closeCalendar();
+    };
+
+    const closeCalendar = () => {
+      calendar.classList.remove('active');
+      calendar.classList.remove('calendar-month-active');
+      calendar.classList.remove('calendar-data-active');
+      document.documentElement.classList.remove('open-calendar');
+    };
+
+    const openCalendar = () => {
+      tempStartDate = selectedStartDate;
+      tempEndDate = selectedEndDate;
+      setCalBody(monthDetails, tempStartDate, tempEndDate);
+      closeAllCalendarStates();
+      calendar.classList.add('active');
+      document.documentElement.classList.add('open-calendar');
+    };
+
+    const calendarMonthBlock = calendar.querySelector('.calendar-month');
+    if (calendarMonthBlock) {
+      const monthSpan = calendarMonthBlock.querySelector('.calendar-header__button span');
+      if (monthSpan) {
+        monthSpan.addEventListener('click', (e) => {
+          e.stopPropagation();
+
+          calendars.forEach(otherCalendar => {
+            if (otherCalendar !== calendar) {
+              otherCalendar.classList.remove('calendar-month-active');
+              otherCalendar.classList.remove('calendar-data-active');
+            }
+          });
+
+          calendar.classList.remove('calendar-data-active');
+          calendar.classList.toggle('calendar-month-active');
+        });
+      }
+    }
+
+    const calendarDataBlock = calendar.querySelector('.calendar-data');
+    if (calendarDataBlock) {
+      const yearSpan = calendarDataBlock.querySelector('.calendar-header__button span');
+      if (yearSpan) {
+        yearSpan.addEventListener('click', (e) => {
+          e.stopPropagation();
+
+          calendars.forEach(otherCalendar => {
+            if (otherCalendar !== calendar) {
+              otherCalendar.classList.remove('calendar-month-active');
+              otherCalendar.classList.remove('calendar-data-active');
+            }
+          });
+
+          calendar.classList.remove('calendar-month-active');
+          calendar.classList.toggle('calendar-data-active');
+        });
+      }
+    }
+
+    if (calendarMain) {
+      calendarMain.addEventListener("click", (e) => {
+        e.stopPropagation();
+
+        const target = e.target.closest(".cell_wrapper");
+
+        if (!target) {
+          return;
+        }
+
+        const cellTimestamp = parseInt(target.getAttribute("data-timestamp"));
+        if (!cellTimestamp) {
+          return;
+        }
+
+        if (isSingleSelect) {
+          tempStartDate = cellTimestamp;
+          tempEndDate = null;
+          setCalBody(monthDetails, tempStartDate, tempEndDate);
+        } else {
+          if (tempStartDate === null) {
+            tempStartDate = cellTimestamp;
+            tempEndDate = null;
+            isSelectingRange = true;
+          } else if (tempStartDate !== null && tempEndDate === null) {
+            if (cellTimestamp < tempStartDate) {
+              tempEndDate = tempStartDate;
+              tempStartDate = cellTimestamp;
+            } else {
+              tempEndDate = cellTimestamp;
+            }
+            isSelectingRange = false;
+          } else {
+            tempStartDate = cellTimestamp;
+            tempEndDate = null;
+            isSelectingRange = true;
+          }
+          setCalBody(monthDetails, tempStartDate, tempEndDate);
+        }
+      });
+    }
+
+    const clearBtn = calendar.querySelector('.calendar-clear');
+    if (clearBtn) {
+      clearBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        selectedStartDate = todayTimestamp;
+        selectedEndDate = null;
+        tempStartDate = null;
+        tempEndDate = null;
+        isSelectingRange = false;
+        updateCalendarValueDisplay();
+        setCalBody(monthDetails, tempStartDate, tempEndDate);
+      });
+    }
+
+    const closeBtn = calendar.querySelector('.calendar-close');
+    if (closeBtn) {
+      closeBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        cancelSelection();
+      });
+    }
+
+    const applyBtn = calendar.querySelector('.calendar-apply');
+    if (applyBtn) {
+      applyBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        applySelection();
+      });
+    }
+
+    const calendarIcon = calendar.querySelector('.calendar__icon');
+    if (calendarIcon) {
+      calendarIcon.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (calendar.classList.contains('active')) {
+          closeCalendar();
+        } else {
+          openCalendar();
+        }
+      });
+    }
+
+    if (calendarInput) {
+      calendarInput.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (calendar.classList.contains('active')) {
+          closeCalendar();
+        } else {
+          openCalendar();
+        }
+      });
+    }
+
+    updateCalendarValueDisplay();
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.calendar')) {
+      closeAllCalendarStates();
     }
   });
 }
 
 //========================================================================================================================================================
 
-(function () {
-  const SAFETY_MARGIN = 50;
-  let resizeTimeout;
-  let isUpdating = false;
-  let updateScheduled = false;
+const startUpdateBtn = document.querySelectorAll('.popup-start-update__btn');
 
-  function manageMenuItemsForContainer(container) {
-    const bodyContainer = container.querySelector('.cabinet-objects-bottom__body');
-    if (!bodyContainer) return;
+if (startUpdateBtn.length) {
+  startUpdateBtn.forEach(button => {
+    button.addEventListener('click', function (event) {
+      event.stopPropagation();
 
-    const listContainer = bodyContainer.querySelector('.cabinet-objects-bottom__list');
-    const mainBlock = bodyContainer.querySelector('.cabinet-objects-bottom__main');
-    const moreBlock = bodyContainer.querySelector('.cabinet-objects-bottom__more');
-    const moreList = bodyContainer.querySelector('.cabinet-objects-bottom__more-list');
-    const checkboxesBlock = bodyContainer.querySelector('.cabinet-objects-bottom__checkboxes');
-    const dropdownUl = mainBlock ? mainBlock.querySelector('ul') : null;
+      if (this.classList.contains('active')) {
+        this.classList.remove('active');
+      } else {
+        startUpdateBtn.forEach(btn => btn.classList.remove('active'));
+        this.classList.add('active');
+      }
+    });
+  });
+}
 
-    if (!listContainer || !moreBlock || !moreList) return;
+//========================================================================================================================================================
 
-    // Определяем, находится ли элемент внутри block-cabinet-databases
-    const isInsideDatabases = container.closest('.block-cabinet-databases') !== null;
-    // Устанавливаем брейкпоинт: 992px для баз данных, иначе 750px
-    const MOBILE_BREAKPOINT = isInsideDatabases ? 992 : 750;
-    const isMobile = window.innerWidth <= MOBILE_BREAKPOINT;
+const timer = document.querySelector('.timer');
+if (timer) {
+  const timerInput = document.querySelector('.timer__input');
+  const timerValue = document.querySelector('.timer__value');
+  const timerContent = document.querySelector('.timer__content');
+  const timerItems = document.querySelectorAll('.timer__item');
 
-    // Сохраняем состояние для каждого контейнера
-    if (bodyContainer._isMobileMode === undefined) {
-      bodyContainer._isMobileMode = false;
-      bodyContainer._lastKnownState = null;
+  let currentValue = '';
+
+  function updateDisplayValue(time) {
+    if (timerValue) {
+      timerValue.innerHTML = time.replace(':', ' <span>:</span> ');
     }
+    if (timerInput) {
+      const input = timerInput.querySelector('.input-timer');
+      if (input) input.value = time;
+    }
+    currentValue = time;
+  }
 
-    const currentMobileMode = bodyContainer._isMobileMode;
+  function setActiveItem(time) {
+    timerItems.forEach(item => {
+      const itemTime = item.querySelector('span')?.innerText;
+      if (itemTime === time) {
+        item.classList.add('active');
+      } else {
+        item.classList.remove('active');
+      }
+    });
+  }
 
-    // Мобильный режим: все кнопки в more-list, main скрыт
-    if (isMobile) {
-      if (!currentMobileMode) {
-        bodyContainer._isMobileMode = true;
+  function selectTime(time) {
+    updateDisplayValue(time);
+    setActiveItem(time);
+    closeDropdown();
+  }
 
-        // Скрываем main блок
-        if (mainBlock) {
-          mainBlock.style.display = 'none';
-        }
+  function openDropdown() {
+    timerContent.style.display = 'block';
+    timer.classList.add('active');
+  }
 
-        // Показываем more блок
-        moreBlock.style.display = 'flex';
+  function closeDropdown() {
+    timerContent.style.display = 'none';
+    timer.classList.remove('active');
+  }
 
-        // Перемещаем все кнопки из main ul в more-list
-        if (dropdownUl && moreList) {
-          const buttons = Array.from(dropdownUl.querySelectorAll('li'));
-          buttons.forEach(button => {
-            dropdownUl.removeChild(button);
-            moreList.appendChild(button);
+  function toggleDropdown() {
+    if (timerContent.style.display === 'block') {
+      closeDropdown();
+    } else {
+      openDropdown();
+    }
+  }
+
+  timerItems.forEach(item => {
+    item.addEventListener('click', function (e) {
+      e.stopPropagation();
+      const timeSpan = this.querySelector('span');
+      if (timeSpan) {
+        selectTime(timeSpan.innerText);
+      }
+    });
+  });
+
+  if (timerInput) {
+    timerInput.addEventListener('click', function (e) {
+      e.stopPropagation();
+      toggleDropdown();
+    });
+  }
+
+  document.addEventListener('click', function (e) {
+    if (timer && !timer.contains(e.target)) {
+      closeDropdown();
+    }
+  });
+
+  const activeItem = document.querySelector('.timer__item.active');
+  if (activeItem) {
+    const defaultTime = activeItem.querySelector('span')?.innerText;
+    if (defaultTime) {
+      updateDisplayValue(defaultTime);
+      currentValue = defaultTime;
+    }
+  }
+}
+
+//========================================================================================================================================================
+
+function showMore() {
+  window.addEventListener("load", function (e) {
+    const showMoreBlocks = document.querySelectorAll('[data-showmore]');
+    let showMoreBlocksRegular;
+    let mdQueriesArray;
+    if (showMoreBlocks.length) {
+      showMoreBlocksRegular = Array.from(showMoreBlocks).filter(function (item, index, self) {
+        return !item.dataset.showmoreMedia;
+      });
+      showMoreBlocksRegular.length ? initItems(showMoreBlocksRegular) : null;
+
+      document.addEventListener("click", showMoreActions);
+      window.addEventListener("resize", showMoreActions);
+
+      mdQueriesArray = dataMediaQueries(showMoreBlocks, "showmoreMedia");
+      if (mdQueriesArray && mdQueriesArray.length) {
+        mdQueriesArray.forEach(mdQueriesItem => {
+          mdQueriesItem.matchMedia.addEventListener("change", function () {
+            initItems(mdQueriesItem.itemsArray, mdQueriesItem.matchMedia);
           });
-        }
-
-        // Перемещаем чекбоксы в more-list, если их там еще нет
-        if (checkboxesBlock && moreList && checkboxesBlock.parentNode !== moreList) {
-          moreList.insertBefore(checkboxesBlock, moreList.firstChild);
-        }
-
-        bodyContainer._visibleCount = -1;
-      }
-      return; // Выходим - больше ничего не делаем в мобильном режиме
-    }
-
-    // Десктопный режим: возвращаем всё на место
-    if (!isMobile && currentMobileMode) {
-      bodyContainer._isMobileMode = false;
-
-      // Возвращаем чекбоксы обратно
-      if (checkboxesBlock && listContainer && checkboxesBlock.parentNode !== listContainer) {
-        listContainer.insertBefore(checkboxesBlock, mainBlock || moreBlock);
-      }
-
-      // Возвращаем кнопки из more-list обратно в main ul
-      if (dropdownUl && moreList) {
-        const moreButtons = Array.from(moreList.querySelectorAll('li:not(.cabinet-objects-bottom__checkboxes)'));
-        moreButtons.forEach(button => {
-          moreList.removeChild(button);
-          dropdownUl.appendChild(button);
         });
+        initItemsMedia(mdQueriesArray);
       }
-
-      // Показываем main блок
-      if (mainBlock) {
-        mainBlock.style.display = 'flex';
-      }
-
-      // Сбрасываем счетчик
-      bodyContainer._visibleCount = -1;
     }
-
-    // Если нет основного блока или он пуст - пропускаем
-    if (!mainBlock || !dropdownUl) return;
-
-    // Получаем ВСЕ элементы
-    const mainItems = Array.from(dropdownUl.querySelectorAll('li'));
-    const moreItems = Array.from(moreList.querySelectorAll('li:not(.cabinet-objects-bottom__checkboxes)'));
-    const allItems = [...mainItems, ...moreItems];
-
-    if (allItems.length === 0) return;
-
-    // Сохраняем текущее состояние для сравнения
-    const currentState = allItems.map(item => item.textContent).join('|');
-    if (bodyContainer._lastKnownState === currentState && bodyContainer._visibleCount !== -1) {
-      return; // Состояние не изменилось - выходим
+    function initItemsMedia(mdQueriesArray) {
+      mdQueriesArray.forEach(mdQueriesItem => {
+        initItems(mdQueriesItem.itemsArray, mdQueriesItem.matchMedia);
+      });
     }
-    bodyContainer._lastKnownState = currentState;
-
-    try {
-      // Расчет доступной ширины
-      let otherBlocks = Array.from(listContainer.children).filter(child =>
-        child !== mainBlock && child !== moreBlock && child.offsetWidth > 0
-      );
-
-      if (checkboxesBlock && checkboxesBlock.parentNode !== moreList) {
-        otherBlocks = otherBlocks.filter(child => child !== checkboxesBlock);
-      }
-
-      let otherBlocksWidth = 0;
-      const gap = 40;
-      otherBlocks.forEach((block, index) => {
-        otherBlocksWidth += block.offsetWidth;
-        if (index < otherBlocks.length - 1) otherBlocksWidth += gap;
+    function initItems(showMoreBlocks, matchMedia) {
+      showMoreBlocks.forEach(showMoreBlock => {
+        initItem(showMoreBlock, matchMedia);
       });
-
-      const bodyRect = bodyContainer.getBoundingClientRect();
-      let availableWidth = bodyRect.width;
-
-      const bodyStyles = window.getComputedStyle(bodyContainer);
-      const paddingLeft = parseInt(bodyStyles.paddingLeft) || 0;
-      const paddingRight = parseInt(bodyStyles.paddingRight) || 0;
-      availableWidth -= (paddingLeft + paddingRight);
-
-      const rightButtons = bodyContainer.querySelectorAll(':scope > .btn, :scope > button:not(.cabinet-objects-bottom__button)');
-      let rightButtonsWidth = 0;
-      rightButtons.forEach(btn => {
-        if (btn.offsetWidth > 0 && btn !== listContainer && !btn.closest('.cabinet-objects-bottom__list')) {
-          rightButtonsWidth += btn.offsetWidth;
-        }
-      });
-      if (rightButtonsWidth > 0) {
-        availableWidth -= (rightButtonsWidth + gap);
-      }
-
-      availableWidth -= otherBlocksWidth;
-
-      if (availableWidth <= 0) return;
-
-      // Измеряем ширину элементов
-      const itemsWidth = allItems.map(item => {
-        const originalDisplay = item.style.display;
-        const originalPosition = item.style.position;
-        const originalVisibility = item.style.visibility;
-
-        item.style.display = 'inline-block';
-        item.style.position = 'static';
-        item.style.visibility = 'hidden';
-
-        const width = item.offsetWidth;
-
-        item.style.display = originalDisplay;
-        item.style.position = originalPosition;
-        item.style.visibility = originalVisibility;
-
-        return width;
-      });
-
-      const moreWidth = moreBlock.offsetWidth > 0 ? moreBlock.offsetWidth : 80;
-
-      // Расчет максимального количества видимых элементов
-      let maxVisibleCount = 0;
-      for (let visibleCount = 0; visibleCount <= allItems.length; visibleCount++) {
-        let width = 0;
-        for (let i = 0; i < visibleCount; i++) {
-          if (i > 0) width += gap;
-          width += itemsWidth[i];
-        }
-
-        const needMore = visibleCount < allItems.length;
-        const totalNeeded = needMore ? width + gap + moreWidth : width;
-
-        if (totalNeeded <= availableWidth - SAFETY_MARGIN) {
-          maxVisibleCount = visibleCount;
+    }
+    function initItem(showMoreBlock, matchMedia = false) {
+      showMoreBlock = matchMedia ? showMoreBlock.item : showMoreBlock;
+      let showMoreContent = showMoreBlock.querySelectorAll('[data-showmore-content]');
+      let showMoreButton = showMoreBlock.querySelectorAll('[data-showmore-button]');
+      showMoreContent = Array.from(showMoreContent).filter(item => item.closest('[data-showmore]') === showMoreBlock)[0];
+      showMoreButton = Array.from(showMoreButton).filter(item => item.closest('[data-showmore]') === showMoreBlock)[0];
+      const hiddenHeight = getHeight(showMoreBlock, showMoreContent);
+      if (matchMedia.matches || !matchMedia) {
+        if (hiddenHeight < getOriginalHeight(showMoreContent)) {
+          _slideUp(showMoreContent, 0, showMoreBlock.classList.contains('_showmore-active') ? getOriginalHeight(showMoreContent) : hiddenHeight);
+          showMoreButton.hidden = false;
         } else {
-          break;
+          _slideDown(showMoreContent, 0, hiddenHeight);
+          showMoreButton.hidden = true;
         }
+      } else {
+        _slideDown(showMoreContent, 0, hiddenHeight);
+        showMoreButton.hidden = true;
       }
-
-      // Проверка, помещаются ли все элементы
-      let totalWidth = 0;
-      for (let i = 0; i < itemsWidth.length; i++) {
-        if (i > 0) totalWidth += gap;
-        totalWidth += itemsWidth[i];
-      }
-
-      const allFit = totalWidth <= availableWidth - SAFETY_MARGIN;
-
-      if (allFit) {
-        // Все помещается
-        if (moreList.children.length > 0) {
-          moveAllToMain(dropdownUl, moreList);
-        }
-        moreBlock.style.display = 'none';
-        mainBlock.style.display = 'flex';
-        bodyContainer._visibleCount = allItems.length;
-        return;
-      }
-
-      // Если количество не изменилось - ничего не делаем
-      if (maxVisibleCount === bodyContainer._visibleCount) {
-        return;
-      }
-
-      // Перемещаем элементы
-      moveAllToMain(dropdownUl, moreList);
-
-      // Перемещаем лишние в more
-      const itemsToMove = allItems.slice(maxVisibleCount);
-      itemsToMove.forEach(item => {
-        if (dropdownUl.contains(item)) {
-          dropdownUl.removeChild(item);
-          moreList.appendChild(item);
-        }
-      });
-
-      // Обновляем видимость блоков
-      moreBlock.style.display = moreList.children.length > 0 ? 'flex' : 'none';
-      mainBlock.style.display = dropdownUl.children.length === 0 ? 'none' : 'flex';
-
-      bodyContainer._visibleCount = maxVisibleCount;
-
-    } catch (error) {
-      console.error('Ошибка:', error);
     }
-  }
-
-  function moveAllToMain(dropdownUl, moreList) {
-    const moreItems = Array.from(moreList.querySelectorAll('li:not(.cabinet-objects-bottom__checkboxes)'));
-    moreItems.forEach(item => {
-      moreList.removeChild(item);
-      dropdownUl.appendChild(item);
-    });
-  }
-
-  function manageAllMenuItems() {
-    if (isUpdating) return;
-    isUpdating = true;
-
-    try {
-      const containers = document.querySelectorAll('.cabinet-objects-bottom');
-      containers.forEach(container => {
-        manageMenuItemsForContainer(container);
-      });
-    } finally {
-      isUpdating = false;
-      updateScheduled = false;
-    }
-  }
-
-  function debouncedManage() {
-    if (updateScheduled) return;
-    updateScheduled = true;
-
-    clearTimeout(resizeTimeout);
-    resizeTimeout = setTimeout(manageAllMenuItems, 150);
-  }
-
-  // Инициализация
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', manageAllMenuItems);
-  } else {
-    manageAllMenuItems();
-  }
-
-  window.addEventListener('resize', debouncedManage);
-
-  // Более умный MutationObserver
-  if (window.MutationObserver) {
-    let observerTimeout;
-    const observer = new MutationObserver((mutations) => {
-      // Пропускаем, если сейчас идет обновление
-      if (isUpdating) return;
-
-      // Проверяем, есть ли релевантные изменения
-      let hasRelevantChanges = false;
-
-      for (const mutation of mutations) {
-        // Игнорируем изменения стилей
-        if (mutation.type === 'attributes' && mutation.attributeName === 'style') {
-          continue;
+    function getHeight(showMoreBlock, showMoreContent) {
+      let hiddenHeight = 0;
+      const showMoreType = showMoreBlock.dataset.showmore ? showMoreBlock.dataset.showmore : 'size';
+      const rowGap = parseFloat(getComputedStyle(showMoreContent).rowGap) ? parseFloat(getComputedStyle(showMoreContent).rowGap) : 0;
+      if (showMoreType === 'items') {
+        const showMoreTypeValue = showMoreContent.dataset.showmoreContent ? showMoreContent.dataset.showmoreContent : 3;
+        const showMoreItems = showMoreContent.children;
+        for (let index = 1; index < showMoreItems.length; index++) {
+          const showMoreItem = showMoreItems[index - 1];
+          const marginTop = parseFloat(getComputedStyle(showMoreItem).marginTop) ? parseFloat(getComputedStyle(showMoreItem).marginTop) : 0;
+          const marginBottom = parseFloat(getComputedStyle(showMoreItem).marginBottom) ? parseFloat(getComputedStyle(showMoreItem).marginBottom) : 0;
+          hiddenHeight += showMoreItem.offsetHeight + marginTop;
+          if (index == showMoreTypeValue) break;
+          hiddenHeight += marginBottom;
         }
-
-        // Игнорируем изменения, вызванные нашим скриптом
-        if (mutation.target.classList &&
-          (mutation.target.classList.contains('cabinet-objects-bottom__main') ||
-            mutation.target.classList.contains('cabinet-objects-bottom__more') ||
-            mutation.target.classList.contains('cabinet-objects-bottom__more-list'))) {
-          continue;
-        }
-
-        hasRelevantChanges = true;
-        break;
+        rowGap ? hiddenHeight += (showMoreTypeValue - 1) * rowGap : null;
+      } else {
+        const showMoreTypeValue = showMoreContent.dataset.showmoreContent ? showMoreContent.dataset.showmoreContent : 150;
+        hiddenHeight = showMoreTypeValue;
       }
+      return hiddenHeight;
+    }
 
-      if (hasRelevantChanges) {
-        // Делаем задержку, чтобы избежать множественных срабатываний
-        clearTimeout(observerTimeout);
-        observerTimeout = setTimeout(() => {
-          if (!isUpdating) {
-            manageAllMenuItems();
+    function getOriginalHeight(showMoreContent) {
+      let parentHidden;
+      let hiddenHeight = showMoreContent.offsetHeight;
+      showMoreContent.style.removeProperty('height');
+      if (showMoreContent.closest(`[hidden]`)) {
+        parentHidden = showMoreContent.closest(`[hidden]`);
+        parentHidden.hidden = false;
+      }
+      let originalHeight = showMoreContent.offsetHeight;
+      parentHidden ? parentHidden.hidden = true : null;
+      showMoreContent.style.height = `${hiddenHeight}px`;
+      return originalHeight;
+    }
+    function showMoreActions(e) {
+      const targetEvent = e.target;
+      const targetType = e.type;
+      if (targetType === 'click') {
+        if (targetEvent.closest('[data-showmore-button]')) {
+          const showMoreButton = targetEvent.closest('[data-showmore-button]');
+          const showMoreBlock = showMoreButton.closest('[data-showmore]');
+          const showMoreContent = showMoreBlock.querySelector('[data-showmore-content]');
+          const showMoreSpeed = showMoreBlock.dataset.showmoreButton ? showMoreBlock.dataset.showmoreButton : '500';
+          const hiddenHeight = getHeight(showMoreBlock, showMoreContent);
+          if (!showMoreContent.classList.contains('_slide')) {
+            showMoreBlock.classList.contains('_showmore-active') ? _slideUp(showMoreContent, showMoreSpeed, hiddenHeight) : _slideDown(showMoreContent, showMoreSpeed, hiddenHeight);
+            showMoreBlock.classList.toggle('_showmore-active');
           }
-        }, 200);
+        }
+      } else if (targetType === 'resize') {
+        showMoreBlocksRegular && showMoreBlocksRegular.length ? initItems(showMoreBlocksRegular) : null;
+        mdQueriesArray && mdQueriesArray.length ? initItemsMedia(mdQueriesArray) : null;
       }
-    });
+    }
+  });
+}
+showMore();
 
-    observer.observe(document.body, {
-      childList: true,
-      subtree: true,
-      attributes: true,
-      attributeFilter: ['style', 'class']
-    });
-  }
-})();
+//========================================================================================================================================================
+
+const selectBases = document.querySelectorAll('.popup-select-bases');
+if (selectBases) {
+  selectBases.forEach(container => {
+    const resetBtn = container.querySelector('.select-btn-reset');
+    const selectAllBtn = container.querySelector('.select-btn-all');
+
+    const checkboxes = container.querySelectorAll('.select-bases-showmore__checkboxes .checkbox__input');
+
+    const resetCheckboxes = () => {
+      checkboxes.forEach(checkbox => {
+        checkbox.checked = false;
+      });
+      checkboxes.forEach(checkbox => {
+        const changeEvent = new Event('change', { bubbles: true });
+        checkbox.dispatchEvent(changeEvent);
+      });
+    };
+
+    const selectAllCheckboxes = () => {
+      checkboxes.forEach(checkbox => {
+        checkbox.checked = true;
+      });
+      checkboxes.forEach(checkbox => {
+        const changeEvent = new Event('change', { bubbles: true });
+        checkbox.dispatchEvent(changeEvent);
+      });
+    };
+
+    if (resetBtn) {
+      resetBtn.removeEventListener('click', resetCheckboxes);
+      resetBtn.addEventListener('click', resetCheckboxes);
+    }
+
+    if (selectAllBtn) {
+      selectAllBtn.removeEventListener('click', selectAllCheckboxes);
+      selectAllBtn.addEventListener('click', selectAllCheckboxes);
+    }
+  });
+}
