@@ -14091,6 +14091,9 @@ body::after {
           flex: 1 1 auto;
   width: 100%;
   display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   align-items: center;
 }
 
