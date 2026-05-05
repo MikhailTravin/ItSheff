@@ -622,6 +622,7 @@
                         }
                     }
                     @media (max-width: 1300px) {
+                        width: 100%;
                         padding: 8px 0px 13px 0px;
                     }
                     @media (max-width: 1200px) {
@@ -880,10 +881,20 @@
     &__icon {
         flex: 0 0 32px;
         width: 32px;
+        height: 32px;
         margin: 5px 0px 0px 0px;
-        img {
-            width: 100%;
-            height: auto;
+        svg {
+            fill: none;
+            stroke: #424242;
+            color: #424242;
+            transition:
+                stroke 0.3s,
+                color 0.3s;
+            &.fill {
+                fill: #424242;
+                stroke: none;
+                color: none;
+            }
         }
     }
 
@@ -925,9 +936,20 @@
         justify-content: center;
         align-items: center;
         border-left: 1px solid #e1e4e7;
-        img {
-            width: 24px;
-            height: auto;
+        svg {
+            fill: none;
+            stroke: #424242;
+            color: #424242;
+            transition:
+                stroke 0.3s,
+                color 0.3s;
+        }
+        &:hover {
+            svg {
+                fill: none;
+                stroke: #000;
+                color: #000;
+            }
         }
         @media (max-width: 600px) {
             flex: 0 0 77px;
@@ -1142,18 +1164,28 @@
         flex: 0 0 20px;
         height: 20px;
         width: 20px;
+        height: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         position: relative;
-        img {
-            width: 100%;
-            height: auto;
-            transition: opacity 0.3s;
+        svg {
+            fill: none;
+            stroke: #424242;
+            color: #424242;
+            transition:
+                opacity 0.3s,
+                stroke 0.3s,
+                color 0.3s,
+                fill 0.3s;
             &.icon2 {
+                fill: #424242;
+                stroke: none;
+                color: none;
                 position: absolute;
                 top: 50%;
                 left: 50%;
                 transform: translate(-50%, -50%);
-                width: 100%;
-                height: auto;
                 opacity: 0;
             }
         }
@@ -1214,26 +1246,18 @@
         width: 24px;
         height: 24px;
         &:hover {
-            .icon1 {
-                opacity: 0;
-            }
-            .icon2 {
-                opacity: 1;
+            svg {
+                stroke: #000;
+                color: #000;
             }
         }
-        img {
-            width: 100%;
-            height: auto;
-            transition: opacity 0.3s;
-            &.icon2 {
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                width: 100%;
-                height: auto;
-                opacity: 0;
-            }
+        svg {
+            fill: none;
+            stroke: #424242;
+            color: #424242;
+            transition:
+                stroke 0.3s,
+                color 0.3s;
         }
     }
 }
@@ -1290,6 +1314,9 @@
         justify-content: center;
         align-items: center;
         position: relative;
+        flex: 0 0 24px;
+        width: 24px;
+        height: 24px;
         @media (max-width: 1200px) {
             .open-notifications & {
                 .icon1 {
@@ -1301,17 +1328,24 @@
             }
         }
         img {
-            width: 24px;
-            height: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             position: relative;
             transition: opacity 0.3s;
+        }
+        svg {
+            stroke: #424242;
+            fill: none;
+            color: #424242;
+            transition:
+                stroke 0.3s,
+                color 0.3s;
             &.icon2 {
                 position: absolute;
                 top: 50%;
                 left: 50%;
                 transform: translate(-50%, -50%);
-                width: 100%;
-                height: auto;
                 opacity: 0;
             }
         }

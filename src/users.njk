@@ -1,0 +1,1691 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <title>Пользователи</title>
+    {% include 'blocks/head.njk' %}
+</head>
+
+<body class="preload mp">
+    <div class="main-wrapper-outer">
+        {% include 'blocks/header.njk' %}
+        <main class="main">
+
+            <div class="block-cabinet block-cabinet-users">
+                <div class="container">
+                    <div class="block-cabinet__content">
+                        <div class="cabinet-menu">
+                            <div class="cabinet-menu__body">
+                                <div class="cabinet-menu__column">
+                                    <ul>
+                                        <li>
+                                            <span class="cabinet-menu__link">
+                                                <div class="cabinet-menu__icon">
+                                                    <svg class="cabinet-menu-def" aria-hidden="true" width="21"
+                                                        height="21">
+                                                        <use xlink:href="img/sprite.svg#cabinet"></use>
+                                                    </svg>
+                                                    <svg class="cabinet-menu-active" aria-hidden="true" width="21"
+                                                        height="21">
+                                                        <use xlink:href="img/sprite.svg#cabinet-active"></use>
+                                                    </svg>
+                                                </div>
+                                                <div class="cabinet-menu__name">
+                                                    <span>Личный</span> кабинет
+                                                </div>
+                                            </span>
+                                        </li>
+                                        <li>
+                                            <a href="./" class="cabinet-menu__link">
+                                                <div class="cabinet-menu__icon">
+                                                    <svg class="cabinet-menu-def" aria-hidden="true" width="20"
+                                                        height="23">
+                                                        <use xlink:href="img/sprite.svg#documents"></use>
+                                                    </svg>
+                                                    <svg class="cabinet-menu-active" aria-hidden="true" width="20"
+                                                        height="23">
+                                                        <use xlink:href="img/sprite.svg#documents-active"></use>
+                                                    </svg>
+                                                </div>
+                                                <div class="cabinet-menu__name">
+                                                    Счета<span>, документы</span>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="./" class="cabinet-menu__link">
+                                                <div class="cabinet-menu__icon">
+                                                    <svg class="cabinet-menu-def" aria-hidden="true" width="21"
+                                                        height="23">
+                                                        <use xlink:href="img/sprite.svg#databases"></use>
+                                                    </svg>
+                                                    <svg class="cabinet-menu-active" aria-hidden="true" width="21"
+                                                        height="23">
+                                                        <use xlink:href="img/sprite.svg#databases-active"></use>
+                                                    </svg>
+                                                </div>
+                                                <div class="cabinet-menu__name">
+                                                    Базы <span>данных</span>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="./" class="cabinet-menu__link active">
+                                                <div class="cabinet-menu__icon">
+                                                    <svg class="cabinet-menu-def" aria-hidden="true" width="21"
+                                                        height="23">
+                                                        <use xlink:href="img/sprite.svg#users"></use>
+                                                    </svg>
+                                                    <svg class="cabinet-menu-active" aria-hidden="true" width="21"
+                                                        height="23">
+                                                        <use xlink:href="img/sprite.svg#users-active"></use>
+                                                    </svg>
+                                                </div>
+                                                <div class="cabinet-menu__name">
+                                                    Пользователи
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="./" class="cabinet-menu__link">
+                                                <div class="cabinet-menu__icon">
+                                                    <svg class="cabinet-menu-def" aria-hidden="true" width="23"
+                                                        height="23">
+                                                        <use xlink:href="img/sprite.svg#support"></use>
+                                                    </svg>
+                                                    <svg class="cabinet-menu-active" aria-hidden="true" width="23"
+                                                        height="23">
+                                                        <use xlink:href="img/sprite.svg#support-active"></use>
+                                                    </svg>
+                                                </div>
+                                                <div class="cabinet-menu__name">
+                                                    Поддержка
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="cabinet-menu__column column-service">
+                                    <ul>
+                                        <li>
+                                            <a href="./" class="cabinet-menu__link link-service">
+                                                <div class="cabinet-menu__icon">
+                                                    <svg class="cabinet-menu-def" aria-hidden="true" width="21"
+                                                        height="23">
+                                                        <use xlink:href="img/sprite.svg#service"></use>
+                                                    </svg>
+                                                    <svg class="cabinet-menu-active" aria-hidden="true" width="21"
+                                                        height="23">
+                                                        <use xlink:href="img/sprite.svg#service-active"></use>
+                                                    </svg>
+                                                </div>
+                                                <div class="cabinet-menu__titles">
+                                                    Услуги+
+                                                    <div class="cabinet-menu__number">
+                                                        <span>843</span>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="cabinet-menu__column column-download">
+                                    <ul>
+                                        <li>
+                                            <a href="./" download="#download" class="cabinet-menu__link link-download">
+                                                <div class="cabinet-menu__icon">
+                                                    <svg aria-hidden="true" width="14" height="17">
+                                                        <use xlink:href="img/sprite.svg#download1"></use>
+                                                    </svg>
+                                                </div>
+                                                Программа для<br> входа 1С
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="block-cabinet__body body-long">
+                            <div class="block-cabinet__columns">
+                                <div class="block-cabinet__titles">
+                                    <div class="block-cabinet__title">
+                                        Пользователи
+                                    </div>
+                                    <a href="./" data-popup="#invite" class="btn btn-bg btn-plus">
+                                        <div class="btn__icon">
+                                            <svg aria-hidden="true" width="14" height="14">
+                                                <use xlink:href="img/sprite.svg#plus1"></use>
+                                            </svg>
+                                        </div>
+                                        <span>Добавить <span class="mob">пользователя</span></span>
+                                    </a>
+                                </div>
+                                <div class="block-cabinet__column">
+                                    <div class="cabinet-objects">
+                                        <div class="cabinet-objects-top">
+                                            <div class="cabinet-objects-top__titles">
+                                                <div class="cabinet-objects-top__title">
+                                                    Имя пользователя
+                                                </div>
+                                                <ul>
+                                                    <li>LoginName</li>
+                                                    <li>
+                                                        <a href="tel:77071234567">+77071234567</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="mailto:abc@mail.ru">abc@mail.ru</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="./" class="edit">Изменить</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="cabinet-objects-bottom">
+                                            <div class="cabinet-objects-bottom__contents">
+                                                <div class="cabinet-objects-bottom__body">
+                                                    <div class="cabinet-objects-bottom__list">
+                                                        <div class="cabinet-objects-bottom__checkboxes">
+                                                            <label class="checkbox">
+                                                                <input checked class="checkbox__input" type="checkbox"
+                                                                    value="1" name="checkbox1">
+                                                                <span class="checkbox__label">
+                                                                    <span class="checkbox__icon">
+                                                                        <svg aria-hidden="true" width="10" height="9">
+                                                                            <use xlink:href="img/sprite.svg#check2">
+                                                                            </use>
+                                                                        </svg>
+                                                                    </span>
+                                                                    <span class="checkbox__text">RPD</span>
+                                                                </span>
+                                                            </label>
+                                                            <label class="checkbox">
+                                                                <input checked class="checkbox__input" type="checkbox"
+                                                                    value="1" name="checkbox1">
+                                                                <span class="checkbox__label">
+                                                                    <span class="checkbox__icon">
+                                                                        <svg aria-hidden="true" width="10" height="9">
+                                                                            <use xlink:href="img/sprite.svg#check2">
+                                                                            </use>
+                                                                        </svg>
+                                                                    </span>
+                                                                    <span class="checkbox__text">Доступ 1С</span>
+                                                                </span>
+                                                            </label>
+                                                        </div>
+                                                        <div class="cabinet-objects-bottom__main">
+                                                            <ul>
+                                                                <li>
+                                                                    <button data-popup="#database-access" type="button"
+                                                                        class="cabinet-objects-bottom__button">
+                                                                        <svg aria-hidden="true" width="20" height="20">
+                                                                            <use xlink:href="img/sprite.svg#databases">
+                                                                            </use>
+                                                                        </svg>
+                                                                        Доступ к БД
+                                                                    </button>
+                                                                </li>
+                                                                <li>
+                                                                    <button type="button"
+                                                                        class="cabinet-objects-bottom__button">
+                                                                        <svg aria-hidden="true" width="20" height="20">
+                                                                            <use xlink:href="img/sprite.svg#users">
+                                                                            </use>
+                                                                        </svg>
+                                                                        Администратор
+                                                                    </button>
+                                                                </li>
+                                                                <li>
+                                                                    <button type="button"
+                                                                        class="cabinet-objects-bottom__button">
+                                                                        <svg aria-hidden="true" width="20" height="20">
+                                                                            <use
+                                                                                xlink:href="img/sprite.svg#password-lock">
+                                                                            </use>
+                                                                        </svg>
+                                                                        Сбросить пароль
+                                                                    </button>
+                                                                </li>
+                                                                <li>
+                                                                    <button type="button"
+                                                                        class="cabinet-objects-bottom__button">
+                                                                        <svg aria-hidden="true" width="20" height="20">
+                                                                            <use xlink:href="img/sprite.svg#exit">
+                                                                            </use>
+                                                                        </svg>
+                                                                        Выбить
+                                                                    </button>
+                                                                </li>
+                                                                <li>
+                                                                    <button type="button"
+                                                                        class="cabinet-objects-bottom__button">
+                                                                        <svg aria-hidden="true" width="20" height="20">
+                                                                            <use xlink:href="img/sprite.svg#trash">
+                                                                            </use>
+                                                                        </svg>
+                                                                        Удалить
+                                                                    </button>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="cabinet-objects-bottom__more">
+                                                            <div class="cabinet-objects-bottom__titles">
+                                                                <div class="cabinet-objects-bottom__arrow">
+                                                                    <svg aria-hidden="true" width="6" height="9">
+                                                                        <use xlink:href="img/sprite.svg#arrow1"></use>
+                                                                    </svg>
+                                                                </div>
+                                                                <span class="desc">Еще</span>
+                                                                <span class="mob">Настройки пользователя</span>
+                                                            </div>
+                                                            <div class="cabinet-objects-bottom__dropdown">
+                                                                <ul class="cabinet-objects-bottom__more-list">
+
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="block-cabinet__column">
+                                    <div class="cabinet-objects">
+                                        <div class="cabinet-objects-top">
+                                            <div class="cabinet-objects-top__titles">
+                                                <div class="cabinet-objects-top__title">
+                                                    Имя пользователя
+                                                </div>
+                                                <ul>
+                                                    <li>LoginName</li>
+                                                    <li>
+                                                        <a href="tel:77071234567">+77071234567</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="mailto:abc@mail.ru">abc@mail.ru</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="./" class="edit">Изменить</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="cabinet-objects-bottom">
+                                            <div class="cabinet-objects-bottom__contents">
+                                                <div class="cabinet-objects-bottom__body">
+                                                    <div class="cabinet-objects-bottom__list">
+                                                        <div class="cabinet-objects-bottom__checkboxes">
+                                                            <label class="checkbox">
+                                                                <input checked class="checkbox__input" type="checkbox"
+                                                                    value="1" name="checkbox2">
+                                                                <span class="checkbox__label">
+                                                                    <span class="checkbox__icon">
+                                                                        <svg aria-hidden="true" width="10" height="9">
+                                                                            <use xlink:href="img/sprite.svg#check2">
+                                                                            </use>
+                                                                        </svg>
+                                                                    </span>
+                                                                    <span class="checkbox__text">RPD</span>
+                                                                </span>
+                                                            </label>
+                                                            <label class="checkbox">
+                                                                <input checked class="checkbox__input" type="checkbox"
+                                                                    value="1" name="checkbox2">
+                                                                <span class="checkbox__label">
+                                                                    <span class="checkbox__icon">
+                                                                        <svg aria-hidden="true" width="10" height="9">
+                                                                            <use xlink:href="img/sprite.svg#check2">
+                                                                            </use>
+                                                                        </svg>
+                                                                    </span>
+                                                                    <span class="checkbox__text">Доступ 1С</span>
+                                                                </span>
+                                                            </label>
+                                                        </div>
+                                                        <div class="cabinet-objects-bottom__main">
+                                                            <ul>
+                                                                <li>
+                                                                    <button data-popup="#database-access" type="button"
+                                                                        class="cabinet-objects-bottom__button">
+                                                                        <svg aria-hidden="true" width="20" height="20">
+                                                                            <use xlink:href="img/sprite.svg#databases">
+                                                                            </use>
+                                                                        </svg>
+                                                                        Доступ к БД
+                                                                    </button>
+                                                                </li>
+                                                                <li>
+                                                                    <button type="button"
+                                                                        class="cabinet-objects-bottom__button">
+                                                                        <svg aria-hidden="true" width="20" height="20">
+                                                                            <use xlink:href="img/sprite.svg#users">
+                                                                            </use>
+                                                                        </svg>
+                                                                        Администратор
+                                                                    </button>
+                                                                </li>
+                                                                <li>
+                                                                    <button type="button"
+                                                                        class="cabinet-objects-bottom__button">
+                                                                        <svg aria-hidden="true" width="20" height="20">
+                                                                            <use
+                                                                                xlink:href="img/sprite.svg#password-lock">
+                                                                            </use>
+                                                                        </svg>
+                                                                        Сбросить пароль
+                                                                    </button>
+                                                                </li>
+                                                                <li>
+                                                                    <button type="button"
+                                                                        class="cabinet-objects-bottom__button">
+                                                                        <svg aria-hidden="true" width="20" height="20">
+                                                                            <use xlink:href="img/sprite.svg#exit">
+                                                                            </use>
+                                                                        </svg>
+                                                                        Выбить
+                                                                    </button>
+                                                                </li>
+                                                                <li>
+                                                                    <button type="button"
+                                                                        class="cabinet-objects-bottom__button">
+                                                                        <svg aria-hidden="true" width="20" height="20">
+                                                                            <use xlink:href="img/sprite.svg#trash">
+                                                                            </use>
+                                                                        </svg>
+                                                                        Удалить
+                                                                    </button>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="cabinet-objects-bottom__more">
+                                                            <div class="cabinet-objects-bottom__titles">
+                                                                <div class="cabinet-objects-bottom__arrow">
+                                                                    <svg aria-hidden="true" width="6" height="9">
+                                                                        <use xlink:href="img/sprite.svg#arrow1"></use>
+                                                                    </svg>
+                                                                </div>
+                                                                <span class="desc">Еще</span>
+                                                                <span class="mob">Настройки пользователя</span>
+                                                            </div>
+                                                            <div class="cabinet-objects-bottom__dropdown">
+                                                                <ul class="cabinet-objects-bottom__more-list">
+
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="cabinet-objects-setting">
+                                        <div class="cabinet-objects-setting__body">
+                                            <div class="cabinet-objects-setting__title">
+                                                Настраиваем...
+                                            </div>
+                                            <div class="line">
+                                                <span></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="block-cabinet__column">
+                                    <div class="cabinet-objects">
+                                        <div class="cabinet-objects-top">
+                                            <div class="cabinet-objects-top__titles">
+                                                <div class="cabinet-objects-top__title">
+                                                    Имя пользователя
+                                                </div>
+                                                <ul>
+                                                    <li>LoginName</li>
+                                                    <li>
+                                                        <a href="tel:77071234567">+77071234567</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="mailto:abc@mail.ru">abc@mail.ru</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="./" class="edit">Изменить</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="cabinet-objects-bottom">
+                                            <div class="cabinet-objects-bottom__contents">
+                                                <div class="cabinet-objects-bottom__body">
+                                                    <div class="cabinet-objects-bottom__list">
+                                                        <div class="cabinet-objects-bottom__checkboxes">
+                                                            <label class="checkbox">
+                                                                <input class="checkbox__input" type="checkbox" value="1"
+                                                                    name="checkbox3">
+                                                                <span class="checkbox__label">
+                                                                    <span class="checkbox__icon">
+                                                                        <svg aria-hidden="true" width="10" height="9">
+                                                                            <use xlink:href="img/sprite.svg#check2">
+                                                                            </use>
+                                                                        </svg>
+                                                                    </span>
+                                                                    <span class="checkbox__text">RPD</span>
+                                                                </span>
+                                                            </label>
+                                                        </div>
+                                                        <div class="cabinet-objects-bottom__main">
+                                                            <ul>
+                                                                <li>
+                                                                    <button data-popup="#database-access" type="button"
+                                                                        class="cabinet-objects-bottom__button">
+                                                                        <svg aria-hidden="true" width="20" height="20">
+                                                                            <use xlink:href="img/sprite.svg#databases">
+                                                                            </use>
+                                                                        </svg>
+                                                                        Доступ к БД
+                                                                    </button>
+                                                                </li>
+                                                                <li>
+                                                                    <button type="button"
+                                                                        class="cabinet-objects-bottom__button">
+                                                                        <svg aria-hidden="true" width="20" height="20">
+                                                                            <use xlink:href="img/sprite.svg#users">
+                                                                            </use>
+                                                                        </svg>
+                                                                        Администратор
+                                                                    </button>
+                                                                </li>
+                                                                <li>
+                                                                    <button type="button"
+                                                                        class="cabinet-objects-bottom__button">
+                                                                        <svg aria-hidden="true" width="20" height="20">
+                                                                            <use
+                                                                                xlink:href="img/sprite.svg#password-lock">
+                                                                            </use>
+                                                                        </svg>
+                                                                        Сбросить пароль
+                                                                    </button>
+                                                                </li>
+                                                                <li>
+                                                                    <button type="button"
+                                                                        class="cabinet-objects-bottom__button">
+                                                                        <svg aria-hidden="true" width="20" height="20">
+                                                                            <use xlink:href="img/sprite.svg#exit">
+                                                                            </use>
+                                                                        </svg>
+                                                                        Выбить
+                                                                    </button>
+                                                                </li>
+                                                                <li>
+                                                                    <button type="button"
+                                                                        class="cabinet-objects-bottom__button">
+                                                                        <svg aria-hidden="true" width="20" height="20">
+                                                                            <use xlink:href="img/sprite.svg#trash">
+                                                                            </use>
+                                                                        </svg>
+                                                                        Удалить
+                                                                    </button>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="cabinet-objects-bottom__more">
+                                                            <div class="cabinet-objects-bottom__titles">
+                                                                <div class="cabinet-objects-bottom__arrow">
+                                                                    <svg aria-hidden="true" width="6" height="9">
+                                                                        <use xlink:href="img/sprite.svg#arrow1"></use>
+                                                                    </svg>
+                                                                </div>
+                                                                <span class="desc">Еще</span>
+                                                                <span class="mob">Настройки пользователя</span>
+                                                            </div>
+                                                            <div class="cabinet-objects-bottom__dropdown">
+                                                                <ul class="cabinet-objects-bottom__more-list">
+
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="block-cabinet__column">
+                                    <div class="cabinet-objects">
+                                        <div class="cabinet-objects-top">
+                                            <div class="cabinet-objects-top__titles">
+                                                <div class="cabinet-objects-top__title">
+                                                    Имя пользователя
+                                                </div>
+                                                <ul>
+                                                    <li>LoginName</li>
+                                                    <li>
+                                                        <a href="tel:77071234567">+77071234567</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="mailto:abc@mail.ru">abc@mail.ru</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="./" class="edit">Изменить</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="cabinet-objects-bottom">
+                                            <div class="cabinet-objects-bottom__contents">
+                                                <div class="cabinet-objects-bottom__body">
+                                                    <div class="cabinet-objects-bottom__list">
+                                                        <div class="cabinet-objects-bottom__checkboxes">
+                                                            <label class="checkbox">
+                                                                <input class="checkbox__input" type="checkbox" value="1"
+                                                                    name="checkbox3">
+                                                                <span class="checkbox__label">
+                                                                    <span class="checkbox__icon">
+                                                                        <svg aria-hidden="true" width="10" height="9">
+                                                                            <use xlink:href="img/sprite.svg#check2">
+                                                                            </use>
+                                                                        </svg>
+                                                                    </span>
+                                                                    <span class="checkbox__text">RPD</span>
+                                                                </span>
+                                                            </label>
+                                                        </div>
+                                                        <div class="cabinet-objects-bottom__main">
+                                                            <ul>
+                                                                <li>
+                                                                    <button data-popup="#database-access" type="button"
+                                                                        class="cabinet-objects-bottom__button">
+                                                                        <svg aria-hidden="true" width="20" height="20">
+                                                                            <use xlink:href="img/sprite.svg#databases">
+                                                                            </use>
+                                                                        </svg>
+                                                                        Доступ к БД
+                                                                    </button>
+                                                                </li>
+                                                                <li>
+                                                                    <button type="button"
+                                                                        class="cabinet-objects-bottom__button">
+                                                                        <svg aria-hidden="true" width="20" height="20">
+                                                                            <use xlink:href="img/sprite.svg#users">
+                                                                            </use>
+                                                                        </svg>
+                                                                        Администратор
+                                                                    </button>
+                                                                </li>
+                                                                <li>
+                                                                    <button type="button"
+                                                                        class="cabinet-objects-bottom__button">
+                                                                        <svg aria-hidden="true" width="20" height="20">
+                                                                            <use
+                                                                                xlink:href="img/sprite.svg#password-lock">
+                                                                            </use>
+                                                                        </svg>
+                                                                        Сбросить пароль
+                                                                    </button>
+                                                                </li>
+                                                                <li>
+                                                                    <button type="button"
+                                                                        class="cabinet-objects-bottom__button">
+                                                                        <svg aria-hidden="true" width="20" height="20">
+                                                                            <use xlink:href="img/sprite.svg#exit">
+                                                                            </use>
+                                                                        </svg>
+                                                                        Выбить
+                                                                    </button>
+                                                                </li>
+                                                                <li>
+                                                                    <button type="button"
+                                                                        class="cabinet-objects-bottom__button">
+                                                                        <svg aria-hidden="true" width="20" height="20">
+                                                                            <use xlink:href="img/sprite.svg#trash">
+                                                                            </use>
+                                                                        </svg>
+                                                                        Удалить
+                                                                    </button>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="cabinet-objects-bottom__more">
+                                                            <div class="cabinet-objects-bottom__titles">
+                                                                <div class="cabinet-objects-bottom__arrow">
+                                                                    <svg aria-hidden="true" width="6" height="9">
+                                                                        <use xlink:href="img/sprite.svg#arrow1"></use>
+                                                                    </svg>
+                                                                </div>
+                                                                <span class="desc">Еще</span>
+                                                                <span class="mob">Настройки пользователя</span>
+                                                            </div>
+                                                            <div class="cabinet-objects-bottom__dropdown">
+                                                                <ul class="cabinet-objects-bottom__more-list">
+
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="block-bottom">
+                                    <a href="./" data-popup="#invite" class="btn btn-plus">
+                                        <div class="btn__icon">
+                                            <svg aria-hidden="true" width="14" height="14">
+                                                <use xlink:href="img/sprite.svg#plus1"></use>
+                                            </svg>
+                                        </div>
+                                        <span>Добавить пользователя</span>
+                                    </a>
+                                    <div class="pagging">
+                                        <a class="pagging__item pagging__item_active" href="./">1</a>
+                                        <a class="pagging__item" href="./">2</a>
+                                        <a class="pagging__item" href="./">3</a>
+                                        <a class="pagging__item" href="./">4</a>
+                                        <a href="./" class="pagging__arrow pagging_arrow-next">
+                                            <svg aria-hidden="true" width="7" height="11">
+                                                <use xlink:href="img/sprite.svg#arrow3"></use>
+                                            </svg>
+                                        </a>
+                                        <a href="./" class="pagging__arrow pagging_arrow-last">
+                                            <svg aria-hidden="true" width="11" height="11">
+                                                <use xlink:href="img/sprite.svg#arrow2"></use>
+                                            </svg>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="btn-sents">
+                <div id="btn-sent1" class="btn-sent">
+                    <span>Отправлена заявка на добавление нового пользователя</span>
+                </div>
+                <div id="btn-sent2" class="btn-sent">
+                    <span>Ссылка скопирована</span>
+                </div>
+                <div id="btn-sent3" class="btn-sent">
+                    <span>Отправлена заявка на добавление нового пользователя</span>
+                </div>
+                <div id="btn-sent4" class="btn-sent">
+                    <span>Роль “имя пользователя” изменена на Администратор</span>
+                </div>
+            </div>
+
+        </main>
+        {% include 'blocks/footer.njk' %}
+    </div>
+    <!--Пригласить-->
+    <div id="invite" aria-hidden="false" class="popup popup-invite-base">
+        <div class="popup__wrapper">
+            <div class="popup__content popup-content-width2">
+                <div class="popup-top">
+                    <div class="popup-top__titles">
+                        <div class="popup-top__title">
+                            Выберите вариант
+                        </div>
+                    </div>
+                    <div data-close class="popup-top__close">
+                        <svg aria-hidden="true" width="22" height="22">
+                            <use xlink:href="img/sprite.svg#close"></use>
+                        </svg>
+                    </div>
+                </div>
+                <div class="popup-center">
+                    <div class="popup-invite">
+                        <div class="popup-invite__column">
+                            <div class="popup-invite__top">
+                                <div class="popup-invite__icon">
+                                    <svg aria-hidden="true" width="16" height="18">
+                                        <use xlink:href="img/sprite.svg#share"></use>
+                                    </svg>
+                                </div>
+                                <div class="popup-invite__title">
+                                    Пригласить пользователя
+                                </div>
+                            </div>
+                            <p>
+                                Рыбатекст используется дизайнерами, проектировщиками и фронтендерами, когда нужно быстро
+                                заполнить макеты или прототипы содержимым.
+                            </p>
+                        </div>
+                        <div class="popup-invite__column">
+                            <div class="popup-invite__top">
+                                <div class="popup-invite__icon">
+                                    <svg aria-hidden="true" width="19" height="19">
+                                        <use xlink:href="img/sprite.svg#plus1"></use>
+                                    </svg>
+                                </div>
+                                <div class="popup-invite__title">
+                                    Добавить пользователя
+                                </div>
+                            </div>
+                            <p>
+                                Рыбатекст используется дизайнерами, проектировщиками и фронтендерами, когда нужно быстро
+                                заполнить макеты или прототипы содержимым.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="popup-buttons">
+                    <button data-popup="#add-invite" type="button" class="btn">
+                        <span>Пригласить</span>
+                    </button>
+                    <div class="popup__buttons-bottom">
+                        <button data-popup="#add-user" type="submit" class="btn btn-bg">
+                            <span>Добавить</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Пригласить пользователя-->
+    <div id="add-invite" aria-hidden="false" class="popup popup-users-base">
+        <div class="popup__wrapper">
+            <form action="#" class="popup__content">
+                <div class="popup-top">
+                    <div class="popup-top__titles">
+                        <div class="popup-top__title">
+                            Пригласить пользователя
+                        </div>
+                    </div>
+                    <div data-close class="popup-top__close">
+                        <svg aria-hidden="true" width="22" height="22">
+                            <use xlink:href="img/sprite.svg#close"></use>
+                        </svg>
+                    </div>
+                </div>
+                <div class="popup-center">
+                    <div class="popup-invite-descr">
+                        <div class="popup-options">
+                            <div class="popup-options__title">
+                                Выберите роль
+                            </div>
+                            <div class="popup-options__body">
+                                <label class="options2__item">
+                                    <input hidden class="options2__input" checked type="radio" value="1" name="option1">
+                                    <span class="options2__label">
+                                        <span class="options2__icon"></span>
+                                        <span class="options2__text">Администратор</span>
+                                    </span>
+                                </label>
+                                <label class="options2__item">
+                                    <input hidden class="options2__input" type="radio" value="2" name="option1">
+                                    <span class="options2__label">
+                                        <span class="options2__icon"></span>
+                                        <span class="options2__text">Бухгалтер</span>
+                                    </span>
+                                </label>
+                                <label class="options2__item">
+                                    <input hidden class="options2__input" type="radio" value="3" name="option1">
+                                    <span class="options2__label">
+                                        <span class="options2__icon"></span>
+                                        <span class="options2__text">Сотрудник</span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="popup-select-bases">
+                            <div class="select-bases-top">
+                                <div class="select-bases-top__title">Выберите базы</div>
+                                <div class="select-bases-top__button">
+                                    <button type="button" class="select-bases-top__btn select-btn-reset link">
+                                        Сбросить
+                                    </button>
+                                    <button type="button" class="select-bases-top__btn select-btn-all link">
+                                        Выбрать все
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="select-bases-search">
+                                <button type="button" class="select-bases-search__button">
+                                    <svg aria-hidden="true" width="18" height="18">
+                                        <use xlink:href="img/sprite.svg#search">
+                                        </use>
+                                    </svg>
+                                </button>
+                                <input autocomplete="off" type="text" name="form[]" placeholder="Поиск БД">
+                                <div class="select-bases-search__close">
+                                    <svg aria-hidden="true" width="14" height="14">
+                                        <use xlink:href="img/sprite.svg#close"></use>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div data-showmore="items" class="select-bases-showmore">
+                                <div data-showmore-content="5" class="select-bases-showmore__checkboxes">
+                                    <label class="checkbox">
+                                        <input class="checkbox__input" type="checkbox" value="1" name="checkbox1">
+                                        <span class="checkbox__label">
+                                            <span class="checkbox__icon">
+                                                <svg aria-hidden="true" width="10" height="9">
+                                                    <use xlink:href="img/sprite.svg#check2">
+                                                    </use>
+                                                </svg>
+                                            </span>
+                                            <span class="checkbox__text">Global_Safety_Services_TOO</span>
+                                        </span>
+                                    </label>
+                                    <label class="checkbox">
+                                        <input checked class="checkbox__input" type="checkbox" value="2"
+                                            name="checkbox1">
+                                        <span class="checkbox__label">
+                                            <span class="checkbox__icon">
+                                                <svg aria-hidden="true" width="10" height="9">
+                                                    <use xlink:href="img/sprite.svg#check2">
+                                                    </use>
+                                                </svg>
+                                            </span>
+                                            <span class="checkbox__text">
+                                                TOO DREMERCHANNEL
+                                            </span>
+                                        </span>
+                                    </label>
+                                    <label class="checkbox">
+                                        <input class="checkbox__input" type="checkbox" value="3" name="checkbox1">
+                                        <span class="checkbox__label">
+                                            <span class="checkbox__icon">
+                                                <svg aria-hidden="true" width="10" height="9">
+                                                    <use xlink:href="img/sprite.svg#check2">
+                                                    </use>
+                                                </svg>
+                                            </span>
+                                            <span class="checkbox__text">
+                                                GB_Consult
+                                            </span>
+                                        </span>
+                                    </label>
+                                    <label class="checkbox">
+                                        <input class="checkbox__input" type="checkbox" value="4" name="checkbox1">
+                                        <span class="checkbox__label">
+                                            <span class="checkbox__icon">
+                                                <svg aria-hidden="true" width="10" height="9">
+                                                    <use xlink:href="img/sprite.svg#check2">
+                                                    </use>
+                                                </svg>
+                                            </span>
+                                            <span class="checkbox__text">
+                                                TOO Смелый Ход
+                                            </span>
+                                        </span>
+                                    </label>
+                                    <label class="checkbox">
+                                        <input class="checkbox__input" type="checkbox" value="5" name="checkbox1">
+                                        <span class="checkbox__label">
+                                            <span class="checkbox__icon">
+                                                <svg aria-hidden="true" width="10" height="9">
+                                                    <use xlink:href="img/sprite.svg#check2">
+                                                    </use>
+                                                </svg>
+                                            </span>
+                                            <span class="checkbox__text">
+                                                TOO DREMERCHANNEL
+                                            </span>
+                                        </span>
+                                    </label>
+                                    <label class="checkbox">
+                                        <input class="checkbox__input" type="checkbox" value="6" name="checkbox1">
+                                        <span class="checkbox__label">
+                                            <span class="checkbox__icon">
+                                                <svg aria-hidden="true" width="10" height="9">
+                                                    <use xlink:href="img/sprite.svg#check2">
+                                                    </use>
+                                                </svg>
+                                            </span>
+                                            <span class="checkbox__text">
+                                                Global_Safety_Services_TOO
+                                            </span>
+                                        </span>
+                                    </label>
+                                    <label class="checkbox">
+                                        <input class="checkbox__input" type="checkbox" value="7" name="checkbox1">
+                                        <span class="checkbox__label">
+                                            <span class="checkbox__icon">
+                                                <svg aria-hidden="true" width="10" height="9">
+                                                    <use xlink:href="img/sprite.svg#check2">
+                                                    </use>
+                                                </svg>
+                                            </span>
+                                            <span class="checkbox__text">
+                                                TOO DREMERCHANNEL
+                                            </span>
+                                        </span>
+                                    </label>
+                                    <label class="checkbox">
+                                        <input class="checkbox__input" type="checkbox" value="8" name="checkbox1">
+                                        <span class="checkbox__label">
+                                            <span class="checkbox__icon">
+                                                <svg aria-hidden="true" width="10" height="9">
+                                                    <use xlink:href="img/sprite.svg#check2">
+                                                    </use>
+                                                </svg>
+                                            </span>
+                                            <span class="checkbox__text">
+                                                GB_Consult
+                                            </span>
+                                        </span>
+                                    </label>
+                                    <label class="checkbox">
+                                        <input class="checkbox__input" type="checkbox" value="9" name="checkbox1">
+                                        <span class="checkbox__label">
+                                            <span class="checkbox__icon">
+                                                <svg aria-hidden="true" width="10" height="9">
+                                                    <use xlink:href="img/sprite.svg#check2">
+                                                    </use>
+                                                </svg>
+                                            </span>
+                                            <span class="checkbox__text">
+                                                TOO Смелый Ход
+                                            </span>
+                                        </span>
+                                    </label>
+                                    <label class="checkbox">
+                                        <input class="checkbox__input" type="checkbox" value="10" name="checkbox1">
+                                        <span class="checkbox__label">
+                                            <span class="checkbox__icon">
+                                                <svg aria-hidden="true" width="10" height="9">
+                                                    <use xlink:href="img/sprite.svg#check2">
+                                                    </use>
+                                                </svg>
+                                            </span>
+                                            <span class="checkbox__text">
+                                                TOO DREMERCHANNEL
+                                            </span>
+                                        </span>
+                                    </label>
+                                    <label class="checkbox">
+                                        <input class="checkbox__input" type="checkbox" value="11" name="checkbox1">
+                                        <span class="checkbox__label">
+                                            <span class="checkbox__icon">
+                                                <svg aria-hidden="true" width="10" height="9">
+                                                    <use xlink:href="img/sprite.svg#check2">
+                                                    </use>
+                                                </svg>
+                                            </span>
+                                            <span class="checkbox__text">
+                                                TOO DREMERCHANNEL
+                                            </span>
+                                        </span>
+                                    </label>
+                                </div>
+                                <button hidden data-showmore-button type="button" class="select-bases-showmore__more">
+                                    <svg aria-hidden="true" width="14" height="14">
+                                        <use xlink:href="img/sprite.svg#plus1"></use>
+                                    </svg>
+                                    Показать еще (10)
+                                </button>
+                            </div>
+                        </div>
+                        <div class="popup-invite-descr__copy">
+                            https://itsheff.kz/ref=lhfw38hsd
+                        </div>
+                    </div>
+                </div>
+                <div class="popup-buttons">
+                    <button data-close data-btn="#btn-sent2" type="submit" class="btn btn-copy">
+                        <span>Скопировать</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!--Добавить пользователя-->
+    <div id="add-user" aria-hidden="false" class="popup popup-users-base">
+        <div class="popup__wrapper">
+            <form action="#" class="popup__content popup-content-width">
+                <div class="popup-top">
+                    <div class="popup-top__titles">
+                        <div class="popup-top__title">
+                            Добавить пользователя
+                        </div>
+                    </div>
+                    <div data-close class="popup-top__close">
+                        <svg aria-hidden="true" width="22" height="22">
+                            <use xlink:href="img/sprite.svg#close"></use>
+                        </svg>
+                    </div>
+                </div>
+                <div class="popup-center">
+                    <div class="popup-invite-descr popup-invite-descr2">
+                        <div class="form">
+                            <div class="form__inputs">
+                                <div class="form__input">
+                                    <label for="fio1">
+                                        Имя Фамилия<span class="placeholder">*</span>
+                                    </label>
+                                    <input data-required id="fio1" autocomplete="off" type="text" name="form[]"
+                                        placeholder="" value="" class="input">
+                                </div>
+                                <div class="form__inputs2">
+                                    <div class="form__input big">
+                                        <label for="tel1" class="big">
+                                            Телефон пользователя<span class="placeholder">*</span>
+                                        </label>
+                                        <div class="form-input-tel">
+                                            <div class="form-select">
+                                                <div class="form-select__titles">
+                                                    <img src="img/icons/flag1.svg" alt="">
+                                                    <div class="form-select__arrow"></div>
+                                                </div>
+                                                <div class="form-select__value">
+                                                    <span>+7</span>
+                                                    <input oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                                                        onkeypress="return /[0-9]/.test(event.key)" autocomplete="off"
+                                                        name="form[]" placeholder="(000) 000-00-00" class="tel">
+                                                </div>
+                                                <div class="form-select__dropdown">
+                                                    <div data-simplebar class="form-select__simplebar">
+                                                        <div class="form-select__body">
+                                                            <div class="form-select__column">
+                                                                <div class="options">
+                                                                    <label class="options__item">
+                                                                        <input countryCode="+7" hidden
+                                                                            class="options__input" checked type="radio"
+                                                                            value="1" name="option2">
+                                                                        <span class="options__label options-label2">
+                                                                            <span class="options__img">
+                                                                                <img src="img/icons/flag1.svg" alt="">
+                                                                            </span>
+                                                                            <span class="options__text">
+                                                                                Казахстан
+                                                                            </span>
+                                                                            <span class="options__icon">
+                                                                                <svg aria-hidden="true" width="12"
+                                                                                    height="9">
+                                                                                    <use
+                                                                                        xlink:href="img/sprite.svg#check1">
+                                                                                    </use>
+                                                                                </svg>
+                                                                            </span>
+                                                                        </span>
+                                                                    </label>
+                                                                    <label class="options__item">
+                                                                        <input countryCode="+7" hidden
+                                                                            class="options__input" type="radio"
+                                                                            value="2" name="option2">
+                                                                        <span class="options__label options-label2">
+                                                                            <span class="options__img">
+                                                                                <img src="img/icons/flag2.svg" alt="">
+                                                                            </span>
+                                                                            <span class="options__text">
+                                                                                Россия
+                                                                            </span>
+                                                                            <span class="options__icon">
+                                                                                <svg aria-hidden="true" width="12"
+                                                                                    height="9">
+                                                                                    <use
+                                                                                        xlink:href="img/sprite.svg#check1">
+                                                                                    </use>
+                                                                                </svg>
+                                                                            </span>
+                                                                    </label>
+                                                                    <label class="options__item">
+                                                                        <input countryCode="+995" hidden
+                                                                            class="options__input" type="radio"
+                                                                            value="3" name="option2">
+                                                                        <span class="options__label options-label2">
+                                                                            <span class="options__img">
+                                                                                <img loading="lazy"
+                                                                                    src="img/icons/flag3.svg" alt="">
+                                                                            </span>
+                                                                            <span class="options__text">
+                                                                                Киргизия
+                                                                            </span>
+                                                                            <span class="options__icon">
+                                                                                <svg aria-hidden="true" width="12"
+                                                                                    height="9">
+                                                                                    <use
+                                                                                        xlink:href="img/sprite.svg#check1">
+                                                                                    </use>
+                                                                                </svg>
+                                                                            </span>
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form__input">
+                                        <label for="email1">
+                                            Email нового пользователя<span class="placeholder">*</span>
+                                        </label>
+                                        <input data-required="email" id="email1" autocomplete="off" type="text"
+                                            name="form[]" placeholder="" class="input">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="popup-options">
+                            <div class="popup-options__title">
+                                Выберите роль
+                            </div>
+                            <div class="popup-options__body">
+                                <label class="options2__item">
+                                    <input hidden class="options2__input" checked type="radio" value="1" name="option1">
+                                    <span class="options2__label">
+                                        <span class="options2__icon"></span>
+                                        <span class="options2__text">Администратор</span>
+                                    </span>
+                                </label>
+                                <label class="options2__item">
+                                    <input hidden class="options2__input" type="radio" value="2" name="option1">
+                                    <span class="options2__label">
+                                        <span class="options2__icon"></span>
+                                        <span class="options2__text">Бухгалтер</span>
+                                    </span>
+                                </label>
+                                <label class="options2__item">
+                                    <input hidden class="options2__input" type="radio" value="3" name="option1">
+                                    <span class="options2__label">
+                                        <span class="options2__icon"></span>
+                                        <span class="options2__text">Сотрудник</span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="popup-select-bases">
+                            <div class="select-bases-top">
+                                <div class="select-bases-top__title">Выберите базы</div>
+                                <div class="select-bases-top__button">
+                                    <button type="button" class="select-bases-top__btn select-btn-reset link">
+                                        Сбросить
+                                    </button>
+                                    <button type="button" class="select-bases-top__btn select-btn-all link">
+                                        Выбрать все
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="select-bases-search">
+                                <button type="button" class="select-bases-search__button">
+                                    <svg aria-hidden="true" width="18" height="18">
+                                        <use xlink:href="img/sprite.svg#search">
+                                        </use>
+                                    </svg>
+                                </button>
+                                <input autocomplete="off" type="text" name="form[]" placeholder="Поиск БД">
+                                <div class="select-bases-search__close">
+                                    <svg aria-hidden="true" width="14" height="14">
+                                        <use xlink:href="img/sprite.svg#close"></use>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div data-showmore="items" class="select-bases-showmore">
+                                <div data-showmore-content="5" class="select-bases-showmore__checkboxes">
+                                    <label class="checkbox">
+                                        <input class="checkbox__input" type="checkbox" value="1" name="checkbox1">
+                                        <span class="checkbox__label">
+                                            <span class="checkbox__icon">
+                                                <svg aria-hidden="true" width="10" height="9">
+                                                    <use xlink:href="img/sprite.svg#check2">
+                                                    </use>
+                                                </svg>
+                                            </span>
+                                            <span class="checkbox__text">Global_Safety_Services_TOO</span>
+                                        </span>
+                                    </label>
+                                    <label class="checkbox">
+                                        <input checked class="checkbox__input" type="checkbox" value="2"
+                                            name="checkbox1">
+                                        <span class="checkbox__label">
+                                            <span class="checkbox__icon">
+                                                <svg aria-hidden="true" width="10" height="9">
+                                                    <use xlink:href="img/sprite.svg#check2">
+                                                    </use>
+                                                </svg>
+                                            </span>
+                                            <span class="checkbox__text">
+                                                TOO DREMERCHANNEL
+                                            </span>
+                                        </span>
+                                    </label>
+                                    <label class="checkbox">
+                                        <input class="checkbox__input" type="checkbox" value="3" name="checkbox1">
+                                        <span class="checkbox__label">
+                                            <span class="checkbox__icon">
+                                                <svg aria-hidden="true" width="10" height="9">
+                                                    <use xlink:href="img/sprite.svg#check2">
+                                                    </use>
+                                                </svg>
+                                            </span>
+                                            <span class="checkbox__text">
+                                                GB_Consult
+                                            </span>
+                                        </span>
+                                    </label>
+                                    <label class="checkbox">
+                                        <input class="checkbox__input" type="checkbox" value="4" name="checkbox1">
+                                        <span class="checkbox__label">
+                                            <span class="checkbox__icon">
+                                                <svg aria-hidden="true" width="10" height="9">
+                                                    <use xlink:href="img/sprite.svg#check2">
+                                                    </use>
+                                                </svg>
+                                            </span>
+                                            <span class="checkbox__text">
+                                                TOO Смелый Ход
+                                            </span>
+                                        </span>
+                                    </label>
+                                    <label class="checkbox">
+                                        <input class="checkbox__input" type="checkbox" value="5" name="checkbox1">
+                                        <span class="checkbox__label">
+                                            <span class="checkbox__icon">
+                                                <svg aria-hidden="true" width="10" height="9">
+                                                    <use xlink:href="img/sprite.svg#check2">
+                                                    </use>
+                                                </svg>
+                                            </span>
+                                            <span class="checkbox__text">
+                                                TOO DREMERCHANNEL
+                                            </span>
+                                        </span>
+                                    </label>
+                                    <label class="checkbox">
+                                        <input class="checkbox__input" type="checkbox" value="6" name="checkbox1">
+                                        <span class="checkbox__label">
+                                            <span class="checkbox__icon">
+                                                <svg aria-hidden="true" width="10" height="9">
+                                                    <use xlink:href="img/sprite.svg#check2">
+                                                    </use>
+                                                </svg>
+                                            </span>
+                                            <span class="checkbox__text">
+                                                Global_Safety_Services_TOO
+                                            </span>
+                                        </span>
+                                    </label>
+                                    <label class="checkbox">
+                                        <input class="checkbox__input" type="checkbox" value="7" name="checkbox1">
+                                        <span class="checkbox__label">
+                                            <span class="checkbox__icon">
+                                                <svg aria-hidden="true" width="10" height="9">
+                                                    <use xlink:href="img/sprite.svg#check2">
+                                                    </use>
+                                                </svg>
+                                            </span>
+                                            <span class="checkbox__text">
+                                                TOO DREMERCHANNEL
+                                            </span>
+                                        </span>
+                                    </label>
+                                    <label class="checkbox">
+                                        <input class="checkbox__input" type="checkbox" value="8" name="checkbox1">
+                                        <span class="checkbox__label">
+                                            <span class="checkbox__icon">
+                                                <svg aria-hidden="true" width="10" height="9">
+                                                    <use xlink:href="img/sprite.svg#check2">
+                                                    </use>
+                                                </svg>
+                                            </span>
+                                            <span class="checkbox__text">
+                                                GB_Consult
+                                            </span>
+                                        </span>
+                                    </label>
+                                    <label class="checkbox">
+                                        <input class="checkbox__input" type="checkbox" value="9" name="checkbox1">
+                                        <span class="checkbox__label">
+                                            <span class="checkbox__icon">
+                                                <svg aria-hidden="true" width="10" height="9">
+                                                    <use xlink:href="img/sprite.svg#check2">
+                                                    </use>
+                                                </svg>
+                                            </span>
+                                            <span class="checkbox__text">
+                                                TOO Смелый Ход
+                                            </span>
+                                        </span>
+                                    </label>
+                                    <label class="checkbox">
+                                        <input class="checkbox__input" type="checkbox" value="10" name="checkbox1">
+                                        <span class="checkbox__label">
+                                            <span class="checkbox__icon">
+                                                <svg aria-hidden="true" width="10" height="9">
+                                                    <use xlink:href="img/sprite.svg#check2">
+                                                    </use>
+                                                </svg>
+                                            </span>
+                                            <span class="checkbox__text">
+                                                TOO DREMERCHANNEL
+                                            </span>
+                                        </span>
+                                    </label>
+                                    <label class="checkbox">
+                                        <input class="checkbox__input" type="checkbox" value="11" name="checkbox1">
+                                        <span class="checkbox__label">
+                                            <span class="checkbox__icon">
+                                                <svg aria-hidden="true" width="10" height="9">
+                                                    <use xlink:href="img/sprite.svg#check2">
+                                                    </use>
+                                                </svg>
+                                            </span>
+                                            <span class="checkbox__text">
+                                                TOO DREMERCHANNEL
+                                            </span>
+                                        </span>
+                                    </label>
+                                </div>
+                                <button hidden data-showmore-button type="button" class="select-bases-showmore__more">
+                                    <svg aria-hidden="true" width="14" height="14">
+                                        <use xlink:href="img/sprite.svg#plus1"></use>
+                                    </svg>
+                                    Показать еще (10)
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="popup-buttons">
+                    <button data-close data-btn="#btn-sent3" type="submit" class="btn btn-bg">
+                        <span>Добавить</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!--Изменить роль-->
+    <div id="change-user-role" aria-hidden="false" class="popup popup-users-base">
+        <div class="popup__wrapper">
+            <form action="#" class="popup__content">
+                <div class="popup-top">
+                    <div class="popup-top__titles">
+                        <div class="popup-top__title">
+                            Изменить роль пользователя
+                        </div>
+                        <p>
+                            Роль пользователя - Бухгалтер
+                        </p>
+                    </div>
+                    <div data-close class="popup-top__close">
+                        <svg aria-hidden="true" width="22" height="22">
+                            <use xlink:href="img/sprite.svg#close"></use>
+                        </svg>
+                    </div>
+                </div>
+                <div class="popup-center">
+                    <div class="popup-invite-descr">
+                        <div class="popup-options">
+                            <div class="popup-options__title">
+                                Выберите роль
+                            </div>
+                            <div class="popup-options__body">
+                                <label class="options2__item">
+                                    <input hidden class="options2__input" checked type="radio" value="1" name="option1">
+                                    <span class="options2__label">
+                                        <span class="options2__icon"></span>
+                                        <span class="options2__text">Администратор</span>
+                                    </span>
+                                </label>
+                                <label class="options2__item">
+                                    <input hidden class="options2__input" type="radio" value="2" name="option1">
+                                    <span class="options2__label">
+                                        <span class="options2__icon"></span>
+                                        <span class="options2__text">Бухгалтер</span>
+                                    </span>
+                                </label>
+                                <label class="options2__item">
+                                    <input hidden class="options2__input" type="radio" value="3" name="option1">
+                                    <span class="options2__label">
+                                        <span class="options2__icon"></span>
+                                        <span class="options2__text">Сотрудник</span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="change-user-role">
+                            <div class="change-user-role__title">
+                                Описание роли администратора
+                            </div>
+                            <div data-showmore="items" class="select-bases-showmore">
+                                <div data-showmore-content="6" class="select-bases-showmore__checkboxes">
+                                    <p>
+                                        Возможность получть акт сверки
+                                    </p>
+                                    <p>
+                                        Возможность получть акт сверки
+                                    </p>
+                                    <p>
+                                        Возможность получть акт сверки
+                                    </p>
+                                    <p>
+                                        Возможность получть акт сверки
+                                    </p>
+                                </div>
+                                <button hidden data-showmore-button type="button" class="select-bases-showmore__more">
+                                    <svg aria-hidden="true" width="7" height="10">
+                                        <use xlink:href="img/sprite.svg#arrow1"></use>
+                                    </svg>
+                                    Показать все
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="popup-buttons">
+                    <button data-close data-btn="#btn-sent4" type="submit" class="btn btn-bg">
+                        <span>Назначить</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!--Доступ к БД-->
+    <div id="database-access" aria-hidden="false" class="popup popup-users-base">
+        <div class="popup__wrapper">
+            <form action="#" class="popup__content popup-content-width">
+                <div class="popup-top">
+                    <div class="popup-top__titles">
+                        <div class="popup-top__title">
+                            Доступные базы для пользователя
+                        </div>
+                    </div>
+                    <div data-close class="popup-top__close">
+                        <svg aria-hidden="true" width="22" height="22">
+                            <use xlink:href="img/sprite.svg#close"></use>
+                        </svg>
+                    </div>
+                </div>
+                <div class="popup-center">
+                    <div class="popup-select-bases">
+                        <div class="select-bases-top">
+                            <div class="select-bases-top__title">Выберите базы</div>
+                            <div class="select-bases-top__button">
+                                <button type="button" class="select-bases-top__btn select-btn-reset link">
+                                    Сбросить
+                                </button>
+                                <button type="button" class="select-bases-top__btn select-btn-all link">
+                                    Выбрать все
+                                </button>
+                            </div>
+                        </div>
+                        <div class="select-bases-search">
+                            <button type="button" class="select-bases-search__button">
+                                <svg aria-hidden="true" width="18" height="18">
+                                    <use xlink:href="img/sprite.svg#search">
+                                    </use>
+                                </svg>
+                            </button>
+                            <input autocomplete="off" type="text" name="form[]" placeholder="Поиск БД">
+                        </div>
+                        <div data-showmore="items" class="select-bases-showmore">
+                            <div data-showmore-content="10" class="select-bases-showmore__checkboxes">
+                                <label class="checkbox">
+                                    <input class="checkbox__input" type="checkbox" value="1" name="checkbox1">
+                                    <span class="checkbox__label">
+                                        <span class="checkbox__icon">
+                                            <svg aria-hidden="true" width="10" height="9">
+                                                <use xlink:href="img/sprite.svg#check2">
+                                                </use>
+                                            </svg>
+                                        </span>
+                                        <span class="checkbox__text">Global_Safety_Services_TOO</span>
+                                    </span>
+                                </label>
+                                <label class="checkbox">
+                                    <input checked class="checkbox__input" type="checkbox" value="2" name="checkbox1">
+                                    <span class="checkbox__label">
+                                        <span class="checkbox__icon">
+                                            <svg aria-hidden="true" width="10" height="9">
+                                                <use xlink:href="img/sprite.svg#check2">
+                                                </use>
+                                            </svg>
+                                        </span>
+                                        <span class="checkbox__text">
+                                            TOO DREMERCHANNEL
+                                        </span>
+                                    </span>
+                                </label>
+                                <label class="checkbox">
+                                    <input class="checkbox__input" type="checkbox" value="3" name="checkbox1">
+                                    <span class="checkbox__label">
+                                        <span class="checkbox__icon">
+                                            <svg aria-hidden="true" width="10" height="9">
+                                                <use xlink:href="img/sprite.svg#check2">
+                                                </use>
+                                            </svg>
+                                        </span>
+                                        <span class="checkbox__text">
+                                            GB_Consult
+                                        </span>
+                                    </span>
+                                </label>
+                                <label class="checkbox">
+                                    <input class="checkbox__input" type="checkbox" value="4" name="checkbox1">
+                                    <span class="checkbox__label">
+                                        <span class="checkbox__icon">
+                                            <svg aria-hidden="true" width="10" height="9">
+                                                <use xlink:href="img/sprite.svg#check2">
+                                                </use>
+                                            </svg>
+                                        </span>
+                                        <span class="checkbox__text">
+                                            TOO Смелый Ход
+                                        </span>
+                                    </span>
+                                </label>
+                                <label class="checkbox">
+                                    <input class="checkbox__input" type="checkbox" value="5" name="checkbox1">
+                                    <span class="checkbox__label">
+                                        <span class="checkbox__icon">
+                                            <svg aria-hidden="true" width="10" height="9">
+                                                <use xlink:href="img/sprite.svg#check2">
+                                                </use>
+                                            </svg>
+                                        </span>
+                                        <span class="checkbox__text">
+                                            TOO DREMERCHANNEL
+                                        </span>
+                                    </span>
+                                </label>
+                                <label class="checkbox">
+                                    <input class="checkbox__input" type="checkbox" value="6" name="checkbox1">
+                                    <span class="checkbox__label">
+                                        <span class="checkbox__icon">
+                                            <svg aria-hidden="true" width="10" height="9">
+                                                <use xlink:href="img/sprite.svg#check2">
+                                                </use>
+                                            </svg>
+                                        </span>
+                                        <span class="checkbox__text">
+                                            Global_Safety_Services_TOO
+                                        </span>
+                                    </span>
+                                </label>
+                                <label class="checkbox">
+                                    <input class="checkbox__input" type="checkbox" value="7" name="checkbox1">
+                                    <span class="checkbox__label">
+                                        <span class="checkbox__icon">
+                                            <svg aria-hidden="true" width="10" height="9">
+                                                <use xlink:href="img/sprite.svg#check2">
+                                                </use>
+                                            </svg>
+                                        </span>
+                                        <span class="checkbox__text">
+                                            TOO DREMERCHANNEL
+                                        </span>
+                                    </span>
+                                </label>
+                                <label class="checkbox">
+                                    <input class="checkbox__input" type="checkbox" value="8" name="checkbox1">
+                                    <span class="checkbox__label">
+                                        <span class="checkbox__icon">
+                                            <svg aria-hidden="true" width="10" height="9">
+                                                <use xlink:href="img/sprite.svg#check2">
+                                                </use>
+                                            </svg>
+                                        </span>
+                                        <span class="checkbox__text">
+                                            GB_Consult
+                                        </span>
+                                    </span>
+                                </label>
+                                <label class="checkbox">
+                                    <input class="checkbox__input" type="checkbox" value="9" name="checkbox1">
+                                    <span class="checkbox__label">
+                                        <span class="checkbox__icon">
+                                            <svg aria-hidden="true" width="10" height="9">
+                                                <use xlink:href="img/sprite.svg#check2">
+                                                </use>
+                                            </svg>
+                                        </span>
+                                        <span class="checkbox__text">
+                                            TOO Смелый Ход
+                                        </span>
+                                    </span>
+                                </label>
+                                <label class="checkbox">
+                                    <input class="checkbox__input" type="checkbox" value="10" name="checkbox1">
+                                    <span class="checkbox__label">
+                                        <span class="checkbox__icon">
+                                            <svg aria-hidden="true" width="10" height="9">
+                                                <use xlink:href="img/sprite.svg#check2">
+                                                </use>
+                                            </svg>
+                                        </span>
+                                        <span class="checkbox__text">
+                                            TOO DREMERCHANNEL
+                                        </span>
+                                    </span>
+                                </label>
+                                <label class="checkbox">
+                                    <input class="checkbox__input" type="checkbox" value="11" name="checkbox1">
+                                    <span class="checkbox__label">
+                                        <span class="checkbox__icon">
+                                            <svg aria-hidden="true" width="10" height="9">
+                                                <use xlink:href="img/sprite.svg#check2">
+                                                </use>
+                                            </svg>
+                                        </span>
+                                        <span class="checkbox__text">
+                                            TOO DREMERCHANNEL
+                                        </span>
+                                    </span>
+                                </label>
+                            </div>
+                            <button hidden data-showmore-button type="button" class="select-bases-showmore__more">
+                                <svg aria-hidden="true" width="14" height="14">
+                                    <use xlink:href="img/sprite.svg#plus1"></use>
+                                </svg>
+                                Показать еще (10)
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="popup-buttons">
+                    <button data-close data-btn="#btn-sent1" type="submit" class="btn btn-bg">
+                        <span>Сохранить</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    {% include 'blocks/scripts.njk' %}
+</body>
+
+</html>

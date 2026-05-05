@@ -234,13 +234,28 @@
     // .footer-top__icon
 
     &__icon {
-        display: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 20px;
+        height: 20px;
+        flex: 0 0 20px;
         @media (max-width: 1200px) {
-            display: flex;
-            width: 20px;
-            height: auto;
-            flex: 0 0 20px;
             margin-bottom: 12.5px;
+        }
+        svg {
+            fill: #f26135;
+        }
+        &.desc {
+            @media (max-width: 1200px) {
+                display: none;
+            }
+        }
+        &.mob {
+            display: none;
+            @media (max-width: 1200px) {
+                display: flex;
+            }
         }
     }
 
@@ -277,14 +292,6 @@
             transition: color 0.3s;
             &:hover {
                 color: #000;
-            }
-        }
-        img {
-            width: 20px;
-            height: auto;
-            flex: 0 0 20px;
-            @media (max-width: 1200px) {
-                display: none;
             }
         }
     }

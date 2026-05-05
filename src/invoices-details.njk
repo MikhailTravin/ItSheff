@@ -1,0 +1,2061 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <title>Счета и документы (реквизиты юр. лица)</title>
+    {% include 'blocks/head.njk' %}
+</head>
+
+<body class="preload mp">
+    <div class="main-wrapper-outer">
+        {% include 'blocks/header2.njk' %}
+        <main class="main">
+
+            <div class="block-cabinet block-cabinet-invoices">
+                <div class="container">
+                    <div class="block-cabinet__content">
+                        <div class="cabinet-menu">
+                            <div class="cabinet-menu__body">
+                                <div class="cabinet-menu__column">
+                                    <ul>
+                                        <li>
+                                            <span class="cabinet-menu__link">
+                                                <div class="cabinet-menu__icon">
+                                                    <svg class="cabinet-menu-def" aria-hidden="true" width="21"
+                                                        height="21">
+                                                        <use xlink:href="img/sprite.svg#cabinet"></use>
+                                                    </svg>
+                                                    <svg class="cabinet-menu-active" aria-hidden="true" width="21"
+                                                        height="21">
+                                                        <use xlink:href="img/sprite.svg#cabinet-active"></use>
+                                                    </svg>
+                                                </div>
+                                                <div class="cabinet-menu__name">
+                                                    <span>Личный</span> кабинет
+                                                </div>
+                                            </span>
+                                        </li>
+                                        <li>
+                                            <a href="./" class="cabinet-menu__link active">
+                                                <div class="cabinet-menu__icon">
+                                                    <svg class="cabinet-menu-def" aria-hidden="true" width="20"
+                                                        height="23">
+                                                        <use xlink:href="img/sprite.svg#documents"></use>
+                                                    </svg>
+                                                    <svg class="cabinet-menu-active" aria-hidden="true" width="20"
+                                                        height="23">
+                                                        <use xlink:href="img/sprite.svg#documents-active"></use>
+                                                    </svg>
+                                                </div>
+                                                <div class="cabinet-menu__name">
+                                                    Счета<span>, документы</span>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="./" class="cabinet-menu__link active">
+                                                <div class="cabinet-menu__icon">
+                                                    <svg class="cabinet-menu-def" aria-hidden="true" width="21"
+                                                        height="23">
+                                                        <use xlink:href="img/sprite.svg#databases"></use>
+                                                    </svg>
+                                                    <svg class="cabinet-menu-active" aria-hidden="true" width="21"
+                                                        height="23">
+                                                        <use xlink:href="img/sprite.svg#databases-active"></use>
+                                                    </svg>
+                                                </div>
+                                                <div class="cabinet-menu__name">
+                                                    Базы <span>данных</span>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="./" class="cabinet-menu__link">
+                                                <div class="cabinet-menu__icon">
+                                                    <svg class="cabinet-menu-def" aria-hidden="true" width="21"
+                                                        height="23">
+                                                        <use xlink:href="img/sprite.svg#users"></use>
+                                                    </svg>
+                                                    <svg class="cabinet-menu-active" aria-hidden="true" width="21"
+                                                        height="23">
+                                                        <use xlink:href="img/sprite.svg#users-active"></use>
+                                                    </svg>
+                                                </div>
+                                                <div class="cabinet-menu__name">
+                                                    Пользователи
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="./" class="cabinet-menu__link">
+                                                <div class="cabinet-menu__icon">
+                                                    <svg class="cabinet-menu-def" aria-hidden="true" width="23"
+                                                        height="23">
+                                                        <use xlink:href="img/sprite.svg#support"></use>
+                                                    </svg>
+                                                    <svg class="cabinet-menu-active" aria-hidden="true" width="23"
+                                                        height="23">
+                                                        <use xlink:href="img/sprite.svg#support-active"></use>
+                                                    </svg>
+                                                </div>
+                                                <div class="cabinet-menu__name">
+                                                    Поддержка
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="cabinet-menu__column column-service">
+                                    <ul>
+                                        <li>
+                                            <a href="./" class="cabinet-menu__link link-service">
+                                                <div class="cabinet-menu__icon">
+                                                    <svg class="cabinet-menu-def" aria-hidden="true" width="21"
+                                                        height="23">
+                                                        <use xlink:href="img/sprite.svg#service"></use>
+                                                    </svg>
+                                                    <svg class="cabinet-menu-active" aria-hidden="true" width="21"
+                                                        height="23">
+                                                        <use xlink:href="img/sprite.svg#service-active"></use>
+                                                    </svg>
+                                                </div>
+                                                <div class="cabinet-menu__titles">
+                                                    Услуги+
+                                                    <div class="cabinet-menu__number">
+                                                        <span>843</span>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="cabinet-menu__column column-download">
+                                    <ul>
+                                        <li>
+                                            <a href="./" download="#download" class="cabinet-menu__link link-download">
+                                                <div class="cabinet-menu__icon">
+                                                    <svg aria-hidden="true" width="14" height="17">
+                                                        <use xlink:href="img/sprite.svg#download1"></use>
+                                                    </svg>
+                                                </div>
+                                                Программа для<br> входа 1С
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="block-cabinet__body body-long">
+                            <div class="block-cabinet__columns columns2">
+                                <div data-tabs="1200,max" class="cabinet-tabs cabinet-tabs-spollers">
+                                    <div class="cabinet-tabs__top">
+                                        <nav data-tabs-titles class="cabinet-tabs__navigation">
+                                            <button type="button" class="cabinet-tabs__titles _tab-active">
+                                                <div class="cabinet-tabs__title">
+                                                    Счета и документы
+                                                    <span class="cabinet-tabs__number">
+                                                        3
+                                                    </span>
+                                                </div>
+                                                <span class="cabinet-tabs__arrow">
+                                                    <svg aria-hidden="true" width="8" height="14">
+                                                        <use xlink:href="img/sprite.svg#arrow3"></use>
+                                                    </svg>
+                                                </span>
+                                            </button>
+                                            <button type="button" class="cabinet-tabs__titles">
+                                                <div class="cabinet-tabs__title">
+                                                    Акт сверки и взаиморасчетов
+                                                </div>
+                                                <span class="cabinet-tabs__arrow">
+                                                    <svg aria-hidden="true" width="8" height="14">
+                                                        <use xlink:href="img/sprite.svg#arrow3"></use>
+                                                    </svg>
+                                                </span>
+                                            </button>
+                                            <button type="button" class="cabinet-tabs__titles">
+                                                <div class="cabinet-tabs__title">
+                                                    Ваши реквизиты
+                                                </div>
+                                                <span class="cabinet-tabs__arrow">
+                                                    <svg aria-hidden="true" width="8" height="14">
+                                                        <use xlink:href="img/sprite.svg#arrow3"></use>
+                                                    </svg>
+                                                </span>
+                                            </button>
+                                            <button type="button" class="cabinet-tabs__titles">
+                                                <div class="cabinet-tabs__title">
+                                                    Автоплатёж
+                                                </div>
+                                                <span class="cabinet-tabs__arrow">
+                                                    <svg aria-hidden="true" width="8" height="14">
+                                                        <use xlink:href="img/sprite.svg#arrow3"></use>
+                                                    </svg>
+                                                </span>
+                                            </button>
+                                        </nav>
+                                    </div>
+                                    <div data-tabs-body class="cabinet-tabs__content">
+                                        <div class="cabinet-tabs__body">
+                                            <div class="cabinet-tabs-invoices">
+                                                <div class="cabinet-table">
+                                                    <div class="cabinet-table__item item-main">
+                                                        <div class="cabinet-table__title">
+                                                            №
+                                                        </div>
+                                                        <div class="cabinet-table__title">
+                                                            Описание
+                                                        </div>
+                                                        <div class="cabinet-table__title">
+                                                            Сумма
+                                                        </div>
+                                                        <div class="cabinet-table__title title-documents">
+                                                            <span class="desc">Документы</span>
+                                                            <span class="mob">Докум.</span>
+                                                        </div>
+                                                        <div class="cabinet-table__title">
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="cabinet-table__item">
+                                                        <div class="cabinet-table__title">
+                                                            5
+                                                        </div>
+                                                        <div class="cabinet-table__title">
+                                                            <p>
+                                                                Счет № 111261 <span>от 2025-02-01 01:03:37</span>
+                                                            </p>
+                                                        </div>
+                                                        <div class="cabinet-table__title">
+                                                            163 565 ₸
+                                                        </div>
+                                                        <div class="cabinet-table__title title-documents">
+                                                            <div class="cabinet-table__documents">
+                                                                <a href="./" download="#download"
+                                                                    class="cabinet-table__document">
+                                                                    <svg aria-hidden="true" width="20" height="23">
+                                                                        <use xlink:href="img/sprite.svg#documents">
+                                                                        </use>
+                                                                    </svg>
+                                                                    Счет
+                                                                </a>
+                                                                <a href="./" download="#download"
+                                                                    class="cabinet-table__document">
+                                                                    <svg aria-hidden="true" width="20" height="23">
+                                                                        <use xlink:href="img/sprite.svg#documents">
+                                                                        </use>
+                                                                    </svg>
+                                                                    АВР
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="cabinet-table__title">
+                                                            <a href="./" class="btn btn-bg">
+                                                                <span>Оплатить</span>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="cabinet-table__item">
+                                                        <div class="cabinet-table__title">
+                                                            4
+                                                        </div>
+                                                        <div class="cabinet-table__title">
+                                                            <p>
+                                                                Счет № 110207 <span>от 2025-01-10 11:01:48</span>
+                                                            </p>
+                                                        </div>
+                                                        <div class="cabinet-table__title">
+                                                            163 565 ₸
+                                                        </div>
+                                                        <div class="cabinet-table__title title-documents">
+                                                            <div class="cabinet-table__documents">
+                                                                <a href="./" download="#download"
+                                                                    class="cabinet-table__document">
+                                                                    <svg aria-hidden="true" width="20" height="23">
+                                                                        <use xlink:href="img/sprite.svg#documents">
+                                                                        </use>
+                                                                    </svg>
+                                                                    Счет
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="cabinet-table__title">
+                                                            <a href="./" class="btn btn-bg">
+                                                                <span>Оплатить</span>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="cabinet-table__item">
+                                                        <div class="cabinet-table__title">
+                                                            3
+                                                        </div>
+                                                        <div class="cabinet-table__title">
+                                                            <p>
+                                                                Счет № 111261 <span>от 2025-02-01 01:03:37</span>
+                                                            </p>
+                                                        </div>
+                                                        <div class="cabinet-table__title">
+                                                            163 565 ₸
+                                                        </div>
+                                                        <div class="cabinet-table__title title-documents">
+                                                            <div class="cabinet-table__documents">
+                                                                <a href="./" download="#download"
+                                                                    class="cabinet-table__document">
+                                                                    <svg aria-hidden="true" width="20" height="23">
+                                                                        <use xlink:href="img/sprite.svg#documents">
+                                                                        </use>
+                                                                    </svg>
+                                                                    Счет
+                                                                </a>
+                                                                <a href="./" download="#download"
+                                                                    class="cabinet-table__document">
+                                                                    <svg aria-hidden="true" width="20" height="23">
+                                                                        <use xlink:href="img/sprite.svg#documents">
+                                                                        </use>
+                                                                    </svg>
+                                                                    АВР
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="cabinet-table__title">
+                                                            <a href="./" class="btn btn-bg">
+                                                                <span>Оплатить</span>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="cabinet-table__item">
+                                                        <div class="cabinet-table__title">
+                                                            2
+                                                        </div>
+                                                        <div class="cabinet-table__title">
+                                                            <p>
+                                                                Счет № 111261 <span>от 2025-02-01 01:03:37</span>
+                                                            </p>
+                                                        </div>
+                                                        <div class="cabinet-table__title">
+                                                            163 565 ₸
+                                                        </div>
+                                                        <div class="cabinet-table__title title-documents">
+                                                            <div class="cabinet-table__documents">
+                                                                <a href="./" download="#download"
+                                                                    class="cabinet-table__document">
+                                                                    <svg aria-hidden="true" width="20" height="23">
+                                                                        <use xlink:href="img/sprite.svg#documents">
+                                                                        </use>
+                                                                    </svg>
+                                                                    Счет
+                                                                </a>
+                                                                <a href="./" download="#download"
+                                                                    class="cabinet-table__document">
+                                                                    <svg aria-hidden="true" width="20" height="23">
+                                                                        <use xlink:href="img/sprite.svg#documents">
+                                                                        </use>
+                                                                    </svg>
+                                                                    АВР
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="cabinet-table__title">
+                                                            <a href="./" class="btn btn-bg disabled">
+                                                                <span>Оплачено</span>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="cabinet-table__item">
+                                                        <div class="cabinet-table__title">
+                                                            1
+                                                        </div>
+                                                        <div class="cabinet-table__title">
+                                                            <p>
+                                                                Счет № 111261 <span>от 2025-02-01 01:03:37</span>
+                                                            </p>
+                                                        </div>
+                                                        <div class="cabinet-table__title">
+                                                            163 565 ₸
+                                                        </div>
+                                                        <div class="cabinet-table__title title-documents">
+                                                            <div class="cabinet-table__documents">
+                                                                <a href="./" download="#download"
+                                                                    class="cabinet-table__document">
+                                                                    <svg aria-hidden="true" width="20" height="23">
+                                                                        <use xlink:href="img/sprite.svg#documents">
+                                                                        </use>
+                                                                    </svg>
+                                                                    Счет
+                                                                </a>
+                                                                <a href="./" download="#download"
+                                                                    class="cabinet-table__document">
+                                                                    <svg aria-hidden="true" width="20" height="23">
+                                                                        <use xlink:href="img/sprite.svg#documents">
+                                                                        </use>
+                                                                    </svg>
+                                                                    АВР
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="cabinet-table__title">
+                                                            <a href="./" class="btn btn-bg disabled">
+                                                                <span>Оплачено</span>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="block-pagination">
+                                                    <button type="button" class="btn btn-bg btn-more">
+                                                        <span>Показать еще счета</span>
+                                                    </button>
+                                                    <div class="orange-loader" style="display: none;">
+                                                        <div class="mini-loader-orange"></div>
+                                                    </div>
+                                                    <div class="pagging">
+                                                        <a class="pagging__item pagging__item_active" href="./">1</a>
+                                                        <a class="pagging__item" href="./">2</a>
+                                                        <a class="pagging__item" href="./">3</a>
+                                                        <a class="pagging__item" href="./">4</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="cabinet-tabs__body">
+                                            <div class="cabinet-tabs-act">
+                                                <div class="cabinet-tabs-act-order">
+                                                    <div class="cabinet-tabs-act-order__content">
+                                                        <div class="cabinet-tabs-act-order__title">
+                                                            Заказать акт сверки
+                                                        </div>
+                                                        <div class="cabinet-tabs-act-order__body">
+                                                            <div class="cabinet-tabs-act-order__calendars">
+                                                                <div class="calendar">
+                                                                    <div class="calendar__title">
+                                                                        Начало периода:
+                                                                    </div>
+                                                                    <div class="calendar__input">
+                                                                        <input readonly autocomplete="off" type="text"
+                                                                            class="input-calendar" data-start
+                                                                            name="form[]" placeholder="">
+                                                                        <div class="calendar__value">
+                                                                            15 <span>/</span> 08 <span>/</span> 2025
+                                                                        </div>
+                                                                        <div class="calendar__icon">
+                                                                            <svg aria-hidden="true" width="18"
+                                                                                height="20">
+                                                                                <use
+                                                                                    xlink:href="img/sprite.svg#calendar">
+                                                                                </use>
+                                                                            </svg>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="calendar__content">
+                                                                        <div class="calendar-header">
+                                                                            <div
+                                                                                class="calendar-header__column calendar-month">
+                                                                                <div class="calendar-header__button">
+                                                                                    <button type="button"
+                                                                                        class="calendar-header__btn-prev calendar-btn">
+                                                                                        <svg aria-hidden="true"
+                                                                                            width="8" height="12">
+                                                                                            <use
+                                                                                                xlink:href="img/sprite.svg#arrow1">
+                                                                                            </use>
+                                                                                        </svg>
+                                                                                    </button>
+                                                                                    <span>Авг</span>
+                                                                                    <button type="button"
+                                                                                        class="calendar-header__btn-next calendar-btn">
+                                                                                        <svg aria-hidden="true"
+                                                                                            width="8" height="12">
+                                                                                            <use
+                                                                                                xlink:href="img/sprite.svg#arrow1">
+                                                                                            </use>
+                                                                                        </svg>
+                                                                                    </button>
+                                                                                </div>
+                                                                                <div class="calendar-header__dropdown">
+                                                                                    <ul data-simplebar>
+                                                                                        <li
+                                                                                            class="calendar-header__item">
+                                                                                            <div
+                                                                                                class="calendar-header__icon">
+                                                                                                <svg aria-hidden="true"
+                                                                                                    width="17"
+                                                                                                    height="13">
+                                                                                                    <use
+                                                                                                        xlink:href="img/sprite.svg#check1">
+                                                                                                    </use>
+                                                                                                </svg>
+                                                                                            </div>
+                                                                                            <span>Апрель</span>
+                                                                                        </li>
+                                                                                        <li
+                                                                                            class="calendar-header__item">
+                                                                                            <div
+                                                                                                class="calendar-header__icon">
+                                                                                                <svg aria-hidden="true"
+                                                                                                    width="17"
+                                                                                                    height="13">
+                                                                                                    <use
+                                                                                                        xlink:href="img/sprite.svg#check1">
+                                                                                                    </use>
+                                                                                                </svg>
+                                                                                            </div>
+                                                                                            <span>Май</span>
+                                                                                        </li>
+                                                                                        <li
+                                                                                            class="calendar-header__item">
+                                                                                            <div
+                                                                                                class="calendar-header__icon">
+                                                                                                <svg aria-hidden="true"
+                                                                                                    width="17"
+                                                                                                    height="13">
+                                                                                                    <use
+                                                                                                        xlink:href="img/sprite.svg#check1">
+                                                                                                    </use>
+                                                                                                </svg>
+                                                                                            </div>
+                                                                                            <span>Июнь</span>
+                                                                                        </li>
+                                                                                        <li
+                                                                                            class="calendar-header__item">
+                                                                                            <div
+                                                                                                class="calendar-header__icon">
+                                                                                                <svg aria-hidden="true"
+                                                                                                    width="17"
+                                                                                                    height="13">
+                                                                                                    <use
+                                                                                                        xlink:href="img/sprite.svg#check1">
+                                                                                                    </use>
+                                                                                                </svg>
+                                                                                            </div>
+                                                                                            <span>Июль</span>
+                                                                                        </li>
+                                                                                        <li
+                                                                                            class="calendar-header__item active">
+                                                                                            <div
+                                                                                                class="calendar-header__icon">
+                                                                                                <svg aria-hidden="true"
+                                                                                                    width="17"
+                                                                                                    height="13">
+                                                                                                    <use
+                                                                                                        xlink:href="img/sprite.svg#check1">
+                                                                                                    </use>
+                                                                                                </svg>
+                                                                                            </div>
+                                                                                            <span>Август</span>
+                                                                                        </li>
+                                                                                        <li
+                                                                                            class="calendar-header__item">
+                                                                                            <div
+                                                                                                class="calendar-header__icon">
+                                                                                                <svg aria-hidden="true"
+                                                                                                    width="17"
+                                                                                                    height="13">
+                                                                                                    <use
+                                                                                                        xlink:href="img/sprite.svg#check1">
+                                                                                                    </use>
+                                                                                                </svg>
+                                                                                            </div>
+                                                                                            <span>Сентябрь</span>
+                                                                                        </li>
+                                                                                        <li
+                                                                                            class="calendar-header__item">
+                                                                                            <div
+                                                                                                class="calendar-header__icon">
+                                                                                                <svg aria-hidden="true"
+                                                                                                    width="17"
+                                                                                                    height="13">
+                                                                                                    <use
+                                                                                                        xlink:href="img/sprite.svg#check1">
+                                                                                                    </use>
+                                                                                                </svg>
+                                                                                            </div>
+                                                                                            <span>Октябрь</span>
+                                                                                        </li>
+                                                                                        <li
+                                                                                            class="calendar-header__item">
+                                                                                            <div
+                                                                                                class="calendar-header__icon">
+                                                                                                <svg aria-hidden="true"
+                                                                                                    width="17"
+                                                                                                    height="13">
+                                                                                                    <use
+                                                                                                        xlink:href="img/sprite.svg#check1">
+                                                                                                    </use>
+                                                                                                </svg>
+                                                                                            </div>
+                                                                                            <span>Ноябрь</span>
+                                                                                        </li>
+                                                                                        <li
+                                                                                            class="calendar-header__item">
+                                                                                            <div
+                                                                                                class="calendar-header__icon">
+                                                                                                <svg aria-hidden="true"
+                                                                                                    width="17"
+                                                                                                    height="13">
+                                                                                                    <use
+                                                                                                        xlink:href="img/sprite.svg#check1">
+                                                                                                    </use>
+                                                                                                </svg>
+                                                                                            </div>
+                                                                                            <span>Декабрь</span>
+                                                                                        </li>
+                                                                                        <li
+                                                                                            class="calendar-header__item">
+                                                                                            <div
+                                                                                                class="calendar-header__icon">
+                                                                                                <svg aria-hidden="true"
+                                                                                                    width="17"
+                                                                                                    height="13">
+                                                                                                    <use
+                                                                                                        xlink:href="img/sprite.svg#check1">
+                                                                                                    </use>
+                                                                                                </svg>
+                                                                                            </div>
+                                                                                            <span>Январь</span>
+                                                                                        </li>
+                                                                                        <li
+                                                                                            class="calendar-header__item">
+                                                                                            <div
+                                                                                                class="calendar-header__icon">
+                                                                                                <svg aria-hidden="true"
+                                                                                                    width="17"
+                                                                                                    height="13">
+                                                                                                    <use
+                                                                                                        xlink:href="img/sprite.svg#check1">
+                                                                                                    </use>
+                                                                                                </svg>
+                                                                                            </div>
+                                                                                            <span>Февраль</span>
+                                                                                        </li>
+                                                                                        <li
+                                                                                            class="calendar-header__item">
+                                                                                            <div
+                                                                                                class="calendar-header__icon">
+                                                                                                <svg aria-hidden="true"
+                                                                                                    width="17"
+                                                                                                    height="13">
+                                                                                                    <use
+                                                                                                        xlink:href="img/sprite.svg#check1">
+                                                                                                    </use>
+                                                                                                </svg>
+                                                                                            </div>
+                                                                                            <span>Март</span>
+                                                                                        </li>
+                                                                                    </ul>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div
+                                                                                class="calendar-header__column calendar-data">
+                                                                                <div class="calendar-header__button">
+                                                                                    <button type="button"
+                                                                                        class="calendar-header__btn-prev calendar-btn">
+                                                                                        <svg aria-hidden="true"
+                                                                                            width="8" height="12">
+                                                                                            <use
+                                                                                                xlink:href="img/sprite.svg#arrow1">
+                                                                                            </use>
+                                                                                        </svg>
+                                                                                    </button>
+                                                                                    <span>2025</span>
+                                                                                    <button type="button"
+                                                                                        class="calendar-header__btn-next calendar-btn">
+                                                                                        <svg aria-hidden="true"
+                                                                                            width="8" height="12">
+                                                                                            <use
+                                                                                                xlink:href="img/sprite.svg#arrow1">
+                                                                                            </use>
+                                                                                        </svg>
+                                                                                    </button>
+                                                                                </div>
+                                                                                <div class="calendar-header__dropdown">
+                                                                                    <ul data-simplebar>
+                                                                                        <li
+                                                                                            class="calendar-header__item">
+                                                                                            <div
+                                                                                                class="calendar-header__icon">
+                                                                                                <svg aria-hidden="true"
+                                                                                                    width="17"
+                                                                                                    height="13">
+                                                                                                    <use
+                                                                                                        xlink:href="img/sprite.svg#check1">
+                                                                                                    </use>
+                                                                                                </svg>
+                                                                                            </div>
+                                                                                            <span>2021</span>
+                                                                                        </li>
+                                                                                        <li
+                                                                                            class="calendar-header__item">
+                                                                                            <div
+                                                                                                class="calendar-header__icon">
+                                                                                                <svg aria-hidden="true"
+                                                                                                    width="17"
+                                                                                                    height="13">
+                                                                                                    <use
+                                                                                                        xlink:href="img/sprite.svg#check1">
+                                                                                                    </use>
+                                                                                                </svg>
+                                                                                            </div>
+                                                                                            <span>2022</span>
+                                                                                        </li>
+                                                                                        <li
+                                                                                            class="calendar-header__item">
+                                                                                            <div
+                                                                                                class="calendar-header__icon">
+                                                                                                <svg aria-hidden="true"
+                                                                                                    width="17"
+                                                                                                    height="13">
+                                                                                                    <use
+                                                                                                        xlink:href="img/sprite.svg#check1">
+                                                                                                    </use>
+                                                                                                </svg>
+                                                                                            </div>
+                                                                                            <span>2023</span>
+                                                                                        </li>
+                                                                                        <li
+                                                                                            class="calendar-header__item">
+                                                                                            <div
+                                                                                                class="calendar-header__icon">
+                                                                                                <svg aria-hidden="true"
+                                                                                                    width="17"
+                                                                                                    height="13">
+                                                                                                    <use
+                                                                                                        xlink:href="img/sprite.svg#check1">
+                                                                                                    </use>
+                                                                                                </svg>
+                                                                                            </div>
+                                                                                            <span>2024</span>
+                                                                                        </li>
+                                                                                        <li
+                                                                                            class="calendar-header__item active">
+                                                                                            <div
+                                                                                                class="calendar-header__icon">
+                                                                                                <svg aria-hidden="true"
+                                                                                                    width="17"
+                                                                                                    height="13">
+                                                                                                    <use
+                                                                                                        xlink:href="img/sprite.svg#check1">
+                                                                                                    </use>
+                                                                                                </svg>
+                                                                                            </div>
+                                                                                            <span>2025</span>
+                                                                                        </li>
+                                                                                    </ul>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="calendar__wrapper">
+                                                                            <div class="calendar__days">
+                                                                                <div class="cell_wrapper cal_days"><span
+                                                                                        class="cell_item">Пн</span>
+                                                                                </div>
+                                                                                <div class="cell_wrapper cal_days"><span
+                                                                                        class="cell_item">Вт</span>
+                                                                                </div>
+                                                                                <div class="cell_wrapper cal_days"><span
+                                                                                        class="cell_item">Ср</span>
+                                                                                </div>
+                                                                                <div class="cell_wrapper cal_days"><span
+                                                                                        class="cell_item">Чт</span>
+                                                                                </div>
+                                                                                <div class="cell_wrapper cal_days"><span
+                                                                                        class="cell_item">Пт</span>
+                                                                                </div>
+                                                                                <div class="cell_wrapper cal_days"><span
+                                                                                        class="cell_item">Сб</span>
+                                                                                </div>
+                                                                                <div class="cell_wrapper cal_days"><span
+                                                                                        class="cell_item">Вс</span>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="calendar__main"></div>
+                                                                        </div>
+                                                                        <div class="calendar-buttons">
+                                                                            <button type="button"
+                                                                                class="calendar-buttons__btn calendar-clear">
+                                                                                Очистить
+                                                                            </button>
+                                                                            <div class="calendar-buttons__button">
+                                                                                <button type="button"
+                                                                                    class="calendar-buttons__btn calendar-close">
+                                                                                    Отмена
+                                                                                </button>
+                                                                                <button type="button"
+                                                                                    class="calendar-buttons__btn calendar-apply">
+                                                                                    OK
+                                                                                </button>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="calendar">
+                                                                    <div class="calendar__title">
+                                                                        Завершение периода:
+                                                                    </div>
+                                                                    <div class="calendar__input">
+                                                                        <input readonly autocomplete="off" type="text"
+                                                                            class="input-calendar" data-end
+                                                                            name="form[]" placeholder="">
+                                                                        <div class="calendar__value">
+                                                                            15 <span>/</span> 08 <span>/</span> 2025
+                                                                        </div>
+                                                                        <div class="calendar__icon">
+                                                                            <svg aria-hidden="true" width="18"
+                                                                                height="20">
+                                                                                <use
+                                                                                    xlink:href="img/sprite.svg#calendar">
+                                                                                </use>
+                                                                            </svg>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="calendar__content">
+                                                                        <div class="calendar-header">
+                                                                            <div
+                                                                                class="calendar-header__column calendar-month">
+                                                                                <div class="calendar-header__button">
+                                                                                    <button type="button"
+                                                                                        class="calendar-header__btn-prev calendar-btn">
+                                                                                        <svg aria-hidden="true"
+                                                                                            width="8" height="12">
+                                                                                            <use
+                                                                                                xlink:href="img/sprite.svg#arrow1">
+                                                                                            </use>
+                                                                                        </svg>
+                                                                                    </button>
+                                                                                    <span>Авг</span>
+                                                                                    <button type="button"
+                                                                                        class="calendar-header__btn-next calendar-btn">
+                                                                                        <svg aria-hidden="true"
+                                                                                            width="8" height="12">
+                                                                                            <use
+                                                                                                xlink:href="img/sprite.svg#arrow1">
+                                                                                            </use>
+                                                                                        </svg>
+                                                                                    </button>
+                                                                                </div>
+                                                                                <div class="calendar-header__dropdown">
+                                                                                    <ul data-simplebar>
+                                                                                        <li
+                                                                                            class="calendar-header__item">
+                                                                                            <div
+                                                                                                class="calendar-header__icon">
+                                                                                                <svg aria-hidden="true"
+                                                                                                    width="17"
+                                                                                                    height="13">
+                                                                                                    <use
+                                                                                                        xlink:href="img/sprite.svg#check1">
+                                                                                                    </use>
+                                                                                                </svg>
+                                                                                            </div>
+                                                                                            <span>Апрель</span>
+                                                                                        </li>
+                                                                                        <li
+                                                                                            class="calendar-header__item">
+                                                                                            <div
+                                                                                                class="calendar-header__icon">
+                                                                                                <svg aria-hidden="true"
+                                                                                                    width="17"
+                                                                                                    height="13">
+                                                                                                    <use
+                                                                                                        xlink:href="img/sprite.svg#check1">
+                                                                                                    </use>
+                                                                                                </svg>
+                                                                                            </div>
+                                                                                            <span>Май</span>
+                                                                                        </li>
+                                                                                        <li
+                                                                                            class="calendar-header__item">
+                                                                                            <div
+                                                                                                class="calendar-header__icon">
+                                                                                                <svg aria-hidden="true"
+                                                                                                    width="17"
+                                                                                                    height="13">
+                                                                                                    <use
+                                                                                                        xlink:href="img/sprite.svg#check1">
+                                                                                                    </use>
+                                                                                                </svg>
+                                                                                            </div>
+                                                                                            <span>Июнь</span>
+                                                                                        </li>
+                                                                                        <li
+                                                                                            class="calendar-header__item">
+                                                                                            <div
+                                                                                                class="calendar-header__icon">
+                                                                                                <svg aria-hidden="true"
+                                                                                                    width="17"
+                                                                                                    height="13">
+                                                                                                    <use
+                                                                                                        xlink:href="img/sprite.svg#check1">
+                                                                                                    </use>
+                                                                                                </svg>
+                                                                                            </div>
+                                                                                            <span>Июль</span>
+                                                                                        </li>
+                                                                                        <li
+                                                                                            class="calendar-header__item active">
+                                                                                            <div
+                                                                                                class="calendar-header__icon">
+                                                                                                <svg aria-hidden="true"
+                                                                                                    width="17"
+                                                                                                    height="13">
+                                                                                                    <use
+                                                                                                        xlink:href="img/sprite.svg#check1">
+                                                                                                    </use>
+                                                                                                </svg>
+                                                                                            </div>
+                                                                                            <span>Август</span>
+                                                                                        </li>
+                                                                                        <li
+                                                                                            class="calendar-header__item">
+                                                                                            <div
+                                                                                                class="calendar-header__icon">
+                                                                                                <svg aria-hidden="true"
+                                                                                                    width="17"
+                                                                                                    height="13">
+                                                                                                    <use
+                                                                                                        xlink:href="img/sprite.svg#check1">
+                                                                                                    </use>
+                                                                                                </svg>
+                                                                                            </div>
+                                                                                            <span>Сентябрь</span>
+                                                                                        </li>
+                                                                                        <li
+                                                                                            class="calendar-header__item">
+                                                                                            <div
+                                                                                                class="calendar-header__icon">
+                                                                                                <svg aria-hidden="true"
+                                                                                                    width="17"
+                                                                                                    height="13">
+                                                                                                    <use
+                                                                                                        xlink:href="img/sprite.svg#check1">
+                                                                                                    </use>
+                                                                                                </svg>
+                                                                                            </div>
+                                                                                            <span>Октябрь</span>
+                                                                                        </li>
+                                                                                        <li
+                                                                                            class="calendar-header__item">
+                                                                                            <div
+                                                                                                class="calendar-header__icon">
+                                                                                                <svg aria-hidden="true"
+                                                                                                    width="17"
+                                                                                                    height="13">
+                                                                                                    <use
+                                                                                                        xlink:href="img/sprite.svg#check1">
+                                                                                                    </use>
+                                                                                                </svg>
+                                                                                            </div>
+                                                                                            <span>Ноябрь</span>
+                                                                                        </li>
+                                                                                        <li
+                                                                                            class="calendar-header__item">
+                                                                                            <div
+                                                                                                class="calendar-header__icon">
+                                                                                                <svg aria-hidden="true"
+                                                                                                    width="17"
+                                                                                                    height="13">
+                                                                                                    <use
+                                                                                                        xlink:href="img/sprite.svg#check1">
+                                                                                                    </use>
+                                                                                                </svg>
+                                                                                            </div>
+                                                                                            <span>Декабрь</span>
+                                                                                        </li>
+                                                                                        <li
+                                                                                            class="calendar-header__item">
+                                                                                            <div
+                                                                                                class="calendar-header__icon">
+                                                                                                <svg aria-hidden="true"
+                                                                                                    width="17"
+                                                                                                    height="13">
+                                                                                                    <use
+                                                                                                        xlink:href="img/sprite.svg#check1">
+                                                                                                    </use>
+                                                                                                </svg>
+                                                                                            </div>
+                                                                                            <span>Январь</span>
+                                                                                        </li>
+                                                                                        <li
+                                                                                            class="calendar-header__item">
+                                                                                            <div
+                                                                                                class="calendar-header__icon">
+                                                                                                <svg aria-hidden="true"
+                                                                                                    width="17"
+                                                                                                    height="13">
+                                                                                                    <use
+                                                                                                        xlink:href="img/sprite.svg#check1">
+                                                                                                    </use>
+                                                                                                </svg>
+                                                                                            </div>
+                                                                                            <span>Февраль</span>
+                                                                                        </li>
+                                                                                        <li
+                                                                                            class="calendar-header__item">
+                                                                                            <div
+                                                                                                class="calendar-header__icon">
+                                                                                                <svg aria-hidden="true"
+                                                                                                    width="17"
+                                                                                                    height="13">
+                                                                                                    <use
+                                                                                                        xlink:href="img/sprite.svg#check1">
+                                                                                                    </use>
+                                                                                                </svg>
+                                                                                            </div>
+                                                                                            <span>Март</span>
+                                                                                        </li>
+                                                                                    </ul>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div
+                                                                                class="calendar-header__column calendar-data">
+                                                                                <div class="calendar-header__button">
+                                                                                    <button type="button"
+                                                                                        class="calendar-header__btn-prev calendar-btn">
+                                                                                        <svg aria-hidden="true"
+                                                                                            width="8" height="12">
+                                                                                            <use
+                                                                                                xlink:href="img/sprite.svg#arrow1">
+                                                                                            </use>
+                                                                                        </svg>
+                                                                                    </button>
+                                                                                    <span>2025</span>
+                                                                                    <button type="button"
+                                                                                        class="calendar-header__btn-next calendar-btn">
+                                                                                        <svg aria-hidden="true"
+                                                                                            width="8" height="12">
+                                                                                            <use
+                                                                                                xlink:href="img/sprite.svg#arrow1">
+                                                                                            </use>
+                                                                                        </svg>
+                                                                                    </button>
+                                                                                </div>
+                                                                                <div class="calendar-header__dropdown">
+                                                                                    <ul data-simplebar>
+                                                                                        <li
+                                                                                            class="calendar-header__item">
+                                                                                            <div
+                                                                                                class="calendar-header__icon">
+                                                                                                <svg aria-hidden="true"
+                                                                                                    width="17"
+                                                                                                    height="13">
+                                                                                                    <use
+                                                                                                        xlink:href="img/sprite.svg#check1">
+                                                                                                    </use>
+                                                                                                </svg>
+                                                                                            </div>
+                                                                                            <span>2021</span>
+                                                                                        </li>
+                                                                                        <li
+                                                                                            class="calendar-header__item">
+                                                                                            <div
+                                                                                                class="calendar-header__icon">
+                                                                                                <svg aria-hidden="true"
+                                                                                                    width="17"
+                                                                                                    height="13">
+                                                                                                    <use
+                                                                                                        xlink:href="img/sprite.svg#check1">
+                                                                                                    </use>
+                                                                                                </svg>
+                                                                                            </div>
+                                                                                            <span>2022</span>
+                                                                                        </li>
+                                                                                        <li
+                                                                                            class="calendar-header__item">
+                                                                                            <div
+                                                                                                class="calendar-header__icon">
+                                                                                                <svg aria-hidden="true"
+                                                                                                    width="17"
+                                                                                                    height="13">
+                                                                                                    <use
+                                                                                                        xlink:href="img/sprite.svg#check1">
+                                                                                                    </use>
+                                                                                                </svg>
+                                                                                            </div>
+                                                                                            <span>2023</span>
+                                                                                        </li>
+                                                                                        <li
+                                                                                            class="calendar-header__item">
+                                                                                            <div
+                                                                                                class="calendar-header__icon">
+                                                                                                <svg aria-hidden="true"
+                                                                                                    width="17"
+                                                                                                    height="13">
+                                                                                                    <use
+                                                                                                        xlink:href="img/sprite.svg#check1">
+                                                                                                    </use>
+                                                                                                </svg>
+                                                                                            </div>
+                                                                                            <span>2024</span>
+                                                                                        </li>
+                                                                                        <li
+                                                                                            class="calendar-header__item active">
+                                                                                            <div
+                                                                                                class="calendar-header__icon">
+                                                                                                <svg aria-hidden="true"
+                                                                                                    width="17"
+                                                                                                    height="13">
+                                                                                                    <use
+                                                                                                        xlink:href="img/sprite.svg#check1">
+                                                                                                    </use>
+                                                                                                </svg>
+                                                                                            </div>
+                                                                                            <span>2025</span>
+                                                                                        </li>
+                                                                                    </ul>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="calendar__wrapper">
+                                                                            <div class="calendar__days">
+                                                                                <div class="cell_wrapper cal_days"><span
+                                                                                        class="cell_item">Пн</span>
+                                                                                </div>
+                                                                                <div class="cell_wrapper cal_days"><span
+                                                                                        class="cell_item">Вт</span>
+                                                                                </div>
+                                                                                <div class="cell_wrapper cal_days"><span
+                                                                                        class="cell_item">Ср</span>
+                                                                                </div>
+                                                                                <div class="cell_wrapper cal_days"><span
+                                                                                        class="cell_item">Чт</span>
+                                                                                </div>
+                                                                                <div class="cell_wrapper cal_days"><span
+                                                                                        class="cell_item">Пт</span>
+                                                                                </div>
+                                                                                <div class="cell_wrapper cal_days"><span
+                                                                                        class="cell_item">Сб</span>
+                                                                                </div>
+                                                                                <div class="cell_wrapper cal_days"><span
+                                                                                        class="cell_item">Вс</span>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="calendar__main"></div>
+                                                                        </div>
+                                                                        <div class="calendar-buttons">
+                                                                            <button type="button"
+                                                                                class="calendar-buttons__btn calendar-clear">
+                                                                                Очистить
+                                                                            </button>
+                                                                            <div class="calendar-buttons__button">
+                                                                                <button type="button"
+                                                                                    class="calendar-buttons__btn calendar-close">
+                                                                                    Отмена
+                                                                                </button>
+                                                                                <button type="button"
+                                                                                    class="calendar-buttons__btn calendar-apply">
+                                                                                    OK
+                                                                                </button>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <a href="./" class="btn btn-bg">
+                                                                <span>Заказать</span>
+                                                            </a>
+                                                        </div>
+                                                        <div class="cabinet-tabs-act-order__buttons">
+                                                            <button type="button"
+                                                                class="cabinet-tabs-act-order__button">
+                                                                <span class="desc">За последние 7 дней</span>
+                                                                <span class="mob">За последние 7д.</span>
+                                                            </button>
+                                                            <button type="button"
+                                                                class="cabinet-tabs-act-order__button">
+                                                                <span class="desc">За последний месяц</span>
+                                                                <span class="mob">За последний 1м.</span>
+                                                            </button>
+                                                            <button type="button"
+                                                                class="cabinet-tabs-act-order__button">
+                                                                <span class="desc">За последние 3 месяца</span>
+                                                                <span class="mob">За последние 3м.</span>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="cabinet-tabs-act-table">
+                                                    <div class="cabinet-tabs-act-table__title">
+                                                        Готовые акты сверки:
+                                                    </div>
+                                                    <div class="cabinet-table cabinet-table-act">
+                                                        <div class="cabinet-table__item item-main">
+                                                            <div class="cabinet-table__title">
+                                                                Начало <span>периода</span>
+                                                            </div>
+                                                            <div class="cabinet-table__title">
+                                                                Завершение <span>периода</span>
+                                                            </div>
+                                                            <div class="cabinet-table__title">
+                                                                Дата исполнения
+                                                            </div>
+                                                            <div class="cabinet-table__title">
+                                                                Действие
+                                                            </div>
+                                                        </div>
+                                                        <div class="cabinet-table__item">
+                                                            <div class="cabinet-table__title">
+                                                                1.05.2018
+                                                            </div>
+                                                            <div class="cabinet-table__title">
+                                                                22.05.2018
+                                                            </div>
+                                                            <div class="cabinet-table__title">
+                                                                <p>
+                                                                    23.05.2018 <span>15:16</span>
+                                                                </p>
+                                                            </div>
+                                                            <div class="cabinet-table__title btn-title">
+                                                                <a href="./" download="#download" class="btn btn-bg">
+                                                                    <span>Скачать</span>
+                                                                </a>
+                                                                <div class="cabinet-table-meatballs">
+                                                                    <div class="cabinet-table-meatballs__button">
+                                                                        <svg aria-hidden="true" width="4" height="18">
+                                                                            <use xlink:href="img/sprite.svg#meatballs">
+                                                                            </use>
+                                                                        </svg>
+                                                                    </div>
+                                                                    <div class="cabinet-table-meatballs__body">
+                                                                        <a href="./" class="cabinet-table__link">
+                                                                            Получить<br>
+                                                                            подписанный
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="cabinet-table__item">
+                                                            <div class="cabinet-table__title">
+                                                                1.05.2018
+                                                            </div>
+                                                            <div class="cabinet-table__title">
+                                                                22.05.2018
+                                                            </div>
+                                                            <div class="cabinet-table__title">
+                                                                <p>
+                                                                    23.05.2018 <span>15:16</span>
+                                                                </p>
+                                                            </div>
+                                                            <div class="cabinet-table__title btn-title">
+                                                                <a href="./" download="#download" class="btn btn-bg">
+                                                                    <span>Скачать</span>
+                                                                </a>
+                                                                <div class="cabinet-table-meatballs active">
+                                                                    <div class="cabinet-table-meatballs__button">
+                                                                        <svg aria-hidden="true" width="4" height="18">
+                                                                            <use xlink:href="img/sprite.svg#meatballs">
+                                                                            </use>
+                                                                        </svg>
+                                                                    </div>
+                                                                    <div class="cabinet-table-meatballs__body">
+                                                                        <a href="./" class="cabinet-table__link">
+                                                                            Получить<br>
+                                                                            подписанный
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="cabinet-table__item">
+                                                            <div class="cabinet-table__title">
+                                                                1.05.2018
+                                                            </div>
+                                                            <div class="cabinet-table__title">
+                                                                22.05.2018
+                                                            </div>
+                                                            <div class="cabinet-table__title">
+                                                                <p>
+                                                                    23.05.2018 <span>15:16</span>
+                                                                </p>
+                                                            </div>
+                                                            <div class="cabinet-table__title btn-title">
+                                                                <a href="./" download="#download" class="btn btn-bg">
+                                                                    <span>Скачать</span>
+                                                                </a>
+                                                                <div class="cabinet-table-meatballs">
+                                                                    <div class="cabinet-table-meatballs__button">
+                                                                        <svg aria-hidden="true" width="4" height="18">
+                                                                            <use xlink:href="img/sprite.svg#meatballs">
+                                                                            </use>
+                                                                        </svg>
+                                                                    </div>
+                                                                    <div class="cabinet-table-meatballs__body">
+                                                                        <a href="./" class="cabinet-table__link">
+                                                                            Получить<br>
+                                                                            подписанный
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="block-pagination">
+                                                        <div class="pagging">
+                                                            <a class="pagging__item pagging__item_active"
+                                                                href="./">1</a>
+                                                            <a class="pagging__item" href="./">2</a>
+                                                            <a class="pagging__item" href="./">3</a>
+                                                            <a class="pagging__item" href="./">4</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="cabinet-tabs__body">
+                                            <div class="cabinet-tabs-details cabinet-tabs-details2">
+                                                <div class="cabinet-details-descr">
+                                                    <div class="cabinet-details-descr__body">
+                                                        <div class="cabinet-details-descr__column">
+                                                            <div class="cabinet-details-descr__title">
+                                                                Форма собственности:
+                                                            </div>
+                                                            <p>
+                                                                Юридическое лицо (ИП, ТОО, АО и т.д.)
+                                                            </p>
+                                                        </div>
+                                                        <div class="cabinet-details-descr__column">
+                                                            <div class="cabinet-details-descr__title">
+                                                                Наименование:
+                                                            </div>
+                                                            <p>
+                                                                ТОО "GB Consult"
+                                                            </p>
+                                                        </div>
+                                                        <div class="cabinet-details-descr__column">
+                                                            <div class="cabinet-details-descr__title">
+                                                                Директор:
+                                                            </div>
+                                                            <p>
+                                                                Бестерекиова Гаухар Абильдаевна
+                                                            </p>
+                                                        </div>
+                                                        <div class="cabinet-details-descr__column">
+                                                            <div class="cabinet-details-descr__title">
+                                                                Почтовый адрес:
+                                                            </div>
+                                                            <p>
+                                                                050043, Казахстан,<br>
+                                                                г. Алматы,<br> ул. Жарокова, 124, кв. 503
+                                                            </p>
+                                                        </div>
+                                                        <div class="cabinet-details-descr__column">
+                                                            <div class="cabinet-details-descr__title">
+                                                                Юридический адрес:
+                                                            </div>
+                                                            <p>
+                                                                050043, Казахстан,<br>г. Алматы,<br>Орбита-2, д. 31, кв.
+                                                                85
+                                                            </p>
+                                                        </div>
+                                                        <div class="cabinet-details-descr__column">
+                                                            <div class="cabinet-details-descr__title">
+                                                                БИН:
+                                                            </div>
+                                                            <p>
+                                                                170840036479
+                                                            </p>
+                                                        </div>
+                                                        <div class="cabinet-details-descr__column">
+                                                            <div class="cabinet-details-descr__title">
+                                                                Банковские реквизиты:
+                                                            </div>
+                                                            <p>
+                                                                IRTYKZKA KZ8296502F0008883959
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="cabinet-details-descr__buttons">
+                                                        <a href="./" data-popup="#edit-details"
+                                                            class="btn btn-bg btn-edit-details">
+                                                            <span>Сменить реквизиты</span>
+                                                        </a>
+                                                        <p style="display: none;">
+                                                            проверяем данные....
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div class="cabinet-details-subscriptions">
+                                                    <div class="cabinet-details-subscriptions__title">
+                                                        Подписки:
+                                                    </div>
+                                                    <div class="cabinet-details-subscriptions__body">
+                                                        <div class="cabinet-details-subscriptions__column">
+                                                            <div class="cabinet-details-subscriptions__titles">
+                                                                <div class="cabinet-details-subscriptions__name">
+                                                                    Приложения Microsoft 365 Business
+                                                                </div>
+                                                                <ul>
+                                                                    <li>начало: 22.09.2025</li>
+                                                                    <li>количество: 16</li>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="cabinet-details-subscriptions__buttons">
+                                                                <a href="#" download="#download"
+                                                                    class="cabinet-details-subscriptions__btn">
+                                                                    <svg aria-hidden="true" width="16" height="16">
+                                                                        <use xlink:href="img/sprite.svg#documents">
+                                                                        </use>
+                                                                    </svg>
+                                                                    <span>Оферта</span>
+                                                                </a>
+                                                                <button data-popup="#popup-unsubscribe" type="button"
+                                                                    class="cabinet-details-subscriptions__btn">
+                                                                    <svg aria-hidden="true" width="16" height="16">
+                                                                        <use xlink:href="img/sprite.svg#close2"></use>
+                                                                    </svg>
+                                                                    <span>Отписаться</span>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                        <div class="cabinet-details-subscriptions__column">
+                                                            <div class="cabinet-details-subscriptions__titles">
+                                                                <div class="cabinet-details-subscriptions__name">
+                                                                    1С Онлайн
+                                                                </div>
+                                                                <ul>
+                                                                    <li>начало: 22.09.2025</li>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="cabinet-details-subscriptions__buttons">
+                                                                <a href="#" download="#download"
+                                                                    class="cabinet-details-subscriptions__btn">
+                                                                    <svg aria-hidden="true" width="16" height="16">
+                                                                        <use xlink:href="img/sprite.svg#documents">
+                                                                        </use>
+                                                                    </svg>
+                                                                    <span>Оферта</span>
+                                                                </a>
+                                                                <button data-popup="#popup-unsubscribe" type="button"
+                                                                    class="cabinet-details-subscriptions__btn">
+                                                                    <svg aria-hidden="true" width="16" height="16">
+                                                                        <use xlink:href="img/sprite.svg#close2"></use>
+                                                                    </svg>
+                                                                    <span>Отписаться</span>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                        <div class="cabinet-details-subscriptions__column">
+                                                            <div class="cabinet-details-subscriptions__titles">
+                                                                <div class="cabinet-details-subscriptions__name">
+                                                                    1С Онлайн
+                                                                </div>
+                                                                <ul>
+                                                                    <li>начало: 22.09.2025</li>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="cabinet-details-subscriptions__buttons">
+                                                                <a href="#" download="#download"
+                                                                    class="cabinet-details-subscriptions__btn">
+                                                                    <svg aria-hidden="true" width="16" height="16">
+                                                                        <use xlink:href="img/sprite.svg#documents">
+                                                                        </use>
+                                                                    </svg>
+                                                                    <span>Оферта</span>
+                                                                </a>
+                                                                <button data-popup="#popup-unsubscribe" type="button"
+                                                                    class="cabinet-details-subscriptions__btn">
+                                                                    <svg aria-hidden="true" width="16" height="16">
+                                                                        <use xlink:href="img/sprite.svg#close2"></use>
+                                                                    </svg>
+                                                                    <span>Отписаться</span>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                        <div class="cabinet-details-subscriptions__column">
+                                                            <div class="cabinet-details-subscriptions__titles">
+                                                                <div class="cabinet-details-subscriptions__name">
+                                                                    Приложения Microsoft 365 Business
+                                                                </div>
+                                                                <ul>
+                                                                    <li>начало: 22.09.2025</li>
+                                                                    <li>количество: 16</li>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="cabinet-details-subscriptions__buttons">
+                                                                <a href="#" download="#download"
+                                                                    class="cabinet-details-subscriptions__btn">
+                                                                    <svg aria-hidden="true" width="16" height="16">
+                                                                        <use xlink:href="img/sprite.svg#documents">
+                                                                        </use>
+                                                                    </svg>
+                                                                    <span>Оферта</span>
+                                                                </a>
+                                                                <button data-popup="#popup-unsubscribe" type="button"
+                                                                    class="cabinet-details-subscriptions__btn">
+                                                                    <svg aria-hidden="true" width="16" height="16">
+                                                                        <use xlink:href="img/sprite.svg#close2"></use>
+                                                                    </svg>
+                                                                    <span>Отписаться</span>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                        <div class="cabinet-details-subscriptions__column">
+                                                            <div class="cabinet-details-subscriptions__titles">
+                                                                <div class="cabinet-details-subscriptions__name">
+                                                                    Приложения Microsoft 365 Business
+                                                                </div>
+                                                                <ul>
+                                                                    <li>начало: 22.09.2025</li>
+                                                                    <li>количество: 16</li>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="cabinet-details-subscriptions__buttons">
+                                                                <a href="#" download="#download"
+                                                                    class="cabinet-details-subscriptions__btn">
+                                                                    <svg aria-hidden="true" width="16" height="16">
+                                                                        <use xlink:href="img/sprite.svg#documents">
+                                                                        </use>
+                                                                    </svg>
+                                                                    <span>Оферта</span>
+                                                                </a>
+                                                                <button data-popup="#popup-unsubscribe" type="button"
+                                                                    class="cabinet-details-subscriptions__btn">
+                                                                    <svg aria-hidden="true" width="16" height="16">
+                                                                        <use xlink:href="img/sprite.svg#close2"></use>
+                                                                    </svg>
+                                                                    <span>Отписаться</span>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="cabinet-tabs__body">
+                                            <div class="cabinet-auto-payment">
+                                                <div class="cabinet-auto-payment__body">
+                                                    <div class="cabinet-auto-payment__title">
+                                                        Пополним баланс, когда не будет хватать денег на оплату услуг
+                                                        тарифа: <span>1С Онлайн</span>
+                                                    </div>
+                                                    <div class="cabinet-auto-payment__buttons">
+                                                        <a href="./" class="btn btn-bg">
+                                                            <div class="btn__icon">
+                                                                <svg aria-hidden="true" width="20" height="20">
+                                                                    <use xlink:href="img/sprite.svg#card1"></use>
+                                                                </svg>
+                                                            </div>
+                                                            <span>Добавить карту</span>
+                                                        </a>
+                                                        <p>
+                                                            Продолжая, вы соглашаетесь с <a href="./">условиями</a>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+        {% include 'blocks/footer.njk' %}
+    </div>
+    <div id="edit-details" aria-hidden="false" class="popup popup-edit-details">
+        <div class="popup__wrapper">
+            <div class="popup__content">
+                <div data-tabs class="popup-details-tabs">
+                    <div class="popup-top">
+                        <div class="popup-top__titles">
+                            <div class="popup-top__title">
+                                Сменить реквизиты
+                            </div>
+                            <p>
+                                Субъект
+                            </p>
+                        </div>
+                        <div data-close class="popup-top__close">
+                            <svg aria-hidden="true" width="22" height="22">
+                                <use xlink:href="img/sprite.svg#close"></use>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="popup-center">
+                        <div class="popup-details-tabs__contents">
+                            <div class="popup-details-pagination">
+                                <div class="popup-details-pagination__title active">
+                                    <span>Субъект</span>
+                                </div>
+                                <div class="popup-details-pagination__title">
+                                    <span class="desc">Юр.адрес</span>
+                                    <span class="mob">Юридеч.
+                                        адрес</span>
+                                </div>
+                                <div class="popup-details-pagination__title">
+                                    <span class="desc">Факт.адрес</span>
+                                    <span class="mob">Фактичес. адрес</span>
+                                </div>
+                                <div class="popup-details-pagination__title">
+                                    <span class="desc">Директор и рекв.</span>
+                                    <span class="mob">Директор и рекв.</span>
+                                </div>
+                            </div>
+                            <nav data-tabs-titles class="popup-details-tabs__navigation">
+                                <button type="button" class="popup-details-tabs__title _tab-active">Юрлицо</button>
+                                <button type="button" class="popup-details-tabs__title details-other">Физлицо</button>
+                                <button type="button" class="popup-details-tabs__title details-other">ИП</button>
+                            </nav>
+                            <div data-tabs-body class="popup-details-tabs__content">
+                                <div class="popup-details-tabs__body">
+                                    <form action="#" class="popup-details-tabs__steps">
+                                        <div class="popup-details-tabs__step step1 active">
+                                            <div class="form">
+                                                <div class="form__inputs">
+                                                    <div class="form__input">
+                                                        <label for="bin1">
+                                                            БИН<span class="placeholder">*</span>
+                                                            <span class="tooltips">
+                                                                <span class="tooltips-button">
+                                                                    ?
+                                                                </span>
+                                                                <span class="tooltips__dropdown">
+                                                                    <p>
+                                                                        Text text text
+                                                                    </p>
+                                                                </span>
+                                                            </span>
+                                                        </label>
+                                                        <div class="input-btn">
+                                                            <input data-required id="bin1" autocomplete="off"
+                                                                type="text" name="form[]" placeholder=""
+                                                                value="1234567789123" class="input">
+                                                            <div class="input-btn-check">
+                                                                <button type="button" class="btn btn-bg btn-check">
+                                                                    <span>Проверить</span>
+                                                                </button>
+                                                                <div class="input-btn-check__line">
+                                                                    <span></span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form__input">
+                                                        <label for="bin1">
+                                                            ФИО<span class="placeholder">*</span>
+                                                        </label>
+                                                        <input data-required id="bin1" autocomplete="off" type="text"
+                                                            name="form[]" placeholder="" value="Ранее Введенные Данные"
+                                                            class="input">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="popup-warning">
+                                                <div class="popup-warning__item">
+                                                    <div class="popup-warning__title">
+                                                        Внимание!
+                                                    </div>
+                                                    <div class="popup-warning__text">
+                                                        <p>
+                                                            Просьба указывать корректные реквизиты компании, для выписки
+                                                            бухгалтерских документов!
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="popup-buttons">
+                                                <button type="button" class="btn btn-bg btn-details-next">
+                                                    <span>Далее</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="popup-details-tabs__step step2">
+                                            <div class="form">
+                                                <div class="form__title">
+                                                    Юридический адрес
+                                                </div>
+                                                <div class="form__body">
+                                                    <div class="form__inputs">
+                                                        <div class="form__input">
+                                                            <label for="strana1">
+                                                                Страна<span class="placeholder">*</span>
+                                                            </label>
+                                                            <input data-required id="strana1" autocomplete="off"
+                                                                type="text" name="form[]" placeholder=""
+                                                                value="Казахстан" class="input">
+                                                        </div>
+                                                        <div class="form__input">
+                                                            <label for="obl1">
+                                                                Область<span class="placeholder">*</span>
+                                                            </label>
+                                                            <input data-required id="obl1" autocomplete="off"
+                                                                type="text" name="form[]" placeholder=""
+                                                                value="Карагандинская область" class="input">
+                                                        </div>
+                                                        <div class="form__input">
+                                                            <label for="rayon1">
+                                                                Район<span class="placeholder">*</span>
+                                                            </label>
+                                                            <input data-required id="rayon1" autocomplete="off"
+                                                                type="text" name="form[]" placeholder=""
+                                                                value="Казыбек-би" class="input">
+                                                        </div>
+                                                        <div class="form__input">
+                                                            <label for="gorod1">
+                                                                Город<span class="placeholder">*</span>
+                                                            </label>
+                                                            <input data-required id="gorod1" autocomplete="off"
+                                                                type="text" name="form[]" placeholder=""
+                                                                value="Караганда" class="input">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form__inputs">
+                                                        <div class="form__input">
+                                                            <label for="locality1">
+                                                                Населенный пункт
+                                                            </label>
+                                                            <input id="locality1" autocomplete="off" type="text"
+                                                                name="form[]" placeholder="" value="" class="input">
+                                                        </div>
+                                                        <div class="form__input">
+                                                            <label for="index1">
+                                                                Индекс<span class="placeholder">*</span>
+                                                            </label>
+                                                            <input data-required id="index1" autocomplete="off"
+                                                                type="text" name="form[]" placeholder="" value="10000"
+                                                                class="input">
+                                                        </div>
+                                                        <div class="form__input">
+                                                            <label for="ulitsa1">
+                                                                Улица<span class="placeholder">*</span>
+                                                            </label>
+                                                            <input data-required id="ulitsa1" autocomplete="off"
+                                                                type="text" name="form[]" placeholder=""
+                                                                value="Название улицы" class="input">
+                                                        </div>
+                                                        <div class="form__input2">
+                                                            <div class="form__input">
+                                                                <label for="dom1">
+                                                                    Дом<span class="placeholder">*</span>
+                                                                </label>
+                                                                <input data-required id="dom1" autocomplete="off"
+                                                                    type="text" name="form[]" placeholder="" value="42"
+                                                                    class="input">
+                                                            </div>
+                                                            <div class="form__input">
+                                                                <label for="kv1">
+                                                                    Кв/офис<span class="placeholder">*</span>
+                                                                </label>
+                                                                <input data-required id="kv1" autocomplete="off"
+                                                                    type="text" name="form[]" placeholder="" value="17"
+                                                                    class="input">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="popup-buttons">
+                                                <button type="button" class="btn btn-mob btn-details-prev">
+                                                    <span>Назад</span>
+                                                </button>
+                                                <div class="popup-buttons__bottom">
+                                                    <button type="button" class="popup-buttons__arrow btn-details-prev">
+                                                        <svg aria-hidden="true" width="19" height="17">
+                                                            <use xlink:href="img/sprite.svg#arrow4"></use>
+                                                        </svg>
+                                                    </button>
+                                                    <button type="button" class="btn btn-bg btn-details-next">
+                                                        <span>Далее</span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="popup-details-tabs__step step3">
+                                            <div class="popup-details-question">
+                                                <div class="popup-details-question__title">
+                                                    Фактический адрес совпадает с юридическим?
+                                                </div>
+                                                <div class="popup-details-question__buttons">
+                                                    <button type="button"
+                                                        class="popup-details-question__btn btn-match active">
+                                                        <span>Совпадает</span>
+                                                    </button>
+                                                    <button type="button"
+                                                        class="popup-details-question__btn btn-nomatch">
+                                                        <span>Нет</span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class="form">
+                                                <div class="form__title">
+                                                    Фактический адрес
+                                                </div>
+                                                <div class="form__body">
+                                                    <div class="form__inputs">
+                                                        <div class="form__input">
+                                                            <label for="strana1">
+                                                                Страна<span class="placeholder">*</span>
+                                                            </label>
+                                                            <input data-required id="strana1" autocomplete="off"
+                                                                type="text" name="form[]" placeholder=""
+                                                                value="Казахстан" class="input">
+                                                        </div>
+                                                        <div class="form__input">
+                                                            <label for="obl1">
+                                                                Область<span class="placeholder">*</span>
+                                                            </label>
+                                                            <input data-required id="obl1" autocomplete="off"
+                                                                type="text" name="form[]" placeholder=""
+                                                                value="Карагандинская область" class="input">
+                                                        </div>
+                                                        <div class="form__input">
+                                                            <label for="rayon1">
+                                                                Район<span class="placeholder">*</span>
+                                                            </label>
+                                                            <input data-required id="rayon1" autocomplete="off"
+                                                                type="text" name="form[]" placeholder=""
+                                                                value="Казыбек-би" class="input">
+                                                        </div>
+                                                        <div class="form__input">
+                                                            <label for="gorod1">
+                                                                Город<span class="placeholder">*</span>
+                                                            </label>
+                                                            <input data-required id="gorod1" autocomplete="off"
+                                                                type="text" name="form[]" placeholder=""
+                                                                value="Караганда" class="input">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form__inputs">
+                                                        <div class="form__input">
+                                                            <label for="locality1">
+                                                                Населенный пункт
+                                                            </label>
+                                                            <input id="locality1" autocomplete="off" type="text"
+                                                                name="form[]" placeholder="" value="" class="input">
+                                                        </div>
+                                                        <div class="form__input">
+                                                            <label for="index1">
+                                                                Индекс<span class="placeholder">*</span>
+                                                            </label>
+                                                            <input data-required id="index1" autocomplete="off"
+                                                                type="text" name="form[]" placeholder="" value="10000"
+                                                                class="input">
+                                                        </div>
+                                                        <div class="form__input">
+                                                            <label for="ulitsa1">
+                                                                Улица<span class="placeholder">*</span>
+                                                            </label>
+                                                            <input data-required id="ulitsa1" autocomplete="off"
+                                                                type="text" name="form[]" placeholder=""
+                                                                value="Название улицы" class="input">
+                                                        </div>
+                                                        <div class="form__input2">
+                                                            <div class="form__input">
+                                                                <label for="dom1">
+                                                                    Дом<span class="placeholder">*</span>
+                                                                </label>
+                                                                <input data-required id="dom1" autocomplete="off"
+                                                                    type="text" name="form[]" placeholder="" value="42"
+                                                                    class="input">
+                                                            </div>
+                                                            <div class="form__input">
+                                                                <label for="kv1">
+                                                                    Кв/офис<span class="placeholder">*</span>
+                                                                </label>
+                                                                <input data-required id="kv1" autocomplete="off"
+                                                                    type="text" name="form[]" placeholder="" value="17"
+                                                                    class="input">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="popup-buttons">
+                                                <button type="button" class="btn btn-mob btn-details-prev">
+                                                    <span>Назад</span>
+                                                </button>
+                                                <div class="popup-buttons__bottom">
+                                                    <button type="button" class="popup-buttons__arrow btn-details-prev">
+                                                        <svg aria-hidden="true" width="19" height="17">
+                                                            <use xlink:href="img/sprite.svg#arrow4"></use>
+                                                        </svg>
+                                                    </button>
+                                                    <button type="button" class="btn btn-bg btn-details-next">
+                                                        <span>Далее</span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="popup-details-tabs__step step4">
+                                            <div class="form">
+                                                <div class="form__inputs">
+                                                    <div class="form__input">
+                                                        <label for="fio1">
+                                                            ФИО директора<span class="placeholder">*</span>
+                                                        </label>
+                                                        <input data-required id="fio1" autocomplete="off" type="text"
+                                                            name="form[]" placeholder="" value="Ранее Введенные Данные"
+                                                            class="input">
+                                                    </div>
+                                                    <div class="form__inputs2">
+                                                        <div class="form__input">
+                                                            <label for="bin2">
+                                                                БИН<span class="placeholder">*</span>
+                                                            </label>
+                                                            <input data-required id="bin2" autocomplete="off"
+                                                                type="text" name="form[]" placeholder=""
+                                                                value="123456789012" class="input">
+                                                        </div>
+                                                        <div class="form__input">
+                                                            <label for="iik1">
+                                                                ИИК<span class="placeholder">*</span>
+                                                            </label>
+                                                            <input data-required id="iik1" autocomplete="off"
+                                                                type="text" name="form[]" placeholder=""
+                                                                value="KZ120000000000000000" class="input">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="popup-buttons">
+                                                <button type="button" class="btn btn-mob btn-details-prev">
+                                                    <span>Назад</span>
+                                                </button>
+                                                <div class="popup-buttons__bottom">
+                                                    <button type="button" class="popup-buttons__arrow btn-details-prev">
+                                                        <svg aria-hidden="true" width="19" height="17">
+                                                            <use xlink:href="img/sprite.svg#arrow4"></use>
+                                                        </svg>
+                                                    </button>
+                                                    <button data-btn="#btn-sent1" type="submit" class="btn btn-bg">
+                                                        <span>Сохранить</span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="popup-details-tabs__body">
+                                    <form action="#" class="popup-details-tabs__steps">
+                                        <div class="popup-details-tabs__step step-active">
+                                            <div class="form">
+                                                <div class="form__inputs">
+                                                    <div class="form__input">
+                                                        <label for="bin1">
+                                                            ФИО<span class="placeholder">*</span>
+                                                        </label>
+                                                        <input data-required id="bin1" autocomplete="off" type="text"
+                                                            name="form[1]" placeholder="" value="Ранее Введенные Данные"
+                                                            class="input">
+                                                    </div>
+                                                    <div class="form__input">
+                                                        <label for="inn2">
+                                                            ИНН<span class="placeholder">*</span>
+                                                        </label>
+                                                        <input data-required id="inn2" autocomplete="off" type="text"
+                                                            name="form[]" placeholder="" value="1234567789123"
+                                                            class="input">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="popup-warning">
+                                                <div class="popup-warning__item">
+                                                    <div class="popup-warning__title">
+                                                        Внимание!
+                                                    </div>
+                                                    <div class="popup-warning__text">
+                                                        <p>
+                                                            Просьба указывать корректные реквизиты компании, для выписки
+                                                            бухгалтерских документов!
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="popup-buttons">
+                                                <button data-btn="#btn-sent1" type="submit" class="btn btn-bg">
+                                                    <span>Сохранить</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="popup-details-tabs__body">
+                                    <form action="#" class="popup-details-tabs__steps">
+                                        <div class="popup-details-tabs__step step-active">
+                                            <div class="form">
+                                                <div class="form__inputs">
+                                                    <div class="form__input">
+                                                        <label for="bin1">
+                                                            ФИО<span class="placeholder">*</span>
+                                                        </label>
+                                                        <input data-required id="bin1" autocomplete="off" type="text"
+                                                            name="form[1]" placeholder="" value="Ранее Введенные Данные"
+                                                            class="input">
+                                                    </div>
+                                                    <div class="form__input">
+                                                        <label for="inn2">
+                                                            ИНН<span class="placeholder">*</span>
+                                                        </label>
+                                                        <input data-required id="inn2" autocomplete="off" type="text"
+                                                            name="form[]" placeholder="" value="1234567789123"
+                                                            class="input">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="popup-warning">
+                                                <div class="popup-warning__item">
+                                                    <div class="popup-warning__title">
+                                                        Внимание!
+                                                    </div>
+                                                    <div class="popup-warning__text">
+                                                        <p>
+                                                            Просьба указывать корректные реквизиты компании, для выписки
+                                                            бухгалтерских документов!
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="popup-buttons">
+                                                <button data-btn="#btn-sent1" type="submit" class="btn btn-bg">
+                                                    <span>Сохранить</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="popup-unsubscribe" aria-hidden="false" class="popup popup-unsubscribe">
+        <div class="popup__wrapper">
+            <div class="popup__content">
+                <div class="popup-top">
+                    <div class="popup-top__titles">
+                        <div class="popup-top__title">
+                            Отписаться от 1С Онлайн?
+                        </div>
+                    </div>
+                    <div data-close class="popup-top__close">
+                        <svg aria-hidden="true" width="22" height="22">
+                            <use xlink:href="img/sprite.svg#close"></use>
+                        </svg>
+                    </div>
+                </div>
+                <div class="popup-center">
+                    <div class="popup-unsubscribe__body">
+                        <img loading="lazy" src="img/image7.webp" alt="" class="popup-unsubscribe__pic1">
+                        <div class="popup-unsubscribe__title">
+                            Сопроводительный текст в одну или несколько строк
+                        </div>
+                    </div>
+                </div>
+                <div class="popup-buttons">
+                    <button type="button" class="btn">
+                        <span>Отписаться</span>
+                    </button>
+                    <button data-close type="button" class="btn btn-bg">
+                        <span>Отмена</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% include 'blocks/scripts.njk' %}
+</body>
+
+</html>
