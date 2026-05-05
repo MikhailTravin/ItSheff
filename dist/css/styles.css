@@ -1762,8 +1762,17 @@ a {
   transition: opacity 0.3s;
 }
 .btn-sent span {
-  display: block;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 5px;
   margin-top: -2px;
+}
+.btn-sent span.white {
+  font-weight: 700;
 }
 .btn-sent.btn-sent-open {
   display: -webkit-box;
@@ -15240,6 +15249,32 @@ body::after {
     height: 85px;
   }
 }
+.popup-other__name-user {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: #f0f2f4;
+  border-radius: 12px;
+  padding: 20px;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 130%;
+  color: #000;
+  min-height: 96px;
+  margin: 5px 0px 4px 0px;
+  text-align: center;
+}
+@media (max-width: 650px) {
+  .popup-other__name-user {
+    margin: 0px 0px 0px 0px;
+  }
+}
 .popup-other__body {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -17406,14 +17441,114 @@ body::after {
   }
 }
 
+.popup-change-role .popup__content {
+  max-width: 620px;
+}
+.popup-change-role .popup-invite-descr {
+  padding: 7px 0px 0px 0px;
+  margin: 0px 0px 37px 0px;
+  gap: 48px;
+}
+
+.change-user-role {
+  opacity: 0;
+  pointer-events: none;
+  -webkit-transition: opacity 0.3s;
+  transition: opacity 0.3s;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 10px;
+  display: none;
+}
+.change-user-role.checked {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  opacity: 1;
+  pointer-events: auto;
+}
 .change-user-role .select-bases-showmore__more svg {
   -webkit-transform: rotate(90deg);
           transform: rotate(90deg);
+}
+.change-user-role .select-bases-showmore__checkboxes {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+.change-user-role .select-bases-showmore__checkboxes p {
+  border-bottom: 1px solid #e5e5e5;
+  padding: 11px 0px;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 120%;
 }
 .change-user-role__title {
   font-weight: 450;
   font-size: 18px;
   line-height: 144%;
+}
+
+.popup-edit-user .popup__content {
+  max-width: 400px;
+}
+@media (max-width: 650px) {
+  .popup-edit-user .popup__content {
+    max-width: 100%;
+  }
+}
+.popup-edit-user .popup-invite-descr {
+  margin: -11px 0px 39px 0px;
+}
+@media (max-width: 650px) {
+  .popup-edit-user .popup-invite-descr {
+    margin: 0px 0px 25px 0px;
+  }
+}
+.popup-edit-user .form {
+  padding: 0px 0px 0px 0px;
+}
+.popup-edit-user .form__inputs {
+  gap: 35px;
+}
+@media (max-width: 650px) {
+  .popup-edit-user .form__inputs {
+    gap: 25px;
+  }
+}
+
+.popup-users .popup__content {
+  max-width: 400px;
+  border-radius: 24px;
+}
+@media (max-width: 480px) {
+  .popup-users .popup__content {
+    max-width: 100%;
+    border-radius: 0px;
+  }
+}
+.popup-users .popup-buttons {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+@media (max-width: 480px) {
+  .popup-users .popup-buttons {
+    gap: 16px;
+  }
+}
+.popup-users .popup-other__body {
+  gap: 30px;
+  padding: 0px 0px 73px 0px;
 }
 
 .footer {

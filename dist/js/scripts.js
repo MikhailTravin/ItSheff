@@ -1337,18 +1337,16 @@ class Popup {
     }
   }
 }
-modules_flsModules.popup = new Popup({});
 
 function menuOpen() {
   bodyLock();
   document.documentElement.classList.add("menu-open");
 }
+
 function menuClose() {
   bodyUnlock();
   document.documentElement.classList.remove("menu-open");
 }
-
-//========================================================================================================================================================
 
 function CabinetMenus() {
   const allContainers = document.querySelectorAll('.cabinet-objects-bottom');
@@ -1655,6 +1653,32 @@ if (document.readyState === 'loading') {
 } else {
   CabinetMenus();
 }
+
+modules_flsModules.popup = new Popup({});
+
+document.addEventListener('click', function (e) {
+  const openButton = e.target.closest('[data-popup]');
+  if (openButton && modules_flsModules.popup) {
+    e.preventDefault();
+    const selector = openButton.getAttribute('data-popup');
+    if (selector && selector !== 'error') {
+      if (!modules_flsModules.popup.isOpen) {
+        modules_flsModules.popup.lastFocusEl = openButton;
+      }
+      modules_flsModules.popup.targetOpen.selector = selector;
+      modules_flsModules.popup._selectorOpen = true;
+      modules_flsModules.popup.open();
+    }
+    return;
+  }
+
+  const closeButton = e.target.closest('[data-close]');
+  if (closeButton && !closeButton.hasAttribute('data-popup') && modules_flsModules.popup && modules_flsModules.popup.isOpen) {
+    e.preventDefault();
+    modules_flsModules.popup.close();
+    return;
+  }
+}, true);
 
 //========================================================================================================================================================
 
@@ -2403,6 +2427,13 @@ if (titlesList) {
     const countryCodeSpan = selectContainer.querySelector('.form-select__value span');
     if (countryCodeSpan && selectedCountryCode) {
       countryCodeSpan.textContent = selectedCountryCode;
+    }
+
+    const titlesSpan = selectContainer.querySelector('.form-select__titles span:not(.form-select__arrow)');
+    const hasValueSpan = selectContainer.querySelector('.form-select__value span');
+
+    if (!hasValueSpan && titlesSpan && selectedCountryName) {
+      titlesSpan.textContent = selectedCountryName;
     }
 
     if (phoneInput && currentPhoneNumber) {
@@ -3938,4 +3969,73 @@ if (btnCopy) {
 
     document.body.removeChild(textarea);
   });
+}
+
+//========================================================================================================================================================
+
+function initRoleTabs() {
+  const roleOptions = document.querySelectorAll('.options2__item');
+  const roleDescriptions = document.querySelectorAll('.change-user-role');
+
+  function updateActiveRole(selectedDescr) {
+    roleOptions.forEach(option => {
+      const radio = option.querySelector('.options2__input');
+      const descr = option.getAttribute('data-descr');
+
+      if (descr === selectedDescr) {
+        radio.checked = true;
+        option.classList.add('active');
+      } else {
+        radio.checked = false;
+        option.classList.remove('active');
+      }
+    });
+
+    roleDescriptions.forEach(description => {
+      const descr = description.getAttribute('data-descr');
+
+      if (descr === selectedDescr) {
+        description.classList.add('checked');
+        description.hidden = false;
+      } else {
+        description.classList.remove('checked');
+        description.hidden = true;
+      }
+    });
+  }
+
+  roleOptions.forEach(option => {
+    option.addEventListener('click', function (e) {
+      e.preventDefault();
+      const descr = this.getAttribute('data-descr');
+      updateActiveRole(descr);
+    });
+
+    const radio = option.querySelector('.options2__input');
+    if (radio) {
+      radio.addEventListener('change', function () {
+        if (this.checked) {
+          const descr = option.closest('.options2__item').getAttribute('data-descr');
+          updateActiveRole(descr);
+        }
+      });
+    }
+  });
+
+  const checkedRadio = document.querySelector('.options2__input:checked');
+  if (checkedRadio) {
+    const parentLabel = checkedRadio.closest('.options2__item');
+    const defaultDescr = parentLabel.getAttribute('data-descr');
+    updateActiveRole(defaultDescr);
+  } else {
+    roleDescriptions.forEach(description => {
+      description.hidden = true;
+    });
+  }
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initRoleTabs);
+} else {
+  initRoleTabs();
 }
