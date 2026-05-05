@@ -225,8 +225,13 @@ a {
   z-index: 70;
   transition: opacity 0.3s;
   span {
-    display: block;
+    display: flex;
+    align-items: center;
+    gap: 5px;
     margin-top: -2px;
+    &.white {
+      font-weight: 700;
+    }
   }
   &.btn-sent-open {
     display: flex;

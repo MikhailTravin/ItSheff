@@ -1020,6 +1020,27 @@ body::after {
         }
     }
 
+    // .popup-other__name-user
+
+    &__name-user {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #f0f2f4;
+        border-radius: 12px;
+        padding: 20px;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 130%;
+        color: #000;
+        min-height: 96px;
+        margin: 5px 0px 4px 0px;
+        text-align: center;
+        @media (max-width: 650px) {
+            margin: 0px 0px 0px 0px;
+        }
+    }
+
     // .popup-other__body
 
     &__body {
@@ -2747,10 +2768,43 @@ body::after {
     }
 }
 
+.popup-change-role {
+    .popup__content {
+        max-width: 620px;
+    }
+    .popup-invite-descr {
+        padding: 7px 0px 0px 0px;
+        margin: 0px 0px 37px 0px;
+        gap: 48px;
+    }
+}
 .change-user-role {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    display: none;
+    &.checked {
+        display: flex;
+        opacity: 1;
+        pointer-events: auto;
+    }
     .select-bases-showmore__more {
         svg {
             transform: rotate(90deg);
+        }
+    }
+    .select-bases-showmore__checkboxes {
+        display: flex;
+        flex-direction: column;
+        p {
+            border-bottom: 1px solid #e5e5e5;
+            padding: 11px 0px;
+            font-weight: 400;
+            font-size: 15px;
+            line-height: 120%;
         }
     }
     // .change-user-role__title
@@ -2759,5 +2813,52 @@ body::after {
         font-weight: 450;
         font-size: 18px;
         line-height: 144%;
+    }
+}
+
+.popup-edit-user {
+    .popup__content {
+        max-width: 400px;
+        @media (max-width: 650px) {
+            max-width: 100%;
+        }
+    }
+    .popup-invite-descr {
+        margin: -11px 0px 39px 0px;
+        @media (max-width: 650px) {
+            margin: 0px 0px 25px 0px;
+        }
+    }
+    .form {
+        padding: 0px 0px 0px 0px;
+    }
+    .form__inputs {
+        gap: 35px;
+        @media (max-width: 650px) {
+            gap: 25px;
+        }
+    }
+}
+
+.popup-users {
+    .popup__content {
+        max-width: 400px;
+        border-radius: 24px;
+        @media (max-width: 480px) {
+            max-width: 100%;
+            border-radius: 0px;
+        }
+    }
+    .popup-buttons {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+        @media (max-width: 480px) {
+            gap: 16px;
+        }
+    }
+    .popup-other__body {
+        gap: 30px;
+        padding: 0px 0px 73px 0px;
     }
 }
