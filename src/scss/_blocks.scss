@@ -1281,6 +1281,7 @@
             color: #000;
         }
         &.active {
+            pointer-events: none;
             background-color: #fff;
             color: #000;
             @media (max-width: 700px) {

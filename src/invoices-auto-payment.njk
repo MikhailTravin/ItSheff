@@ -19,7 +19,7 @@
                                 <div class="cabinet-menu__column">
                                     <ul>
                                         <li>
-                                            <span class="cabinet-menu__link">
+                                            <a href="./" class="cabinet-menu__link">
                                                 <div class="cabinet-menu__icon">
                                                     <svg class="cabinet-menu-def" aria-hidden="true" width="21"
                                                         height="21">
@@ -33,7 +33,7 @@
                                                 <div class="cabinet-menu__name">
                                                     <span>Личный</span> кабинет
                                                 </div>
-                                            </span>
+                                            </a>
                                         </li>
                                         <li>
                                             <a href="./" class="cabinet-menu__link active">
@@ -151,12 +151,12 @@
                                     <div class="cabinet-tabs__top">
                                         <nav data-tabs-titles class="cabinet-tabs__navigation">
                                             <button type="button" class="cabinet-tabs__titles _tab-active">
-                                                <div class="cabinet-tabs__title">
+                                                <span class="cabinet-tabs__title">
                                                     Счета и документы
                                                     <span class="cabinet-tabs__number">
                                                         3
                                                     </span>
-                                                </div>
+                                                </span>
                                                 <span class="cabinet-tabs__arrow">
                                                     <svg aria-hidden="true" width="8" height="14">
                                                         <use xlink:href="img/sprite.svg#arrow3"></use>
@@ -164,9 +164,9 @@
                                                 </span>
                                             </button>
                                             <button type="button" class="cabinet-tabs__titles">
-                                                <div class="cabinet-tabs__title">
+                                                <span class="cabinet-tabs__title">
                                                     Акт сверки и взаиморасчетов
-                                                </div>
+                                                </span>
                                                 <span class="cabinet-tabs__arrow">
                                                     <svg aria-hidden="true" width="8" height="14">
                                                         <use xlink:href="img/sprite.svg#arrow3"></use>
@@ -174,9 +174,9 @@
                                                 </span>
                                             </button>
                                             <button type="button" class="cabinet-tabs__titles">
-                                                <div class="cabinet-tabs__title">
+                                                <span class="cabinet-tabs__title">
                                                     Ваши реквизиты
-                                                </div>
+                                                </span>
                                                 <span class="cabinet-tabs__arrow">
                                                     <svg aria-hidden="true" width="8" height="14">
                                                         <use xlink:href="img/sprite.svg#arrow3"></use>
@@ -184,9 +184,9 @@
                                                 </span>
                                             </button>
                                             <button type="button" class="cabinet-tabs__titles">
-                                                <div class="cabinet-tabs__title">
+                                                <span class="cabinet-tabs__title">
                                                     Автоплатёж
-                                                </div>
+                                                </span>
                                                 <span class="cabinet-tabs__arrow">
                                                     <svg aria-hidden="true" width="8" height="14">
                                                         <use xlink:href="img/sprite.svg#arrow3"></use>
@@ -1532,9 +1532,9 @@
                                                                     ?
                                                                 </span>
                                                                 <span class="tooltips__dropdown">
-                                                                    <p>
+                                                                    <span>
                                                                         Text text text
-                                                                    </p>
+                                                                    </span>
                                                                 </span>
                                                             </span>
                                                         </label>
@@ -1553,10 +1553,10 @@
                                                         </div>
                                                     </div>
                                                     <div class="form__input">
-                                                        <label for="bin1">
+                                                        <label for="fio1">
                                                             ФИО<span class="placeholder">*</span>
                                                         </label>
-                                                        <input data-required id="bin1" autocomplete="off" type="text"
+                                                        <input data-required id="fio1" autocomplete="off" type="text"
                                                             name="form[]" placeholder="" value="Ранее Введенные Данные"
                                                             class="input">
                                                     </div>
@@ -1705,76 +1705,76 @@
                                                 <div class="form__body">
                                                     <div class="form__inputs">
                                                         <div class="form__input">
-                                                            <label for="strana1">
+                                                            <label for="strana2">
                                                                 Страна<span class="placeholder">*</span>
                                                             </label>
-                                                            <input data-required id="strana1" autocomplete="off"
+                                                            <input data-required id="strana2" autocomplete="off"
                                                                 type="text" name="form[]" placeholder=""
                                                                 value="Казахстан" class="input">
                                                         </div>
                                                         <div class="form__input">
-                                                            <label for="obl1">
+                                                            <label for="obl2">
                                                                 Область<span class="placeholder">*</span>
                                                             </label>
-                                                            <input data-required id="obl1" autocomplete="off"
+                                                            <input data-required id="obl2" autocomplete="off"
                                                                 type="text" name="form[]" placeholder=""
                                                                 value="Карагандинская область" class="input">
                                                         </div>
                                                         <div class="form__input">
-                                                            <label for="rayon1">
+                                                            <label for="rayon2">
                                                                 Район<span class="placeholder">*</span>
                                                             </label>
-                                                            <input data-required id="rayon1" autocomplete="off"
+                                                            <input data-required id="rayon2" autocomplete="off"
                                                                 type="text" name="form[]" placeholder=""
                                                                 value="Казыбек-би" class="input">
                                                         </div>
                                                         <div class="form__input">
-                                                            <label for="gorod1">
+                                                            <label for="gorod2">
                                                                 Город<span class="placeholder">*</span>
                                                             </label>
-                                                            <input data-required id="gorod1" autocomplete="off"
+                                                            <input data-required id="gorod2" autocomplete="off"
                                                                 type="text" name="form[]" placeholder=""
                                                                 value="Караганда" class="input">
                                                         </div>
                                                     </div>
                                                     <div class="form__inputs">
                                                         <div class="form__input">
-                                                            <label for="locality1">
+                                                            <label for="locality2">
                                                                 Населенный пункт
                                                             </label>
-                                                            <input id="locality1" autocomplete="off" type="text"
+                                                            <input id="locality2" autocomplete="off" type="text"
                                                                 name="form[]" placeholder="" value="" class="input">
                                                         </div>
                                                         <div class="form__input">
-                                                            <label for="index1">
+                                                            <label for="index2">
                                                                 Индекс<span class="placeholder">*</span>
                                                             </label>
-                                                            <input data-required id="index1" autocomplete="off"
+                                                            <input data-required id="index2" autocomplete="off"
                                                                 type="text" name="form[]" placeholder="" value="10000"
                                                                 class="input">
                                                         </div>
                                                         <div class="form__input">
-                                                            <label for="ulitsa1">
+                                                            <label for="ulitsa2">
                                                                 Улица<span class="placeholder">*</span>
                                                             </label>
-                                                            <input data-required id="ulitsa1" autocomplete="off"
+                                                            <input data-required id="ulitsa2" autocomplete="off"
                                                                 type="text" name="form[]" placeholder=""
                                                                 value="Название улицы" class="input">
                                                         </div>
                                                         <div class="form__input2">
                                                             <div class="form__input">
-                                                                <label for="dom1">
+                                                                <label for="dom2">
                                                                     Дом<span class="placeholder">*</span>
                                                                 </label>
-                                                                <input data-required id="dom1" autocomplete="off"
+                                                                <input data-required id="dom2" autocomplete="off"
                                                                     type="text" name="form[]" placeholder="" value="42"
                                                                     class="input">
                                                             </div>
                                                             <div class="form__input">
-                                                                <label for="kv1">
+                                                                <label for="kv2">
                                                                     Кв/офис<span class="placeholder">*</span>
                                                                 </label>
-                                                                <input data-required id="kv1" autocomplete="off"
+                                                                <input data-required id="kv2" autocomplete="off"
                                                                     type="text" name="form[]" placeholder="" value="17"
                                                                     class="input">
                                                             </div>
@@ -1802,10 +1802,10 @@
                                             <div class="form">
                                                 <div class="form__inputs">
                                                     <div class="form__input">
-                                                        <label for="fio1">
+                                                        <label for="fio2">
                                                             ФИО директора<span class="placeholder">*</span>
                                                         </label>
-                                                        <input data-required id="fio1" autocomplete="off" type="text"
+                                                        <input data-required id="fio2" autocomplete="off" type="text"
                                                             name="form[]" placeholder="" value="Ранее Введенные Данные"
                                                             class="input">
                                                     </div>
@@ -1853,18 +1853,18 @@
                                             <div class="form">
                                                 <div class="form__inputs">
                                                     <div class="form__input">
-                                                        <label for="bin1">
+                                                        <label for="fio3">
                                                             ФИО<span class="placeholder">*</span>
                                                         </label>
-                                                        <input data-required id="bin1" autocomplete="off" type="text"
+                                                        <input data-required id="fio3" autocomplete="off" type="text"
                                                             name="form[1]" placeholder="" value="Ранее Введенные Данные"
                                                             class="input">
                                                     </div>
                                                     <div class="form__input">
-                                                        <label for="inn2">
+                                                        <label for="inn1">
                                                             ИНН<span class="placeholder">*</span>
                                                         </label>
-                                                        <input data-required id="inn2" autocomplete="off" type="text"
+                                                        <input data-required id="inn1" autocomplete="off" type="text"
                                                             name="form[]" placeholder="" value="1234567789123"
                                                             class="input">
                                                     </div>
@@ -1897,10 +1897,10 @@
                                             <div class="form">
                                                 <div class="form__inputs">
                                                     <div class="form__input">
-                                                        <label for="bin1">
+                                                        <label for="fio4">
                                                             ФИО<span class="placeholder">*</span>
                                                         </label>
-                                                        <input data-required id="bin1" autocomplete="off" type="text"
+                                                        <input data-required id="fio4" autocomplete="off" type="text"
                                                             name="form[1]" placeholder="" value="Ранее Введенные Данные"
                                                             class="input">
                                                     </div>
