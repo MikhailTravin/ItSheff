@@ -2014,7 +2014,7 @@ a {
   -webkit-transform: translate(-50%, 0px);
           transform: translate(-50%, 0px);
 }
-.tooltips__dropdown p {
+.tooltips__dropdown span {
   font-weight: 400;
   font-size: 14px;
   line-height: 114%;
@@ -4181,178 +4181,6 @@ a {
   }
 }
 
-.arrow-prev {
-  position: absolute;
-  top: 50%;
-  left: -35px;
-  -webkit-transform: translate(0px, -50%);
-          transform: translate(0px, -50%);
-  border-radius: 100%;
-  background: #d7dee5;
-  border: 1px solid #e3e3e3;
-  -webkit-box-shadow: 0 4px 23px 0 rgba(0, 0, 0, 0.05);
-          box-shadow: 0 4px 23px 0 rgba(0, 0, 0, 0.05);
-  border-radius: 50%;
-  width: 70px;
-  height: 70px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  cursor: pointer;
-  z-index: 10;
-  -webkit-transition: background-color 0.3s;
-  transition: background-color 0.3s;
-}
-.arrow-prev img {
-  width: 21px;
-  height: auto;
-  -webkit-transform: rotate(-180deg);
-          transform: rotate(-180deg);
-}
-.arrow-prev.arrow-white {
-  background-color: #fff;
-}
-.arrow-prev.arrow-white:hover {
-  background-color: #d7dee5;
-}
-.arrow-prev:hover {
-  background-color: #fff;
-}
-@media (max-width: 1470px) {
-  .arrow-prev {
-    display: none;
-  }
-}
-
-.arrow-next {
-  position: absolute;
-  top: 50%;
-  right: -35px;
-  -webkit-transform: translate(0px, -50%);
-          transform: translate(0px, -50%);
-  border-radius: 100%;
-  background: #d7dee5;
-  border: 1px solid #e3e3e3;
-  -webkit-box-shadow: 0 4px 23px 0 rgba(0, 0, 0, 0.05);
-          box-shadow: 0 4px 23px 0 rgba(0, 0, 0, 0.05);
-  border-radius: 50%;
-  width: 70px;
-  height: 70px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  cursor: pointer;
-  z-index: 10;
-  -webkit-transition: background-color 0.3s;
-  transition: background-color 0.3s;
-}
-.arrow-next img {
-  width: 21px;
-  height: auto;
-}
-.arrow-next:hover {
-  background-color: #fff;
-}
-.arrow-next.arrow-white {
-  background-color: #fff;
-}
-.arrow-next.arrow-white:hover {
-  background-color: #d7dee5;
-}
-@media (max-width: 1470px) {
-  .arrow-next {
-    display: none;
-  }
-}
-
-.pagination {
-  position: absolute;
-  top: auto !important;
-  bottom: 12px !important;
-  left: 50% !important;
-  -webkit-transform: translate(-50%, 0px);
-          transform: translate(-50%, 0px);
-  height: 21px;
-  padding: 5px 12px;
-  z-index: 10;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  width: -webkit-fit-content !important;
-  width: -moz-fit-content !important;
-  width: fit-content !important;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  gap: 8px;
-  border-radius: 40px;
-}
-.pagination::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border-radius: 40px;
-  background: rgba(42, 42, 42, 0.1);
-  backdrop-filter: blur(4px);
-}
-.pagination .swiper-pagination-bullet {
-  position: relative;
-  z-index: 10;
-  -webkit-box-flex: 0;
-      -ms-flex: 0 0 7px;
-          flex: 0 0 7px;
-  border-radius: 50%;
-  height: 7px;
-  background-color: rgba(210, 209, 204, 0.3);
-  margin: 0px !important;
-  opacity: 1 !important;
-  -webkit-transition: background-color 0.3s;
-  transition: background-color 0.3s;
-}
-@media (max-width: 768px) {
-  .pagination .swiper-pagination-bullet {
-    width: 6px;
-    height: 6px;
-    -webkit-box-flex: 0;
-        -ms-flex: 0 0 6px;
-            flex: 0 0 6px;
-  }
-}
-.pagination .swiper-pagination-bullet-active {
-  background-color: var(--white);
-}
-
-.swiper-pagination-lock {
-  display: none;
-}
-
-.swiper-button-lock {
-  display: none;
-}
-
-.swiper-button-disabled {
-  pointer-events: none;
-  opacity: 0.5;
-}
-
 .block-cabinet {
   padding: 24px 0px;
   overflow: hidden;
@@ -6129,6 +5957,7 @@ a {
   color: #000;
 }
 .cabinet-menu__link.active {
+  pointer-events: none;
   background-color: #fff;
   color: #000;
 }
