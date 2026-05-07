@@ -758,6 +758,18 @@
             font-weight: 400;
             color: #000;
         }
+        a {
+            text-decoration: underline;
+            text-decoration-skip-ink: none;
+            color: #f26135;
+            transition: color 0.3s;
+            &:hover {
+                color: #f26135;
+            }
+            &:active {
+                color: #c03b12;
+            }
+        }
         @media (max-width: 750px) {
             font-size: 14px;
             line-height: 114%;
@@ -1024,6 +1036,10 @@
         }
         &.disabled {
             pointer-events: none;
+            svg {
+                stroke: rgba(66, 66, 66, 0.4);
+                color: rgba(66, 66, 66, 0.4);
+            }
         }
         svg {
             fill: none;

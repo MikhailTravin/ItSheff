@@ -1161,10 +1161,9 @@ a {
     position: absolute;
     z-index: 30;
     top: 100%;
-    min-width: 360px;
+    min-width: 260px;
     margin: 5px 0px 0px 0px;
     @media (max-width: 760px) {
-      min-width: 100%;
       width: 100%;
     }
   }
