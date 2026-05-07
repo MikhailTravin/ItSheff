@@ -182,6 +182,13 @@ if (moreButtons) {
 
 //Количество
 function formQuantity() {
+  function getMinValue(quantityElement, currentValue) {
+    if (quantityElement.dataset.quantityMin !== undefined) {
+      return +quantityElement.dataset.quantityMin;
+    }
+    return currentValue;
+  }
+
   function updateButtonsState(quantityElement) {
     const valueElement = quantityElement.querySelector('[data-quantity-value]');
     const plusButton = quantityElement.querySelector('[data-quantity-plus]');
@@ -190,7 +197,7 @@ function formQuantity() {
     if (!valueElement) return;
 
     const value = parseInt(valueElement.value) || 0;
-    const min = quantityElement.dataset.quantityMin ? +quantityElement.dataset.quantityMin : 1;
+    const min = getMinValue(quantityElement, value);
     const max = quantityElement.dataset.quantityMax ? +quantityElement.dataset.quantityMax : null;
 
     if (value <= min) {
@@ -231,13 +238,13 @@ function formQuantity() {
       if (plusBtn) {
         value++;
         if (quantityElement.dataset.quantityMax && +quantityElement.dataset.quantityMax < value) {
-          value = quantityElement.dataset.quantityMax;
+          value = +quantityElement.dataset.quantityMax;
         }
       } else if (minusBtn) {
         value--;
-        const minValue = quantityElement.dataset.quantityMin ? +quantityElement.dataset.quantityMin : 1;
-        if (value < minValue) {
-          value = minValue;
+        const currentMin = getMinValue(quantityElement, value + 1);
+        if (value < currentMin) {
+          value = currentMin;
         }
       }
 
