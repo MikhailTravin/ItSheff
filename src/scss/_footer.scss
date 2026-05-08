@@ -1,7 +1,8 @@
 .footer {
     background: #fff;
     @media (max-width: 700px) {
-        margin-bottom: 48px;
+        //margin-bottom: 48px;
+        display: none;
     }
     .container {
         @media (max-width: 700px) {
