@@ -1911,6 +1911,17 @@ if (stepForm) {
 
 //========================================================================================================================================================
 
+//Маска
+const telephone = document.querySelectorAll('.telephone');
+if (telephone) {
+  Inputmask({
+    "mask": "+7 (999) 999 - 99 - 99",
+    "showMaskOnHover": false,
+  }).mask(telephone);
+}
+
+//========================================================================================================================================================
+
 //Форма
 function formFieldsInit(options = { viewPass: true, autoHeight: false }) {
   document.body.addEventListener("focusin", function (e) {
@@ -2421,7 +2432,7 @@ initFileUploaders();
 const titlesList = document.querySelectorAll('.form-select__titles');
 
 if (titlesList) {
-  function updateSelectedCountry(selectContainer, selectedCountryCode, selectedFlagSrc, selectedCountryName) {
+  function updateSelectedCountry(selectContainer, selectedCountryCode, selectedFlagSrc, selectedCountryName, mask) {
     const phoneInput = selectContainer.querySelector('.form-select__value input');
     let currentPhoneNumber = phoneInput ? phoneInput.value : '';
 
@@ -2443,8 +2454,19 @@ if (titlesList) {
       titlesSpan.textContent = selectedCountryName;
     }
 
-    if (phoneInput && currentPhoneNumber) {
-      phoneInput.value = currentPhoneNumber;
+    if (phoneInput) {
+      if (currentPhoneNumber) {
+        phoneInput.value = currentPhoneNumber;
+      }
+
+      phoneInput.setAttribute('placeholder', mask);
+
+      if (typeof Inputmask !== 'undefined') {
+        Inputmask({
+          "mask": mask, 
+          "showMaskOnHover": false,
+        }).mask(phoneInput);
+      }
     }
   }
 
@@ -2453,11 +2475,13 @@ if (titlesList) {
     const flagImg = label.querySelector('.options__img img');
     const countryNameSpan = label.querySelector('.options__text');
     const countryCode = radioInput.getAttribute('countryCode') || '+7';
+    const mask = radioInput.getAttribute('data-mask') || '(999) 999-99-99';
 
     return {
       code: countryCode,
       flagSrc: flagImg ? flagImg.src : '',
-      countryName: countryNameSpan ? countryNameSpan.textContent : ''
+      countryName: countryNameSpan ? countryNameSpan.textContent : '',
+      mask: mask
     };
   }
 
@@ -2488,7 +2512,13 @@ if (titlesList) {
 
         if (parentSelect) {
           const countryData = getSelectedCountryData(this);
-          updateSelectedCountry(parentSelect, countryData.code, countryData.flagSrc, countryData.countryName);
+          updateSelectedCountry(
+            parentSelect,
+            countryData.code,
+            countryData.flagSrc,
+            countryData.countryName,
+            countryData.mask
+          );
           parentSelect.classList.remove('active');
         }
       }
@@ -2500,7 +2530,13 @@ if (titlesList) {
     const parentSelect = radio.closest('.form-select');
     if (parentSelect) {
       const countryData = getSelectedCountryData(radio);
-      updateSelectedCountry(parentSelect, countryData.code, countryData.flagSrc, countryData.countryName);
+      updateSelectedCountry(
+        parentSelect,
+        countryData.code,
+        countryData.flagSrc,
+        countryData.countryName,
+        countryData.mask
+      );
     }
   });
 }
