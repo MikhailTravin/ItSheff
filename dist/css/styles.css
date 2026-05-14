@@ -12130,12 +12130,11 @@ a {
     -webkit-box-flex: 1;
         -ms-flex: 1;
             flex: 1;
-    height: calc(100vh - 56px);
+    height: calc(100dvh - 56px);
     background: #fff;
     -webkit-transition: left 0.3s;
     transition: left 0.3s;
-    overflow-y: auto;
-    overflow-x: hidden;
+    overflow: auto;
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
