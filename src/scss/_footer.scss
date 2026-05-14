@@ -443,6 +443,12 @@
             font-size: 20px;
             line-height: 120%;
         }
+        a {
+            transition: color 0.3s;
+            &:hover {
+                color: #000;
+            }
+        }
         &.footer-link {
             transition: color 0.3s;
             &:hover {
@@ -502,12 +508,12 @@
         }
         &:hover {
             svg {
-                fill: #d9481c;
+                fill: #424242;
             }
         }
         &:active {
             svg {
-                fill: #c03b12;
+                fill: #1a1a1a;
             }
         }
     }

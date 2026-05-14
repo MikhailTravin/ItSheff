@@ -60,7 +60,7 @@ body::after {
     flex: 1 1 auto;
     width: 100%;
     display: flex;
-    //justify-content: center;
+    justify-content: center;
     align-items: center;
 }
 .popup__content {
@@ -205,7 +205,9 @@ body::after {
             min-height: 36px;
         }
     }
-
+    .link {
+        text-align: center;
+    }
     // .popup-buttons__total
 
     &__total {
@@ -838,10 +840,43 @@ body::after {
         line-height: 120%;
         color: #4f5962;
         margin-top: -25px;
+        text-align: center;
         @media (max-width: 650px) {
             font-size: 16px;
             line-height: 125%;
             margin-top: 0px;
+        }
+    }
+}
+.popup-account-registered2 {
+    .popup-add-base {
+        .popup-buttons {
+            .btn {
+                .btn__icon {
+                    width: 18px;
+                    height: 18px;
+                    flex: 0 0 18px;
+                    svg {
+                        width: 18px;
+                        height: auto;
+                        @media (max-width: 650px) {
+                            width: 14px;
+                        }
+                    }
+                    &.btn-icon {
+                        width: 24px;
+                        height: 24px;
+                        flex: 0 0 24px;
+                        svg {
+                            width: 24px;
+                            height: auto;
+                            @media (max-width: 650px) {
+                                width: 17px;
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }

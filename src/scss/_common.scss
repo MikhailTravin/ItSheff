@@ -87,7 +87,8 @@ a {
   color: var(--theme-color-accent);
   transition:
     background-color 0.3s,
-    color 0.3s;
+    color 0.3s,
+    border 0.3s;
   span {
     margin-top: -1px;
     display: block;
@@ -121,10 +122,19 @@ a {
     gap: 8px;
     padding: 5px 20px 5px 16px;
     .btn__icon {
-      margin: 1px 0px 0px 0px;
+      margin-top: -1px;
     }
     svg {
       fill: #fff;
+      color: #fff;
+      stroke: none;
+    }
+    &:hover {
+      svg {
+        fill: #fff;
+        color: #fff;
+        stroke: none;
+      }
     }
   }
   &.btn-plus {
@@ -140,7 +150,8 @@ a {
     }
   }
   &:hover {
-    background-color: #f26135;
+    border: 2px solid transparent;
+    background-color: #d9481c;
     color: #fff;
     svg {
       stroke: #fff;
@@ -156,7 +167,9 @@ a {
     }
   }
   &:active {
+    border: 2px solid transparent;
     background-color: #c03b12;
+    color: #fff;
   }
   &.disabled {
     pointer-events: none;
@@ -490,6 +503,7 @@ a {
     .btn {
       gap: 5px;
       span {
+        margin: 0px 0px 0px 0px;
         @media (max-width: 700px) {
           display: none;
         }
@@ -498,16 +512,18 @@ a {
         font-size: 14px;
         line-height: 143%;
         color: #f26135;
-        background: transparent;
+        background-color: transparent;
         min-height: 100%;
         padding: 0px 0px 0px 0px;
         border: none;
         transition: color 0.3s;
         &:hover {
           color: #d9481c;
+          background-color: transparent;
         }
         &:active {
           color: #c03b12;
+          background-color: transparent;
         }
       }
     }
@@ -540,6 +556,10 @@ a {
     &:hover {
       color: #000;
       background-color: #e5e5e5;
+    }
+    &:active {
+      color: #000;
+      background-color: #d9d9d9;
     }
     // .pagging__item_nav
 

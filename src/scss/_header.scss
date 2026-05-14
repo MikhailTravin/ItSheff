@@ -191,11 +191,10 @@
         left: -100%;
         width: 494px;
         flex: 1;
-        height: calc(100vh - 56px);
+        height: calc(100dvh - 56px);
         background: #fff;
         transition: left 0.3s;
-        overflow-y: auto;
-        overflow-x: hidden;
+        overflow: auto;
         -ms-overflow-style: none;
         scrollbar-width: none;
         &::-webkit-scrollbar {
@@ -297,11 +296,17 @@
         font-weight: 600;
         font-size: 20px;
         line-height: 120%;
+        transition: color 0.3s;
         span {
             font-weight: 400;
             font-size: 16px;
             line-height: 125%;
             color: #5c5c5c;
+        }
+        a {
+            &:hover {
+                color: #000;
+            }
         }
     }
 
@@ -425,8 +430,16 @@
             justify-content: space-between;
             padding: 10px 30px 10px 30px;
             transition: background-color 0.3s;
-            &:hover {
-                background-color: #f8f8f8;
+            @media (any-hover: hover) {
+                &:hover {
+                    background-color: #f8f8f8;
+                }
+            }
+
+            @media (any-hover: none) {
+                &:active {
+                    background-color: #f8f8f8;
+                }
             }
         }
         @media (max-width: 600px) {
@@ -520,7 +533,7 @@
         font-weight: 600;
         font-size: 13px;
         line-height: 100%;
-        color: #fff ;
+        color: #fff;
         height: 17px;
         min-width: 29px;
         @media (max-width: 1300px) {
@@ -985,11 +998,11 @@
         top: calc(50% - 1.3px);
     }
     .menu-open & {
-        width: 24px;
-        height: 24px;
+        width: 20px;
+        height: 20px;
         background-repeat: no-repeat;
         background-size: 100% 100%;
-        background-image: url("../img/icons/close1.svg");
+        background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHZpZXdCb3g9IjAgMCAyMCAyMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cGF0aCBkPSJNMSAxOUwxMCAxME0xMCAxMEwxOSAxTTEwIDEwTDEgMU0xMCAxMEwxOSAxOSIgc3Ryb2tlPSIjNDI0MjQyIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgLz4KPC9zdmc+");
         &::before,
         &::after,
         span {
@@ -1253,8 +1266,8 @@
         }
         svg {
             fill: none;
-            stroke: #424242;
-            color: #424242;
+            stroke: #8c8c8c;
+            color: #8c8c8c;
             transition:
                 stroke 0.3s,
                 color 0.3s;
