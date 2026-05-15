@@ -6,9 +6,18 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+		<!-- Основной цвет темы (влияет на строку состояния в некоторых версиях) -->
 		<meta name="theme-color" content="#ffffff" />
-		<meta name="android-status-bar-color" content="#ffffff" />
-		<meta name="android-navigation-bar-color" content="#ffffff" />
+
+		<!-- Для Chrome 39+ (только строка состояния) -->
+		<meta name="msapplication-navbutton-color" content="#ffffff" />
+
+		<!-- Для Chrome на Android (начиная с версии 63+) -->
+		<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff" />
+		<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#ffffff" />
+
+		<!-- Для навигационной панели (Chrome 94+) -->
+		<meta name="theme-color" content="#ffffff" />
 
 		<link rel="stylesheet" href="css/styles.css" />
 
@@ -1637,6 +1646,10 @@
 								<div class="upload-base-files__error">
 									<span>Ошибка:</span>
 									Не больше 4 файлов в одном сообщении
+								</div>
+								<div class="upload-base-files__error">
+									<span>Ошибка:</span>
+									Вы не добавили базу
 								</div>
 							</div>
 						</div>
