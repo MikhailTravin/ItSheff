@@ -2527,6 +2527,16 @@ a {
   stroke: #d9d9d9;
   color: #d9d9d9;
 }
+.timer.active .timer__input {
+  border: 1px solid #c0c0c0;
+}
+.timer.active .timer__icon {
+  background-color: #f8f8f8;
+}
+.timer.active .timer__icon svg {
+  stroke: #000;
+  color: #000;
+}
 .timer.active .timer__content {
   opacity: 1;
   pointer-events: auto;
@@ -2567,10 +2577,15 @@ a {
       -ms-flex-align: center;
           align-items: center;
   padding: 4px 4px 4px 18px;
+  -webkit-transition: border 0.3s;
+  transition: border 0.3s;
 }
 .timer__input input {
   width: 100%;
   opacity: 0;
+}
+.timer__input:hover {
+  border: 1px solid #c0c0c0;
 }
 .timer__input:hover .timer__icon {
   background-color: #f8f8f8;
@@ -2578,6 +2593,9 @@ a {
 .timer__input:hover .timer__icon svg {
   stroke: #000;
   color: #000;
+}
+.timer__input:active {
+  border: 1px solid #c0c0c0;
 }
 .timer__input:active .timer__icon {
   background-color: #f0f2f4;
@@ -2922,6 +2940,16 @@ a {
     padding: 0px 0px 0px 12px;
   }
 }
+.calendar.active .calendar__input {
+  border: 1px solid #c0c0c0;
+}
+.calendar.active .calendar__icon {
+  background-color: #f8f8f8;
+}
+.calendar.active .calendar__icon svg {
+  stroke: #000;
+  color: #000;
+}
 .calendar.active .calendar__content {
   opacity: 1;
   pointer-events: auto;
@@ -2966,6 +2994,8 @@ a {
       -ms-flex-align: center;
           align-items: center;
   padding: 4px 4px 4px 18px;
+  -webkit-transition: border 0.3s;
+  transition: border 0.3s;
 }
 .calendar__input input {
   text-align: left;
@@ -2973,12 +3003,18 @@ a {
   width: 100%;
   opacity: 0;
 }
+.calendar__input:hover {
+  border: 1px solid #c0c0c0;
+}
 .calendar__input:hover .calendar__icon {
   background-color: #f8f8f8;
 }
 .calendar__input:hover .calendar__icon svg {
   stroke: #000;
   color: #000;
+}
+.calendar__input:active {
+  border: 1px solid #c0c0c0;
 }
 .calendar__input:active .calendar__icon {
   background-color: #f0f2f4;

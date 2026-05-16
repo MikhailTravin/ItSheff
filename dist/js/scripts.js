@@ -2803,54 +2803,123 @@ let formValidate = {
 };
 
 function formSubmit() {
+  document.addEventListener('click', function (e) {
+    const targetElement = e.target.closest('.btn-next');
+    if (!targetElement) return;
+
+    const form = targetElement.closest('form');
+    if (!form) return;
+
+    if (form.classList.contains('popup-upload-base')) {
+      e.preventDefault();
+      e.stopPropagation();
+      e.stopImmediatePropagation();
+
+      const fileInput = form.querySelector('input[type="file"][data-required]');
+      const uploadContainer = form.querySelector('.upload-base-files');
+
+      if (uploadContainer) {
+        const resultsContainer = uploadContainer.querySelector('.upload-base-files__results');
+        const resultItems = resultsContainer ? resultsContainer.querySelectorAll('.upload-base-files__result') : [];
+        const hasFiles = resultItems.length > 0;
+
+        const allErrors = uploadContainer.querySelectorAll('.upload-base-files__error');
+        allErrors.forEach(error => {
+          error.style.display = 'none';
+        });
+
+        if (!hasFiles) {
+          const emptyError = uploadContainer.querySelector('.not-added-database');
+          if (emptyError) {
+            emptyError.style.display = 'block';
+            emptyError.style.cssText = 'display: block !important';
+          } else {
+            const anyError = uploadContainer.querySelector('.upload-base-files__error');
+            if (anyError) {
+              anyError.style.display = 'block';
+            }
+          }
+
+          if (fileInput) {
+            fileInput.classList.remove('_form-success');
+            fileInput.classList.add('_form-error');
+          }
+
+          const dropZone = uploadContainer.querySelector('.upload-base-file1');
+          if (dropZone) {
+            dropZone.classList.remove('_form-success');
+            dropZone.classList.add('_form-error');
+          }
+
+          const uploadBaseFilesItem = uploadContainer.querySelector('.upload-base-files__item');
+          if (uploadBaseFilesItem) {
+            uploadBaseFilesItem.classList.remove('_form-success');
+            uploadBaseFilesItem.classList.add('_form-error');
+          }
+
+          return false;
+        } else {
+          if (fileInput) {
+            fileInput.classList.remove('_form-error');
+            fileInput.classList.add('_form-success');
+          }
+
+          const dropZone = uploadContainer.querySelector('.upload-base-file1');
+          if (dropZone) {
+            dropZone.classList.remove('_form-error');
+          }
+
+          const uploadBaseFilesItem = uploadContainer.querySelector('.upload-base-files__item');
+          if (uploadBaseFilesItem) {
+            uploadBaseFilesItem.classList.remove('_form-error');
+          }
+
+          const popupElement = form.closest('.popup');
+          if (popupElement && typeof modules_flsModules !== 'undefined' && modules_flsModules.popup) {
+            modules_flsModules.popup.nextStep(popupElement);
+          } else {
+            const currentStep = form.closest('.popup__step');
+            if (currentStep) {
+              currentStep.style.display = 'none';
+              const nextStep = currentStep.parentElement.querySelector('.popup__step:not(.active)');
+              if (nextStep) {
+                nextStep.style.display = 'block';
+                nextStep.classList.add('active');
+              }
+            }
+          }
+        }
+      }
+
+      return false;
+    }
+  }, true);
+
   const forms = document.forms;
   if (forms.length) {
     for (const form of forms) {
       form.addEventListener('submit', function (e) {
-        const form = e.target;
-        const submitButton = form.querySelector('button[type="submit"]:focus') || form.querySelector('button[type="submit"].btn-next');
-
-        console.log('=== SUBMIT EVENT ===');
-        console.log('Submit button:', submitButton);
-        if (submitButton) {
-          console.log('Has data-btn:', submitButton.hasAttribute('data-btn'));
-          console.log('Button type:', submitButton.type);
-          console.log('Button classList:', submitButton.classList.toString());
-          console.log('Has class btn-next:', submitButton.classList.contains('btn-next'));
-          console.log('Has class btn-details-next:', submitButton.classList.contains('btn-details-next'));
-        }
+        const formTarget = e.target;
+        const submitButton = formTarget.querySelector('button[type="submit"]:focus') || formTarget.querySelector('button[type="submit"].btn-next');
 
         if (submitButton && submitButton.hasAttribute('data-btn') && submitButton.type === 'submit') {
-          console.log('=== DATA-BTN WITH SUBMIT DETECTED ===');
           e.preventDefault();
           e.stopPropagation();
 
           const popupElement = form.closest('.popup');
-          console.log('Popup element:', popupElement);
 
-          console.log('Starting form validation...');
           const error = !form.hasAttribute('data-no-validate') ? formValidate.getErrors(form) : 0;
-          console.log('Validation errors count:', error);
 
           if (error === 0) {
-            console.log('Validation SUCCESS - closing popup');
             if (popupElement && typeof modules_flsModules !== 'undefined' && modules_flsModules.popup) {
-              console.log('Closing popup and showing btn by data attribute');
               modules_flsModules.popup.close(popupElement);
               setTimeout(() => {
-                console.log('Calling showBtnByDataAttribute');
                 modules_flsModules.popup.showBtnByDataAttribute(popupElement);
               }, 100);
-            } else {
-              console.log('ERROR: popupElement or modules_flsModules not found');
-              console.log('popupElement:', popupElement);
-              console.log('modules_flsModules:', typeof modules_flsModules);
             }
           } else {
-            console.log('Validation FAILED - errors found:', error);
             if (form.querySelector('._form-error')) {
               const firstError = form.querySelector('._form-error');
-              console.log('First error element:', firstError);
               firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
               firstError.focus();
             }
@@ -2859,48 +2928,75 @@ function formSubmit() {
         }
 
         if (submitButton && submitButton.classList.contains('btn-next') && submitButton.closest('.popup')) {
-          console.log('=== BTN-NEXT DETECTED IN SUBMIT ===');
           e.preventDefault();
           e.stopPropagation();
 
           const popupElement = form.closest('.popup');
           const currentStep = submitButton.closest('.popup-details-tabs__step') || submitButton.closest('.popup__step');
 
-          console.log('Popup element:', popupElement);
-          console.log('Current step:', currentStep);
-
           const fileInput = form.querySelector('input[type="file"][data-required]');
+
           if (fileInput) {
             const uploadContainer = fileInput.closest('.upload-base-files');
+
             if (uploadContainer) {
               const resultsContainer = uploadContainer.querySelector('.upload-base-files__results');
-              const hasFiles = resultsContainer && resultsContainer.querySelectorAll('.upload-base-files__result').length > 0;
+              const resultItems = resultsContainer ? resultsContainer.querySelectorAll('.upload-base-files__result') : [];
+              const hasFiles = resultItems.length > 0;
 
               if (!hasFiles) {
-                console.log('File validation failed - no files');
                 const allErrors = uploadContainer.querySelectorAll('.upload-base-files__error');
+
                 allErrors.forEach(error => {
-                  if (error) error.style.display = 'none';
+                  if (error) {
+                    error.style.display = 'none';
+                  }
                 });
 
                 const emptyError = uploadContainer.querySelector('.not-added-database');
-                if (emptyError) emptyError.style.display = 'block';
+
+                if (emptyError) {
+                  emptyError.style.display = 'block';
+                  emptyError.style.cssText = 'display: block !important';
+                } else {
+                  const anyError = uploadContainer.querySelector('.upload-base-files__error');
+                  if (anyError) {
+                    anyError.style.display = 'block';
+                  }
+                }
 
                 if (fileInput) {
                   fileInput.classList.remove('_form-success');
                   fileInput.classList.add('_form-error');
                 }
+
                 const dropZone = uploadContainer.querySelector('.upload-base-file1');
                 if (dropZone) {
                   dropZone.classList.remove('_form-success');
                   dropZone.classList.add('_form-error');
                 }
+
                 const uploadBaseFilesItem = uploadContainer.querySelector('.upload-base-files__item');
                 if (uploadBaseFilesItem) {
                   uploadBaseFilesItem.classList.remove('_form-success');
                   uploadBaseFilesItem.classList.add('_form-error');
                 }
+
                 return;
+              } else {
+                const allErrors = uploadContainer.querySelectorAll('.upload-base-files__error');
+                allErrors.forEach(error => {
+                  if (error) error.style.display = 'none';
+                });
+
+                fileInput.classList.remove('_form-error');
+                fileInput.classList.add('_form-success');
+
+                const dropZone = uploadContainer.querySelector('.upload-base-file1');
+                if (dropZone) dropZone.classList.remove('_form-error');
+
+                const uploadBaseFilesItem = uploadContainer.querySelector('.upload-base-files__item');
+                if (uploadBaseFilesItem) uploadBaseFilesItem.classList.remove('_form-error');
               }
             }
           }
@@ -2918,15 +3014,10 @@ function formSubmit() {
             validationTarget = form;
           }
 
-          console.log('Validation target:', validationTarget);
-
           const error = !form.hasAttribute('data-no-validate') ? formValidate.getErrors(validationTarget) : 0;
-          console.log('Validation errors count:', error);
 
           if (error === 0) {
-            console.log('Validation success');
             if (submitButton.hasAttribute('data-btn')) {
-              console.log('Has data-btn attribute, closing popup');
               if (popupElement && typeof modules_flsModules !== 'undefined' && modules_flsModules.popup) {
                 modules_flsModules.popup.close(popupElement);
                 setTimeout(() => {
@@ -2934,16 +3025,13 @@ function formSubmit() {
                 }, 100);
               }
             } else {
-              console.log('No data-btn, going to next step');
               if (popupElement && typeof modules_flsModules !== 'undefined' && modules_flsModules.popup) {
                 modules_flsModules.popup.nextStep(popupElement);
               }
             }
           } else {
-            console.log('Validation failed');
             if (validationTarget.querySelector('._form-error')) {
               const firstError = validationTarget.querySelector('._form-error');
-              console.log('First error:', firstError);
               firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
               firstError.focus();
             }
@@ -2952,9 +3040,9 @@ function formSubmit() {
           return;
         }
 
-        console.log('=== NORMAL FORM SUBMIT ===');
         formSubmitAction(form, e);
       });
+
       form.addEventListener('reset', function (e) {
         const form = e.target;
         formValidate.formClean(form);
@@ -2964,48 +3052,29 @@ function formSubmit() {
 
   document.addEventListener('click', function (e) {
     const targetElement = e.target.closest('.btn-details-next, .btn-next');
-    console.log('=== CLICK EVENT ===');
-    console.log('Target element:', targetElement);
 
     if (!targetElement) return;
 
-    console.log('Target classes:', targetElement.classList.toString());
-    console.log('Has class btn-next:', targetElement.classList.contains('btn-next'));
-    console.log('Has class btn-details-next:', targetElement.classList.contains('btn-details-next'));
-    console.log('Has data-btn:', targetElement.hasAttribute('data-btn'));
-    console.log('Button type:', targetElement.type);
-
     if (targetElement.closest('.popup') && (targetElement.classList.contains('btn-next') || targetElement.classList.contains('btn-details-next'))) {
-      console.log('=== BUTTON CLICKED INSIDE POPUP ===');
 
-      // ДОБАВЛЯЕМ ПРОВЕРКУ ДЛЯ DATA-BTN НА КЛИК
       if (targetElement.hasAttribute('data-btn')) {
-        console.log('=== DATA-BTN CLICKED ===');
         e.preventDefault();
         e.stopPropagation();
 
         const popupElement = targetElement.closest('.popup');
         const form = targetElement.closest('form');
 
-        console.log('Popup element:', popupElement);
-        console.log('Form:', form);
-
         if (form) {
-          console.log('Validating form...');
           const error = !form.hasAttribute('data-no-validate') ? formValidate.getErrors(form) : 0;
-          console.log('Validation errors:', error);
 
           if (error === 0) {
-            console.log('Validation SUCCESS');
             if (popupElement && typeof modules_flsModules !== 'undefined' && modules_flsModules.popup) {
               modules_flsModules.popup.close(popupElement);
               setTimeout(() => {
-                console.log('Showing btn-sent');
                 modules_flsModules.popup.showBtnByDataAttribute(popupElement);
               }, 100);
             }
           } else {
-            console.log('Validation FAILED');
             if (form.querySelector('._form-error')) {
               const firstError = form.querySelector('._form-error');
               firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -3013,7 +3082,6 @@ function formSubmit() {
             }
           }
         } else {
-          console.log('No form found, just closing popup');
           if (popupElement && typeof modules_flsModules !== 'undefined' && modules_flsModules.popup) {
             modules_flsModules.popup.close(popupElement);
             setTimeout(() => {
@@ -3027,16 +3095,11 @@ function formSubmit() {
       const form = targetElement.closest('form');
       const popupElement = targetElement.closest('.popup');
 
-      console.log('Form:', form);
-      console.log('Popup element:', popupElement);
-
       if (!form) {
-        console.log('No form found');
         e.preventDefault();
         e.stopPropagation();
 
         if (targetElement.hasAttribute('data-btn')) {
-          console.log('Has data-btn, closing popup');
           if (popupElement && typeof modules_flsModules !== 'undefined' && modules_flsModules.popup) {
             modules_flsModules.popup.close(popupElement);
             setTimeout(() => {
@@ -3044,7 +3107,6 @@ function formSubmit() {
             }, 100);
           }
         } else {
-          console.log('No data-btn, going to next step');
           if (popupElement && typeof modules_flsModules !== 'undefined' && modules_flsModules.popup) {
             modules_flsModules.popup.nextStep(popupElement);
           }
@@ -3053,28 +3115,22 @@ function formSubmit() {
       }
 
       if (targetElement.type === 'submit') {
-        console.log('Button type is submit, returning');
         return;
       }
 
       const currentStep = targetElement.closest('.popup-details-tabs__step');
-      console.log('Current step:', currentStep);
 
       if (currentStep) {
-        console.log('Processing step navigation');
         e.preventDefault();
         e.stopPropagation();
 
         const steps = Array.from(form.querySelectorAll('.popup-details-tabs__step'));
         const currentIndex = steps.indexOf(currentStep);
-        console.log('Steps:', steps.length, 'Current index:', currentIndex);
 
         if (currentIndex < steps.length - 1) {
           const error = !form.hasAttribute('data-no-validate') ? formValidate.getErrors(currentStep) : 0;
-          console.log('Step validation errors:', error);
 
           if (error === 0) {
-            console.log('Step validation success, moving to next step');
             currentStep.classList.remove('active');
             currentStep.style.display = 'none';
 
@@ -3094,7 +3150,6 @@ function formSubmit() {
               });
             }
           } else {
-            console.log('Step validation failed');
             if (currentStep.querySelector('._form-error')) {
               const firstError = currentStep.querySelector('._form-error');
               firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -3103,25 +3158,19 @@ function formSubmit() {
           }
         }
       } else {
-        console.log('Processing form validation');
         const error = !form.hasAttribute('data-no-validate') ? formValidate.getErrors(form) : 0;
-        console.log('Form validation errors:', error);
 
         if (error === 0) {
-          console.log('Form validation success');
           const popupAttribute = targetElement.dataset.popup;
           if (popupAttribute) {
-            console.log('Opening popup:', popupAttribute);
             if (typeof modules_flsModules !== 'undefined' && modules_flsModules.popup) {
               modules_flsModules.popup.open(popupAttribute);
             }
             formValidate.formClean(form);
           } else {
-            console.log('Submitting form');
             form.requestSubmit();
           }
         } else {
-          console.log('Form validation failed');
           if (form.querySelector('._form-error')) {
             const firstError = form.querySelector('._form-error');
             firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -3293,6 +3342,7 @@ function formSubmit() {
     formValidate.formClean(form);
   }
 }
+
 formSubmit();
 
 //========================================================================================================================================================
