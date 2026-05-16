@@ -6,19 +6,6 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-		<!-- Основной цвет темы (влияет на строку состояния в некоторых версиях) -->
-		<meta name="theme-color" content="#ffffff" />
-
-		<!-- Для Chrome 39+ (только строка состояния) -->
-		<meta name="msapplication-navbutton-color" content="#ffffff" />
-
-		<!-- Для Chrome на Android (начиная с версии 63+) -->
-		<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff" />
-		<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#ffffff" />
-
-		<!-- Для навигационной панели (Chrome 94+) -->
-		<meta name="theme-color" content="#ffffff" />
-
 		<link rel="stylesheet" href="css/styles.css" />
 
 		<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
@@ -884,16 +871,6 @@
 																			</div>
 																		</div>
 																	</div>
-																	<button type="button" class="block-applications-more">
-																		<span class="span1">Развернуть
-																			заявку</span>
-																		<span class="span2">Свернуть
-																			заявку</span>
-																		<svg aria-hidden="true" width="6" height="10">
-																			<use xlink:href="img/sprite.svg#arrow1">
-																			</use>
-																		</svg>
-																	</button>
 																</div>
 															</div>
 														</div>
@@ -1389,16 +1366,22 @@
 																						</div>
 																						<div class="form-textarea__buttons">
 																							<div class="form-textarea-files">
-																								<div class="form-textarea-files__file audio-input">
-																									<input type="file">
-																									<div class="form-textarea-files__icon">
-																										<svg aria-hidden="true" width="12" height="19">
-																											<use xlink:href="img/sprite.svg#mic-voice">
-																											</use>
-																										</svg>
+																								<div class="form-textarea-files__file audio-record">
+																									<button type="button" class="record-button">
+																										<div class="form-textarea-files__icon">
+																											<svg aria-hidden="true" width="12" height="19">
+																												<use xlink:href="img/sprite.svg#mic-voice">
+																												</use>
+																											</svg>
+																										</div>
+																										<span class="desc">Аудиосообщения</span>
+																										<span class="mob">Аудио</span>
+																									</button>
+																									<div class="recording-indicator" style="display: none;">
+																										<span class="recording-dot"></span>
+																										<span class="recording-time">00:00</span>
+																										<button type="button" class="stop-recording">Остановить</button>
 																									</div>
-																									<span class="desc">Аудиосообщения</span>
-																									<span class="mob">Аудио</span>
 																								</div>
 																								<div class="form-textarea-files__file file-input">
 																									<input type="file">
@@ -1690,16 +1673,22 @@
 															</div>
 															<div class="form-textarea__buttons">
 																<div class="form-textarea-files">
-																	<div class="form-textarea-files__file audio-input">
-																		<input type="file">
-																		<div class="form-textarea-files__icon">
-																			<svg aria-hidden="true" width="12" height="19">
-																				<use xlink:href="img/sprite.svg#mic-voice">
-																				</use>
-																			</svg>
+																	<div class="form-textarea-files__file audio-record">
+																		<button type="button" class="record-button">
+																			<div class="form-textarea-files__icon">
+																				<svg aria-hidden="true" width="12" height="19">
+																					<use xlink:href="img/sprite.svg#mic-voice">
+																					</use>
+																				</svg>
+																			</div>
+																			<span class="desc">Аудиосообщения</span>
+																			<span class="mob">Аудио</span>
+																		</button>
+																		<div class="recording-indicator" style="display: none;">
+																			<span class="recording-dot"></span>
+																			<span class="recording-time">00:00</span>
+																			<button type="button" class="stop-recording">Остановить</button>
 																		</div>
-																		<span class="desc">Аудиосообщения</span>
-																		<span class="mob">Аудио</span>
 																	</div>
 																	<div class="form-textarea-files__file file-input">
 																		<input type="file">
@@ -1730,16 +1719,22 @@
 															</div>
 															<div class="form-textarea__buttons">
 																<div class="form-textarea-files">
-																	<div class="form-textarea-files__file audio-input">
-																		<input type="file">
-																		<div class="form-textarea-files__icon">
-																			<svg aria-hidden="true" width="12" height="19">
-																				<use xlink:href="img/sprite.svg#mic-voice">
-																				</use>
-																			</svg>
+																	<div class="form-textarea-files__file audio-record">
+																		<button type="button" class="record-button">
+																			<div class="form-textarea-files__icon">
+																				<svg aria-hidden="true" width="12" height="19">
+																					<use xlink:href="img/sprite.svg#mic-voice">
+																					</use>
+																				</svg>
+																			</div>
+																			<span class="desc">Аудиосообщения</span>
+																			<span class="mob">Аудио</span>
+																		</button>
+																		<div class="recording-indicator" style="display: none;">
+																			<span class="recording-dot"></span>
+																			<span class="recording-time">00:00</span>
+																			<button type="button" class="stop-recording">Остановить</button>
 																		</div>
-																		<span class="desc">Аудиосообщения</span>
-																		<span class="mob">Аудио</span>
 																	</div>
 																	<div class="form-textarea-files__file file-input">
 																		<input type="file">
@@ -1770,16 +1765,22 @@
 															</div>
 															<div class="form-textarea__buttons">
 																<div class="form-textarea-files">
-																	<div class="form-textarea-files__file audio-input">
-																		<input type="file">
-																		<div class="form-textarea-files__icon">
-																			<svg aria-hidden="true" width="12" height="19">
-																				<use xlink:href="img/sprite.svg#mic-voice">
-																				</use>
-																			</svg>
+																	<div class="form-textarea-files__file audio-record">
+																		<button type="button" class="record-button">
+																			<div class="form-textarea-files__icon">
+																				<svg aria-hidden="true" width="12" height="19">
+																					<use xlink:href="img/sprite.svg#mic-voice">
+																					</use>
+																				</svg>
+																			</div>
+																			<span class="desc">Аудиосообщения</span>
+																			<span class="mob">Аудио</span>
+																		</button>
+																		<div class="recording-indicator" style="display: none;">
+																			<span class="recording-dot"></span>
+																			<span class="recording-time">00:00</span>
+																			<button type="button" class="stop-recording">Остановить</button>
 																		</div>
-																		<span class="desc">Аудиосообщения</span>
-																		<span class="mob">Аудио</span>
 																	</div>
 																	<div class="form-textarea-files__file file-input">
 																		<input type="file">
@@ -2263,16 +2264,21 @@
 									</div>
 									<div class="form-textarea__buttons">
 										<div class="form-textarea-files">
-											<div class="form-textarea-files__file audio-input">
-												<input type="file">
-												<div class="form-textarea-files__icon">
-													<svg aria-hidden="true" width="12" height="19">
-														<use xlink:href="img/sprite.svg#mic-voice">
-														</use>
-													</svg>
+											<div class="form-textarea-files__file audio-record">
+												<button type="button" class="record-button">
+													<div class="form-textarea-files__icon">
+														<svg aria-hidden="true" width="12" height="19">
+															<use xlink:href="img/sprite.svg#mic-voice"></use>
+														</svg>
+													</div>
+													<span class="desc">Аудиосообщения</span>
+													<span class="mob">Аудио</span>
+												</button>
+												<div class="recording-indicator" style="display: none;">
+													<span class="recording-dot"></span>
+													<span class="recording-time">00:00</span>
+													<button type="button" class="stop-recording">Остановить</button>
 												</div>
-												<span class="desc">Аудиосообщения</span>
-												<span class="mob">Аудио</span>
 											</div>
 											<div class="form-textarea-files__file file-input">
 												<input type="file">
@@ -2303,16 +2309,22 @@
 									</div>
 									<div class="form-textarea__buttons">
 										<div class="form-textarea-files">
-											<div class="form-textarea-files__file audio-input">
-												<input type="file">
-												<div class="form-textarea-files__icon">
-													<svg aria-hidden="true" width="12" height="19">
-														<use xlink:href="img/sprite.svg#mic-voice">
-														</use>
-													</svg>
+											<div class="form-textarea-files__file audio-record">
+												<button type="button" class="record-button">
+													<div class="form-textarea-files__icon">
+														<svg aria-hidden="true" width="12" height="19">
+															<use xlink:href="img/sprite.svg#mic-voice">
+															</use>
+														</svg>
+													</div>
+													<span class="desc">Аудиосообщения</span>
+													<span class="mob">Аудио</span>
+												</button>
+												<div class="recording-indicator" style="display: none;">
+													<span class="recording-dot"></span>
+													<span class="recording-time">00:00</span>
+													<button type="button" class="stop-recording">Остановить</button>
 												</div>
-												<span class="desc">Аудиосообщения</span>
-												<span class="mob">Аудио</span>
 											</div>
 											<div class="form-textarea-files__file file-input">
 												<input type="file">
@@ -2343,16 +2355,22 @@
 									</div>
 									<div class="form-textarea__buttons">
 										<div class="form-textarea-files">
-											<div class="form-textarea-files__file audio-input">
-												<input type="file">
-												<div class="form-textarea-files__icon">
-													<svg aria-hidden="true" width="12" height="19">
-														<use xlink:href="img/sprite.svg#mic-voice">
-														</use>
-													</svg>
+											<div class="form-textarea-files__file audio-record">
+												<button type="button" class="record-button">
+													<div class="form-textarea-files__icon">
+														<svg aria-hidden="true" width="12" height="19">
+															<use xlink:href="img/sprite.svg#mic-voice">
+															</use>
+														</svg>
+													</div>
+													<span class="desc">Аудиосообщения</span>
+													<span class="mob">Аудио</span>
+												</button>
+												<div class="recording-indicator" style="display: none;">
+													<span class="recording-dot"></span>
+													<span class="recording-time">00:00</span>
+													<button type="button" class="stop-recording">Остановить</button>
 												</div>
-												<span class="desc">Аудиосообщения</span>
-												<span class="mob">Аудио</span>
 											</div>
 											<div class="form-textarea-files__file file-input">
 												<input type="file">

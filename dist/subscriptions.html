@@ -6,19 +6,6 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-		<!-- Основной цвет темы (влияет на строку состояния в некоторых версиях) -->
-		<meta name="theme-color" content="#ffffff" />
-
-		<!-- Для Chrome 39+ (только строка состояния) -->
-		<meta name="msapplication-navbutton-color" content="#ffffff" />
-
-		<!-- Для Chrome на Android (начиная с версии 63+) -->
-		<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff" />
-		<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#ffffff" />
-
-		<!-- Для навигационной панели (Chrome 94+) -->
-		<meta name="theme-color" content="#ffffff" />
-
 		<link rel="stylesheet" href="css/styles.css" />
 
 		<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
@@ -3536,15 +3523,12 @@
 										</button>
 									</div>
 								</div>
-								<div class="calendar calendar-one">
+								<div class="calendar calendar-one calendar-input">
 									<div class="calendar__title">
 										Дата активации
 									</div>
 									<div class="calendar__input">
-										<input readonly autocomplete="off" type="text" class="input-calendar" data-start name="form[]" placeholder="">
-										<div class="calendar__value">
-											15 <span>/</span> 08 <span>/</span> 2025
-										</div>
+										<input autocomplete="off" type="text" class="input-calendar" data-start name="form[]" placeholder="00 / 00 / 0000">
 										<div class="calendar__icon">
 											<svg aria-hidden="true" width="18" height="20">
 												<use xlink:href="img/sprite.svg#calendar">
@@ -4351,14 +4335,19 @@
 										</div>
 										<div class="form__input">
 											<label for="password1">
-												Пароль к базе данных<span class="placeholder">*</span>
+												<span class="desc">Пароль к базе данных</span>
+												<span class="mob">Пароль к БД</span>
+												<span class="placeholder">*</span>
 												<a href="./" class="link forgot-password">Забыли пароль?</a>
 											</label>
-											<div class="form__input-pass">
-												<input data-required id="password1" autocomplete="off" type="password" name="form[]" placeholder="" value="" class="input">
+											<div class="form__input-pass input">
+												<input data-required id="password1" data-error="Reason for the error" autocomplete="off" type="password" name="form[]" placeholder="" value="">
 												<button type="button" class="form__viewpass">
-													<svg aria-hidden="true" width="20" height="20">
+													<svg aria-hidden="true" width="20" height="20" class="icon1">
 														<use xlink:href="img/sprite.svg#eye1"></use>
+													</svg>
+													<svg aria-hidden="true" width="20" height="20" class="icon2">
+														<use xlink:href="img/sprite.svg#eye2"></use>
 													</svg>
 												</button>
 											</div>
