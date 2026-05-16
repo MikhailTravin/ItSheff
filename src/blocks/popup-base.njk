@@ -89,6 +89,10 @@
                             <span>Ошибка:</span>
                             Не больше 4 файлов в одном сообщении
                         </div>
+                        <div class="upload-base-files__error">
+                            <span>Ошибка:</span>
+                            Вы не добавили базу
+                        </div>
                     </div>
                 </div>
             </div>
@@ -487,15 +491,20 @@
                                 </div>
                                 <div class="form__input">
                                     <label for="password1">
-                                        Пароль к базе данных<span class="placeholder">*</span>
+                                        <span class="desc">Пароль к базе данных</span>
+                                        <span class="mob">Пароль к БД</span>
+                                        <span class="placeholder">*</span>
                                         <a href="./" class="link forgot-password">Забыли пароль?</a>
                                     </label>
-                                    <div class="form__input-pass">
-                                        <input data-required id="password1" autocomplete="off" type="password"
-                                            name="form[]" placeholder="" value="" class="input">
+                                    <div class="form__input-pass input">
+                                        <input data-required id="password1" data-error="Reason for the error"
+                                            autocomplete="off" type="password" name="form[]" placeholder="" value="">
                                         <button type="button" class="form__viewpass">
-                                            <svg aria-hidden="true" width="20" height="20">
+                                            <svg aria-hidden="true" width="20" height="20" class="icon1">
                                                 <use xlink:href="img/sprite.svg#eye1"></use>
+                                            </svg>
+                                            <svg aria-hidden="true" width="20" height="20" class="icon2">
+                                                <use xlink:href="img/sprite.svg#eye2"></use>
                                             </svg>
                                         </button>
                                     </div>

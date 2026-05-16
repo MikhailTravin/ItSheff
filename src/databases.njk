@@ -733,7 +733,6 @@
                 <div id="btn-sent-canceled2" class="btn-sent">
                     <span>Удаление БД отменено</span>
                 </div>
-
                 <div id="btn-sent1" class="btn-sent">
                     <span>Установлено автообновление</span>
                 </div>
@@ -1580,12 +1579,16 @@
                                             Пароль базы данных<span class="placeholder">*</span>
                                             <a href="./" class="link forgot-password">Забыли пароль?</a>
                                         </label>
-                                        <div class="form__input-pass">
-                                            <input data-required id="password3" autocomplete="off" type="password"
-                                                name="form[]" placeholder="" value="" class="input">
+                                        <div class="form__input-pass input">
+                                            <input data-required id="password3" data-error="Reason for the error"
+                                                autocomplete="off" type="password" name="form[]" placeholder=""
+                                                value="">
                                             <button type="button" class="form__viewpass">
-                                                <svg aria-hidden="true" width="20" height="20">
+                                                <svg aria-hidden="true" width="20" height="20" class="icon1">
                                                     <use xlink:href="img/sprite.svg#eye1"></use>
+                                                </svg>
+                                                <svg aria-hidden="true" width="20" height="20" class="icon2">
+                                                    <use xlink:href="img/sprite.svg#eye2"></use>
                                                 </svg>
                                             </button>
                                         </div>
@@ -1744,16 +1747,13 @@
                         </div>
                         <div class="popup-start-update">
                             <div class="popup-start-update__body">
-                                <div class="calendar calendar-one">
+                                <div class="calendar calendar-one calendar-input">
                                     <div class="calendar__title">
                                         Дата обновления
                                     </div>
                                     <div class="calendar__input">
-                                        <input readonly autocomplete="off" type="text" class="input-calendar" data-start
-                                            name="form[]" placeholder="">
-                                        <div class="calendar__value">
-                                            15 <span>/</span> 08 <span>/</span> 2025
-                                        </div>
+                                        <input autocomplete="off" type="text" class="input-calendar" data-start
+                                            name="form[]" placeholder="00 / 00 / 0000">
                                         <div class="calendar__icon">
                                             <svg aria-hidden="true" width="18" height="20">
                                                 <use xlink:href="img/sprite.svg#calendar">
@@ -1997,16 +1997,13 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="timer">
+                                <div class="timer timer-input">
                                     <div class="timer__title">
                                         Время обновления
                                     </div>
                                     <div class="timer__input">
-                                        <input readonly autocomplete="off" type="text" class="input-timer" name="form[]"
-                                            placeholder="">
-                                        <div class="timer__value">
-                                            00 <span>:</span> 00
-                                        </div>
+                                        <input autocomplete="off" type="text" class="input-timer" name="form[]"
+                                            placeholder="00 : 00">
                                         <div class="timer__icon">
                                             <svg aria-hidden="true" width="18" height="18">
                                                 <use xlink:href="img/sprite.svg#time">
@@ -2363,16 +2360,13 @@
                                 </div>
                             </div>
                             <div class="popup-start-update__body">
-                                <div class="calendar calendar-one">
+                                <div class="calendar calendar-one calendar-input">
                                     <div class="calendar__title">
                                         Дата обновления
                                     </div>
                                     <div class="calendar__input">
-                                        <input readonly autocomplete="off" type="text" class="input-calendar" data-start
-                                            name="form[]" placeholder="">
-                                        <div class="calendar__value">
-                                            15 <span>/</span> 08 <span>/</span> 2025
-                                        </div>
+                                        <input autocomplete="off" type="text" class="input-calendar" data-start
+                                            name="form[]" placeholder="00 / 00 / 0000">
                                         <div class="calendar__icon">
                                             <svg aria-hidden="true" width="18" height="20">
                                                 <use xlink:href="img/sprite.svg#calendar">
@@ -2616,16 +2610,13 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="timer">
+                                <div class="timer timer-input">
                                     <div class="timer__title">
                                         Время обновления
                                     </div>
                                     <div class="timer__input">
-                                        <input readonly autocomplete="off" type="text" class="input-timer" name="form[]"
-                                            placeholder="">
-                                        <div class="timer__value">
-                                            00 <span>:</span> 00
-                                        </div>
+                                        <input autocomplete="off" type="text" class="input-timer" name="form[]"
+                                            placeholder="00 : 00">
                                         <div class="timer__icon">
                                             <svg aria-hidden="true" width="18" height="18">
                                                 <use xlink:href="img/sprite.svg#time">
@@ -2978,15 +2969,20 @@
                                     </div>
                                     <div class="form__input">
                                         <label for="password2">
-                                            Пароль к базе данных<span class="placeholder">*</span>
+                                            <span class="desc">Пароль к базе данных</span>
+                                            <span class="mob">Пароль к БД</span><span class="placeholder">*</span>
                                             <a href="./" class="link forgot-password">Забыли пароль?</a>
                                         </label>
-                                        <div class="form__input-pass">
-                                            <input data-required id="password2" autocomplete="off" type="password"
-                                                name="form[]" placeholder="" value="" class="input">
+                                        <div class="form__input-pass input">
+                                            <input data-required id="password2" data-error="Reason for the error"
+                                                autocomplete="off" type="password" name="form[]" placeholder=""
+                                                value="">
                                             <button type="button" class="form__viewpass">
-                                                <svg aria-hidden="true" width="20" height="20">
+                                                <svg aria-hidden="true" width="20" height="20" class="icon1">
                                                     <use xlink:href="img/sprite.svg#eye1"></use>
+                                                </svg>
+                                                <svg aria-hidden="true" width="20" height="20" class="icon2">
+                                                    <use xlink:href="img/sprite.svg#eye2"></use>
                                                 </svg>
                                             </button>
                                         </div>
@@ -3064,16 +3060,13 @@
                         </div>
                         <div class="popup-start-update">
                             <div class="popup-start-update__body">
-                                <div class="calendar calendar-one">
+                                <div class="calendar calendar-one calendar-input">
                                     <div class="calendar__title">
                                         Дата удаления
                                     </div>
                                     <div class="calendar__input">
-                                        <input readonly autocomplete="off" type="text" class="input-calendar" data-start
-                                            name="form[]" placeholder="">
-                                        <div class="calendar__value">
-                                            15 <span>/</span> 08 <span>/</span> 2025
-                                        </div>
+                                        <input autocomplete="off" type="text" class="input-calendar" data-start
+                                            name="form[]" placeholder="00 / 00 / 0000">
                                         <div class="calendar__icon">
                                             <svg aria-hidden="true" width="18" height="20">
                                                 <use xlink:href="img/sprite.svg#calendar">
@@ -3317,16 +3310,13 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="timer">
+                                <div class="timer timer-input">
                                     <div class="timer__title">
                                         Время удаления
                                     </div>
                                     <div class="timer__input">
-                                        <input readonly autocomplete="off" type="text" class="input-timer" name="form[]"
-                                            placeholder="">
-                                        <div class="timer__value">
-                                            00 <span>:</span> 00
-                                        </div>
+                                        <input autocomplete="off" type="text" class="input-timer" name="form[]"
+                                            placeholder="00 : 00">
                                         <div class="timer__icon">
                                             <svg aria-hidden="true" width="18" height="18">
                                                 <use xlink:href="img/sprite.svg#time">
@@ -3591,16 +3581,13 @@
                             </div>
                             <div class="popup-start-update popup-download-base">
                                 <div class="popup-start-update__body">
-                                    <div class="calendar calendar-one">
+                                    <div class="calendar calendar-one calendar-input">
                                         <div class="calendar__title">
                                             Дата скачивания БД
                                         </div>
                                         <div class="calendar__input">
-                                            <input readonly autocomplete="off" type="text" class="input-calendar"
-                                                data-start name="form[]" placeholder="">
-                                            <div class="calendar__value">
-                                                15 <span>/</span> 08 <span>/</span> 2025
-                                            </div>
+                                            <input autocomplete="off" type="text" class="input-calendar" data-start
+                                                name="form[]" placeholder="00 / 00 / 0000">
                                             <div class="calendar__icon">
                                                 <svg aria-hidden="true" width="18" height="20">
                                                     <use xlink:href="img/sprite.svg#calendar">
@@ -3844,16 +3831,13 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="timer">
+                                    <div class="timer timer-input">
                                         <div class="timer__title">
                                             Время скачивания БД
                                         </div>
                                         <div class="timer__input">
-                                            <input readonly autocomplete="off" type="text" class="input-timer"
-                                                name="form[]" placeholder="">
-                                            <div class="timer__value">
-                                                00 <span>:</span> 00
-                                            </div>
+                                            <input autocomplete="off" type="text" class="input-timer" name="form[]"
+                                                placeholder="00 : 00">
                                             <div class="timer__icon">
                                                 <svg aria-hidden="true" width="18" height="18">
                                                     <use xlink:href="img/sprite.svg#time">
