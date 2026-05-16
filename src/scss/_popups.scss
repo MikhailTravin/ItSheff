@@ -80,17 +80,6 @@ body::after {
         max-width: 520px;
     }
 
-    &.popup-content-creat {
-        &.hidden {
-            .add-base-creat {
-                display: none;
-            }
-            .add-base-created {
-                display: flex;
-            }
-        }
-    }
-
     @media (max-width: 650px) {
         border-radius: 0px;
         max-width: 100%;
@@ -100,7 +89,16 @@ body::after {
         visibility: visible;
     }
 }
-
+.popup-content-creat {
+    &.hidden {
+        .add-base-creat {
+            display: none;
+        }
+        .add-base-created {
+            display: flex;
+        }
+    }
+}
 .popup_show .popup__content {
     visibility: visible;
     transform: scale(1);

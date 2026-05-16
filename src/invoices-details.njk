@@ -1544,469 +1544,535 @@
                 </div>
             </div>
 
+            <div class="btn-sents">
+                <div id="btn-sent1" class="btn-sent">
+                    <span>Реквизиты изменены и проверяются</span>
+                </div>
+            </div>
+
         </main>
         {% include 'blocks/footer.njk' %}
     </div>
     <div id="edit-details" aria-hidden="false" class="popup popup-edit-details">
         <div class="popup__wrapper">
             <div class="popup__content">
-                <div data-tabs class="popup-details-tabs">
-                    <div class="popup-top">
-                        <div class="popup-top__titles">
-                            <div class="popup-top__title">
-                                Сменить реквизиты
+                <div class="popup-edit-details">
+                    <div data-tabs class="popup-details-tabs">
+                        <div class="popup-top">
+                            <div class="popup-top__titles">
+                                <div class="popup-top__title">
+                                    Перейти на платный тариф
+                                </div>
+                                <p>
+                                    Субъект
+                                </p>
                             </div>
-                            <p>
-                                Субъект
-                            </p>
-                        </div>
-                        <div data-close class="popup-top__close">
-                            <svg aria-hidden="true" width="22" height="22">
-                                <use xlink:href="img/sprite.svg#close"></use>
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="popup-center">
-                        <div class="popup-details-tabs__contents">
-                            <div class="popup-details-pagination">
-                                <div class="popup-details-pagination__title active">
-                                    <span>Субъект</span>
-                                </div>
-                                <div class="popup-details-pagination__title">
-                                    <span class="desc">Юр.адрес</span>
-                                    <span class="mob">Юридеч.
-                                        адрес</span>
-                                </div>
-                                <div class="popup-details-pagination__title">
-                                    <span class="desc">Факт.адрес</span>
-                                    <span class="mob">Фактичес. адрес</span>
-                                </div>
-                                <div class="popup-details-pagination__title">
-                                    <span class="desc">Директор и рекв.</span>
-                                    <span class="mob">Директор и рекв.</span>
-                                </div>
+                            <div data-close class="popup-top__close">
+                                <svg aria-hidden="true" width="22" height="22">
+                                    <use xlink:href="img/sprite.svg#close"></use>
+                                </svg>
                             </div>
-                            <nav data-tabs-titles class="popup-details-tabs__navigation">
-                                <button type="button" class="popup-details-tabs__title _tab-active">Юрлицо</button>
-                                <button type="button" class="popup-details-tabs__title details-other">Физлицо</button>
-                                <button type="button" class="popup-details-tabs__title details-other">ИП</button>
-                            </nav>
-                            <div data-tabs-body class="popup-details-tabs__content">
-                                <div class="popup-details-tabs__body">
-                                    <form action="#" class="popup-details-tabs__steps">
-                                        <div class="popup-details-tabs__step step1 active">
-                                            <div class="form">
-                                                <div class="form__inputs">
-                                                    <div class="form__input">
-                                                        <label for="bin1">
-                                                            БИН<span class="placeholder">*</span>
-                                                            <span class="tooltips">
-                                                                <span class="tooltips-button">
-                                                                    ?
-                                                                </span>
-                                                                <span class="tooltips__dropdown">
-                                                                    <span>
-                                                                        Text text text
+                        </div>
+                        <div class="popup-center">
+                            <div class="popup-details-tabs__contents">
+                                <div class="popup-details-pagination">
+                                    <div class="popup-details-pagination__title active">
+                                        <span>Субъект</span>
+                                    </div>
+                                    <div class="popup-details-pagination__title">
+                                        <span class="desc">Юр.адрес</span>
+                                        <span class="mob">Юридеч.
+                                            адрес</span>
+                                    </div>
+                                    <div class="popup-details-pagination__title">
+                                        <span class="desc">Факт.адрес</span>
+                                        <span class="mob">Фактичес. адрес</span>
+                                    </div>
+                                    <div class="popup-details-pagination__title">
+                                        <span class="desc">Директор и рекв.</span>
+                                        <span class="mob">Директор и рекв.</span>
+                                    </div>
+                                </div>
+                                <nav data-tabs-titles class="popup-details-tabs__navigation">
+                                    <button type="button" class="popup-details-tabs__title _tab-active">Юрлицо</button>
+                                    <button type="button"
+                                        class="popup-details-tabs__title details-other">Физлицо</button>
+                                    <button type="button" class="popup-details-tabs__title details-other">ИП</button>
+                                </nav>
+                                <div data-tabs-body class="popup-details-tabs__content">
+                                    <div class="popup-details-tabs__body">
+                                        <form action="#" class="popup-details-tabs__steps">
+                                            <div class="popup-details-tabs__step step1 active">
+                                                <div class="form">
+                                                    <div class="form__inputs">
+                                                        <div class="form__input">
+                                                            <label for="bin1">
+                                                                БИН<span class="placeholder">*</span>
+                                                                <span class="tooltips">
+                                                                    <span class="tooltips-button">
+                                                                        ?
+                                                                    </span>
+                                                                    <span class="tooltips__dropdown">
+                                                                        <span>
+                                                                            Text text text
+                                                                        </span>
                                                                     </span>
                                                                 </span>
-                                                            </span>
-                                                        </label>
-                                                        <div class="input-btn">
-                                                            <input data-required id="bin1" autocomplete="off"
-                                                                type="text" name="form[]" placeholder=""
-                                                                value="1234567789123" class="input">
-                                                            <div class="input-btn-check">
-                                                                <button type="button" class="btn btn-bg btn-check">
-                                                                    <span>Проверить</span>
-                                                                </button>
-                                                                <div class="input-btn-check__line">
-                                                                    <span></span>
+                                                            </label>
+                                                            <div class="input-btn">
+                                                                <input data-required data-error="Reason for the error"
+                                                                    oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                                                                    onkeypress="return /[0-9]/.test(event.key)"
+                                                                    id="bin1" autocomplete="off" type="text"
+                                                                    name="form[]" placeholder="" value="1234567789123"
+                                                                    class="input">
+                                                                <div class="input-btn-check">
+                                                                    <button type="button" class="btn btn-bg btn-check">
+                                                                        <span>Проверить</span>
+                                                                    </button>
+                                                                    <div class="input-btn-check__line">
+                                                                        <span></span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form__input">
+                                                            <label for="fio1">
+                                                                ФИО<span class="placeholder">*</span>
+                                                            </label>
+                                                            <input data-required data-error="Reason for the error"
+                                                                id="fio1" autocomplete="off" type="text" name="form[]"
+                                                                placeholder="" value="Ранее Введенные Данные"
+                                                                class="input">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="popup-warning">
+                                                    <div class="popup-warning__item">
+                                                        <div class="popup-warning__title">
+                                                            Внимание!
+                                                        </div>
+                                                        <div class="popup-warning__text">
+                                                            <p>
+                                                                Просьба указывать корректные реквизиты компании, для
+                                                                выписки
+                                                                бухгалтерских документов!
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="popup-buttons">
+                                                    <button type="button" class="btn btn-bg btn-details-next btn-next">
+                                                        <span>Далее</span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class="popup-details-tabs__step step2">
+                                                <div class="form">
+                                                    <div class="form__title">
+                                                        Юридический адрес
+                                                    </div>
+                                                    <div class="form__body">
+                                                        <div class="form__inputs">
+                                                            <div class="form__input">
+                                                                <label for="strana1">
+                                                                    Страна<span class="placeholder">*</span>
+                                                                </label>
+                                                                <input data-required data-error="Reason for the error"
+                                                                    id="strana1" autocomplete="off" type="text"
+                                                                    name="form[]" placeholder="" value="Казахстан"
+                                                                    class="input">
+                                                            </div>
+                                                            <div class="form__input">
+                                                                <label for="obl1">
+                                                                    Область<span class="placeholder">*</span>
+                                                                </label>
+                                                                <input data-required data-error="Reason for the error"
+                                                                    id="obl1" autocomplete="off" type="text"
+                                                                    name="form[]" placeholder=""
+                                                                    value="Карагандинская область" class="input">
+                                                            </div>
+                                                            <div class="form__input">
+                                                                <label for="rayon1">
+                                                                    Район<span class="placeholder">*</span>
+                                                                </label>
+                                                                <input data-required data-error="Reason for the error"
+                                                                    id="rayon1" autocomplete="off" type="text"
+                                                                    name="form[]" placeholder="" value="Казыбек-би"
+                                                                    class="input">
+                                                            </div>
+                                                            <div class="form__input">
+                                                                <label for="gorod1">
+                                                                    Город<span class="placeholder">*</span>
+                                                                </label>
+                                                                <input data-required data-error="Reason for the error"
+                                                                    id="gorod1" autocomplete="off" type="text"
+                                                                    name="form[]" placeholder="" value="Караганда"
+                                                                    class="input">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form__inputs">
+                                                            <div class="form__input">
+                                                                <label for="locality1">
+                                                                    Населенный пункт
+                                                                </label>
+                                                                <input id="locality1" autocomplete="off" type="text"
+                                                                    name="form[]" placeholder="" value="" class="input">
+                                                            </div>
+                                                            <div class="form__input">
+                                                                <label for="index1">
+                                                                    Индекс<span class="placeholder">*</span>
+                                                                </label>
+                                                                <input data-required data-error="Reason for the error"
+                                                                    oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                                                                    onkeypress="return /[0-9]/.test(event.key)"
+                                                                    id="index1" autocomplete="off" type="text"
+                                                                    name="form[]" placeholder="" value="10000"
+                                                                    class="input">
+                                                            </div>
+                                                            <div class="form__input">
+                                                                <label for="ulitsa1">
+                                                                    Улица<span class="placeholder">*</span>
+                                                                </label>
+                                                                <input data-required data-error="Reason for the error"
+                                                                    id="ulitsa1" autocomplete="off" type="text"
+                                                                    name="form[]" placeholder="" value="Название улицы"
+                                                                    class="input">
+                                                            </div>
+                                                            <div class="form__input2">
+                                                                <div class="form__input">
+                                                                    <label for="dom1">
+                                                                        Дом<span class="placeholder">*</span>
+                                                                    </label>
+                                                                    <input data-required
+                                                                        data-error="Reason for the error"
+                                                                        oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                                                                        onkeypress="return /[0-9]/.test(event.key)"
+                                                                        id="dom1" autocomplete="off" type="text"
+                                                                        name="form[]" placeholder="" value="42"
+                                                                        class="input">
+                                                                </div>
+                                                                <div class="form__input">
+                                                                    <label for="kv1">
+                                                                        Кв/офис<span class="placeholder">*</span>
+                                                                    </label>
+                                                                    <input data-required
+                                                                        data-error="Reason for the error"
+                                                                        oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                                                                        onkeypress="return /[0-9]/.test(event.key)"
+                                                                        id="kv1" autocomplete="off" type="text"
+                                                                        name="form[]" placeholder="" value="17"
+                                                                        class="input">
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="form__input">
-                                                        <label for="fio1">
-                                                            ФИО<span class="placeholder">*</span>
-                                                        </label>
-                                                        <input data-required id="fio1" autocomplete="off" type="text"
-                                                            name="form[]" placeholder="" value="Ранее Введенные Данные"
-                                                            class="input">
+                                                </div>
+                                                <div class="popup-buttons">
+                                                    <button type="button" class="btn btn-mob btn-details-prev">
+                                                        <span>Назад</span>
+                                                    </button>
+                                                    <div class="popup-buttons__bottom">
+                                                        <button type="button"
+                                                            class="popup-buttons__arrow btn-details-prev">
+                                                            <svg aria-hidden="true" width="19" height="17">
+                                                                <use xlink:href="img/sprite.svg#arrow4"></use>
+                                                            </svg>
+                                                        </button>
+                                                        <button type="button" class="btn btn-bg btn-details-next">
+                                                            <span>Далее</span>
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="popup-warning">
-                                                <div class="popup-warning__item">
-                                                    <div class="popup-warning__title">
-                                                        Внимание!
+                                            <div class="popup-details-tabs__step step3">
+                                                <div class="popup-details-question">
+                                                    <div class="popup-details-question__title">
+                                                        Фактический адрес совпадает с юридическим?
                                                     </div>
-                                                    <div class="popup-warning__text">
-                                                        <p>
-                                                            Просьба указывать корректные реквизиты компании, для выписки
-                                                            бухгалтерских документов!
-                                                        </p>
+                                                    <div class="popup-details-question__buttons">
+                                                        <button type="button"
+                                                            class="popup-details-question__btn btn-match active">
+                                                            <span>Совпадает</span>
+                                                        </button>
+                                                        <button type="button"
+                                                            class="popup-details-question__btn btn-nomatch">
+                                                            <span>Нет</span>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="form">
+                                                    <div class="form__title">
+                                                        Фактический адрес
+                                                    </div>
+                                                    <div class="form__body">
+                                                        <div class="form__inputs">
+                                                            <div class="form__input">
+                                                                <label for="strana2">
+                                                                    Страна<span class="placeholder">*</span>
+                                                                </label>
+                                                                <input data-required data-error="Reason for the error"
+                                                                    id="strana2" autocomplete="off" type="text"
+                                                                    name="form[]" placeholder="" value="Казахстан"
+                                                                    class="input">
+                                                            </div>
+                                                            <div class="form__input">
+                                                                <label for="obl2">
+                                                                    Область<span class="placeholder">*</span>
+                                                                </label>
+                                                                <input data-required data-error="Reason for the error"
+                                                                    id="obl2" autocomplete="off" type="text"
+                                                                    name="form[]" placeholder=""
+                                                                    value="Карагандинская область" class="input">
+                                                            </div>
+                                                            <div class="form__input">
+                                                                <label for="rayon2">
+                                                                    Район<span class="placeholder">*</span>
+                                                                </label>
+                                                                <input data-required data-error="Reason for the error"
+                                                                    id="rayon2" autocomplete="off" type="text"
+                                                                    name="form[]" placeholder="" value="Казыбек-би"
+                                                                    class="input">
+                                                            </div>
+                                                            <div class="form__input">
+                                                                <label for="gorod2">
+                                                                    Город<span class="placeholder">*</span>
+                                                                </label>
+                                                                <input data-required data-error="Reason for the error"
+                                                                    id="gorod2" autocomplete="off" type="text"
+                                                                    name="form[]" placeholder="" value="Караганда"
+                                                                    class="input">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form__inputs">
+                                                            <div class="form__input">
+                                                                <label for="locality2">
+                                                                    Населенный пункт
+                                                                </label>
+                                                                <input id="locality2" data-error="Reason for the error"
+                                                                    autocomplete="off" type="text" name="form[]"
+                                                                    placeholder="" value="" class="input">
+                                                            </div>
+                                                            <div class="form__input">
+                                                                <label for="index2">
+                                                                    Индекс<span class="placeholder">*</span>
+                                                                </label>
+                                                                <input data-required data-error="Reason for the error"
+                                                                    oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                                                                    onkeypress="return /[0-9]/.test(event.key)"
+                                                                    id="index2" autocomplete="off" type="text"
+                                                                    name="form[]" placeholder="" value="10000"
+                                                                    class="input">
+                                                            </div>
+                                                            <div class="form__input">
+                                                                <label for="ulitsa2">
+                                                                    Улица<span class="placeholder">*</span>
+                                                                </label>
+                                                                <input data-required data-error="Reason for the error"
+                                                                    id="ulitsa2" autocomplete="off" type="text"
+                                                                    name="form[]" placeholder="" value="Название улицы"
+                                                                    class="input">
+                                                            </div>
+                                                            <div class="form__input2">
+                                                                <div class="form__input">
+                                                                    <label for="dom2">
+                                                                        Дом<span class="placeholder">*</span>
+                                                                    </label>
+                                                                    <input data-required
+                                                                        data-error="Reason for the error"
+                                                                        oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                                                                        onkeypress="return /[0-9]/.test(event.key)"
+                                                                        id="dom2" autocomplete="off" type="text"
+                                                                        name="form[]" placeholder="" value="42"
+                                                                        class="input">
+                                                                </div>
+                                                                <div class="form__input">
+                                                                    <label for="kv2">
+                                                                        Кв/офис<span class="placeholder">*</span>
+                                                                    </label>
+                                                                    <input data-required
+                                                                        data-error="Reason for the error"
+                                                                        oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                                                                        onkeypress="return /[0-9]/.test(event.key)"
+                                                                        id="kv2" autocomplete="off" type="text"
+                                                                        name="form[]" placeholder="" value="17"
+                                                                        class="input">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="popup-buttons">
+                                                    <button type="button" class="btn btn-mob btn-details-prev">
+                                                        <span>Назад</span>
+                                                    </button>
+                                                    <div class="popup-buttons__bottom">
+                                                        <button type="button"
+                                                            class="popup-buttons__arrow btn-details-prev">
+                                                            <svg aria-hidden="true" width="19" height="17">
+                                                                <use xlink:href="img/sprite.svg#arrow4"></use>
+                                                            </svg>
+                                                        </button>
+                                                        <button type="button" class="btn btn-bg btn-details-next">
+                                                            <span>Далее</span>
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="popup-buttons">
-                                                <button type="button" class="btn btn-bg btn-details-next">
-                                                    <span>Далее</span>
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <div class="popup-details-tabs__step step2">
-                                            <div class="form">
-                                                <div class="form__title">
-                                                    Юридический адрес
-                                                </div>
-                                                <div class="form__body">
+                                            <div class="popup-details-tabs__step step4">
+                                                <div class="form">
                                                     <div class="form__inputs">
                                                         <div class="form__input">
-                                                            <label for="strana1">
-                                                                Страна<span class="placeholder">*</span>
+                                                            <label for="fio2">
+                                                                ФИО директора<span class="placeholder">*</span>
                                                             </label>
-                                                            <input data-required id="strana1" autocomplete="off"
-                                                                type="text" name="form[]" placeholder=""
-                                                                value="Казахстан" class="input">
+                                                            <input data-required data-error="Reason for the error"
+                                                                id="fio2" autocomplete="off" type="text" name="form[]"
+                                                                placeholder="" value="Ранее Введенные Данные"
+                                                                class="input">
                                                         </div>
-                                                        <div class="form__input">
-                                                            <label for="obl1">
-                                                                Область<span class="placeholder">*</span>
-                                                            </label>
-                                                            <input data-required id="obl1" autocomplete="off"
-                                                                type="text" name="form[]" placeholder=""
-                                                                value="Карагандинская область" class="input">
-                                                        </div>
-                                                        <div class="form__input">
-                                                            <label for="rayon1">
-                                                                Район<span class="placeholder">*</span>
-                                                            </label>
-                                                            <input data-required id="rayon1" autocomplete="off"
-                                                                type="text" name="form[]" placeholder=""
-                                                                value="Казыбек-би" class="input">
-                                                        </div>
-                                                        <div class="form__input">
-                                                            <label for="gorod1">
-                                                                Город<span class="placeholder">*</span>
-                                                            </label>
-                                                            <input data-required id="gorod1" autocomplete="off"
-                                                                type="text" name="form[]" placeholder=""
-                                                                value="Караганда" class="input">
+                                                        <div class="form__inputs2">
+                                                            <div class="form__input">
+                                                                <label for="bin2">
+                                                                    БИН<span class="placeholder">*</span>
+                                                                </label>
+                                                                <input data-required data-error="Reason for the error"
+                                                                    oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                                                                    onkeypress="return /[0-9]/.test(event.key)"
+                                                                    id="bin2" autocomplete="off" type="text"
+                                                                    name="form[]" placeholder="" value="123456789012"
+                                                                    class="input">
+                                                            </div>
+                                                            <div class="form__input">
+                                                                <label for="iik1">
+                                                                    ИИК<span class="placeholder">*</span>
+                                                                </label>
+                                                                <input data-required data-error="Reason for the error"
+                                                                    id="iik1" autocomplete="off" type="text"
+                                                                    name="form[]" placeholder=""
+                                                                    value="KZ120000000000000000" class="input">
+                                                            </div>
                                                         </div>
                                                     </div>
+                                                </div>
+                                                <div class="popup-buttons">
+                                                    <button type="button" class="btn btn-mob btn-details-prev">
+                                                        <span>Назад</span>
+                                                    </button>
+                                                    <div class="popup-buttons__bottom">
+                                                        <button type="button"
+                                                            class="popup-buttons__arrow btn-details-prev">
+                                                            <svg aria-hidden="true" width="19" height="17">
+                                                                <use xlink:href="img/sprite.svg#arrow4"></use>
+                                                            </svg>
+                                                        </button>
+                                                        <button data-btn="#btn-sent1" type="submit"
+                                                            class="btn btn-bg btn-details-next btn-next">
+                                                            <span>Сохранить</span>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="popup-details-tabs__body">
+                                        <form action="#" class="popup-details-tabs__steps">
+                                            <div class="popup-details-tabs__step step-active">
+                                                <div class="form">
                                                     <div class="form__inputs">
                                                         <div class="form__input">
-                                                            <label for="locality1">
-                                                                Населенный пункт
+                                                            <label for="fio3">
+                                                                ФИО<span class="placeholder">*</span>
                                                             </label>
-                                                            <input id="locality1" autocomplete="off" type="text"
-                                                                name="form[]" placeholder="" value="" class="input">
-                                                        </div>
-                                                        <div class="form__input">
-                                                            <label for="index1">
-                                                                Индекс<span class="placeholder">*</span>
-                                                            </label>
-                                                            <input data-required id="index1" autocomplete="off"
-                                                                type="text" name="form[]" placeholder="" value="10000"
+                                                            <input data-required data-error="Reason for the error"
+                                                                id="fio3" autocomplete="off" type="text" name="form[1]"
+                                                                placeholder="" value="Ранее Введенные Данные"
                                                                 class="input">
                                                         </div>
                                                         <div class="form__input">
-                                                            <label for="ulitsa1">
-                                                                Улица<span class="placeholder">*</span>
+                                                            <label for="inn1">
+                                                                ИНН<span class="placeholder">*</span>
                                                             </label>
-                                                            <input data-required id="ulitsa1" autocomplete="off"
-                                                                type="text" name="form[]" placeholder=""
-                                                                value="Название улицы" class="input">
-                                                        </div>
-                                                        <div class="form__input2">
-                                                            <div class="form__input">
-                                                                <label for="dom1">
-                                                                    Дом<span class="placeholder">*</span>
-                                                                </label>
-                                                                <input data-required id="dom1" autocomplete="off"
-                                                                    type="text" name="form[]" placeholder="" value="42"
-                                                                    class="input">
-                                                            </div>
-                                                            <div class="form__input">
-                                                                <label for="kv1">
-                                                                    Кв/офис<span class="placeholder">*</span>
-                                                                </label>
-                                                                <input data-required id="kv1" autocomplete="off"
-                                                                    type="text" name="form[]" placeholder="" value="17"
-                                                                    class="input">
-                                                            </div>
+                                                            <input data-required data-error="Reason for the error"
+                                                                oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                                                                onkeypress="return /[0-9]/.test(event.key)" id="inn1"
+                                                                autocomplete="off" type="text" name="form[]"
+                                                                placeholder="" value="1234567789123" class="input">
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="popup-buttons">
-                                                <button type="button" class="btn btn-mob btn-details-prev">
-                                                    <span>Назад</span>
-                                                </button>
-                                                <div class="popup-buttons__bottom">
-                                                    <button type="button" class="popup-buttons__arrow btn-details-prev">
-                                                        <svg aria-hidden="true" width="19" height="17">
-                                                            <use xlink:href="img/sprite.svg#arrow4"></use>
-                                                        </svg>
-                                                    </button>
-                                                    <button type="button" class="btn btn-bg btn-details-next">
-                                                        <span>Далее</span>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="popup-details-tabs__step step3">
-                                            <div class="popup-details-question">
-                                                <div class="popup-details-question__title">
-                                                    Фактический адрес совпадает с юридическим?
-                                                </div>
-                                                <div class="popup-details-question__buttons">
-                                                    <button type="button"
-                                                        class="popup-details-question__btn btn-match active">
-                                                        <span>Совпадает</span>
-                                                    </button>
-                                                    <button type="button"
-                                                        class="popup-details-question__btn btn-nomatch">
-                                                        <span>Нет</span>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                            <div class="form">
-                                                <div class="form__title">
-                                                    Фактический адрес
-                                                </div>
-                                                <div class="form__body">
-                                                    <div class="form__inputs">
-                                                        <div class="form__input">
-                                                            <label for="strana2">
-                                                                Страна<span class="placeholder">*</span>
-                                                            </label>
-                                                            <input data-required id="strana2" autocomplete="off"
-                                                                type="text" name="form[]" placeholder=""
-                                                                value="Казахстан" class="input">
+                                                <div class="popup-warning">
+                                                    <div class="popup-warning__item">
+                                                        <div class="popup-warning__title">
+                                                            Внимание!
                                                         </div>
-                                                        <div class="form__input">
-                                                            <label for="obl2">
-                                                                Область<span class="placeholder">*</span>
-                                                            </label>
-                                                            <input data-required id="obl2" autocomplete="off"
-                                                                type="text" name="form[]" placeholder=""
-                                                                value="Карагандинская область" class="input">
-                                                        </div>
-                                                        <div class="form__input">
-                                                            <label for="rayon2">
-                                                                Район<span class="placeholder">*</span>
-                                                            </label>
-                                                            <input data-required id="rayon2" autocomplete="off"
-                                                                type="text" name="form[]" placeholder=""
-                                                                value="Казыбек-би" class="input">
-                                                        </div>
-                                                        <div class="form__input">
-                                                            <label for="gorod2">
-                                                                Город<span class="placeholder">*</span>
-                                                            </label>
-                                                            <input data-required id="gorod2" autocomplete="off"
-                                                                type="text" name="form[]" placeholder=""
-                                                                value="Караганда" class="input">
-                                                        </div>
-                                                    </div>
-                                                    <div class="form__inputs">
-                                                        <div class="form__input">
-                                                            <label for="locality2">
-                                                                Населенный пункт
-                                                            </label>
-                                                            <input id="locality2" autocomplete="off" type="text"
-                                                                name="form[]" placeholder="" value="" class="input">
-                                                        </div>
-                                                        <div class="form__input">
-                                                            <label for="index2">
-                                                                Индекс<span class="placeholder">*</span>
-                                                            </label>
-                                                            <input data-required id="index2" autocomplete="off"
-                                                                type="text" name="form[]" placeholder="" value="10000"
-                                                                class="input">
-                                                        </div>
-                                                        <div class="form__input">
-                                                            <label for="ulitsa2">
-                                                                Улица<span class="placeholder">*</span>
-                                                            </label>
-                                                            <input data-required id="ulitsa2" autocomplete="off"
-                                                                type="text" name="form[]" placeholder=""
-                                                                value="Название улицы" class="input">
-                                                        </div>
-                                                        <div class="form__input2">
-                                                            <div class="form__input">
-                                                                <label for="dom2">
-                                                                    Дом<span class="placeholder">*</span>
-                                                                </label>
-                                                                <input data-required id="dom2" autocomplete="off"
-                                                                    type="text" name="form[]" placeholder="" value="42"
-                                                                    class="input">
-                                                            </div>
-                                                            <div class="form__input">
-                                                                <label for="kv2">
-                                                                    Кв/офис<span class="placeholder">*</span>
-                                                                </label>
-                                                                <input data-required id="kv2" autocomplete="off"
-                                                                    type="text" name="form[]" placeholder="" value="17"
-                                                                    class="input">
-                                                            </div>
+                                                        <div class="popup-warning__text">
+                                                            <p>
+                                                                Просьба указывать корректные реквизиты компании, для
+                                                                выписки
+                                                                бухгалтерских документов!
+                                                            </p>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="popup-buttons">
-                                                <button type="button" class="btn btn-mob btn-details-prev">
-                                                    <span>Назад</span>
-                                                </button>
-                                                <div class="popup-buttons__bottom">
-                                                    <button type="button" class="popup-buttons__arrow btn-details-prev">
-                                                        <svg aria-hidden="true" width="19" height="17">
-                                                            <use xlink:href="img/sprite.svg#arrow4"></use>
-                                                        </svg>
-                                                    </button>
-                                                    <button type="button" class="btn btn-bg btn-details-next">
-                                                        <span>Далее</span>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="popup-details-tabs__step step4">
-                                            <div class="form">
-                                                <div class="form__inputs">
-                                                    <div class="form__input">
-                                                        <label for="fio2">
-                                                            ФИО директора<span class="placeholder">*</span>
-                                                        </label>
-                                                        <input data-required id="fio2" autocomplete="off" type="text"
-                                                            name="form[]" placeholder="" value="Ранее Введенные Данные"
-                                                            class="input">
-                                                    </div>
-                                                    <div class="form__inputs2">
-                                                        <div class="form__input">
-                                                            <label for="bin2">
-                                                                БИН<span class="placeholder">*</span>
-                                                            </label>
-                                                            <input data-required id="bin2" autocomplete="off"
-                                                                type="text" name="form[]" placeholder=""
-                                                                value="123456789012" class="input">
-                                                        </div>
-                                                        <div class="form__input">
-                                                            <label for="iik1">
-                                                                ИИК<span class="placeholder">*</span>
-                                                            </label>
-                                                            <input data-required id="iik1" autocomplete="off"
-                                                                type="text" name="form[]" placeholder=""
-                                                                value="KZ120000000000000000" class="input">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="popup-buttons">
-                                                <button type="button" class="btn btn-mob btn-details-prev">
-                                                    <span>Назад</span>
-                                                </button>
-                                                <div class="popup-buttons__bottom">
-                                                    <button type="button" class="popup-buttons__arrow btn-details-prev">
-                                                        <svg aria-hidden="true" width="19" height="17">
-                                                            <use xlink:href="img/sprite.svg#arrow4"></use>
-                                                        </svg>
-                                                    </button>
-                                                    <button data-btn="#btn-sent1" type="submit" class="btn btn-bg">
+                                                <div class="popup-buttons">
+                                                    <button data-btn="#btn-sent1" type="submit"
+                                                        class="btn btn-bg btn-details-next btn-next">
                                                         <span>Сохранить</span>
                                                     </button>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="popup-details-tabs__body">
-                                    <form action="#" class="popup-details-tabs__steps">
-                                        <div class="popup-details-tabs__step step-active">
-                                            <div class="form">
-                                                <div class="form__inputs">
-                                                    <div class="form__input">
-                                                        <label for="fio3">
-                                                            ФИО<span class="placeholder">*</span>
-                                                        </label>
-                                                        <input data-required id="fio3" autocomplete="off" type="text"
-                                                            name="form[1]" placeholder="" value="Ранее Введенные Данные"
-                                                            class="input">
-                                                    </div>
-                                                    <div class="form__input">
-                                                        <label for="inn1">
-                                                            ИНН<span class="placeholder">*</span>
-                                                        </label>
-                                                        <input data-required id="inn1" autocomplete="off" type="text"
-                                                            name="form[]" placeholder="" value="1234567789123"
-                                                            class="input">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="popup-warning">
-                                                <div class="popup-warning__item">
-                                                    <div class="popup-warning__title">
-                                                        Внимание!
-                                                    </div>
-                                                    <div class="popup-warning__text">
-                                                        <p>
-                                                            Просьба указывать корректные реквизиты компании, для выписки
-                                                            бухгалтерских документов!
-                                                        </p>
+                                        </form>
+                                    </div>
+                                    <div class="popup-details-tabs__body">
+                                        <form action="#" class="popup-details-tabs__steps">
+                                            <div class="popup-details-tabs__step step-active">
+                                                <div class="form">
+                                                    <div class="form__inputs">
+                                                        <div class="form__input">
+                                                            <label for="fio4">
+                                                                ФИО<span class="placeholder">*</span>
+                                                            </label>
+                                                            <input data-required data-error="Reason for the error"
+                                                                id="fio4" autocomplete="off" type="text" name="form[1]"
+                                                                placeholder="" value="Ранее Введенные Данные"
+                                                                class="input">
+                                                        </div>
+                                                        <div class="form__input">
+                                                            <label for="inn2">
+                                                                ИНН<span class="placeholder">*</span>
+                                                            </label>
+                                                            <input data-required data-error="Reason for the error"
+                                                                oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                                                                onkeypress="return /[0-9]/.test(event.key)" id="inn2"
+                                                                autocomplete="off" type="text" name="form[]"
+                                                                placeholder="" value="1234567789123" class="input">
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="popup-buttons">
-                                                <button data-btn="#btn-sent1" type="submit" class="btn btn-bg">
-                                                    <span>Сохранить</span>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="popup-details-tabs__body">
-                                    <form action="#" class="popup-details-tabs__steps">
-                                        <div class="popup-details-tabs__step step-active">
-                                            <div class="form">
-                                                <div class="form__inputs">
-                                                    <div class="form__input">
-                                                        <label for="fio4">
-                                                            ФИО<span class="placeholder">*</span>
-                                                        </label>
-                                                        <input data-required id="fio4" autocomplete="off" type="text"
-                                                            name="form[1]" placeholder="" value="Ранее Введенные Данные"
-                                                            class="input">
-                                                    </div>
-                                                    <div class="form__input">
-                                                        <label for="inn2">
-                                                            ИНН<span class="placeholder">*</span>
-                                                        </label>
-                                                        <input data-required id="inn2" autocomplete="off" type="text"
-                                                            name="form[]" placeholder="" value="1234567789123"
-                                                            class="input">
+                                                <div class="popup-warning">
+                                                    <div class="popup-warning__item">
+                                                        <div class="popup-warning__title">
+                                                            Внимание!
+                                                        </div>
+                                                        <div class="popup-warning__text">
+                                                            <p>
+                                                                Просьба указывать корректные реквизиты компании, для
+                                                                выписки
+                                                                бухгалтерских документов!
+                                                            </p>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="popup-warning">
-                                                <div class="popup-warning__item">
-                                                    <div class="popup-warning__title">
-                                                        Внимание!
-                                                    </div>
-                                                    <div class="popup-warning__text">
-                                                        <p>
-                                                            Просьба указывать корректные реквизиты компании, для выписки
-                                                            бухгалтерских документов!
-                                                        </p>
-                                                    </div>
+                                                <div class="popup-buttons">
+                                                    <button data-btn="#btn-sent1" type="submit"
+                                                        class="btn btn-bg btn-next">
+                                                        <span>Сохранить</span>
+                                                    </button>
                                                 </div>
                                             </div>
-                                            <div class="popup-buttons">
-                                                <button data-btn="#btn-sent1" type="submit" class="btn btn-bg">
-                                                    <span>Сохранить</span>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </form>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>

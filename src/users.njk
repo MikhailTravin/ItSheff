@@ -1085,8 +1085,8 @@
                                     <label for="fio1">
                                         Имя Фамилия<span class="placeholder">*</span>
                                     </label>
-                                    <input data-required id="fio1" autocomplete="off" type="text" name="form[]"
-                                        placeholder="" value="" class="input">
+                                    <input data-required data-error="Reason for the error" id="fio1" autocomplete="off"
+                                        type="text" name="form[]" placeholder="" value="" class="input">
                                 </div>
                                 <div class="form__inputs2">
                                     <div class="form__input big">
@@ -1094,7 +1094,7 @@
                                             Телефон пользователя<span class="placeholder">*</span>
                                         </label>
                                         <div class="form-input-tel">
-                                            <div class="form-select">
+                                            <div data-required data-error="Reason for the error" class="form-select">
                                                 <div class="form-select__titles">
                                                     <img src="img/icons/flag1.svg" alt="">
                                                     <div class="form-select__arrow"></div>
@@ -1189,8 +1189,8 @@
                                         <label for="email1">
                                             Email нового пользователя<span class="placeholder">*</span>
                                         </label>
-                                        <input data-required="email" id="email1" autocomplete="off" type="text"
-                                            name="form[]" placeholder="" class="input">
+                                        <input data-required="email" data-error="Reason for the error" id="email1"
+                                            autocomplete="off" type="text" name="form[]" placeholder="" class="input">
                                     </div>
                                 </div>
                             </div>
@@ -1416,7 +1416,7 @@
                     </div>
                 </div>
                 <div class="popup-buttons">
-                    <button data-close data-btn="#btn-sent3" type="submit" class="btn btn-bg">
+                    <button data-btn="#btn-sent3" type="submit" class="btn btn-bg btn-next">
                         <span>Добавить</span>
                     </button>
                 </div>
@@ -1625,15 +1625,16 @@
                                     <label for="fio2">
                                         Имя Фамилия<span class="placeholder">*</span>
                                     </label>
-                                    <input data-required id="fio2" autocomplete="off" type="text" name="form[]"
-                                        placeholder="" value="Александр Сергеевич" class="input">
+                                    <input data-required data-error="Reason for the error" id="fio2" autocomplete="off"
+                                        type="text" name="form[]" placeholder="" value="Александр Сергеевич"
+                                        class="input">
                                 </div>
                                 <div class="form__input big">
                                     <label class="big">
                                         Телефон пользователя<span class="placeholder">*</span>
                                     </label>
                                     <div class="form-input-tel">
-                                        <div class="form-select">
+                                        <div data-required data-error="Reason for the error" class="form-select">
                                             <div class="form-select__titles">
                                                 <img src="img/icons/flag1.svg" alt="">
                                                 <div class="form-select__arrow"></div>
@@ -1723,15 +1724,16 @@
                                     <label for="email2">
                                         Email нового пользователя<span class="placeholder">*</span>
                                     </label>
-                                    <input data-required="email" id="email2" autocomplete="off" type="text"
-                                        name="form[]" placeholder="" value="abc@mail.ru" class="input">
+                                    <input data-required="email" data-error="Reason for the error" id="email2"
+                                        autocomplete="off" type="text" name="form[]" placeholder="" value="abc@mail.ru"
+                                        class="input">
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="popup-buttons">
-                    <button data-close data-btn="#btn-sent5" type="submit" class="btn btn-bg">
+                    <button data-btn="#btn-sent5" type="submit" class="btn btn-bg btn-next">
                         <span>Сохранить</span>
                     </button>
                 </div>

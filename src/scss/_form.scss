@@ -133,6 +133,9 @@
             .input {
                 border: 1px solid #a61b1b;
                 color: #a61b1b;
+                &::placeholder {
+                    color: #a61b1b;
+                }
             }
             .form__error {
                 display: block;
@@ -204,6 +207,9 @@
                         color: #c03b12;
                     }
                 }
+            }
+            .form__error {
+                display: none;
             }
         }
         .input {
@@ -425,15 +431,6 @@
         }
     }
 }
-@keyframes blink {
-    0%,
-    100% {
-        background-color: transparent;
-    }
-    50% {
-        background-color: rgba(0, 0, 0, 0.05);
-    }
-}
 .input-btn-check {
     width: 118px;
     position: absolute;
@@ -486,6 +483,7 @@
     position: relative;
     z-index: 30;
     &.active {
+        z-index: 35;
         .form-select__dropdown {
             opacity: 1;
             pointer-events: auto;
@@ -714,6 +712,13 @@
     transition: border 0.3s;
     &._form-error {
         border: 1px solid #c5272d;
+        .form__error {
+            display: block;
+            margin: 5px 0px 0px 20px;
+            @media (max-width: 650px) {
+                margin: 0px 0px 0px 16px;
+            }
+        }
     }
     &::placeholder {
         font-style: italic;
@@ -732,9 +737,16 @@
         align-items: center;
         gap: 10px;
         height: 100%;
+
         &.active {
             .form-select__titles {
                 background-color: #f0f2f4;
+            }
+            .form-select__arrow {
+                &::after {
+                    content: "";
+                    transform: rotate(-180deg);
+                }
             }
         }
     }
@@ -760,7 +772,7 @@
         flex: 0 0 84px;
         width: 84px;
         height: 44px;
-        border: none;
+        border: none !important;
         border-radius: 30px;
         transition: background-color 0.3s;
         @media (max-width: 700px) {
@@ -831,6 +843,9 @@
         }
         &:disabled + .checkbox__label .checkbox__icon {
             border: 1px solid #e5e5e5;
+        }
+        &._form-error + .checkbox__label .checkbox__icon {
+            border: 1px solid #a61b1b;
         }
     }
 

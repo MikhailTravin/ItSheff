@@ -37,270 +37,272 @@
 </div>
 
 <!--Загрузить свою БД-->
-<div id="upload-base" aria-hidden="false" class="popup popup-base popup-upload-base">
-    <div class="popup__wrapper">
-        <form action="#" class="popup__content">
-            <div class="popup-top">
-                <div class="popup-top__titles">
-                    <div class="popup-top__title">
-                        Загрузить свою базу
-                    </div>
-                </div>
-                <div data-close class="popup-top__close">
-                    <svg aria-hidden="true" width="22" height="22">
-                        <use xlink:href="img/sprite.svg#close"></use>
-                    </svg>
-                </div>
-            </div>
-            <div class="popup-center">
-                <div class="upload-base-files">
-                    <div class="upload-base-files__file">
-                        <div class="upload-base-files__item">
-                            <div data-max-file="4" class="upload-base-file1">
-                                <input type="file" multiple>
-                                <div class="upload-base-files__icon">
-                                    <svg aria-hidden="true" width="26" height="31">
-                                        <use xlink:href="img/sprite.svg#documents"></use>
-                                    </svg>
-                                </div>
-                                <span>
-                                    Перетащите файл сюда
-                                    или <span class="link">загрузите файл</span>
-                                </span>
-                            </div>
-                            <div class="upload-base-file2">
-                                <div class="line">
-                                    <span></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="upload-base-files__results">
-                    </div>
-                    <p>
-                        Загружаем файл ...
-                    </p>
-                    <div class="upload-base-files__errors">
-                        <div class="upload-base-files__error">
-                            <span>Ошибка:</span>
-                            максимальный размер файла не больше 5MB
-                        </div>
-                        <div class="upload-base-files__error">
-                            <span>Ошибка:</span>
-                            Не больше 4 файлов в одном сообщении
-                        </div>
-                        <div class="upload-base-files__error">
-                            <span>Ошибка:</span>
-                            Вы не добавили базу
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="popup-buttons">
-                <div class="popup-buttons__bottom">
-                    <button data-popup="#add-base" type="button" class="popup-buttons__arrow popup-arrow-text">
-                        <svg aria-hidden="true" width="19" height="17">
-                            <use xlink:href="img/sprite.svg#arrow4"></use>
-                        </svg>
-                        <span>Назад</span>
-                    </button>
-                    <button data-popup="#upload-base-creat" type="submit" class="btn btn-bg">
-                        <span>Далее</span>
-                    </button>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
-<div id="upload-base-creat" aria-hidden="false" class="popup popup-base">
+<div id="upload-base" aria-hidden="false" class="popup popup-base">
     <div data-popup="#popup-close" class="popup-bg-close"></div>
     <div class="popup__wrapper">
-        <form action="#" class="popup__content">
-            <div class="popup-top">
-                <div class="popup-top__titles">
-                    <div class="popup-top__title">
-                        Загрузить свою базу
+        <div class="popup__content">
+            <div class="popup__step active">
+                <form action="#" class="popup-upload-base">
+                    <div class="popup-top">
+                        <div class="popup-top__titles">
+                            <div class="popup-top__title">
+                                Загрузить свою базу
+                            </div>
+                        </div>
+                        <div data-close class="popup-top__close">
+                            <svg aria-hidden="true" width="22" height="22">
+                                <use xlink:href="img/sprite.svg#close"></use>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="popup-center">
+                        <div class="upload-base-files">
+                            <div class="upload-base-files__file">
+                                <div class="upload-base-files__item">
+                                    <div data-max-file="4" class="upload-base-file1">
+                                        <input data-required type="file" multiple>
+                                        <div class="upload-base-files__icon">
+                                            <svg aria-hidden="true" width="26" height="31">
+                                                <use xlink:href="img/sprite.svg#documents"></use>
+                                            </svg>
+                                        </div>
+                                        <span>
+                                            Перетащите файл сюда
+                                            или <span class="link">загрузите файл</span>
+                                        </span>
+                                    </div>
+                                    <div class="upload-base-file2">
+                                        <div class="line">
+                                            <span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="upload-base-files__results">
+                            </div>
+                            <p>
+                                Загружаем файл ...
+                            </p>
+                            <div class="upload-base-files__errors">
+                                <div class="upload-base-files__error">
+                                    <span>Ошибка:</span>
+                                    максимальный размер файла не больше 5MB
+                                </div>
+                                <div class="upload-base-files__error">
+                                    <span>Ошибка:</span>
+                                    Не больше 4 файлов в одном сообщении
+                                </div>
+                                <div class="upload-base-files__error not-added-database">
+                                    <span>Ошибка:</span>
+                                    Вы не добавили базу
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="popup-buttons">
+                        <div class="popup-buttons__bottom">
+                            <button data-popup="#add-base" type="button"
+                                class="popup-buttons__arrow popup-arrow-text btn-prev">
+                                <svg aria-hidden="true" width="19" height="17">
+                                    <use xlink:href="img/sprite.svg#arrow4"></use>
+                                </svg>
+                                <span>Назад</span>
+                            </button>
+                            <button type="submit" class="btn btn-bg btn-next">
+                                <span>Далее</span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <form action="#" style="display: none;" class="popup__step">
+                <div class="popup-top">
+                    <div class="popup-top__titles">
+                        <div class="popup-top__title">
+                            Загрузить свою базу
+                        </div>
+                    </div>
+                    <div data-close data-popup="#popup-close" class="popup-top__close">
+                        <svg aria-hidden="true" width="22" height="22">
+                            <use xlink:href="img/sprite.svg#close"></use>
+                        </svg>
                     </div>
                 </div>
-                <div data-close data-popup="#popup-close" class="popup-top__close">
-                    <svg aria-hidden="true" width="22" height="22">
-                        <use xlink:href="img/sprite.svg#close"></use>
-                    </svg>
-                </div>
-            </div>
-            <div class="popup-center">
-                <div class="popup-new-base new-base-nocheckbox">
-                    <div class="form">
-                        <div class="form__inputs">
-                            <div class="form__input big">
-                                <label for="name1" class="big">
-                                    Название базы данных<span class="placeholder">*</span>
-                                </label>
-                                <input data-required id="name1" autocomplete="off" type="text" name="form[]"
-                                    placeholder="Например: Бухгалтерия ООО «Ромашка»" value="" class="input">
-                            </div>
-                            <div class="form__input">
-                                <label>
-                                    Конфигурация
-                                </label>
-                                <div class="form-select">
-                                    <div class="form-select__titles">
-                                        <span>Бухгалтерия для Казахстана, редакция 3</span>
-                                        <div class="form-select__arrow"></div>
-                                    </div>
-                                    <div class="form-select__dropdown">
-                                        <div data-simplebar class="form-select__simplebar">
-                                            <div class="form-select__body">
-                                                <div class="form-select__column">
-                                                    <div class="form-select__title">
-                                                        Типовые конфигурации для Казахстана
+                <div class="popup-center">
+                    <div class="popup-new-base new-base-nocheckbox">
+                        <div class="form">
+                            <div class="form__inputs">
+                                <div class="form__input big">
+                                    <label for="name1" class="big">
+                                        Название базы данных<span class="placeholder">*</span>
+                                    </label>
+                                    <input data-required data-error="Reason for the error" id="name1" autocomplete="off"
+                                        type="text" name="form[]" placeholder="Например: Бухгалтерия ООО «Ромашка»"
+                                        value="" class="input">
+                                </div>
+                                <div class="form__input">
+                                    <label>
+                                        Конфигурация
+                                    </label>
+                                    <div class="form-select">
+                                        <div class="form-select__titles">
+                                            <span>Бухгалтерия для Казахстана, редакция 3</span>
+                                            <div class="form-select__arrow"></div>
+                                        </div>
+                                        <div class="form-select__dropdown">
+                                            <div data-simplebar class="form-select__simplebar">
+                                                <div class="form-select__body">
+                                                    <div class="form-select__column">
+                                                        <div class="form-select__title">
+                                                            Типовые конфигурации для Казахстана
+                                                        </div>
+                                                        <div class="options">
+                                                            <label class="options__item">
+                                                                <input hidden class="options__input" checked
+                                                                    type="radio" value="1" name="option1">
+                                                                <span class="options__label">
+                                                                    <span class="options__text">
+                                                                        Бухгалтерия для Казахстана, редакция 3
+                                                                    </span>
+                                                                    <span class="options__icon">
+                                                                        <svg aria-hidden="true" width="12" height="9">
+                                                                            <use xlink:href="img/sprite.svg#check1">
+                                                                            </use>
+                                                                        </svg>
+                                                                    </span>
+                                                                </span>
+                                                            </label>
+                                                            <label class="options__item">
+                                                                <input hidden class="options__input" type="radio"
+                                                                    value="2" name="option1">
+                                                                <span class="options__label">
+                                                                    <span class="options__text">
+                                                                        Документооборот
+                                                                    </span>
+                                                                    <span class="options__icon">
+                                                                        <svg aria-hidden="true" width="12" height="9">
+                                                                            <use xlink:href="img/sprite.svg#check1">
+                                                                            </use>
+                                                                        </svg>
+                                                                    </span>
+                                                                </span>
+                                                            </label>
+                                                            <label class="options__item">
+                                                                <input hidden class="options__input" type="radio"
+                                                                    value="3" name="option1">
+                                                                <span class="options__label">
+                                                                    <span class="options__text">
+                                                                        Зарплата и управление персоналом для Казахстана,
+                                                                        редакция 3
+                                                                    </span>
+                                                                    <span class="options__icon">
+                                                                        <svg aria-hidden="true" width="12" height="9">
+                                                                            <use xlink:href="img/sprite.svg#check1">
+                                                                            </use>
+                                                                        </svg>
+                                                                    </span>
+                                                                </span>
+                                                            </label>
+                                                            <label class="options__item">
+                                                                <input hidden class="options__input" type="radio"
+                                                                    value="4" name="option1">
+                                                                <span class="options__label">
+                                                                    <span class="options__text">
+                                                                        Комплексная автоматизация для Казахстана
+                                                                    </span>
+                                                                    <span class="options__icon">
+                                                                        <svg aria-hidden="true" width="12" height="9">
+                                                                            <use xlink:href="img/sprite.svg#check1">
+                                                                            </use>
+                                                                        </svg>
+                                                                    </span>
+                                                                </span>
+                                                            </label>
+                                                            <label class="options__item">
+                                                                <input hidden class="options__input" type="radio"
+                                                                    value="5" name="option1">
+                                                                <span class="options__label">
+                                                                    <span class="options__text">
+                                                                        Розница для Казахстана 2.3
+                                                                    </span>
+                                                                    <span class="options__icon">
+                                                                        <svg aria-hidden="true" width="12" height="9">
+                                                                            <use xlink:href="img/sprite.svg#check1">
+                                                                            </use>
+                                                                        </svg>
+                                                                    </span>
+                                                                </span>
+                                                            </label>
+                                                            <label class="options__item">
+                                                                <input hidden class="options__input" type="radio"
+                                                                    value="6" name="option1">
+                                                                <span class="options__label">
+                                                                    <span class="options__text">
+                                                                        Управление небольшой фирмой для Казахстана
+                                                                    </span>
+                                                                    <span class="options__icon">
+                                                                        <svg aria-hidden="true" width="12" height="9">
+                                                                            <use xlink:href="img/sprite.svg#check1">
+                                                                            </use>
+                                                                        </svg>
+                                                                    </span>
+                                                                </span>
+                                                            </label>
+                                                        </div>
                                                     </div>
-                                                    <div class="options">
-                                                        <label class="options__item">
-                                                            <input hidden class="options__input" checked type="radio"
-                                                                value="1" name="option1">
-                                                            <span class="options__label">
-                                                                <span class="options__text">
-                                                                    Бухгалтерия для Казахстана, редакция 3
+                                                    <div class="form-select__column">
+                                                        <div class="form-select__title">
+                                                            Отраслевые конфигурации для Казахстана
+                                                        </div>
+                                                        <div class="options">
+                                                            <label class="options__item">
+                                                                <input hidden class="options__input" type="radio"
+                                                                    value="7" name="option1">
+                                                                <span class="options__label">
+                                                                    <span class="options__text">
+                                                                        Бухгалтерия сельскохозяйственного предприятия
+                                                                        для
+                                                                        Казахстана, редакция 3.0
+                                                                    </span>
+                                                                    <span class="options__icon">
+                                                                        <svg aria-hidden="true" width="12" height="9">
+                                                                            <use xlink:href="img/sprite.svg#check1">
+                                                                            </use>
+                                                                        </svg>
+                                                                    </span>
                                                                 </span>
-                                                                <span class="options__icon">
-                                                                    <svg aria-hidden="true" width="12" height="9">
-                                                                        <use xlink:href="img/sprite.svg#check1">
-                                                                        </use>
-                                                                    </svg>
+                                                            </label>
+                                                            <label class="options__item">
+                                                                <input hidden class="options__input" type="radio"
+                                                                    value="8" name="option1">
+                                                                <span class="options__label">
+                                                                    <span class="options__text">
+                                                                        Аптеки для Казахстана
+                                                                    </span>
+                                                                    <span class="options__icon">
+                                                                        <svg aria-hidden="true" width="12" height="9">
+                                                                            <use xlink:href="img/sprite.svg#check1">
+                                                                            </use>
+                                                                        </svg>
+                                                                    </span>
                                                                 </span>
-                                                            </span>
-                                                        </label>
-                                                        <label class="options__item">
-                                                            <input hidden class="options__input" type="radio" value="2"
-                                                                name="option1">
-                                                            <span class="options__label">
-                                                                <span class="options__text">
-                                                                    Документооборот
+                                                            </label>
+                                                            <label class="options__item">
+                                                                <input hidden class="options__input" type="radio"
+                                                                    value="9" name="option1">
+                                                                <span class="options__label">
+                                                                    <span class="options__text">
+                                                                        Аптеки для Казахстана
+                                                                    </span>
+                                                                    <span class="options__icon">
+                                                                        <svg aria-hidden="true" width="12" height="9">
+                                                                            <use xlink:href="img/sprite.svg#check1">
+                                                                            </use>
+                                                                        </svg>
+                                                                    </span>
                                                                 </span>
-                                                                <span class="options__icon">
-                                                                    <svg aria-hidden="true" width="12" height="9">
-                                                                        <use xlink:href="img/sprite.svg#check1">
-                                                                        </use>
-                                                                    </svg>
-                                                                </span>
-                                                            </span>
-                                                        </label>
-                                                        <label class="options__item">
-                                                            <input hidden class="options__input" type="radio" value="3"
-                                                                name="option1">
-                                                            <span class="options__label">
-                                                                <span class="options__text">
-                                                                    Зарплата и управление персоналом для Казахстана,
-                                                                    редакция 3
-                                                                </span>
-                                                                <span class="options__icon">
-                                                                    <svg aria-hidden="true" width="12" height="9">
-                                                                        <use xlink:href="img/sprite.svg#check1">
-                                                                        </use>
-                                                                    </svg>
-                                                                </span>
-                                                            </span>
-                                                        </label>
-                                                        <label class="options__item">
-                                                            <input hidden class="options__input" type="radio" value="4"
-                                                                name="option1">
-                                                            <span class="options__label">
-                                                                <span class="options__text">
-                                                                    Комплексная автоматизация для Казахстана
-                                                                </span>
-                                                                <span class="options__icon">
-                                                                    <svg aria-hidden="true" width="12" height="9">
-                                                                        <use xlink:href="img/sprite.svg#check1">
-                                                                        </use>
-                                                                    </svg>
-                                                                </span>
-                                                            </span>
-                                                        </label>
-                                                        <label class="options__item">
-                                                            <input hidden class="options__input" type="radio" value="5"
-                                                                name="option1">
-                                                            <span class="options__label">
-                                                                <span class="options__text">
-                                                                    Розница для Казахстана 2.3
-                                                                </span>
-                                                                <span class="options__icon">
-                                                                    <svg aria-hidden="true" width="12" height="9">
-                                                                        <use xlink:href="img/sprite.svg#check1">
-                                                                        </use>
-                                                                    </svg>
-                                                                </span>
-                                                            </span>
-                                                        </label>
-                                                        <label class="options__item">
-                                                            <input hidden class="options__input" type="radio" value="6"
-                                                                name="option1">
-                                                            <span class="options__label">
-                                                                <span class="options__text">
-                                                                    Управление небольшой фирмой для Казахстана
-                                                                </span>
-                                                                <span class="options__icon">
-                                                                    <svg aria-hidden="true" width="12" height="9">
-                                                                        <use xlink:href="img/sprite.svg#check1">
-                                                                        </use>
-                                                                    </svg>
-                                                                </span>
-                                                            </span>
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                                <div class="form-select__column">
-                                                    <div class="form-select__title">
-                                                        Отраслевые конфигурации для Казахстана
-                                                    </div>
-                                                    <div class="options">
-                                                        <label class="options__item">
-                                                            <input hidden class="options__input" type="radio" value="7"
-                                                                name="option1">
-                                                            <span class="options__label">
-                                                                <span class="options__text">
-                                                                    Бухгалтерия сельскохозяйственного предприятия
-                                                                    для
-                                                                    Казахстана, редакция 3.0
-                                                                </span>
-                                                                <span class="options__icon">
-                                                                    <svg aria-hidden="true" width="12" height="9">
-                                                                        <use xlink:href="img/sprite.svg#check1">
-                                                                        </use>
-                                                                    </svg>
-                                                                </span>
-                                                            </span>
-                                                        </label>
-                                                        <label class="options__item">
-                                                            <input hidden class="options__input" type="radio" value="8"
-                                                                name="option1">
-                                                            <span class="options__label">
-                                                                <span class="options__text">
-                                                                    Аптеки для Казахстана
-                                                                </span>
-                                                                <span class="options__icon">
-                                                                    <svg aria-hidden="true" width="12" height="9">
-                                                                        <use xlink:href="img/sprite.svg#check1">
-                                                                        </use>
-                                                                    </svg>
-                                                                </span>
-                                                            </span>
-                                                        </label>
-                                                        <label class="options__item">
-                                                            <input hidden class="options__input" type="radio" value="9"
-                                                                name="option1">
-                                                            <span class="options__label">
-                                                                <span class="options__text">
-                                                                    Аптеки для Казахстана
-                                                                </span>
-                                                                <span class="options__icon">
-                                                                    <svg aria-hidden="true" width="12" height="9">
-                                                                        <use xlink:href="img/sprite.svg#check1">
-                                                                        </use>
-                                                                    </svg>
-                                                                </span>
-                                                            </span>
-                                                        </label>
+                                                            </label>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -311,15 +313,216 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="popup-buttons">
-                <div class="popup-buttons__bottom">
-                    <button data-popup="#upload-base-created" type="submit" class="btn btn-bg">
-                        <span>Далее</span>
-                    </button>
+                <div class="popup-buttons">
+                    <div class="popup-buttons__bottom">
+                        <button type="submit" class="btn btn-bg btn-next">
+                            <span>Далее</span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+            <div style="display: none;" class="popup__step popup-base-created">
+                <div class="popup-content-creat">
+                    <div class="add-base-creat">
+                        <div class="popup-top">
+                            <div class="popup-top__titles">
+                                <div class="popup-top__title">
+                                    Загрузить свою базу
+                                </div>
+                            </div>
+                            <div data-close class="popup-top__close">
+                                <svg aria-hidden="true" width="22" height="22">
+                                    <use xlink:href="img/sprite.svg#close"></use>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="add-base-creat__body">
+                            <div class="line">
+                                <span></span>
+                            </div>
+                            <div class="add-base-creat__title">
+                                Подождите, база разворачивается
+                            </div>
+                        </div>
+                    </div>
+                    <form action="#" class="add-base-created">
+                        <div class="popup-top">
+                            <div class="popup-top__titles">
+                                <div class="popup-top__title">
+                                    Загрузить свою базу
+                                </div>
+                            </div>
+                            <div data-close class="popup-top__close">
+                                <svg aria-hidden="true" width="22" height="22">
+                                    <use xlink:href="img/sprite.svg#close"></use>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="popup-center">
+                            <div class="form-auto-update checked">
+                                <div class="form-auto-update__body">
+                                    <label class="checkbox">
+                                        <input checked class="checkbox__input" type="checkbox" value="1" name="form[]">
+                                        <span class="checkbox__label">
+                                            <span class="checkbox__icon">
+                                                <svg aria-hidden="true" width="13" height="11">
+                                                    <use xlink:href="img/sprite.svg#check2">
+                                                    </use>
+                                                </svg>
+                                            </span>
+                                            <span class="checkbox__text">Автообновление</span></span>
+                                    </label>
+                                    <div class="form__inputs">
+                                        <div class="form__input">
+                                            <label>
+                                                Пользователь в базе данных
+                                            </label>
+                                            <div class="form-select">
+                                                <div class="form-select__titles">
+                                                    <span>Администратор</span>
+                                                    <div class="form-select__arrow"></div>
+                                                </div>
+                                                <div class="form-select__dropdown">
+                                                    <div data-simplebar class="form-select__simplebar">
+                                                        <div class="form-select__body">
+                                                            <div class="form-select__column">
+                                                                <div class="options">
+                                                                    <label class="options__item">
+                                                                        <input hidden class="options__input" checked
+                                                                            type="radio" value="1" name="option2">
+                                                                        <span class="options__label options-label2">
+                                                                            <span class="options__text">
+                                                                                Администратор
+                                                                            </span>
+                                                                            <span class="options__icon">
+                                                                                <svg aria-hidden="true" width="12"
+                                                                                    height="9">
+                                                                                    <use
+                                                                                        xlink:href="img/sprite.svg#check1">
+                                                                                    </use>
+                                                                                </svg>
+                                                                            </span>
+                                                                        </span>
+                                                                    </label>
+                                                                    <label class="options__item">
+                                                                        <input hidden class="options__input"
+                                                                            type="radio" value="2" name="option2">
+                                                                        <span class="options__label options-label2">
+                                                                            <span class="options__text">
+                                                                                Администратор2
+                                                                            </span>
+                                                                            <span class="options__icon">
+                                                                                <svg aria-hidden="true" width="12"
+                                                                                    height="9">
+                                                                                    <use
+                                                                                        xlink:href="img/sprite.svg#check1">
+                                                                                    </use>
+                                                                                </svg>
+                                                                            </span>
+                                                                        </span>
+                                                                    </label>
+                                                                    <label class="options__item">
+                                                                        <input hidden class="options__input"
+                                                                            type="radio" value="3" name="option2">
+                                                                        <span class="options__label options-label2">
+                                                                            <span class="options__text">
+                                                                                Администратор3
+                                                                            </span>
+                                                                            <span class="options__icon">
+                                                                                <svg aria-hidden="true" width="12"
+                                                                                    height="9">
+                                                                                    <use
+                                                                                        xlink:href="img/sprite.svg#check1">
+                                                                                    </use>
+                                                                                </svg>
+                                                                            </span>
+                                                                        </span>
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form__input">
+                                            <label for="password1">
+                                                <span class="desc">Пароль к базе данных</span>
+                                                <span class="mob">Пароль к БД</span>
+                                                <span class="placeholder">*</span>
+                                                <a href="./" class="link forgot-password">Забыли пароль?</a>
+                                            </label>
+                                            <div class="form__input-pass input">
+                                                <input data-required id="password1" data-error="Reason for the error"
+                                                    autocomplete="off" type="password" name="form[]" placeholder=""
+                                                    value="">
+                                                <button type="button" class="form__viewpass">
+                                                    <svg aria-hidden="true" width="20" height="20" class="icon1">
+                                                        <use xlink:href="img/sprite.svg#eye1"></use>
+                                                    </svg>
+                                                    <svg aria-hidden="true" width="20" height="20" class="icon2">
+                                                        <use xlink:href="img/sprite.svg#eye2"></use>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-auto-update__attention">
+                                    <svg aria-hidden="true" width="21" height="20">
+                                        <use xlink:href="img/sprite.svg#attention2"></use>
+                                    </svg>
+                                    <span>Настоятельно рекомендуем включить автообновление БД</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="popup-buttons">
+                            <button type="submit" class="btn btn-bg btn-next btn-thanks">
+                                <span>Сохранить</span>
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
-        </form>
+            <div style="display: none;" class="popup__step">
+                <div class="popup-thanks">
+                    <div class="popup-top">
+                        <div class="popup-top__titles">
+                            <div class="popup-top__title">
+                                Загрузить свою базу
+                            </div>
+                        </div>
+                        <div data-close class="popup-top__close">
+                            <svg aria-hidden="true" width="22" height="22">
+                                <use xlink:href="img/sprite.svg#close"></use>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="popup-center">
+                        <div class="popup-thanks__body">
+                            <div class="popup-thanks__titles">
+                                <div class="popup-thanks__icon">
+                                    <svg aria-hidden="true" width="60" height="60">
+                                        <use xlink:href="img/sprite.svg#success"></use>
+                                    </svg>
+                                </div>
+                                <div class="popup-thanks__title">
+                                    Готово
+                                </div>
+                            </div>
+                            <p>
+                                База «Название БД» успешно загружена в режиме <span>автообновления</span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="popup-buttons">
+                        <button data-close type="button" class="btn btn-bg">
+                            <span>Закрыть</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 <div id="popup-close" aria-hidden="false" class="popup popup-thanks">
@@ -356,214 +559,16 @@
             </div>
             <div class="popup-buttons">
                 <div class="popup-buttons__bottom">
-                    <button data-popup="#upload-base-creat" type="button" class="popup-buttons__arrow popup-arrow-text">
+                    <button data-popup="#upload-base" type="button" class="popup-buttons__arrow popup-arrow-text">
                         <svg aria-hidden="true" width="19" height="17">
                             <use xlink:href="img/sprite.svg#arrow4"></use>
                         </svg>
                         <span>Назад</span>
                     </button>
-                    <button data-popup="#upload-base-created" type="button" class="btn btn-bg">
+                    <button data-close type="button" class="btn btn-bg">
                         <span>Далее</span>
                     </button>
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div id="upload-base-created" aria-hidden="false" class="popup popup-base popup-base-created">
-    <div class="popup__wrapper">
-        <div class="popup__content popup-content-creat">
-            <div class="add-base-creat">
-                <div class="popup-top">
-                    <div class="popup-top__titles">
-                        <div class="popup-top__title">
-                            Загрузить свою базу
-                        </div>
-                    </div>
-                    <div data-close class="popup-top__close">
-                        <svg aria-hidden="true" width="22" height="22">
-                            <use xlink:href="img/sprite.svg#close"></use>
-                        </svg>
-                    </div>
-                </div>
-                <div class="add-base-creat__body">
-                    <div class="line">
-                        <span></span>
-                    </div>
-                    <div class="add-base-creat__title">
-                        Подождите, база разворачивается
-                    </div>
-                </div>
-            </div>
-            <form action="#" class="add-base-created">
-                <div class="popup-top">
-                    <div class="popup-top__titles">
-                        <div class="popup-top__title">
-                            Загрузить свою базу
-                        </div>
-                    </div>
-                    <div data-close class="popup-top__close">
-                        <svg aria-hidden="true" width="22" height="22">
-                            <use xlink:href="img/sprite.svg#close"></use>
-                        </svg>
-                    </div>
-                </div>
-                <div class="popup-center">
-                    <div class="form-auto-update checked">
-                        <div class="form-auto-update__body">
-                            <label class="checkbox">
-                                <input checked class="checkbox__input" type="checkbox" value="1" name="form[]">
-                                <span class="checkbox__label">
-                                    <span class="checkbox__icon">
-                                        <svg aria-hidden="true" width="13" height="11">
-                                            <use xlink:href="img/sprite.svg#check2">
-                                            </use>
-                                        </svg>
-                                    </span>
-                                    <span class="checkbox__text">Автообновление</span></span>
-                            </label>
-                            <div class="form__inputs">
-                                <div class="form__input">
-                                    <label>
-                                        Пользователь в базе данных
-                                    </label>
-                                    <div class="form-select">
-                                        <div class="form-select__titles">
-                                            <span>Администратор</span>
-                                            <div class="form-select__arrow"></div>
-                                        </div>
-                                        <div class="form-select__dropdown">
-                                            <div data-simplebar class="form-select__simplebar">
-                                                <div class="form-select__body">
-                                                    <div class="form-select__column">
-                                                        <div class="options">
-                                                            <label class="options__item">
-                                                                <input hidden class="options__input" checked
-                                                                    type="radio" value="1" name="option2">
-                                                                <span class="options__label options-label2">
-                                                                    <span class="options__text">
-                                                                        Администратор
-                                                                    </span>
-                                                                    <span class="options__icon">
-                                                                        <svg aria-hidden="true" width="12" height="9">
-                                                                            <use xlink:href="img/sprite.svg#check1">
-                                                                            </use>
-                                                                        </svg>
-                                                                    </span>
-                                                                </span>
-                                                            </label>
-                                                            <label class="options__item">
-                                                                <input hidden class="options__input" type="radio"
-                                                                    value="2" name="option2">
-                                                                <span class="options__label options-label2">
-                                                                    <span class="options__text">
-                                                                        Администратор2
-                                                                    </span>
-                                                                    <span class="options__icon">
-                                                                        <svg aria-hidden="true" width="12" height="9">
-                                                                            <use xlink:href="img/sprite.svg#check1">
-                                                                            </use>
-                                                                        </svg>
-                                                                    </span>
-                                                                </span>
-                                                            </label>
-                                                            <label class="options__item">
-                                                                <input hidden class="options__input" type="radio"
-                                                                    value="3" name="option2">
-                                                                <span class="options__label options-label2">
-                                                                    <span class="options__text">
-                                                                        Администратор3
-                                                                    </span>
-                                                                    <span class="options__icon">
-                                                                        <svg aria-hidden="true" width="12" height="9">
-                                                                            <use xlink:href="img/sprite.svg#check1">
-                                                                            </use>
-                                                                        </svg>
-                                                                    </span>
-                                                                </span>
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form__input">
-                                    <label for="password1">
-                                        <span class="desc">Пароль к базе данных</span>
-                                        <span class="mob">Пароль к БД</span>
-                                        <span class="placeholder">*</span>
-                                        <a href="./" class="link forgot-password">Забыли пароль?</a>
-                                    </label>
-                                    <div class="form__input-pass input">
-                                        <input data-required id="password1" data-error="Reason for the error"
-                                            autocomplete="off" type="password" name="form[]" placeholder="" value="">
-                                        <button type="button" class="form__viewpass">
-                                            <svg aria-hidden="true" width="20" height="20" class="icon1">
-                                                <use xlink:href="img/sprite.svg#eye1"></use>
-                                            </svg>
-                                            <svg aria-hidden="true" width="20" height="20" class="icon2">
-                                                <use xlink:href="img/sprite.svg#eye2"></use>
-                                            </svg>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-auto-update__attention">
-                            <svg aria-hidden="true" width="21" height="20">
-                                <use xlink:href="img/sprite.svg#attention2"></use>
-                            </svg>
-                            <span>Настоятельно рекомендуем включить автообновление БД</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="popup-buttons">
-                    <button data-popup="#popup-thanks1" type="submit" class="btn btn-bg">
-                        <span>Сохранить</span>
-                    </button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-<div id="popup-thanks1" aria-hidden="false" class="popup popup-thanks">
-    <div class="popup__wrapper">
-        <div class="popup__content">
-            <div class="popup-top">
-                <div class="popup-top__titles">
-                    <div class="popup-top__title">
-                        Загрузить свою базу
-                    </div>
-                </div>
-                <div data-close class="popup-top__close">
-                    <svg aria-hidden="true" width="22" height="22">
-                        <use xlink:href="img/sprite.svg#close"></use>
-                    </svg>
-                </div>
-            </div>
-            <div class="popup-center">
-                <div class="popup-thanks__body">
-                    <div class="popup-thanks__titles">
-                        <div class="popup-thanks__icon">
-                            <svg aria-hidden="true" width="60" height="60">
-                                <use xlink:href="img/sprite.svg#success"></use>
-                            </svg>
-                        </div>
-                        <div class="popup-thanks__title">
-                            Готово
-                        </div>
-                    </div>
-                    <p>
-                        База «Название БД» успешно загружена в режиме <span>автообновления</span>
-                    </p>
-                </div>
-            </div>
-            <div class="popup-buttons">
-                <button data-close type="button" class="btn btn-bg">
-                    <span>Закрыть</span>
-                </button>
             </div>
         </div>
     </div>
