@@ -965,7 +965,6 @@ if (cabinetDetailsButtons) {
 
 //========================================================================================================================================================
 
-//Попап
 class Popup {
   constructor(options) {
     let config = {
@@ -1028,6 +1027,7 @@ class Popup {
     this._btnSentMouseLeave = null;
     this.btnSentAnimationTimeout = null;
     this.btnSentHideTimeouts = {};
+    this._isShowingBtnSent = false;
     this._focusEl = ["a[href]", 'input:not([disabled]):not([type="hidden"]):not([aria-hidden])', "button:not([disabled]):not([aria-hidden])", "select:not([disabled]):not([aria-hidden])", "textarea:not([disabled]):not([aria-hidden])", "area[href]", "iframe", "object", "embed", "[contenteditable]", '[tabindex]:not([tabindex^="-"])'];
     this.options = {
       ...config,
@@ -1052,6 +1052,27 @@ class Popup {
 
   initPopups() {
     this.eventsPopup();
+  }
+
+  showBtnByDataAttribute(popupElement) {
+    if (!popupElement) return;
+    const btnWithDataAttr = popupElement.querySelector('[data-btn]');
+    if (!btnWithDataAttr) return;
+    const btnValue = btnWithDataAttr.getAttribute(this.options.attributeBtnButton);
+    if (btnValue && btnValue !== "") {
+      let targetElement = document.querySelector(btnValue);
+      if (targetElement) {
+        if (this.currentBtnSentElement && this.currentBtnSentElement !== targetElement) {
+          this.hideBtnSentWithAnimation(this.currentBtnSentElement);
+        }
+        this.currentBtnSentElement = targetElement;
+        setTimeout(() => {
+          this.showBtnSentWithAnimation(targetElement);
+          this.startBtnSentTimer(5000);
+          this.setupBtnSentHoverHandlers(targetElement);
+        }, 500);
+      }
+    }
   }
 
   eventsPopup() {
@@ -1099,11 +1120,6 @@ class Popup {
             }, 500);
           }
         }
-        setTimeout(function () {
-          if (this.isOpen) {
-            this.close();
-          }
-        }.bind(this), 100);
       }
     }.bind(this));
 
@@ -1112,8 +1128,7 @@ class Popup {
       if (popupElement && popupElement.classList.contains(this.options.classes.popupActive)) {
         const popupContent = popupElement.querySelector(`.${this.options.classes.popupContent}`);
         const isClickOnContent = popupContent && (e.target === popupContent || popupContent.contains(e.target));
-        const isClickOnPopup = e.target === popupElement || e.target.closest('.popup') === popupElement;
-        if (!isClickOnContent && isClickOnPopup) {
+        if (!isClickOnContent) {
           e.preventDefault();
           e.stopPropagation();
           if (this._popupToOpenOnOutsideClick) {
@@ -1128,6 +1143,7 @@ class Popup {
           } else {
             this.close();
           }
+          return;
         }
       }
     }.bind(this));
@@ -1155,6 +1171,100 @@ class Popup {
     }
   }
 
+  nextStep(popupElement) {
+    if (!popupElement) return;
+
+    let steps = popupElement.querySelector('.popup__content .popup__step');
+    let container = popupElement.querySelector('.popup__content');
+
+    if (!steps) {
+      steps = popupElement.querySelector('.popup__wrapper .popup__step');
+      container = popupElement.querySelector('.popup__wrapper');
+    }
+
+    if (!steps || !container) return;
+
+    const allSteps = container.querySelectorAll('.popup__step');
+    if (allSteps.length === 0) return;
+
+    let currentIndex = -1;
+    allSteps.forEach((step, index) => {
+      if (step.classList.contains('active')) {
+        currentIndex = index;
+      }
+    });
+
+    if (currentIndex === -1) {
+      allSteps.forEach((step, index) => {
+        if (step.style.display !== 'none' && !step.classList.contains('active')) {
+          step.classList.add('active');
+          currentIndex = index;
+        }
+      });
+    }
+
+    if (currentIndex === -1) {
+      allSteps[0].classList.add('active');
+      allSteps[0].style.display = '';
+      currentIndex = 0;
+    }
+
+    const nextIndex = currentIndex + 1;
+    if (nextIndex < allSteps.length) {
+      allSteps[currentIndex].classList.remove('active');
+      allSteps[currentIndex].style.display = 'none';
+      allSteps[nextIndex].classList.add('active');
+      allSteps[nextIndex].style.display = '';
+    }
+  }
+
+  prevStep(popupElement) {
+    if (!popupElement) return;
+
+    let steps = popupElement.querySelector('.popup__content .popup__step');
+    let container = popupElement.querySelector('.popup__content');
+
+    if (!steps) {
+      steps = popupElement.querySelector('.popup__wrapper .popup__step');
+      container = popupElement.querySelector('.popup__wrapper');
+    }
+
+    if (!steps || !container) return;
+
+    const allSteps = container.querySelectorAll('.popup__step');
+    if (allSteps.length === 0) return;
+
+    let currentIndex = -1;
+    allSteps.forEach((step, index) => {
+      if (step.classList.contains('active')) {
+        currentIndex = index;
+      }
+    });
+
+    if (currentIndex === -1) {
+      allSteps.forEach((step, index) => {
+        if (step.style.display !== 'none' && !step.classList.contains('active')) {
+          step.classList.add('active');
+          currentIndex = index;
+        }
+      });
+    }
+
+    if (currentIndex === -1) {
+      allSteps[0].classList.add('active');
+      allSteps[0].style.display = '';
+      currentIndex = 0;
+    }
+
+    const prevIndex = currentIndex - 1;
+    if (prevIndex >= 0) {
+      allSteps[currentIndex].classList.remove('active');
+      allSteps[currentIndex].style.display = 'none';
+      allSteps[prevIndex].classList.add('active');
+      allSteps[prevIndex].style.display = '';
+    }
+  }
+
   getBtnSentDirection(element) {
     if (!element) return 'bottom';
     const rect = element.getBoundingClientRect();
@@ -1167,31 +1277,52 @@ class Popup {
   }
 
   showBtnSentWithAnimation(element) {
+    if (this._isShowingBtnSent) return;
+
+    if (element.classList.contains(this.options.classes.btnSentOpen)) {
+      const elementId = element.getAttribute('id') || element.getAttribute('data-id');
+      if (elementId && this.btnSentHideTimeouts[elementId]) {
+        clearTimeout(this.btnSentHideTimeouts[elementId]);
+        delete this.btnSentHideTimeouts[elementId];
+      }
+      this.stopBtnSentTimer();
+      this.startBtnSentTimer(5000);
+      return;
+    }
+
+    this._isShowingBtnSent = true;
+
     if (this.btnSentAnimationTimeout) {
       clearTimeout(this.btnSentAnimationTimeout);
       this.btnSentAnimationTimeout = null;
     }
+
     const elementId = element.getAttribute('id') || element.getAttribute('data-id');
     if (elementId && this.btnSentHideTimeouts[elementId]) {
       clearTimeout(this.btnSentHideTimeouts[elementId]);
       delete this.btnSentHideTimeouts[elementId];
     }
+
     element.style.display = 'flex';
     element.style.transition = 'none';
     element.style.opacity = '0';
+
     const direction = this.getBtnSentDirection(element);
     if (direction === 'bottom') {
       element.style.transform = 'translateY(24px)';
     } else {
       element.style.transform = 'translateY(-24px)';
     }
+
     element.classList.add(this.options.classes.btnSentOpen);
     element.offsetHeight;
+
     this.btnSentAnimationTimeout = setTimeout(() => {
       element.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
       element.style.opacity = '1';
       element.style.transform = 'translateY(0)';
       this.btnSentAnimationTimeout = null;
+      this._isShowingBtnSent = false;
     }, 10);
   }
 
@@ -1200,8 +1331,10 @@ class Popup {
       clearTimeout(this.btnSentAnimationTimeout);
       this.btnSentAnimationTimeout = null;
     }
+
     element.style.transition = 'opacity 0.5s ease';
     element.style.opacity = '0';
+
     const elementId = element.getAttribute('id') || element.getAttribute('data-id');
     if (elementId) {
       this.btnSentHideTimeouts[elementId] = setTimeout(() => {
@@ -1355,6 +1488,7 @@ class Popup {
         this.previousOpen.element = this.targetOpen.element;
         this._selectorOpen = false;
         this.isOpen = true;
+        resetPopupSteps(this.targetOpen.element);
         this.options.on.afterOpen(this);
         document.dispatchEvent(new CustomEvent("afterPopupOpen", {
           detail: {
@@ -1366,7 +1500,16 @@ class Popup {
   }
 
   close(selectorValue) {
-    if (selectorValue && "string" === typeof selectorValue && "" !== selectorValue.trim()) this.previousOpen.selector = selectorValue;
+    let elementToClose = this.previousOpen.element;
+
+    if (selectorValue && "string" === typeof selectorValue && "" !== selectorValue.trim()) {
+      this.previousOpen.selector = selectorValue;
+    }
+
+    if (selectorValue && selectorValue.nodeType === 1) {
+      elementToClose = selectorValue;
+    }
+
     if (!this.isOpen || !bodyLockStatus) return;
     this.options.on.beforeClose(this);
     document.dispatchEvent(new CustomEvent("beforePopupClose", {
@@ -1379,10 +1522,21 @@ class Popup {
         this.targetOpen.element.querySelector(`[${this.options.youtubePlaceAttribute}]`).innerHTML = "";
       }
     }
-    this.previousOpen.element.classList.remove(this.options.classes.popupActive);
-    const videoElement = this.previousOpen.element.querySelector("video");
-    if (videoElement) videoElement.pause();
-    this.previousOpen.element.setAttribute("aria-hidden", "true");
+    if (elementToClose) {
+      elementToClose.classList.remove(this.options.classes.popupActive);
+      const videoElement = elementToClose.querySelector("video");
+      if (videoElement) videoElement.pause();
+      elementToClose.setAttribute("aria-hidden", "true");
+
+      const forms = elementToClose.querySelectorAll('form');
+      forms.forEach(form => {
+        formValidate.formClean(form);
+      });
+
+      setTimeout(() => {
+        resetPopupSteps(elementToClose);
+      }, 300);
+    }
     if (!this._reopen) {
       document.documentElement.classList.remove(this.options.classes.bodyActive);
       !this.bodyLock ? bodyUnlock() : null;
@@ -1437,6 +1591,45 @@ class Popup {
       e.preventDefault();
     }
   }
+}
+
+function resetPopupSteps(popup) {
+  if (!popup) return;
+
+  let steps = popup.querySelector('.popup__content .popup__step');
+  let container = popup.querySelector('.popup__content');
+
+  if (!steps) {
+    steps = popup.querySelector('.popup__wrapper .popup__step');
+    container = popup.querySelector('.popup__wrapper');
+  }
+
+  if (!steps || !container) return;
+
+  const allSteps = container.querySelectorAll('.popup__step');
+  if (allSteps.length === 0) return;
+
+  allSteps.forEach((step, index) => {
+    if (index === 0) {
+      step.classList.add('active');
+      step.style.display = '';
+    } else {
+      step.classList.remove('active');
+      step.style.display = 'none';
+    }
+  });
+
+  const errorElements = popup.querySelectorAll('._form-error');
+  errorElements.forEach(el => el.classList.remove('_form-error'));
+
+  const formErrorMessages = popup.querySelectorAll('.form__error');
+  formErrorMessages.forEach(el => el.remove());
+
+  const formInputTels = popup.querySelectorAll('.form-input-tel');
+  formInputTels.forEach(el => el.classList.remove('_form-error'));
+
+  const formSelects = popup.querySelectorAll('.form-select');
+  formSelects.forEach(el => el.classList.remove('_form-error'));
 }
 
 function menuOpen() {
@@ -1783,11 +1976,9 @@ document.addEventListener('click', function (e) {
 
 //========================================================================================================================================================
 
-const stepForm = document.querySelector('.popup-details-tabs__steps');
+const tabsContainer = document.querySelector('.popup-details-tabs');
 
-if (stepForm) {
-
-  const steps = stepForm.querySelectorAll('.popup-details-tabs__step');
+if (tabsContainer) {
   const paginationTitles = document.querySelectorAll('.popup-details-pagination__title');
   const paginationBlock = document.querySelector('.popup-details-pagination');
   const navigation = document.querySelector('.popup-details-tabs__navigation');
@@ -1799,6 +1990,31 @@ if (stepForm) {
 
   const tabButtons = document.querySelectorAll('.popup-details-tabs__title');
   const tabBodies = document.querySelectorAll('.popup-details-tabs__body');
+
+  function getActiveTabBody() {
+    for (let i = 0; i < tabBodies.length; i++) {
+      if (tabBodies[i].style.display === 'block') {
+        return tabBodies[i];
+      }
+    }
+    return tabBodies[0];
+  }
+
+  function getCurrentStepForm() {
+    const activeBody = getActiveTabBody();
+    if (activeBody) {
+      return activeBody.querySelector('.popup-details-tabs__steps');
+    }
+    return null;
+  }
+
+  function getCurrentSteps() {
+    const form = getCurrentStepForm();
+    if (form) {
+      return form.querySelectorAll('.popup-details-tabs__step');
+    }
+    return [];
+  }
 
   function setPaginationVisibility(visible) {
     if (paginationBlock) {
@@ -1821,12 +2037,15 @@ if (stepForm) {
       tabButtons[index].classList.add('_tab-active');
     }
 
-    tabBodies.forEach(body => {
-      body.style.display = 'none';
+    tabBodies.forEach((body, idx) => {
+      if (idx === index) {
+        body.style.display = 'block';
+        body.removeAttribute('hidden');
+      } else {
+        body.style.display = 'none';
+        body.setAttribute('hidden', '');
+      }
     });
-    if (tabBodies[index]) {
-      tabBodies[index].style.display = 'block';
-    }
 
     updatePopupTitleFromButton(tabButtons[index]);
 
@@ -1834,8 +2053,7 @@ if (stepForm) {
       setPaginationVisibility(false);
     } else {
       setPaginationVisibility(true);
-      const currentStepIndex = getCurrentStepIndex();
-      updatePopupTitleText(currentStepIndex);
+      updateStep(0);
     }
   }
 
@@ -1894,6 +2112,7 @@ if (stepForm) {
   }
 
   function getCurrentStepIndex() {
+    const steps = getCurrentSteps();
     for (let i = 0; i < steps.length; i++) {
       if (steps[i].classList.contains('active')) {
         return i;
@@ -1916,13 +2135,114 @@ if (stepForm) {
     }
   }
 
+  function validateStep(step) {
+    if (!step) return true;
+
+    const form = step.closest('form');
+    if (form && form.hasAttribute('data-no-validate')) return true;
+
+    const requiredFields = step.querySelectorAll('[data-required]');
+    let isValid = true;
+
+    requiredFields.forEach(field => {
+      if (field.offsetParent !== null && !field.disabled) {
+        const error = formValidate.validateInput(field);
+        if (error > 0) {
+          isValid = false;
+        }
+      }
+    });
+
+    if (!isValid) {
+      const firstError = step.querySelector('._form-error');
+      if (firstError) {
+        firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        firstError.focus();
+      }
+    }
+
+    return isValid;
+  }
+
+  function resetAllForms() {
+    const popup = tabsContainer.closest('.popup');
+    if (!popup) return;
+
+    const forms = popup.querySelectorAll('form');
+    forms.forEach(form => {
+      formValidate.formClean(form);
+      form.reset();
+    });
+
+    const popupEditDetails = popup.querySelector('.popup-edit-details');
+    const popupThanks = popup.querySelector('.popup-thanks');
+
+    if (popupEditDetails) {
+      popupEditDetails.style.display = '';
+      popupEditDetails.removeAttribute('style');
+    }
+    if (popupThanks) {
+      popupThanks.style.display = 'none';
+      popupThanks.setAttribute('aria-hidden', 'true');
+    }
+
+    tabBodies.forEach((body, idx) => {
+      if (idx === 0) {
+        body.style.display = 'block';
+        body.removeAttribute('hidden');
+      } else {
+        body.style.display = 'none';
+        body.setAttribute('hidden', '');
+      }
+    });
+
+    tabButtons.forEach((btn, idx) => {
+      if (idx === 0) {
+        btn.classList.add('_tab-active');
+      } else {
+        btn.classList.remove('_tab-active');
+      }
+    });
+
+    updateStep(0);
+    setPaginationVisibility(true);
+
+    if (matchBtn && noMatchBtn) {
+      matchBtn.classList.add('active');
+      noMatchBtn.classList.remove('active');
+      if (actualAddressForm) {
+        actualAddressForm.style.display = 'none';
+      }
+    }
+
+    if (popupTitleP) {
+      popupTitleP.textContent = 'Субъект';
+    }
+  }
+
+  document.addEventListener('click', function (e) {
+    const closeButton = e.target.closest('[data-close]');
+    if (closeButton) {
+      const popup = closeButton.closest('.popup');
+      if (popup && popup.querySelector('.popup-details-tabs')) {
+        setTimeout(() => {
+          resetAllForms();
+        }, 300);
+      }
+    }
+  });
+
   function updateStep(index) {
+    const steps = getCurrentSteps();
+
     steps.forEach(step => {
       step.classList.remove('active');
+      step.style.display = 'none';
     });
 
     if (steps[index]) {
       steps[index].classList.add('active');
+      steps[index].style.display = '';
     }
 
     updatePagination(index);
@@ -1930,21 +2250,154 @@ if (stepForm) {
     updatePopupTitleText(index);
 
     if (index === 2) {
-      const isMatchActiveNow = matchBtn && matchBtn.classList.contains('active');
-      if (matchBtn && !matchBtn.classList.contains('active') && noMatchBtn && !noMatchBtn.classList.contains('active')) {
+      const isMatchActive = matchBtn && matchBtn.classList.contains('active');
+      const isNoMatchActive = noMatchBtn && noMatchBtn.classList.contains('active');
+
+      if (isMatchActive) {
         setMatchActive(true);
+      } else if (isNoMatchActive) {
+        setMatchActive(false);
       } else {
-        setMatchActive(isMatchActiveNow !== false);
+        setMatchActive(true);
       }
     }
   }
 
-  function nextStep() {
-    let currentIndex = getCurrentStepIndex();
-    if (currentIndex < steps.length - 1) {
-      updateStep(currentIndex + 1);
+  document.addEventListener('click', function (e) {
+    const targetElement = e.target.closest('.btn-details-next, .btn-next');
+    if (targetElement) {
+      e.preventDefault();
+      e.stopPropagation();
+
+      const form = targetElement.closest('form');
+      if (!form) return;
+
+      const currentStep = targetElement.closest('.popup-details-tabs__step');
+
+      if (currentStep) {
+        const steps = Array.from(form.querySelectorAll('.popup-details-tabs__step'));
+        const currentIndex = steps.indexOf(currentStep);
+
+        if (currentIndex < steps.length - 1) {
+          if (validateStep(currentStep)) {
+            currentStep.classList.remove('active');
+            currentStep.style.display = 'none';
+
+            const nextStep = steps[currentIndex + 1];
+            nextStep.classList.add('active');
+            nextStep.style.display = '';
+
+            updatePagination(currentIndex + 1);
+            toggleNavigationVisibility(currentIndex + 1);
+            updatePopupTitleText(currentIndex + 1);
+
+            if (currentIndex + 1 === 2) {
+              const isMatchActive = matchBtn && matchBtn.classList.contains('active');
+              const isNoMatchActive = noMatchBtn && noMatchBtn.classList.contains('active');
+
+              if (isMatchActive) {
+                setMatchActive(true);
+              } else if (isNoMatchActive) {
+                setMatchActive(false);
+              } else {
+                setMatchActive(true);
+              }
+            }
+          }
+        } else {
+          const isThanksButton = targetElement.classList.contains('btn-thanks');
+
+          if (isThanksButton) {
+            if (validateStep(currentStep)) {
+              const popupContainer = targetElement.closest('.popup');
+              if (popupContainer) {
+                const popupEditDetails = popupContainer.querySelector('.popup-edit-details');
+                const popupThanks = popupContainer.querySelector('.popup-thanks');
+
+                if (popupEditDetails && popupThanks) {
+                  popupEditDetails.style.display = 'none';
+                  popupThanks.style.display = 'block';
+                  popupThanks.setAttribute('aria-hidden', 'false');
+                }
+              }
+
+              form.reset();
+              updateStep(0);
+              setPaginationVisibility(true);
+
+              if (matchBtn && noMatchBtn) {
+                matchBtn.classList.add('active');
+                noMatchBtn.classList.remove('active');
+                if (actualAddressForm) {
+                  actualAddressForm.style.display = 'none';
+                }
+              }
+            }
+          } else {
+            if (validateStep(currentStep)) {
+              if (targetElement.type === 'submit') {
+                const popupAttribute = targetElement.dataset.popup;
+                if (popupAttribute && typeof modules_flsModules !== 'undefined' && modules_flsModules.popup) {
+                  modules_flsModules.popup.open(popupAttribute);
+                  form.reset();
+                } else {
+                  form.requestSubmit();
+                }
+              } else {
+                const popupAttribute = targetElement.dataset.popup;
+                if (popupAttribute && typeof modules_flsModules !== 'undefined' && modules_flsModules.popup) {
+                  modules_flsModules.popup.open(popupAttribute);
+                  form.reset();
+                }
+              }
+            }
+          }
+        }
+      } else {
+        const isThanksButton = targetElement.classList.contains('btn-thanks');
+
+        if (isThanksButton) {
+          if (validateStep(form)) {
+            const popupContainer = targetElement.closest('.popup');
+            if (popupContainer) {
+              const popupEditDetails = popupContainer.querySelector('.popup-edit-details');
+              const popupThanks = popupContainer.querySelector('.popup-thanks');
+
+              if (popupEditDetails && popupThanks) {
+                popupEditDetails.style.display = 'none';
+                popupThanks.style.display = 'block';
+                popupThanks.setAttribute('aria-hidden', 'false');
+              }
+            }
+            form.reset();
+          }
+        } else {
+          if (validateStep(form)) {
+            if (targetElement.type === 'submit') {
+              const popupAttribute = targetElement.dataset.popup;
+              if (popupAttribute && typeof modules_flsModules !== 'undefined' && modules_flsModules.popup) {
+                modules_flsModules.popup.open(popupAttribute);
+                form.reset();
+              } else {
+                form.requestSubmit();
+              }
+            } else {
+              const popupAttribute = targetElement.dataset.popup;
+              if (popupAttribute && typeof modules_flsModules !== 'undefined' && modules_flsModules.popup) {
+                modules_flsModules.popup.open(popupAttribute);
+                form.reset();
+              }
+            }
+          }
+        }
+      }
     }
-  }
+
+    if (e.target.closest('.btn-details-prev')) {
+      e.preventDefault();
+      prevStep();
+    }
+  });
 
   function prevStep() {
     let currentIndex = getCurrentStepIndex();
@@ -1953,17 +2406,6 @@ if (stepForm) {
     }
   }
 
-  document.addEventListener('click', function (e) {
-    if (e.target.closest('.btn-details-next')) {
-      e.preventDefault();
-      nextStep();
-    }
-    if (e.target.closest('.btn-details-prev')) {
-      e.preventDefault();
-      prevStep();
-    }
-  });
-
   tabButtons.forEach((btn, idx) => {
     btn.addEventListener('click', function (e) {
       e.preventDefault();
@@ -1971,36 +2413,24 @@ if (stepForm) {
     });
   });
 
-  const activeStepIndex = getCurrentStepIndex();
-
   const activeTabIndex = 0;
 
-  updatePagination(activeStepIndex);
-  toggleNavigationVisibility(activeStepIndex);
-  updatePopupTitleText(activeStepIndex);
-
   tabBodies.forEach((body, idx) => {
-    body.style.display = idx === activeTabIndex ? 'block' : 'none';
+    if (idx === activeTabIndex) {
+      body.style.display = 'block';
+      body.removeAttribute('hidden');
+    } else {
+      body.style.display = 'none';
+      body.setAttribute('hidden', '');
+    }
   });
 
+  if (matchBtn && matchBtn.classList.contains('active') && actualAddressForm) {
+    actualAddressForm.style.display = 'none';
+  }
+
+  updateStep(0);
   setPaginationVisibility(true);
-
-  if (popupTitleP && paginationTitles[activeStepIndex]) {
-    const span = paginationTitles[activeStepIndex].querySelector('span');
-    if (span) {
-      popupTitleP.textContent = span.textContent.trim();
-    }
-  }
-
-  if (activeStepIndex === 2) {
-    if (noMatchBtn && noMatchBtn.classList.contains('active')) {
-      setAddressFormVisible(true);
-    } else {
-      if (matchBtn && !matchBtn.classList.contains('active')) {
-        setMatchActive(true);
-      }
-    }
-  }
 }
 
 //========================================================================================================================================================
@@ -2046,6 +2476,10 @@ function formFieldsInit(options = { viewPass: true, autoHeight: false }) {
       formValidate.removeError(targetElement);
       targetElement.hasAttribute('data-validate') ? formValidate.removeError(targetElement) : null;
     }
+    if (targetElement.closest('.form-select') && targetElement.closest('.form-select').hasAttribute('data-required')) {
+      const formSelect = targetElement.closest('.form-select');
+      formValidate.removeError(formSelect);
+    }
   });
   document.body.addEventListener("focusout", function (e) {
     const targetElement = e.target;
@@ -2063,13 +2497,11 @@ function formFieldsInit(options = { viewPass: true, autoHeight: false }) {
       if (targetElement.closest('.form__viewpass')) {
         const viewpassBlock = targetElement.closest('.form__viewpass');
         const input = viewpassBlock.closest('.form__input').querySelector('input');
-        const parentContainer = viewpassBlock.closest('.form__input'); // Получаем родителя
-
+        const parentContainer = viewpassBlock.closest('.form__input');
         if (input) {
           const isActive = viewpassBlock.classList.contains('_viewpass-active');
           input.setAttribute("type", isActive ? "password" : "text");
           viewpassBlock.classList.toggle('_viewpass-active');
-
           if (parentContainer) {
             parentContainer.classList.toggle('_viewpass-active');
           }
@@ -2107,6 +2539,41 @@ formFieldsInit({
 });
 
 let formValidate = {
+  getErrorContainer(formRequiredItem) {
+    if (formRequiredItem.closest('.input-btn')) {
+      return formRequiredItem.closest('.input-btn');
+    }
+    if (formRequiredItem.closest('.form-input-tel')) {
+      return formRequiredItem.closest('.form-input-tel');
+    }
+    if (formRequiredItem.classList.contains('form-select')) {
+      const formInputTel = formRequiredItem.closest('.form-input-tel');
+      if (formInputTel) return formInputTel;
+    }
+    const formInput = formRequiredItem.closest('.form__input');
+    if (formInput) return formInput;
+
+    return formRequiredItem.parentElement;
+  },
+
+  getAllErrorContainers(formRequiredItem) {
+    const containers = [];
+
+    const formInput = formRequiredItem.closest('.form__input');
+    if (formInput) containers.push(formInput);
+
+    if (formRequiredItem.closest('.input-btn')) {
+      containers.push(formRequiredItem.closest('.input-btn'));
+    }
+    if (formRequiredItem.closest('.form-input-tel')) {
+      containers.push(formRequiredItem.closest('.form-input-tel'));
+    }
+
+    containers.push(formRequiredItem.parentElement);
+
+    return containers;
+  },
+
   getErrors(form) {
     let error = 0;
     let formRequiredItems = form.querySelectorAll('*[data-required]');
@@ -2119,8 +2586,50 @@ let formValidate = {
     }
     return error;
   },
+
   validateInput(formRequiredItem) {
     let error = 0;
+
+    if (formRequiredItem.type === "file") {
+      if (formRequiredItem.files && formRequiredItem.files.length > 0) {
+        this.removeError(formRequiredItem);
+        this.addSuccess(formRequiredItem);
+        return 0;
+      }
+
+      const uploadContainer = formRequiredItem.closest('.upload-base-files');
+      if (uploadContainer) {
+        const resultsContainer = uploadContainer.querySelector('.upload-base-files__results');
+        if (resultsContainer && resultsContainer.querySelectorAll('.upload-base-files__result').length > 0) {
+          this.removeError(formRequiredItem);
+          this.addSuccess(formRequiredItem);
+          const dropZone = uploadContainer.querySelector('.upload-base-file1');
+          if (dropZone) {
+            this.removeError(dropZone);
+            this.addSuccess(dropZone);
+          }
+          return 0;
+        }
+      }
+
+      this.addError(formRequiredItem);
+      this.removeSuccess(formRequiredItem);
+      error++;
+      return error;
+    }
+
+    if (formRequiredItem.classList.contains('form-select')) {
+      const telInput = formRequiredItem.querySelector('.tel');
+      if (telInput && !telInput.value.trim()) {
+        this.addError(formRequiredItem);
+        this.removeSuccess(formRequiredItem);
+        error++;
+      } else {
+        this.removeError(formRequiredItem);
+        this.addSuccess(formRequiredItem);
+      }
+      return error;
+    }
 
     if (formRequiredItem.dataset.required === "email") {
       formRequiredItem.value = formRequiredItem.value.replace(" ", "");
@@ -2161,30 +2670,84 @@ let formValidate = {
 
     return error;
   },
+
   addError(formRequiredItem) {
     formRequiredItem.classList.add('_form-error');
-    formRequiredItem.parentElement.classList.add('_form-error');
-    let inputError = formRequiredItem.parentElement.querySelector('.form__error');
-    if (inputError) formRequiredItem.parentElement.removeChild(inputError);
+
+    const containers = this.getAllErrorContainers(formRequiredItem);
+    containers.forEach(container => {
+      container.classList.add('_form-error');
+    });
+
+    const errorContainer = this.getErrorContainer(formRequiredItem);
+
+    const innerError = errorContainer.querySelector('.form__error');
+    if (innerError) innerError.remove();
+
+    let nextEl = errorContainer.nextElementSibling;
+    if (nextEl && nextEl.classList.contains('form__error')) {
+      nextEl.remove();
+    }
+
     if (formRequiredItem.dataset.error) {
-      formRequiredItem.parentElement.insertAdjacentHTML('beforeend', `<div class="form__error">${formRequiredItem.dataset.error}</div>`);
+      if (errorContainer.classList.contains('form__input')) {
+        errorContainer.insertAdjacentHTML('beforeend',
+          `<div class="form__error">${formRequiredItem.dataset.error}</div>`
+        );
+      } else {
+        errorContainer.insertAdjacentHTML('afterend',
+          `<div class="form__error">${formRequiredItem.dataset.error}</div>`
+        );
+      }
     }
   },
+
   removeError(formRequiredItem) {
     formRequiredItem.classList.remove('_form-error');
-    formRequiredItem.parentElement.classList.remove('_form-error');
-    if (formRequiredItem.parentElement.querySelector('.form__error')) {
-      formRequiredItem.parentElement.removeChild(formRequiredItem.parentElement.querySelector('.form__error'));
+
+    const containers = this.getAllErrorContainers(formRequiredItem);
+    containers.forEach(container => {
+      container.classList.remove('_form-error');
+    });
+
+    const errorContainer = this.getErrorContainer(formRequiredItem);
+
+    const innerError = errorContainer.querySelector('.form__error');
+    if (innerError) innerError.remove();
+
+    let nextEl = errorContainer.nextElementSibling;
+    if (nextEl && nextEl.classList.contains('form__error')) {
+      nextEl.remove();
+    }
+
+    const formInput = formRequiredItem.closest('.form__input');
+    if (formInput && formInput !== errorContainer) {
+      const formInputError = formInput.querySelector('.form__error');
+      if (formInputError) formInputError.remove();
+
+      let nextFormInputEl = formInput.nextElementSibling;
+      if (nextFormInputEl && nextFormInputEl.classList.contains('form__error')) {
+        nextFormInputEl.remove();
+      }
     }
   },
+
   addSuccess(formRequiredItem) {
     formRequiredItem.classList.add('_form-success');
-    formRequiredItem.parentElement.classList.add('_form-success');
+    const containers = this.getAllErrorContainers(formRequiredItem);
+    containers.forEach(container => {
+      container.classList.add('_form-success');
+    });
   },
+
   removeSuccess(formRequiredItem) {
     formRequiredItem.classList.remove('_form-success');
-    formRequiredItem.parentElement.classList.remove('_form-success');
+    const containers = this.getAllErrorContainers(formRequiredItem);
+    containers.forEach(container => {
+      container.classList.remove('_form-success');
+    });
   },
+
   formClean(form) {
     form.reset();
     setTimeout(() => {
@@ -2216,6 +2779,12 @@ let formValidate = {
         }
       }
 
+      form.querySelectorAll('._form-error, ._form-success').forEach(el => {
+        el.classList.remove('_form-error', '_form-success');
+      });
+
+      form.querySelectorAll('.form__error').forEach(error => error.remove());
+
       if (modules_flsModules.select) {
         let selects = form.querySelectorAll('div.select');
         if (selects.length) {
@@ -2227,6 +2796,7 @@ let formValidate = {
       }
     }, 0);
   },
+
   emailTest(formRequiredItem) {
     return !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,8})+$/.test(formRequiredItem.value);
   }
@@ -2238,6 +2808,151 @@ function formSubmit() {
     for (const form of forms) {
       form.addEventListener('submit', function (e) {
         const form = e.target;
+        const submitButton = form.querySelector('button[type="submit"]:focus') || form.querySelector('button[type="submit"].btn-next');
+
+        console.log('=== SUBMIT EVENT ===');
+        console.log('Submit button:', submitButton);
+        if (submitButton) {
+          console.log('Has data-btn:', submitButton.hasAttribute('data-btn'));
+          console.log('Button type:', submitButton.type);
+          console.log('Button classList:', submitButton.classList.toString());
+          console.log('Has class btn-next:', submitButton.classList.contains('btn-next'));
+          console.log('Has class btn-details-next:', submitButton.classList.contains('btn-details-next'));
+        }
+
+        if (submitButton && submitButton.hasAttribute('data-btn') && submitButton.type === 'submit') {
+          console.log('=== DATA-BTN WITH SUBMIT DETECTED ===');
+          e.preventDefault();
+          e.stopPropagation();
+
+          const popupElement = form.closest('.popup');
+          console.log('Popup element:', popupElement);
+
+          console.log('Starting form validation...');
+          const error = !form.hasAttribute('data-no-validate') ? formValidate.getErrors(form) : 0;
+          console.log('Validation errors count:', error);
+
+          if (error === 0) {
+            console.log('Validation SUCCESS - closing popup');
+            if (popupElement && typeof modules_flsModules !== 'undefined' && modules_flsModules.popup) {
+              console.log('Closing popup and showing btn by data attribute');
+              modules_flsModules.popup.close(popupElement);
+              setTimeout(() => {
+                console.log('Calling showBtnByDataAttribute');
+                modules_flsModules.popup.showBtnByDataAttribute(popupElement);
+              }, 100);
+            } else {
+              console.log('ERROR: popupElement or modules_flsModules not found');
+              console.log('popupElement:', popupElement);
+              console.log('modules_flsModules:', typeof modules_flsModules);
+            }
+          } else {
+            console.log('Validation FAILED - errors found:', error);
+            if (form.querySelector('._form-error')) {
+              const firstError = form.querySelector('._form-error');
+              console.log('First error element:', firstError);
+              firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+              firstError.focus();
+            }
+          }
+          return;
+        }
+
+        if (submitButton && submitButton.classList.contains('btn-next') && submitButton.closest('.popup')) {
+          console.log('=== BTN-NEXT DETECTED IN SUBMIT ===');
+          e.preventDefault();
+          e.stopPropagation();
+
+          const popupElement = form.closest('.popup');
+          const currentStep = submitButton.closest('.popup-details-tabs__step') || submitButton.closest('.popup__step');
+
+          console.log('Popup element:', popupElement);
+          console.log('Current step:', currentStep);
+
+          const fileInput = form.querySelector('input[type="file"][data-required]');
+          if (fileInput) {
+            const uploadContainer = fileInput.closest('.upload-base-files');
+            if (uploadContainer) {
+              const resultsContainer = uploadContainer.querySelector('.upload-base-files__results');
+              const hasFiles = resultsContainer && resultsContainer.querySelectorAll('.upload-base-files__result').length > 0;
+
+              if (!hasFiles) {
+                console.log('File validation failed - no files');
+                const allErrors = uploadContainer.querySelectorAll('.upload-base-files__error');
+                allErrors.forEach(error => {
+                  if (error) error.style.display = 'none';
+                });
+
+                const emptyError = uploadContainer.querySelector('.not-added-database');
+                if (emptyError) emptyError.style.display = 'block';
+
+                if (fileInput) {
+                  fileInput.classList.remove('_form-success');
+                  fileInput.classList.add('_form-error');
+                }
+                const dropZone = uploadContainer.querySelector('.upload-base-file1');
+                if (dropZone) {
+                  dropZone.classList.remove('_form-success');
+                  dropZone.classList.add('_form-error');
+                }
+                const uploadBaseFilesItem = uploadContainer.querySelector('.upload-base-files__item');
+                if (uploadBaseFilesItem) {
+                  uploadBaseFilesItem.classList.remove('_form-success');
+                  uploadBaseFilesItem.classList.add('_form-error');
+                }
+                return;
+              }
+            }
+          }
+
+          let validationTarget;
+          if (currentStep) {
+            if (currentStep.classList.contains('popup__step') && currentStep.tagName === 'FORM') {
+              validationTarget = form;
+            } else if (currentStep.classList.contains('popup-details-tabs__step')) {
+              validationTarget = currentStep;
+            } else {
+              validationTarget = form;
+            }
+          } else {
+            validationTarget = form;
+          }
+
+          console.log('Validation target:', validationTarget);
+
+          const error = !form.hasAttribute('data-no-validate') ? formValidate.getErrors(validationTarget) : 0;
+          console.log('Validation errors count:', error);
+
+          if (error === 0) {
+            console.log('Validation success');
+            if (submitButton.hasAttribute('data-btn')) {
+              console.log('Has data-btn attribute, closing popup');
+              if (popupElement && typeof modules_flsModules !== 'undefined' && modules_flsModules.popup) {
+                modules_flsModules.popup.close(popupElement);
+                setTimeout(() => {
+                  modules_flsModules.popup.showBtnByDataAttribute(popupElement);
+                }, 100);
+              }
+            } else {
+              console.log('No data-btn, going to next step');
+              if (popupElement && typeof modules_flsModules !== 'undefined' && modules_flsModules.popup) {
+                modules_flsModules.popup.nextStep(popupElement);
+              }
+            }
+          } else {
+            console.log('Validation failed');
+            if (validationTarget.querySelector('._form-error')) {
+              const firstError = validationTarget.querySelector('._form-error');
+              console.log('First error:', firstError);
+              firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+              firstError.focus();
+            }
+          }
+
+          return;
+        }
+
+        console.log('=== NORMAL FORM SUBMIT ===');
         formSubmitAction(form, e);
       });
       form.addEventListener('reset', function (e) {
@@ -2246,9 +2961,280 @@ function formSubmit() {
       });
     }
   }
+
+  document.addEventListener('click', function (e) {
+    const targetElement = e.target.closest('.btn-details-next, .btn-next');
+    console.log('=== CLICK EVENT ===');
+    console.log('Target element:', targetElement);
+
+    if (!targetElement) return;
+
+    console.log('Target classes:', targetElement.classList.toString());
+    console.log('Has class btn-next:', targetElement.classList.contains('btn-next'));
+    console.log('Has class btn-details-next:', targetElement.classList.contains('btn-details-next'));
+    console.log('Has data-btn:', targetElement.hasAttribute('data-btn'));
+    console.log('Button type:', targetElement.type);
+
+    if (targetElement.closest('.popup') && (targetElement.classList.contains('btn-next') || targetElement.classList.contains('btn-details-next'))) {
+      console.log('=== BUTTON CLICKED INSIDE POPUP ===');
+
+      // ДОБАВЛЯЕМ ПРОВЕРКУ ДЛЯ DATA-BTN НА КЛИК
+      if (targetElement.hasAttribute('data-btn')) {
+        console.log('=== DATA-BTN CLICKED ===');
+        e.preventDefault();
+        e.stopPropagation();
+
+        const popupElement = targetElement.closest('.popup');
+        const form = targetElement.closest('form');
+
+        console.log('Popup element:', popupElement);
+        console.log('Form:', form);
+
+        if (form) {
+          console.log('Validating form...');
+          const error = !form.hasAttribute('data-no-validate') ? formValidate.getErrors(form) : 0;
+          console.log('Validation errors:', error);
+
+          if (error === 0) {
+            console.log('Validation SUCCESS');
+            if (popupElement && typeof modules_flsModules !== 'undefined' && modules_flsModules.popup) {
+              modules_flsModules.popup.close(popupElement);
+              setTimeout(() => {
+                console.log('Showing btn-sent');
+                modules_flsModules.popup.showBtnByDataAttribute(popupElement);
+              }, 100);
+            }
+          } else {
+            console.log('Validation FAILED');
+            if (form.querySelector('._form-error')) {
+              const firstError = form.querySelector('._form-error');
+              firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+              firstError.focus();
+            }
+          }
+        } else {
+          console.log('No form found, just closing popup');
+          if (popupElement && typeof modules_flsModules !== 'undefined' && modules_flsModules.popup) {
+            modules_flsModules.popup.close(popupElement);
+            setTimeout(() => {
+              modules_flsModules.popup.showBtnByDataAttribute(popupElement);
+            }, 100);
+          }
+        }
+        return;
+      }
+
+      const form = targetElement.closest('form');
+      const popupElement = targetElement.closest('.popup');
+
+      console.log('Form:', form);
+      console.log('Popup element:', popupElement);
+
+      if (!form) {
+        console.log('No form found');
+        e.preventDefault();
+        e.stopPropagation();
+
+        if (targetElement.hasAttribute('data-btn')) {
+          console.log('Has data-btn, closing popup');
+          if (popupElement && typeof modules_flsModules !== 'undefined' && modules_flsModules.popup) {
+            modules_flsModules.popup.close(popupElement);
+            setTimeout(() => {
+              modules_flsModules.popup.showBtnByDataAttribute(popupElement);
+            }, 100);
+          }
+        } else {
+          console.log('No data-btn, going to next step');
+          if (popupElement && typeof modules_flsModules !== 'undefined' && modules_flsModules.popup) {
+            modules_flsModules.popup.nextStep(popupElement);
+          }
+        }
+        return;
+      }
+
+      if (targetElement.type === 'submit') {
+        console.log('Button type is submit, returning');
+        return;
+      }
+
+      const currentStep = targetElement.closest('.popup-details-tabs__step');
+      console.log('Current step:', currentStep);
+
+      if (currentStep) {
+        console.log('Processing step navigation');
+        e.preventDefault();
+        e.stopPropagation();
+
+        const steps = Array.from(form.querySelectorAll('.popup-details-tabs__step'));
+        const currentIndex = steps.indexOf(currentStep);
+        console.log('Steps:', steps.length, 'Current index:', currentIndex);
+
+        if (currentIndex < steps.length - 1) {
+          const error = !form.hasAttribute('data-no-validate') ? formValidate.getErrors(currentStep) : 0;
+          console.log('Step validation errors:', error);
+
+          if (error === 0) {
+            console.log('Step validation success, moving to next step');
+            currentStep.classList.remove('active');
+            currentStep.style.display = 'none';
+
+            const nextStep = steps[currentIndex + 1];
+            nextStep.classList.add('active');
+            nextStep.style.display = '';
+
+            const pagination = document.querySelector('.popup-details-pagination');
+            if (pagination) {
+              const paginationTitles = pagination.querySelectorAll('.popup-details-pagination__title');
+              paginationTitles.forEach((title, idx) => {
+                if (idx === currentIndex + 1) {
+                  title.classList.add('active');
+                } else {
+                  title.classList.remove('active');
+                }
+              });
+            }
+          } else {
+            console.log('Step validation failed');
+            if (currentStep.querySelector('._form-error')) {
+              const firstError = currentStep.querySelector('._form-error');
+              firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+              firstError.focus();
+            }
+          }
+        }
+      } else {
+        console.log('Processing form validation');
+        const error = !form.hasAttribute('data-no-validate') ? formValidate.getErrors(form) : 0;
+        console.log('Form validation errors:', error);
+
+        if (error === 0) {
+          console.log('Form validation success');
+          const popupAttribute = targetElement.dataset.popup;
+          if (popupAttribute) {
+            console.log('Opening popup:', popupAttribute);
+            if (typeof modules_flsModules !== 'undefined' && modules_flsModules.popup) {
+              modules_flsModules.popup.open(popupAttribute);
+            }
+            formValidate.formClean(form);
+          } else {
+            console.log('Submitting form');
+            form.requestSubmit();
+          }
+        } else {
+          console.log('Form validation failed');
+          if (form.querySelector('._form-error')) {
+            const firstError = form.querySelector('._form-error');
+            firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            firstError.focus();
+          }
+        }
+      }
+
+      return;
+    }
+
+    const form = targetElement.closest('form');
+    if (!form) return;
+
+    if (targetElement.type === 'submit') return;
+
+    e.preventDefault();
+    e.stopPropagation();
+
+    const currentStep = targetElement.closest('.popup-details-tabs__step');
+
+    if (currentStep) {
+      const steps = Array.from(form.querySelectorAll('.popup-details-tabs__step'));
+      const currentIndex = steps.indexOf(currentStep);
+
+      if (currentIndex < steps.length - 1) {
+        const error = !form.hasAttribute('data-no-validate') ? formValidate.getErrors(currentStep) : 0;
+
+        if (error === 0) {
+          currentStep.classList.remove('active');
+          currentStep.style.display = 'none';
+
+          const nextStep = steps[currentIndex + 1];
+          nextStep.classList.add('active');
+          nextStep.style.display = '';
+
+          const pagination = document.querySelector('.popup-details-pagination');
+          if (pagination) {
+            const paginationTitles = pagination.querySelectorAll('.popup-details-pagination__title');
+            paginationTitles.forEach((title, index) => {
+              if (index === currentIndex + 1) {
+                title.classList.add('active');
+              } else {
+                title.classList.remove('active');
+              }
+            });
+          }
+        } else {
+          if (currentStep.querySelector('._form-error')) {
+            const firstError = currentStep.querySelector('._form-error');
+            firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            firstError.focus();
+          }
+        }
+      }
+    } else {
+      const error = !form.hasAttribute('data-no-validate') ? formValidate.getErrors(form) : 0;
+
+      if (error === 0) {
+        const popupAttribute = targetElement.dataset.popup;
+        if (popupAttribute) {
+          if (typeof modules_flsModules !== 'undefined' && modules_flsModules.popup) {
+            modules_flsModules.popup.open(popupAttribute);
+          }
+          formValidate.formClean(form);
+        } else {
+          form.requestSubmit();
+        }
+      } else {
+        if (form.querySelector('._form-error')) {
+          const firstError = form.querySelector('._form-error');
+          firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          firstError.focus();
+        }
+      }
+    }
+  });
+
   async function formSubmitAction(form, e) {
     const error = !form.hasAttribute('data-no-validate') ? formValidate.getErrors(form) : 0;
+
     if (error === 0) {
+      const submitButton = form.querySelector('button[type="submit"]');
+      const isThanksButton = submitButton && submitButton.classList.contains('btn-thanks');
+
+      if (isThanksButton) {
+        e.preventDefault();
+
+        const popupContainer = form.closest('.popup');
+        if (popupContainer) {
+          const popupEditDetails = popupContainer.querySelector('.popup-edit-details');
+          const popupThanks = popupContainer.querySelector('.popup-thanks');
+
+          if (popupEditDetails && popupThanks) {
+            popupEditDetails.style.display = 'none';
+            popupThanks.style.display = 'block';
+            popupThanks.setAttribute('aria-hidden', 'false');
+          }
+        }
+
+        formValidate.formClean(form);
+
+        const tabsContainer = document.querySelector('.popup-details-tabs');
+        if (tabsContainer) {
+          const paginationBlock = tabsContainer.querySelector('.popup-details-pagination');
+          if (paginationBlock) {
+            paginationBlock.style.display = 'grid';
+          }
+        }
+
+        return;
+      }
+
       const ajax = form.hasAttribute('data-ajax');
       if (ajax) {
         e.preventDefault();
@@ -2281,6 +3267,7 @@ function formSubmit() {
       }
     }
   }
+
   function formSent(form, responseResult = ``) {
     document.dispatchEvent(new CustomEvent("formSent", {
       detail: {
@@ -2297,7 +3284,7 @@ function formSubmit() {
     });
 
     setTimeout(() => {
-      if (modules_flsModules.popup) {
+      if (modules_flsModules && modules_flsModules.popup) {
         const popup = form.dataset.popupMessage;
         popup ? modules_flsModules.popup.open(popup) : null;
       }
@@ -2790,25 +3777,32 @@ if (titlesList) {
 //========================================================================================================================================================
 
 const observer = new MutationObserver(() => {
+  const popupSteps = document.querySelectorAll('.popup__step.popup-base-created.active');
   const popups = document.querySelectorAll('.popup-base-created.popup_show');
 
-  popups.forEach(popup => {
-    const addBaseCreat = popup.querySelector('.add-base-creat');
-    const popupContent = popup.querySelector('.popup-content-creat');
+  const processElement = (container) => {
+    const addBaseCreat = container.querySelector('.add-base-creat');
+    const popupContent = container.querySelector('.popup-content-creat');
 
-    if (addBaseCreat && popupContent && !addBaseCreat.classList.contains('active')) {
+    if (addBaseCreat && popupContent && !addBaseCreat.classList.contains('active') && !popupContent.classList.contains('hidden')) {
       addBaseCreat.classList.add('active');
 
       const animatedLine = addBaseCreat.querySelector('.line span');
       if (animatedLine) {
-        animatedLine.addEventListener('animationend', () => {
+        const clonedLine = animatedLine.cloneNode(true);
+        animatedLine.parentNode.replaceChild(clonedLine, animatedLine);
+
+        clonedLine.addEventListener('animationend', () => {
           popupContent.classList.add('hidden');
         }, { once: true });
       } else {
         popupContent.classList.add('hidden');
       }
     }
-  });
+  };
+
+  popupSteps.forEach(step => processElement(step));
+  popups.forEach(popup => processElement(popup));
 });
 observer.observe(document.body, {
   childList: true,
@@ -3875,17 +4869,18 @@ if (uploadContainer) {
   const maxFileAttr = dropZone ? dropZone.getAttribute('data-max-file') : null;
   const maxFileCount = maxFileAttr ? parseInt(maxFileAttr, 10) : 4;
   const maxFileSize = 5 * 1024 * 1024;
-  const submitButton = document.querySelector('button[type="submit"][data-popup="#upload-base-creat"]');
 
   let filesList = [];
   let activeTimeouts = [];
   let isProcessing = false;
+  let isUploading = false;
 
   const errorsList = uploadContainer.querySelectorAll('.upload-base-files__error');
   const sizeError = errorsList[0] || null;
   const countError = errorsList[1] || null;
   const emptyError = errorsList[2] || null;
   const lineParent = uploadContainer.querySelector('.upload-base-file2');
+  const loadingText = uploadContainer.querySelector('p');
 
   if (lineParent) {
     const existingLine = lineParent.querySelector('.line');
@@ -3899,7 +4894,115 @@ if (uploadContainer) {
       if (error) error.style.display = 'none';
     });
   }
-  if (resultsContainer) resultsContainer.innerHTML = '';
+
+  if (resultsContainer) {
+    const existingResults = resultsContainer.querySelectorAll('.upload-base-files__result');
+    if (existingResults.length === 0) {
+      resultsContainer.classList.remove('active');
+    } else {
+      resultsContainer.classList.add('active');
+    }
+  }
+
+  if (loadingText) {
+    loadingText.style.display = 'none';
+  }
+
+  function getButtons() {
+    const popupStep = uploadContainer.closest('.popup__step');
+    if (!popupStep) return { nextBtn: null, prevBtn: null };
+
+    const nextBtn = popupStep.querySelector('.btn-next');
+    const prevBtn = popupStep.querySelector('.popup-buttons__arrow, .btn-prev');
+
+    return { nextBtn, prevBtn };
+  }
+
+  function disableButtons() {
+    const { nextBtn, prevBtn } = getButtons();
+    if (nextBtn) {
+      nextBtn.disabled = true;
+      nextBtn.style.pointerEvents = 'none';
+      nextBtn.style.opacity = '0.5';
+    }
+    if (prevBtn) {
+      prevBtn.disabled = true;
+      prevBtn.style.pointerEvents = 'none';
+      prevBtn.style.opacity = '0.5';
+    }
+  }
+
+  function enableButtons() {
+    const { nextBtn, prevBtn } = getButtons();
+    if (nextBtn) {
+      nextBtn.disabled = false;
+      nextBtn.style.pointerEvents = '';
+      nextBtn.style.opacity = '';
+    }
+    if (prevBtn) {
+      prevBtn.disabled = false;
+      prevBtn.style.pointerEvents = '';
+      prevBtn.style.opacity = '';
+    }
+  }
+
+  function clearAllFormErrors() {
+    if (fileInput) {
+      fileInput.classList.remove('_form-error');
+      fileInput.classList.add('_form-success');
+    }
+    if (dropZone) {
+      dropZone.classList.remove('_form-error');
+      dropZone.classList.add('_form-success');
+    }
+
+    const uploadBaseFilesItem = uploadContainer.querySelector('.upload-base-files__item');
+    if (uploadBaseFilesItem) {
+      uploadBaseFilesItem.classList.remove('_form-error');
+      uploadBaseFilesItem.classList.add('_form-success');
+    }
+
+    const errorContainer = dropZone || fileInput;
+    if (errorContainer) {
+      const allErrorContainers = formValidate.getAllErrorContainers(errorContainer);
+      allErrorContainers.forEach(container => {
+        container.classList.remove('_form-error');
+        container.classList.add('_form-success');
+      });
+
+      const parent = errorContainer.parentElement;
+      if (parent) {
+        const innerError = parent.querySelector('.form__error');
+        if (innerError) innerError.remove();
+
+        let nextEl = parent.nextElementSibling;
+        if (nextEl && nextEl.classList.contains('form__error')) {
+          nextEl.remove();
+        }
+      }
+    }
+  }
+
+  function showEmptyError() {
+    hideAllErrors();
+    if (emptyError) emptyError.style.display = 'block';
+
+    if (fileInput) {
+      fileInput.classList.remove('_form-success');
+      fileInput.classList.add('_form-error');
+    }
+    if (dropZone) {
+      dropZone.classList.remove('_form-success');
+      dropZone.classList.add('_form-error');
+    }
+    const uploadBaseFilesItem = uploadContainer.querySelector('.upload-base-files__item');
+    if (uploadBaseFilesItem) {
+      uploadBaseFilesItem.classList.remove('_form-success');
+      uploadBaseFilesItem.classList.add('_form-error');
+    }
+  }
+
+  window.showUploadEmptyError = showEmptyError;
 
   function addActiveToContainer() {
     uploadContainer.classList.add('active');
@@ -3915,6 +5018,24 @@ if (uploadContainer) {
         resultsContainer.classList.add('active');
       } else {
         resultsContainer.classList.remove('active');
+      }
+    }
+
+    if (filesList.length > 0) {
+      clearAllFormErrors();
+    } else {
+      if (fileInput) {
+        fileInput.classList.remove('_form-success');
+        fileInput.classList.add('_form-error');
+      }
+      if (dropZone) {
+        dropZone.classList.remove('_form-success');
+        dropZone.classList.add('_form-error');
+      }
+      const uploadBaseFilesItem = uploadContainer.querySelector('.upload-base-files__item');
+      if (uploadBaseFilesItem) {
+        uploadBaseFilesItem.classList.remove('_form-success');
+        uploadBaseFilesItem.classList.add('_form-error');
       }
     }
   }
@@ -4054,17 +5175,34 @@ if (uploadContainer) {
     }
 
     isProcessing = true;
+    isUploading = true;
+    hideAllErrors();
+    disableButtons();
+
+    if (loadingText) {
+      loadingText.style.display = 'block';
+    }
 
     const { newFiles, errors } = validateFiles(files);
 
     if (errors.length > 0) {
       isProcessing = false;
+      isUploading = false;
+      enableButtons();
+      if (loadingText) {
+        loadingText.style.display = 'none';
+      }
       if (fileInput) fileInput.value = '';
       return;
     }
 
     if (newFiles.length === 0) {
       isProcessing = false;
+      isUploading = false;
+      enableButtons();
+      if (loadingText) {
+        loadingText.style.display = 'none';
+      }
       if (fileInput) fileInput.value = '';
       return;
     }
@@ -4089,12 +5227,18 @@ if (uploadContainer) {
     addFilesToUI(newFiles);
     updateUI();
     updateFileInput();
+    clearAllFormErrors();
 
     if (fileInput) fileInput.value = '';
 
     setTimeout(() => {
       isProcessing = false;
-    }, 500);
+      isUploading = false;
+      enableButtons();
+      if (loadingText) {
+        loadingText.style.display = 'none';
+      }
+    }, 5000);
   }
 
   if (fileInput) {
@@ -4108,7 +5252,9 @@ if (uploadContainer) {
   if (dropZone) {
     dropZone.addEventListener('dragover', (e) => {
       e.preventDefault();
-      dropZone.classList.add('drag-over');
+      if (!isUploading) {
+        dropZone.classList.add('drag-over');
+      }
     });
 
     dropZone.addEventListener('dragleave', (e) => {
@@ -4119,34 +5265,25 @@ if (uploadContainer) {
     dropZone.addEventListener('drop', (e) => {
       e.preventDefault();
       dropZone.classList.remove('drag-over');
-      const files = e.dataTransfer.files;
-      if (files.length > 0) {
-        processFiles(Array.from(files));
+      if (!isUploading) {
+        const files = e.dataTransfer.files;
+        if (files.length > 0) {
+          processFiles(Array.from(files));
+        }
       }
     });
   }
 
   if (resultsContainer) {
     resultsContainer.addEventListener('click', function (e) {
+      if (isUploading) return;
+
       const deleteBtn = e.target.closest('.upload-base-files__delete');
       if (deleteBtn) {
         const resultItem = deleteBtn.closest('.upload-base-files__result');
         deleteFile(resultItem);
       }
     });
-  }
-
-  if (submitButton) {
-    submitButton.addEventListener('click', function (e) {
-      if (filesList.length === 0) {
-        e.preventDefault();
-        e.stopPropagation();
-        e.stopImmediatePropagation();
-        hideAllErrors();
-        if (emptyError) emptyError.style.display = 'block';
-        return false;
-      }
-    }, true);
   }
 
   updateUI();
