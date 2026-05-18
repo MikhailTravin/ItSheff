@@ -11189,7 +11189,7 @@ a {
 @media (max-width: 700px) {
   .form-textarea-files__file.file-input .form-textarea-files__icon svg {
     width: 13px;
-    height: auto;
+    height: 13px;
   }
 }
 @media (max-width: 700px) {
