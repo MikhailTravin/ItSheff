@@ -1170,11 +1170,6 @@ body::after {
     justify-content: center;
     background: #f8f8f8;
     padding: 32px 20px 15px 20px;
-    .rating {
-        --star-gap: 19px;
-        --star-width: 29px;
-        --star-height: 28px;
-    }
     // .popup-other-rating__text
 
     &__text {

@@ -1531,7 +1531,7 @@
         @media (any-hover: hover) {
             &:hover {
                 color: #000;
-                background-color: #f0f2f4;
+                background-color: #f8f8f8;
                 .cabinet-tabs__arrow {
                     svg {
                         fill: #424242;
@@ -1543,7 +1543,7 @@
         @media (any-hover: none) {
             &:active {
                 color: #000;
-                background-color: #e1e4e7;
+                background-color: #f0f2f4;
                 .cabinet-tabs__arrow {
                     svg {
                         fill: #000;
@@ -5100,7 +5100,7 @@
                 svg {
                     @media (max-width: 700px) {
                         width: 13px;
-                        height: auto;
+                        height: 13px;
                     }
                 }
             }
@@ -5386,6 +5386,11 @@
         @media (max-width: 992px) {
             gap: 10px;
         }
+        .rating {
+            --star-gap: 6px;
+            --star-width: 18px;
+            --star-height: 17px;
+        }
         p {
             font-weight: 400;
             font-size: 12px;
@@ -5445,6 +5450,11 @@
     }
     @media (max-width: 700px) {
         gap: 12px;
+    }
+    .rating {
+        --star-gap: 6px;
+        --star-width: 18px;
+        --star-height: 17px;
     }
     &.status2-done {
         .block-applications-status2__left {
@@ -5702,8 +5712,6 @@
         .rating {
             @media (min-width: 993px) {
                 --star-gap: 7px;
-                --star-width: 29px;
-                --star-height: 28px;
             }
         }
         p {
