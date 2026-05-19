@@ -1603,9 +1603,9 @@ a {
 }
 
 .rating {
-  --star-gap: 6px;
-  --star-width: 18px;
-  --star-height: 17px;
+  --star-gap: 19px;
+  --star-width: 29px;
+  --star-height: 28px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -6350,7 +6350,7 @@ a {
 }
 .cabinet-menu__link.active {
   pointer-events: none;
-  color: #000;
+  background-color: #fff;
 }
 @media (min-width: 701px) {
   .cabinet-menu__link.active .cabinet-menu__icon svg {
@@ -8775,7 +8775,7 @@ a {
 .cabinet-objects-top__picker:hover svg {
   fill: #424242;
 }
-.cabinet-objects-top__picker:active svg {
+.cabinet-objects-top__picker:active svg, .cabinet-objects-top__picker.active svg {
   fill: #000;
 }
 .cabinet-objects-top__picker svg {
@@ -10909,6 +10909,7 @@ a {
   line-height: 150%;
   resize: none;
   width: 100%;
+  padding: 0px 15px 0px 0px;
 }
 @media (max-width: 700px) {
   .form-textarea__input textarea {
@@ -11549,6 +11550,7 @@ a {
   -webkit-transform: translate(0, 0);
           transform: translate(0, 0);
   left: auto;
+  text-align: left;
   margin: 0px 0px 11px 0px;
 }
 @media (max-width: 992px) {
@@ -11573,6 +11575,7 @@ a {
     left: auto;
   }
 }
+.block-applications-status__guestion .tooltips__dropdown span,
 .block-applications-status__guestion .tooltips__dropdown p {
   color: #fff;
 }
@@ -11595,6 +11598,11 @@ a {
   .block-applications-status__item {
     gap: 10px;
   }
+}
+.block-applications-status__item .rating {
+  --star-gap: 6px;
+  --star-width: 18px;
+  --star-height: 17px;
 }
 .block-applications-status__item p {
   font-weight: 400;
@@ -11669,6 +11677,11 @@ a {
   .block-applications-status2 {
     gap: 12px;
   }
+}
+.block-applications-status2 .rating {
+  --star-gap: 6px;
+  --star-width: 18px;
+  --star-height: 17px;
 }
 .block-applications-status2.status2-done .block-applications-status2__left {
   -webkit-box-flex: 0;
@@ -11980,8 +11993,6 @@ a {
 @media (min-width: 993px) {
   .block-applications-status2__right .rating {
     --star-gap: 7px;
-    --star-width: 29px;
-    --star-height: 28px;
   }
 }
 .block-applications-status2__right p {
@@ -15852,12 +15863,6 @@ body::after {
           justify-content: center;
   background: #f8f8f8;
   padding: 32px 20px 15px 20px;
-  /*
-  .rating {
-      --star-gap: 19px;
-      --star-width: 29px;
-      --star-height: 28px;
-  }*/
 }
 .popup-other-rating__text {
   font-weight: 600;

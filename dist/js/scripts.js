@@ -1068,7 +1068,7 @@ class Popup {
         this.currentBtnSentElement = targetElement;
         setTimeout(() => {
           this.showBtnSentWithAnimation(targetElement);
-          this.startBtnSentTimer(5000);
+          this.startBtnSentTimer(2500);
           this.setupBtnSentHoverHandlers(targetElement);
         }, 500);
       }
@@ -5752,7 +5752,7 @@ if (document.readyState === 'loading') {
 }
 
 //========================================================================================================================================================
-
+/*
 const columnsContainer = document.querySelector('.block-cabinet__columns');
 if (columnsContainer) {
   const columns = document.querySelectorAll('.block-cabinet__column');
@@ -5854,6 +5854,210 @@ if (columnsContainer) {
     document.removeEventListener('touchend', stopDrag);
 
     draggedColumn = null;
+  }
+}
+*/
+
+const columnsContainer = document.querySelector('.block-cabinet__columns');
+if (columnsContainer) {
+  const columns = document.querySelectorAll('.block-cabinet__column');
+  let draggedColumn = null;
+  let cloneColumn = null;
+  let offsetX, offsetY;
+  let lastSwappedColumn = null;
+  let activePicker = null;
+
+  // Добавляем стили для анимации
+  const style = document.createElement('style');
+  style.textContent = `
+    .block-cabinet__column {
+      transition: transform 0.25s cubic-bezier(0.2, 0, 0, 1);
+    }
+    .block-cabinet__column.dragging {
+      opacity: 0.4;
+    }
+    .cabinet-objects-top__picker {
+      cursor: grab;
+      transition: opacity 0.15s ease, transform 0.15s ease;
+    }
+    .cabinet-objects-top__picker.active {
+      cursor: grabbing;
+      opacity: 0.7;
+      transform: scale(0.9);
+    }
+    .cabinet-objects-top__picker svg {
+      pointer-events: none;
+    }
+  `;
+  document.head.appendChild(style);
+
+  // Сохраняем изначальные позиции для анимации
+  function savePositions() {
+    const allColumns = document.querySelectorAll('.block-cabinet__column');
+    allColumns.forEach(column => {
+      const rect = column.getBoundingClientRect();
+      column.dataset.prevTop = rect.top;
+    });
+  }
+
+  columns.forEach(column => {
+    const picker = column.querySelector('.cabinet-objects-top__picker');
+    if (!picker) return;
+
+    picker.addEventListener('mousedown', initDrag);
+    picker.addEventListener('touchstart', initDrag, { passive: false });
+  });
+
+  function initDrag(e) {
+    const column = e.target.closest('.block-cabinet__column');
+    if (!column) return;
+
+    e.preventDefault();
+    e.stopPropagation();
+
+    draggedColumn = column;
+    lastSwappedColumn = null;
+
+    // Добавляем класс active на пикер
+    const picker = column.querySelector('.cabinet-objects-top__picker');
+    if (picker) {
+      picker.classList.add('active');
+      activePicker = picker;
+    }
+
+    const touch = e.touches ? e.touches[0] : e;
+    const rect = column.getBoundingClientRect();
+
+    offsetX = touch.clientX - rect.left;
+    offsetY = touch.clientY - rect.top;
+
+    // Сохраняем позиции всех колонок
+    savePositions();
+
+    // Создаём клон
+    cloneColumn = column.cloneNode(true);
+    cloneColumn.style.position = 'fixed';
+    cloneColumn.style.zIndex = '10000';
+    cloneColumn.style.pointerEvents = 'none';
+    cloneColumn.style.width = rect.width + 'px';
+    cloneColumn.style.left = rect.left + 'px';
+    cloneColumn.style.top = rect.top + 'px';
+    cloneColumn.style.opacity = '0.95';
+    cloneColumn.style.boxShadow = '0 10px 30px rgba(0,0,0,0.2)';
+    cloneColumn.style.transition = 'box-shadow 0.2s ease';
+
+    document.body.appendChild(cloneColumn);
+
+    // Делаем оригинал полупрозрачным
+    draggedColumn.classList.add('dragging');
+
+    document.addEventListener('mousemove', onDrag);
+    document.addEventListener('mouseup', stopDrag);
+    document.addEventListener('touchmove', onDrag, { passive: false });
+    document.addEventListener('touchend', stopDrag);
+  }
+
+  function onDrag(e) {
+    if (!draggedColumn || !cloneColumn) return;
+
+    e.preventDefault();
+
+    const touch = e.touches ? e.touches[0] : e;
+
+    // Двигаем клон
+    cloneColumn.style.left = (touch.clientX - offsetX) + 'px';
+    cloneColumn.style.top = (touch.clientY - offsetY) + 'px';
+
+    // Определяем, с какой колонкой нужно поменяться местами
+    const allColumns = Array.from(document.querySelectorAll('.block-cabinet__column'));
+    const draggedIndex = allColumns.indexOf(draggedColumn);
+
+    let swapWithColumn = null;
+    let swapBefore = false;
+
+    allColumns.forEach((column, index) => {
+      if (column === draggedColumn) return;
+      if (column.classList.contains('dragging')) return;
+
+      const rect = column.getBoundingClientRect();
+      const centerY = rect.top + rect.height / 2;
+
+      // Проверяем, что курсор находится над этой колонкой по горизонтали
+      const isOverX = touch.clientX >= rect.left - 50 && touch.clientX <= rect.right + 50;
+
+      if (!isOverX) return;
+
+      // Определяем направление
+      if (index < draggedIndex) {
+        // Колонка выше перетаскиваемой
+        if (touch.clientY < centerY && touch.clientY > rect.top - 20) {
+          swapWithColumn = column;
+          swapBefore = true;
+        }
+      } else {
+        // Колонка ниже перетаскиваемой
+        if (touch.clientY > centerY && touch.clientY < rect.bottom + 20) {
+          swapWithColumn = column;
+          swapBefore = false;
+        }
+      }
+    });
+
+    // Меняем местами
+    if (swapWithColumn && swapWithColumn !== lastSwappedColumn) {
+      savePositions();
+
+      if (swapBefore) {
+        columnsContainer.insertBefore(draggedColumn, swapWithColumn);
+      } else {
+        columnsContainer.insertBefore(draggedColumn, swapWithColumn.nextSibling);
+      }
+
+      lastSwappedColumn = swapWithColumn;
+
+      // Сбрасываем lastSwappedColumn после анимации
+      setTimeout(() => {
+        if (lastSwappedColumn === swapWithColumn) {
+          lastSwappedColumn = null;
+        }
+      }, 100);
+    }
+  }
+
+  function stopDrag(e) {
+    if (!draggedColumn) return;
+
+    // Убираем класс active с пикера
+    if (activePicker) {
+      activePicker.classList.remove('active');
+      activePicker = null;
+    }
+
+    // Убираем классы
+    const allColumns = document.querySelectorAll('.block-cabinet__column');
+    allColumns.forEach(col => {
+      col.classList.remove('dragging');
+    });
+
+    // Удаляем клон с анимацией
+    if (cloneColumn) {
+      cloneColumn.style.transition = 'opacity 0.15s ease';
+      cloneColumn.style.opacity = '0';
+
+      setTimeout(() => {
+        cloneColumn.remove();
+      }, 150);
+
+      cloneColumn = null;
+    }
+
+    document.removeEventListener('mousemove', onDrag);
+    document.removeEventListener('mouseup', stopDrag);
+    document.removeEventListener('touchmove', onDrag);
+    document.removeEventListener('touchend', stopDrag);
+
+    draggedColumn = null;
+    lastSwappedColumn = null;
   }
 }
 
