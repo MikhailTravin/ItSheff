@@ -2017,13 +2017,15 @@ body::after {
         }
         @media (any-hover: hover) {
             &:hover {
-                background-color: #e5e5e5;
+                background-color: #f0f2f4;
+                color: #000;
             }
         }
 
         @media (any-hover: none) {
             &:active {
                 background-color: #e1e4e7;
+                color: #000;
             }
         }
         &.active {
@@ -2153,9 +2155,16 @@ body::after {
     padding: 0px 20px;
     height: 52px;
     margin: 6px 0px 0px 0px;
+    transition: border 0.3s;
     @media (max-width: 700px) {
         height: 36px;
         padding: 0px 16px;
+    }
+    &._form-focus {
+        border: 1px solid #c0c0c0;
+    }
+    &:hover {
+        border: 1px solid #c0c0c0;
     }
     input {
         width: 100%;
@@ -2212,7 +2221,6 @@ body::after {
     &__close {
         cursor: pointer;
         width: 16px;
-        height: 16px;
         flex: 0 0 16px;
         &:hover {
             svg {

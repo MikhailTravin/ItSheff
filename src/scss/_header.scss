@@ -1223,12 +1223,13 @@
 .header-account-top {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 10px;
 
     // .header-account-top__titles
 
     &__titles {
-        flex: 1 1 auto;
+        flex: 0 1 auto;
         display: flex;
         flex-direction: column;
         gap: 3px;

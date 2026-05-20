@@ -771,8 +771,9 @@ a {
       border: 1px solid #a61b1b;
       color: #a61b1b;
       input {
+        color: #a61b1b;
         &::placeholder {
-          color: #a61b1b;
+          color: #a61b1b !important;
         }
       }
     }
@@ -862,7 +863,7 @@ a {
 
   &__content {
     position: absolute;
-    top: 100%;
+    top: 80px;
     width: 100%;
     z-index: 20;
     left: 0;
@@ -874,6 +875,11 @@ a {
     margin: 5px 0px 0px 0px;
     overflow: hidden;
     border-radius: 16px;
+    @media (max-width: 550px) {
+      @media (max-width: 992px) {
+        top: 60px;
+      }
+    }
     ul {
       max-height: 336px;
       @media (max-width: 700px) {
@@ -964,7 +970,7 @@ a {
     .calendar__content {
       border-radius: 16px 16px 0px 0px;
       box-shadow: none;
-      border: none;
+      border: 1px solid transparent;
     }
     .calendar__wrapper {
       display: none;
@@ -990,7 +996,7 @@ a {
     .calendar__content {
       border-radius: 16px 16px 0px 0px;
       box-shadow: none;
-      border: none;
+      border: 1px solid transparent;
     }
     .calendar__wrapper {
       display: none;
@@ -1168,10 +1174,19 @@ a {
       border 0.3s,
       color 0.3s;
     input {
+      font-weight: 400;
+      font-size: 20px;
+      line-height: 130%;
       text-align: left;
       cursor: pointer;
       width: 100%;
-      opacity: 0;
+      &::placeholder {
+        color: #424242;
+      }
+      @media (max-width: 650px) {
+        font-size: 16px;
+        line-height: 150%;
+      }
     }
     &._form-error {
       border: 1px solid #a61b1b;
@@ -1276,11 +1291,17 @@ a {
     background: #f8f8f8;
     position: absolute;
     z-index: 30;
-    top: 100%;
-    min-width: 260px;
+    top: 80px;
+    min-width: 320px;
     margin: 5px 0px 0px 0px;
+    @media (max-width: 992px) {
+      top: 60px;
+    }
     @media (max-width: 760px) {
       width: 100%;
+    }
+    @media (max-width: 550px) {
+      min-width: 260px;
     }
   }
 
@@ -1561,6 +1582,39 @@ a {
     display: flex;
     align-items: center;
     gap: 8px;
+  }
+}
+.date-picker-sections {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.date-section {
+  display: flex;
+  align-items: center;
+  &:last-child {
+    input {
+      width: 47px;
+      &::placeholder {
+        width: 100%;
+      }
+    }
+  }
+  input {
+    width: 27px;
+    &::placeholder {
+      width: 100%;
+    }
+  }
+}
+.date-separator {
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 130%;
+  color: #c0c0c0;
+  @media (max-width: 760px) {
+    font-size: 16px;
+    line-height: 150%;
   }
 }
 

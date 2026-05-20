@@ -2149,8 +2149,7 @@
                                 <div class="form-auto-update">
                                     <div class="form-auto-update__body">
                                         <label class="checkbox">
-                                            <input class="checkbox__input" type="checkbox" value="1"
-                                                name="checkbox1">
+                                            <input class="checkbox__input" type="checkbox" value="1" name="checkbox1">
                                             <span class="checkbox__label">
                                                 <span class="checkbox__icon">
                                                     <svg aria-hidden="true" width="13" height="11">
@@ -2361,7 +2360,7 @@
             </div>
         </div>
     </div>
-    
+
     <!--Создать новую БД-->
     <div id="create-new-base" aria-hidden="false" class="popup">
         <div class="popup__wrapper">
@@ -3400,12 +3399,31 @@
                                         Дата активации
                                     </div>
                                     <div class="calendar__input">
-                                        <input data-required data-error="Reason for the error" autocomplete="off" type="text" class="input-calendar" data-start
-                                            name="form[]" placeholder="00 / 00 / 0000">
+                                        <div class="date-picker-sections">
+                                            <div class="date-section">
+                                                <input data-required
+                                                    data-error="Reason for the error + more text (2th row)" type="text"
+                                                    class="date-section-input day-input" maxlength="2" placeholder="00"
+                                                    inputmode="numeric">
+                                                <span class="date-separator">/</span>
+                                            </div>
+                                            <div class="date-section">
+                                                <input data-required
+                                                    data-error="Reason for the error + more text (2th row)" type="text"
+                                                    class="date-section-input month-input" maxlength="2"
+                                                    placeholder="00" inputmode="numeric">
+                                                <span class="date-separator">/</span>
+                                            </div>
+                                            <div class="date-section">
+                                                <input data-required
+                                                    data-error="Reason for the error + more text (2th row)" type="text"
+                                                    class="date-section-input year-input" maxlength="4"
+                                                    placeholder="0000" inputmode="numeric">
+                                            </div>
+                                        </div>
                                         <div class="calendar__icon">
                                             <svg aria-hidden="true" width="18" height="20">
-                                                <use xlink:href="img/sprite.svg#calendar">
-                                                </use>
+                                                <use xlink:href="img/sprite.svg#calendar"></use>
                                             </svg>
                                         </div>
                                     </div>

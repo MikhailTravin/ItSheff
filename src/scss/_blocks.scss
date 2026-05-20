@@ -192,6 +192,14 @@
         }
     }
 
+    // .block-cabinet__dragging
+
+    &__dragging {
+        display: flex;
+        flex-direction: column;
+        gap: 27.5px;
+    }
+
     // .block-cabinet__column
 
     &__column {
@@ -1294,7 +1302,7 @@
         }
         &.active {
             pointer-events: none;
-            color: #000;
+            background-color: #fff;
             @media (min-width: 701px) {
                 .cabinet-menu__icon {
                     svg {
@@ -1530,8 +1538,10 @@
         }
         @media (any-hover: hover) {
             &:hover {
-                color: #000;
                 background-color: #f8f8f8;
+                .cabinet-tabs__title {
+                    color: #000;
+                }
                 .cabinet-tabs__arrow {
                     svg {
                         fill: #424242;
@@ -1542,8 +1552,10 @@
 
         @media (any-hover: none) {
             &:active {
-                color: #000;
                 background-color: #f0f2f4;
+                .cabinet-tabs__title {
+                    color: #000;
+                }
                 .cabinet-tabs__arrow {
                     svg {
                         fill: #000;
@@ -1592,6 +1604,7 @@
         display: flex;
         align-items: center;
         gap: 17px;
+        transition: color 0.3s;
         @media (max-width: 992px) {
             font-size: 15px;
             line-height: 133%;
@@ -2244,12 +2257,12 @@
 
     &__body {
         display: flex;
-        align-items: flex-end;
+        align-items: start;
         gap: 36px;
         @media (max-width: 992px) {
             gap: 16px;
         }
-        @media (max-width: 760px) {
+        @media (max-width: 860px) {
             flex-direction: column;
             align-items: start;
             gap: 23.5px;
@@ -2260,14 +2273,14 @@
             min-height: 53px;
             font-size: 18px;
             line-height: 111%;
-            margin-top: 20px;
+            margin-top: 25px;
             @media (max-width: 992px) {
                 flex: 0 0 143px;
                 font-size: 14px;
                 line-height: 143%;
                 min-height: 37px;
             }
-            @media (max-width: 760px) {
+            @media (max-width: 860px) {
                 flex: 0 1 auto;
                 width: 100%;
                 min-height: 36px;
@@ -3131,7 +3144,8 @@
                 fill: #424242;
             }
         }
-        &:active {
+        &:active,
+        &.active {
             svg {
                 fill: #000;
             }
@@ -4828,6 +4842,7 @@
             line-height: 150%;
             resize: none;
             width: 100%;
+            padding: 0px 15px 0px 0px;
             @media (max-width: 700px) {
                 font-size: 14px;
                 line-height: 114%;
@@ -5352,6 +5367,7 @@
             right: -72px;
             transform: translate(0, 0);
             left: auto;
+            text-align: left;
             margin: 0px 0px 11px 0px;
             @media (max-width: 992px) {
                 width: 250px;
@@ -5368,6 +5384,7 @@
                     left: auto;
                 }
             }
+            span,
             p {
                 color: #fff;
             }
