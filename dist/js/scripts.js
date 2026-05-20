@@ -2453,15 +2453,6 @@ if (inputTimer) {
   }).mask(inputTimer);
 }
 
-//Маска
-const inputCalendar = document.querySelectorAll('.input-calendar');
-if (inputCalendar) {
-  Inputmask({
-    "mask": "99 / 99 / 9999",
-    "showMaskOnHover": false,
-  }).mask(inputCalendar);
-}
-
 //========================================================================================================================================================
 
 //Форма
@@ -2475,6 +2466,10 @@ function formFieldsInit(options = { viewPass: true, autoHeight: false }) {
       }
       formValidate.removeError(targetElement);
       targetElement.hasAttribute('data-validate') ? formValidate.removeError(targetElement) : null;
+
+      if (targetElement.closest('.date-picker-sections')) {
+        formValidate.removeCalendarError(targetElement.closest('.calendar'));
+      }
     }
     if (targetElement.closest('.form-select') && targetElement.closest('.form-select').hasAttribute('data-required')) {
       const formSelect = targetElement.closest('.form-select');
@@ -2489,8 +2484,40 @@ function formFieldsInit(options = { viewPass: true, autoHeight: false }) {
         targetElement.parentElement.classList.remove('_form-focus');
       }
       targetElement.hasAttribute('data-validate') ? formValidate.validateInput(targetElement) : null;
+
+      // При потере фокуса на инпуте календаря - проверяем весь календарь
+      if (targetElement.closest('.date-picker-sections') && targetElement.hasAttribute('data-required')) {
+        formValidate.validateCalendar(targetElement.closest('.calendar'));
+      }
     }
   });
+
+  // Добавляем обработчик input для календарей
+  document.body.addEventListener("input", function (e) {
+    const targetElement = e.target;
+    // Если ввод происходит в инпуте календаря
+    if (targetElement.closest('.date-picker-sections') && targetElement.hasAttribute('data-required')) {
+      const calendar = targetElement.closest('.calendar');
+      if (calendar) {
+        // Проверяем, все ли три инпута заполнены
+        const dayInput = calendar.querySelector('.day-input');
+        const monthInput = calendar.querySelector('.month-input');
+        const yearInput = calendar.querySelector('.year-input');
+
+        if (dayInput && monthInput && yearInput) {
+          const dayValue = dayInput.value.trim();
+          const monthValue = monthInput.value.trim();
+          const yearValue = yearInput.value.trim();
+
+          // Если все три заполнены - убираем ошибку
+          if (dayValue && monthValue && yearValue) {
+            formValidate.removeCalendarError(calendar);
+          }
+        }
+      }
+    }
+  });
+
   if (options.viewPass) {
     document.addEventListener("click", function (e) {
       const targetElement = e.target;
@@ -2578,13 +2605,105 @@ let formValidate = {
     let error = 0;
     let formRequiredItems = form.querySelectorAll('*[data-required]');
     if (formRequiredItems.length) {
+      // Собираем календари, чтобы не валидировать их инпуты по отдельности
+      const processedCalendars = new Set();
+
       formRequiredItems.forEach(formRequiredItem => {
         if ((formRequiredItem.offsetParent !== null || formRequiredItem.tagName === "SELECT") && !formRequiredItem.disabled) {
-          error += this.validateInput(formRequiredItem);
+          // Если инпут находится внутри календаря
+          const calendar = formRequiredItem.closest('.calendar');
+          if (calendar && formRequiredItem.closest('.date-picker-sections')) {
+            // Валидируем весь календарь один раз
+            if (!processedCalendars.has(calendar)) {
+              processedCalendars.add(calendar);
+              error += this.validateCalendar(calendar);
+            }
+          } else {
+            error += this.validateInput(formRequiredItem);
+          }
         }
       });
     }
     return error;
+  },
+
+  validateCalendar(calendar) {
+    if (!calendar) return 0;
+
+    const dayInput = calendar.querySelector('.day-input');
+    const monthInput = calendar.querySelector('.month-input');
+    const yearInput = calendar.querySelector('.year-input');
+    const calendarInput = calendar.querySelector('.calendar__input');
+
+    if (!dayInput || !monthInput || !yearInput) return 0;
+
+    const dayValue = dayInput.value.trim();
+    const monthValue = monthInput.value.trim();
+    const yearValue = yearInput.value.trim();
+
+    // Если все три заполнены - успех
+    if (dayValue && monthValue && yearValue) {
+      this.removeCalendarError(calendar);
+      return 0;
+    }
+
+    // Если хоть один не заполнен - ошибка
+    // Добавляем _form-error на сам calendar
+    calendar.classList.add('_form-error');
+
+    // Добавляем _form-error на все три инпута
+    [dayInput, monthInput, yearInput].forEach(input => {
+      input.classList.add('_form-error');
+    });
+
+    // Добавляем _form-error на calendar__input
+    if (calendarInput) {
+      calendarInput.classList.add('_form-error');
+    }
+
+    // Удаляем старую ошибку внутри calendar если есть
+    const oldError = calendar.querySelector('.form__error');
+    if (oldError) oldError.remove();
+
+    // Находим текст ошибки из data-error первого инпута
+    const errorText = dayInput.dataset.error || 'Заполните дату';
+
+    // Вставляем одну ошибку в конец calendar
+    calendar.insertAdjacentHTML('beforeend',
+      `<div class="form__error">${errorText}</div>`
+    );
+
+    return 1;
+  },
+
+  removeCalendarError(calendar) {
+    if (!calendar) return;
+
+    const dayInput = calendar.querySelector('.day-input');
+    const monthInput = calendar.querySelector('.month-input');
+    const yearInput = calendar.querySelector('.year-input');
+    const calendarInput = calendar.querySelector('.calendar__input');
+
+    // Убираем _form-error с самого calendar
+    calendar.classList.remove('_form-error');
+
+    // Убираем _form-error со всех инпутов и добавляем _form-success
+    [dayInput, monthInput, yearInput].forEach(input => {
+      if (input) {
+        input.classList.remove('_form-error');
+        input.classList.add('_form-success');
+      }
+    });
+
+    // Убираем _form-error с calendar__input и добавляем _form-success
+    if (calendarInput) {
+      calendarInput.classList.remove('_form-error');
+      calendarInput.classList.add('_form-success');
+    }
+
+    // Удаляем form__error внутри calendar
+    const calendarErrors = calendar.querySelectorAll('.form__error');
+    calendarErrors.forEach(error => error.remove());
   },
 
   validateInput(formRequiredItem) {
@@ -2784,6 +2903,11 @@ let formValidate = {
       });
 
       form.querySelectorAll('.form__error').forEach(error => error.remove());
+
+      // Очищаем календари
+      form.querySelectorAll('.calendar').forEach(calendar => {
+        formValidate.removeCalendarError(calendar);
+      });
 
       if (modules_flsModules.select) {
         let selects = form.querySelectorAll('div.select');
@@ -3499,102 +3623,6 @@ function formRating() {
 }
 
 formRating();
-/*
-function formRating() {
-  const ratings = document.querySelectorAll('[data-rating]');
-
-  ratings.forEach(rating => {
-    const ratingValue = +rating.dataset.ratingValue || 0;
-    const ratingSize = +rating.dataset.ratingSize || 5;
-    const isSet = rating.dataset.rating === 'set';
-
-    formRatingInit(rating, ratingSize);
-    formRatingSet(rating, ratingValue);
-
-    if (isSet && ratingValue > 0) {
-      const textContainer = rating.closest('.popup-other-rating')?.querySelector('.popup-other-rating__text');
-      if (textContainer) {
-        textContainer.classList.add('active');
-        updateRatingText(textContainer, ratingValue);
-      }
-    }
-  });
-
-  document.addEventListener('click', formRatingAction);
-
-  function formRatingAction(e) {
-    const targetElement = e.target.closest('.rating__input');
-    if (!targetElement) return;
-
-    const ratingValue = +targetElement.value;
-    const rating = targetElement.closest('.rating');
-    const isSet = rating.dataset.rating === 'set';
-
-    if (isSet) {
-      formRatingSet(rating, ratingValue);
-
-      const textContainer = rating.closest('.popup-other-rating')?.querySelector('.popup-other-rating__text');
-      if (textContainer) {
-        textContainer.classList.add('active');
-        updateRatingText(textContainer, ratingValue);
-      }
-    }
-  }
-
-  function formRatingInit(rating, ratingSize) {
-    let ratingItems = `<div class="rating__items">`;
-    for (let index = 0; index < ratingSize; index++) {
-      ratingItems += `
-        <label class="rating__item">
-          <input class="rating__input" type="radio" name="rating" value="${index + 1}">
-        </label>`;
-    }
-    ratingItems += `</div>`;
-    rating.insertAdjacentHTML("beforeend", ratingItems);
-  }
-
-  function formRatingSet(rating, value) {
-    const ratingItems = rating.querySelectorAll('.rating__item');
-    const resultFullItems = parseInt(value);
-    const resultPartItem = value - resultFullItems;
-
-    const radioInputs = rating.querySelectorAll('.rating__input');
-    radioInputs.forEach((input, idx) => {
-      if (idx + 1 === Math.ceil(value)) {
-        input.checked = true;
-      } else {
-        input.checked = false;
-      }
-    });
-
-    ratingItems.forEach((ratingItem, index) => {
-      ratingItem.classList.remove('rating__item--active');
-      ratingItem.querySelector('span')?.remove();
-
-      if (index <= (resultFullItems - 1)) {
-        ratingItem.classList.add('rating__item--active');
-      }
-      if (index === resultFullItems && resultPartItem) {
-        ratingItem.insertAdjacentHTML("beforeend", `<span style="width:${resultPartItem * 100}%"></span>`);
-      }
-    });
-  }
-
-  function updateRatingText(textContainer, ratingValue) {
-    const ratingTexts = {
-      1: 'Очень плохо',
-      2: 'Посредственно',
-      3: 'Удовлетворительно',
-      4: 'Хорошо',
-      5: 'Отлично'
-    };
-
-    textContainer.textContent = ratingTexts[ratingValue] || 'Оценка';
-  }
-}
-
-formRating();
-*/
 
 //========================================================================================================================================================
 
@@ -4076,11 +4104,453 @@ if (btnCheck) {
 
 //========================================================================================================================================================
 
-const calendars = document.querySelectorAll(".calendar");
-if (calendars) {
+class DateSectionInput {
+  constructor(calendar, dayInput, monthInput, yearInput, validYears = []) {
+    this.calendar = calendar;
+    this.dayInput = dayInput;
+    this.monthInput = monthInput;
+    this.yearInput = yearInput;
+    this.isFocused = false;
+    this.skipValidation = false;
+    this.isAutoSwitching = false;
+    this.validYears = validYears;
+    this.prevDayValue = '';
+    this.prevMonthValue = '';
+    this.prevYearValue = '';
 
-  const closeAllCalendarStates = () => {
-    calendars.forEach(calendar => {
+    this.init();
+  }
+
+  init() {
+    this.dayInput.addEventListener('input', (e) => this.handleDayInput(e));
+    this.monthInput.addEventListener('input', (e) => this.handleMonthInput(e));
+    this.yearInput.addEventListener('input', (e) => this.handleYearInput(e));
+
+    this.dayInput.addEventListener('keydown', (e) => this.handleKeydown(e, 'day'));
+    this.monthInput.addEventListener('keydown', (e) => this.handleKeydown(e, 'month'));
+    this.yearInput.addEventListener('keydown', (e) => this.handleKeydown(e, 'year'));
+
+    this.dayInput.addEventListener('focus', () => this.handleFocus('day'));
+    this.monthInput.addEventListener('focus', () => this.handleFocus('month'));
+    this.yearInput.addEventListener('focus', () => this.handleFocus('year'));
+
+    this.dayInput.addEventListener('blur', () => this.handleBlur('day'));
+    this.monthInput.addEventListener('blur', () => this.handleBlur('month'));
+    this.yearInput.addEventListener('blur', () => this.handleBlur('year'));
+
+    this.clearValues();
+  }
+
+  handleFocus(field) {
+    this.isFocused = true;
+
+    const input = this.getInputByField(field);
+    if (input) {
+      input.placeholder = '';
+    }
+
+    this.prevDayValue = this.dayInput.value;
+    this.prevMonthValue = this.monthInput.value;
+    this.prevYearValue = this.yearInput.value;
+  }
+
+  handleBlur(field) {
+    this.isFocused = false;
+
+    const input = this.getInputByField(field);
+    if (input) {
+      if (!input.value || input.value === '') {
+        if (field === 'day') {
+          input.placeholder = '00';
+        } else if (field === 'month') {
+          input.placeholder = '00';
+        } else if (field === 'year') {
+          input.placeholder = '0000';
+        }
+        input.value = '';
+      } else if (field === 'year' && this.validYears.length > 0) {
+        const yearNum = parseInt(input.value);
+        if (isNaN(yearNum) || !this.validYears.includes(yearNum)) {
+          input.value = '';
+          input.placeholder = '0000';
+        }
+      } else if (field === 'day' && input.value.length === 1) {
+        const dayNum = parseInt(input.value);
+        if (dayNum >= 1 && dayNum <= 9) {
+          input.value = '0' + input.value;
+        }
+      } else if (field === 'month' && input.value.length === 1) {
+        const monthNum = parseInt(input.value);
+        if (monthNum >= 1 && monthNum <= 9) {
+          input.value = '0' + input.value;
+        }
+      }
+    }
+
+    setTimeout(() => {
+      if (!this.isAutoSwitching) {
+        this.validateAndUpdate(true);
+      }
+    }, 200);
+  }
+
+  getInputByField(field) {
+    switch (field) {
+      case 'day': return this.dayInput;
+      case 'month': return this.monthInput;
+      case 'year': return this.yearInput;
+      default: return null;
+    }
+  }
+
+  handleDayInput(e) {
+    let value = e.target.value.replace(/\D/g, '');
+
+    if (value === '') {
+      e.target.value = '';
+      return;
+    }
+
+    if (value.length > 2) value = value.slice(0, 2);
+
+    if (value.length === 2) {
+      let dayNum = parseInt(value);
+      if (dayNum < 1) value = '01';
+      if (dayNum > 31) value = '31';
+      e.target.value = value;
+
+      this.isAutoSwitching = true;
+      setTimeout(() => {
+        this.monthInput.focus();
+        setTimeout(() => {
+          this.isAutoSwitching = false;
+        }, 100);
+      }, 0);
+    } else if (value.length === 1) {
+      let dayNum = parseInt(value);
+      if (dayNum === 0 || dayNum > 3) {
+        value = '0' + value;
+        e.target.value = value;
+
+        this.isAutoSwitching = true;
+        setTimeout(() => {
+          this.monthInput.focus();
+          setTimeout(() => {
+            this.isAutoSwitching = false;
+          }, 100);
+        }, 0);
+      } else {
+        e.target.value = value;
+      }
+    } else {
+      e.target.value = value;
+    }
+  }
+
+  handleMonthInput(e) {
+    let value = e.target.value.replace(/\D/g, '');
+
+    if (value === '') {
+      e.target.value = '';
+      return;
+    }
+
+    if (value.length > 2) value = value.slice(0, 2);
+
+    if (value.length === 2) {
+      let monthNum = parseInt(value);
+      if (monthNum < 1) {
+        value = '01';
+      } else if (monthNum > 12) {
+        value = '12';
+      } else {
+        value = String(monthNum).padStart(2, '0');
+      }
+      e.target.value = value;
+
+      this.isAutoSwitching = true;
+      setTimeout(() => {
+        this.yearInput.focus();
+        setTimeout(() => {
+          this.isAutoSwitching = false;
+        }, 100);
+      }, 0);
+    } else if (value.length === 1) {
+      let monthNum = parseInt(value);
+      if (monthNum === 0 || monthNum > 1) {
+        value = '0' + value;
+        e.target.value = value;
+
+        this.isAutoSwitching = true;
+        setTimeout(() => {
+          this.yearInput.focus();
+          setTimeout(() => {
+            this.isAutoSwitching = false;
+          }, 100);
+        }, 0);
+      } else {
+        e.target.value = value;
+      }
+    } else {
+      e.target.value = value;
+    }
+  }
+
+  handleYearInput(e) {
+    let value = e.target.value.replace(/\D/g, '');
+
+    if (value === '') {
+      e.target.value = '';
+      return;
+    }
+
+    if (value.length > 4) value = value.slice(0, 4);
+
+    if (this.validYears.length > 0) {
+      if (value.length === 1) {
+        const hasMatchingYear = this.validYears.some(year => year.toString().startsWith(value));
+        if (!hasMatchingYear) {
+          e.target.value = '';
+          return;
+        }
+      } else if (value.length === 2) {
+        const hasMatchingYear = this.validYears.some(year => year.toString().startsWith(value));
+        if (!hasMatchingYear) {
+          e.target.value = '';
+          return;
+        }
+      } else if (value.length === 3) {
+        const hasMatchingYear = this.validYears.some(year => year.toString().startsWith(value));
+        if (!hasMatchingYear) {
+          e.target.value = '';
+          return;
+        }
+      } else if (value.length === 4) {
+        const yearNum = parseInt(value);
+        if (!this.validYears.includes(yearNum)) {
+          e.target.value = value.slice(0, 3);
+          return;
+        }
+      }
+    }
+
+    e.target.value = value;
+  }
+
+  handleKeydown(e, field) {
+    if (e.key === 'ArrowRight' || e.key === '.' || e.key === '/' || e.key === ',' || e.key === ' ') {
+      e.preventDefault();
+      if (field === 'day') {
+        if (this.dayInput.value.length === 1) {
+          const dayNum = parseInt(this.dayInput.value);
+          if (dayNum >= 1 && dayNum <= 9) {
+            this.dayInput.value = '0' + this.dayInput.value;
+          }
+        }
+        this.isAutoSwitching = true;
+        this.monthInput.focus();
+        setTimeout(() => {
+          this.isAutoSwitching = false;
+        }, 100);
+      } else if (field === 'month') {
+        if (this.monthInput.value.length === 1) {
+          const monthNum = parseInt(this.monthInput.value);
+          if (monthNum >= 1 && monthNum <= 9) {
+            this.monthInput.value = '0' + this.monthInput.value;
+          }
+        }
+        this.isAutoSwitching = true;
+        this.yearInput.focus();
+        setTimeout(() => {
+          this.isAutoSwitching = false;
+        }, 100);
+      }
+      return;
+    }
+
+    if (e.key === 'ArrowLeft') {
+      if (field === 'month') {
+        e.preventDefault();
+        this.dayInput.focus();
+      } else if (field === 'year') {
+        e.preventDefault();
+        this.monthInput.focus();
+      }
+      return;
+    }
+
+    if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      this.incrementField(field, 1);
+    } else if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      this.incrementField(field, -1);
+    } else if (e.key === 'Backspace' && e.target.value === '') {
+      if (field === 'month') {
+        this.dayInput.focus();
+      } else if (field === 'year') {
+        this.monthInput.focus();
+      }
+    } else if (e.key === 'Enter') {
+      e.preventDefault();
+      this.validateAndUpdate(true);
+      const calendar = this.calendar;
+      if (calendar && calendar.classList.contains('active')) {
+        const applyBtn = calendar.querySelector('.calendar-apply');
+        if (applyBtn) applyBtn.click();
+      }
+    }
+  }
+
+  incrementField(field, delta) {
+    let value;
+    let min, max;
+
+    switch (field) {
+      case 'day':
+        value = parseInt(this.dayInput.value) || 1;
+        min = 1;
+        max = this.getDaysInMonth();
+        break;
+      case 'month':
+        value = parseInt(this.monthInput.value) || 1;
+        min = 1;
+        max = 12;
+        break;
+      case 'year':
+        value = parseInt(this.yearInput.value) || (this.validYears[0] || new Date().getFullYear());
+        if (this.validYears.length > 0) {
+          min = this.validYears[0];
+          max = this.validYears[this.validYears.length - 1];
+        } else {
+          const currentYear = new Date().getFullYear();
+          min = 1900;
+          max = currentYear + 10;
+        }
+        break;
+    }
+
+    let newValue = value + delta;
+    if (newValue < min) newValue = max;
+    if (newValue > max) newValue = min;
+
+    const paddedValue = field === 'year' ? String(newValue) : String(newValue).padStart(2, '0');
+
+    switch (field) {
+      case 'day':
+        this.dayInput.value = paddedValue;
+        break;
+      case 'month':
+        this.monthInput.value = paddedValue;
+        break;
+      case 'year':
+        this.yearInput.value = paddedValue;
+        break;
+    }
+
+    this.validateAndUpdate(true);
+  }
+
+  getDaysInMonth() {
+    const month = parseInt(this.monthInput.value) || 1;
+    const year = parseInt(this.yearInput.value) || (this.validYears[0] || new Date().getFullYear());
+    return new Date(year, month, 0).getDate();
+  }
+
+  validateAndUpdate(updateCalendar = false) {
+    let day = this.dayInput.value;
+    let month = this.monthInput.value;
+    let year = this.yearInput.value;
+
+    if (month && month.length === 2) {
+      let monthNum = parseInt(month);
+      if (monthNum < 1) month = '01';
+      if (monthNum > 12) month = '12';
+      if (month !== this.monthInput.value) {
+        this.monthInput.value = month;
+      }
+    }
+
+    if (year && year.length === 4 && this.validYears.length > 0) {
+      const yearNum = parseInt(year);
+      if (!this.validYears.includes(yearNum)) {
+        this.yearInput.value = '';
+        return;
+      }
+    }
+
+    if (updateCalendar && day && day.length === 2 && month && month.length === 2 && year && year.length === 4) {
+      const dayNum = parseInt(day);
+      const monthNum = parseInt(month);
+      const yearNum = parseInt(year);
+
+      if (monthNum >= 1 && monthNum <= 12) {
+        const maxDays = new Date(yearNum, monthNum, 0).getDate();
+
+        if (dayNum > maxDays) {
+          day = String(maxDays).padStart(2, '0');
+          this.dayInput.value = day;
+        }
+
+        if (dayNum < 1) {
+          day = '01';
+          this.dayInput.value = day;
+        }
+      }
+
+      if (dayNum >= 1 && dayNum <= maxDays) {
+        const date = new Date(yearNum, monthNum - 1, dayNum);
+        if (!isNaN(date.getTime()) &&
+          date.getDate() === dayNum &&
+          date.getMonth() + 1 === monthNum &&
+          date.getFullYear() === yearNum) {
+          this.updateCalendar(date);
+        }
+      }
+    }
+  }
+
+  updateCalendar(date) {
+    if (this.calendar && this.calendar.updateSelectionFromInput) {
+      this.calendar.updateSelectionFromInput(date.getTime());
+    }
+  }
+
+  getValue() {
+    const day = this.dayInput.value;
+    const month = this.monthInput.value;
+    const year = this.yearInput.value;
+
+    if (day && month && year && day.length === 2 && month.length === 2 && year.length === 4) {
+      return day + ' / ' + month + ' / ' + year;
+    }
+    return '';
+  }
+
+  setValue(day, month, year) {
+    this.dayInput.value = day;
+    this.monthInput.value = month;
+    this.yearInput.value = year;
+    this.dayInput.placeholder = '';
+    this.monthInput.placeholder = '';
+    this.yearInput.placeholder = '';
+  }
+
+  clearValues() {
+    this.dayInput.value = '';
+    this.monthInput.value = '';
+    this.yearInput.value = '';
+    this.dayInput.placeholder = '00';
+    this.monthInput.placeholder = '00';
+    this.yearInput.placeholder = '0000';
+  }
+}
+
+var calendars = document.querySelectorAll(".calendar");
+if (calendars.length > 0) {
+
+  var closeAllCalendarStates = function () {
+    calendars.forEach(function (calendar) {
       calendar.classList.remove('active');
       calendar.classList.remove('calendar-month-active');
       calendar.classList.remove('calendar-data-active');
@@ -4088,40 +4558,44 @@ if (calendars) {
     document.documentElement.classList.remove('open-calendar');
   };
 
-  calendars.forEach((calendar, calendarIndex) => {
-    const calendarMain = calendar.querySelector(".calendar__main");
-    const calHeaderTitle = calendar.querySelector(".calendar__header span");
+  calendars.forEach(function (calendar, calendarIndex) {
+    var calendarMain = calendar.querySelector(".calendar__main");
+    var calHeaderTitle = calendar.querySelector(".calendar__header span");
 
-    const calendarValueBlock = calendar.querySelector(".calendar__value");
-    const calendarInput = calendar.querySelector(".input-calendar");
+    var calendarValueBlock = calendar.querySelector(".calendar__value");
 
-    const isSingleSelect = calendar.classList.contains('calendar-one');
+    var dayInput = calendar.querySelector('.day-input');
+    var monthInput = calendar.querySelector('.month-input');
+    var yearInput = calendar.querySelector('.year-input');
+    var calendarInput = calendar.querySelector(".input-calendar");
 
-    const monthItems = calendar.querySelectorAll('.calendar-month .calendar-header__dropdown .calendar-header__item');
-    const monthsList = [];
-    monthItems.forEach(item => {
-      const monthSpan = item.querySelector('span');
+    var isSingleSelect = calendar.classList.contains('calendar-one');
+
+    var monthItems = calendar.querySelectorAll('.calendar-month .calendar-header__dropdown .calendar-header__item');
+    var monthsList = [];
+    monthItems.forEach(function (item) {
+      var monthSpan = item.querySelector('span');
       if (monthSpan) {
         monthsList.push(monthSpan.textContent.trim());
       }
     });
 
-    const yearItems = calendar.querySelectorAll('.calendar-data .calendar-header__dropdown .calendar-header__item');
-    const yearsList = [];
-    yearItems.forEach(item => {
-      const yearSpan = item.querySelector('span');
+    var yearItems = calendar.querySelectorAll('.calendar-data .calendar-header__dropdown .calendar-header__item');
+    var yearsList = [];
+    yearItems.forEach(function (item) {
+      var yearSpan = item.querySelector('span');
       if (yearSpan) {
         yearsList.push(parseInt(yearSpan.textContent.trim()));
       }
     });
-    yearsList.sort((a, b) => a - b);
+    yearsList.sort(function (a, b) { return a - b; });
 
-    const getShortMonth = (fullMonthName) => {
+    var getShortMonth = function (fullMonthName) {
       return fullMonthName.substring(0, 3);
     };
 
-    const getMonthNumber = (monthName) => {
-      const monthMap = {
+    var getMonthNumber = function (monthName) {
+      var monthMap = {
         'Январь': '01', 'Февраль': '02', 'Март': '03', 'Апрель': '04',
         'Май': '05', 'Июнь': '06', 'Июль': '07', 'Август': '08',
         'Сентябрь': '09', 'Октябрь': '10', 'Ноябрь': '11', 'Декабрь': '12'
@@ -4129,14 +4603,20 @@ if (calendars) {
       return monthMap[monthName] || '01';
     };
 
-    const todayTimestamp = Date.now() - (Date.now() % (24 * 60 * 60 * 1000));
-    const today = new Date();
-    const todayDay = String(today.getDate()).padStart(2, '0');
-    const todayMonth = String(today.getMonth() + 1).padStart(2, '0');
-    const todayYear = today.getFullYear();
+    var getMonthNameFromNumber = function (monthNumber) {
+      var months = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь',
+        'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
+      return months[monthNumber] || 'Январь';
+    };
 
-    const getDateObjectFromTimestamp = (timestamp) => {
-      let dateObject = new Date(timestamp);
+    var todayTimestamp = Date.now() - (Date.now() % (24 * 60 * 60 * 1000));
+    var today = new Date();
+    var todayDay = String(today.getDate()).padStart(2, '0');
+    var todayMonth = String(today.getMonth() + 1).padStart(2, '0');
+    var todayYear = today.getFullYear();
+
+    var getDateObjectFromTimestamp = function (timestamp) {
+      var dateObject = new Date(timestamp);
       return {
         year: dateObject.getUTCFullYear(),
         month: String(dateObject.getUTCMonth() + 1).padStart(2, '0'),
@@ -4144,33 +4624,33 @@ if (calendars) {
       };
     };
 
-    let selectedStartDate = todayTimestamp;
-    let selectedEndDate = null;
-    let tempStartDate = todayTimestamp;
-    let tempEndDate = null;
-    let isSelectingRange = false;
-    let hasUserSelected = false;
+    var selectedStartDate = null;
+    var selectedEndDate = null;
+    var tempStartDate = null;
+    var tempEndDate = null;
+    var isSelectingRange = false;
+    var hasUserSelected = false;
 
-    let savedDay = todayDay;
-    let savedMonth = todayMonth;
-    let savedYear = todayYear;
-    let savedMonthName = monthsList[today.getMonth()] || '';
-    let savedIsRange = false;
-    let savedEndDay = null;
-    let savedEndMonth = null;
-    let savedEndYear = null;
+    var savedDay = '';
+    var savedMonth = '';
+    var savedYear = '';
+    var savedMonthName = '';
+    var savedIsRange = false;
+    var savedEndDay = null;
+    var savedEndMonth = null;
+    var savedEndYear = null;
 
-    const getNumberOfDays = (year, month) => {
+    var getNumberOfDays = function (year, month) {
       return new Date(year, month + 1, 0).getDate();
     };
 
-    const getDayDetails = (args) => {
-      let date = args.index - args.firstDay;
-      let dayOfWeek = (args.index % 7 + 7) % 7;
-      let prevMonth = args.month - 1;
-      let nextMonth = args.month + 1;
-      let prevYear = args.year;
-      let nextYear = args.year;
+    var getDayDetails = function (args) {
+      var date = args.index - args.firstDay;
+      var dayOfWeek = (args.index % 7 + 7) % 7;
+      var prevMonth = args.month - 1;
+      var nextMonth = args.month + 1;
+      var prevYear = args.year;
+      var nextYear = args.year;
 
       if (prevMonth < 0) {
         prevMonth = 11;
@@ -4181,10 +4661,10 @@ if (calendars) {
         nextYear++;
       }
 
-      let prevMonthDays = getNumberOfDays(prevYear, prevMonth);
-      let currentMonthDays = getNumberOfDays(args.year, args.month);
+      var prevMonthDays = getNumberOfDays(prevYear, prevMonth);
+      var currentMonthDays = getNumberOfDays(args.year, args.month);
 
-      let displayDate, displayMonth, displayYear;
+      var displayDate, displayMonth, displayYear;
       if (date < 0) {
         displayDate = prevMonthDays + date + 1;
         displayMonth = prevMonth;
@@ -4199,7 +4679,7 @@ if (calendars) {
         displayYear = args.year;
       }
 
-      let timestamp = new Date(Date.UTC(displayYear, displayMonth, displayDate)).getTime();
+      var timestamp = new Date(Date.UTC(displayYear, displayMonth, displayDate)).getTime();
       return {
         date: displayDate,
         day: dayOfWeek,
@@ -4208,11 +4688,11 @@ if (calendars) {
       };
     };
 
-    const getMonthDetails = (year, month) => {
-      let firstDay = new Date(Date.UTC(year, month, 1)).getUTCDay();
+    var getMonthDetails = function (year, month) {
+      var firstDay = new Date(Date.UTC(year, month, 1)).getUTCDay();
       firstDay = firstDay === 0 ? 6 : firstDay - 1;
-      let monthArray = [];
-      for (let i = 0; i < 42; i++) {
+      var monthArray = [];
+      for (var i = 0; i < 42; i++) {
         monthArray.push(getDayDetails({
           index: i,
           firstDay: firstDay,
@@ -4223,28 +4703,28 @@ if (calendars) {
       return monthArray;
     };
 
-    let currentMonthIndex = 0;
+    var currentMonthIndex = 0;
 
-    const now = new Date();
-    const currentMonthName = monthsList[now.getMonth()];
+    var now = new Date();
+    var currentMonthName = monthsList[now.getMonth()];
     if (currentMonthName) {
-      currentMonthIndex = monthsList.findIndex(m => m === currentMonthName);
+      currentMonthIndex = monthsList.findIndex(function (m) { return m === currentMonthName; });
       if (currentMonthIndex === -1) currentMonthIndex = 0;
     }
 
-    let currentYear = yearsList[0] || now.getFullYear();
+    var currentYear = yearsList[0] || now.getFullYear();
     if (yearsList.length > 0) {
-      const closestYear = yearsList.reduce((prev, curr) => {
+      var closestYear = yearsList.reduce(function (prev, curr) {
         return (Math.abs(curr - now.getFullYear()) < Math.abs(prev - now.getFullYear()) ? curr : prev);
       });
       currentYear = closestYear;
     }
 
-    let year = currentYear;
-    let month = currentMonthIndex;
-    let monthDetails = getMonthDetails(year, month);
+    var year = currentYear;
+    var month = currentMonthIndex;
+    var monthDetails = getMonthDetails(year, month);
 
-    const isDateInRange = (timestamp, start, end) => {
+    var isDateInRange = function (timestamp, start, end) {
       if (isSingleSelect) {
         return timestamp === start;
       }
@@ -4255,13 +4735,13 @@ if (calendars) {
       return timestamp === start;
     };
 
-    const setCalBody = (monthDetails, startDate, endDate) => {
+    var setCalBody = function (monthDetails, startDate, endDate) {
       if (!calendarMain) return;
 
       calendarMain.innerHTML = "";
-      monthDetails.forEach(day => {
-        let div = document.createElement("div");
-        let span = document.createElement("span");
+      monthDetails.forEach(function (day) {
+        var div = document.createElement("div");
+        var span = document.createElement("span");
 
         div.classList.add("cell_wrapper");
         div.classList.add("cal_date");
@@ -4299,24 +4779,24 @@ if (calendars) {
       });
     };
 
-    const updateMonthSpan = () => {
-      const monthSpan = calendar.querySelector('.calendar-month .calendar-header__button span');
+    var updateMonthSpan = function () {
+      var monthSpan = calendar.querySelector('.calendar-month .calendar-header__button span');
       if (monthSpan && monthsList[month]) {
         monthSpan.textContent = getShortMonth(monthsList[month]);
       }
 
-      const yearSpan = calendar.querySelector('.calendar-data .calendar-header__button span');
+      var yearSpan = calendar.querySelector('.calendar-data .calendar-header__button span');
       if (yearSpan) {
         yearSpan.textContent = year;
       }
 
       if (calHeaderTitle && monthsList[month]) {
-        calHeaderTitle.innerHTML = `${monthsList[month]} ${year}`;
+        calHeaderTitle.innerHTML = monthsList[month] + ' ' + year;
       }
     };
 
-    const updateActiveMonthInDropdown = () => {
-      monthItems.forEach((item, index) => {
+    var updateActiveMonthInDropdown = function () {
+      monthItems.forEach(function (item, index) {
         if (index === month) {
           item.classList.add('active');
         } else {
@@ -4325,9 +4805,9 @@ if (calendars) {
       });
     };
 
-    const updateActiveYearInDropdown = () => {
-      yearItems.forEach(item => {
-        const yearSpan = item.querySelector('span');
+    var updateActiveYearInDropdown = function () {
+      yearItems.forEach(function (item) {
+        var yearSpan = item.querySelector('span');
         if (yearSpan && parseInt(yearSpan.textContent) === year) {
           item.classList.add('active');
         } else {
@@ -4336,19 +4816,25 @@ if (calendars) {
       });
     };
 
-    const updateSavedValues = (startDate, endDate) => {
+    var updateSavedValues = function (startDate, endDate) {
       if (startDate) {
-        const date = getDateObjectFromTimestamp(startDate);
-        savedDay = date.day;
-        savedMonth = date.month;
-        savedYear = date.year;
+        var date = getDateObjectFromTimestamp(startDate);
 
-        const monthIndex = parseInt(date.month) - 1;
-        savedMonthName = monthsList[monthIndex] || '';
+        savedDay = date.day;
+
+        if (!savedMonth || savedMonth === '') {
+          savedMonth = date.month;
+          var monthIndex = parseInt(date.month) - 1;
+          savedMonthName = monthsList[monthIndex] || monthsList[0];
+        }
+
+        if (!savedYear || savedYear === '') {
+          savedYear = date.year;
+        }
 
         if (endDate && !isSingleSelect) {
           savedIsRange = true;
-          const endDateObj = getDateObjectFromTimestamp(endDate);
+          var endDateObj = getDateObjectFromTimestamp(endDate);
           savedEndDay = endDateObj.day;
           savedEndMonth = endDateObj.month;
           savedEndYear = endDateObj.year;
@@ -4358,65 +4844,129 @@ if (calendars) {
           savedEndMonth = null;
           savedEndYear = null;
         }
+      } else {
+        savedDay = '';
+        savedMonth = '';
+        savedYear = '';
+        savedMonthName = '';
+        savedIsRange = false;
+        savedEndDay = null;
+        savedEndMonth = null;
+        savedEndYear = null;
       }
     };
 
-    const updateDisplayFromSaved = () => {
-      if (calendarValueBlock) {
-        if (savedIsRange && savedEndDay) {
-          calendarValueBlock.innerHTML = `${savedDay} <span>/</span> ${savedMonth} <span>/</span> ${savedYear} - ${savedEndDay} <span>/</span> ${savedEndMonth} <span>/</span> ${savedEndYear}`;
-        } else {
-          calendarValueBlock.innerHTML = `${savedDay} <span>/</span> ${savedMonth} <span>/</span> ${savedYear}`;
-        }
+    var updateDisplayFromSaved = function () {
+      var formattedDay = '';
+      var formattedMonth = '';
+      var formattedYear = '';
 
-        calendarValueBlock.setAttribute('data-day', savedDay);
-        calendarValueBlock.setAttribute('data-month', savedMonth);
-        calendarValueBlock.setAttribute('data-year', savedYear);
-        calendarValueBlock.setAttribute('data-month-name', savedMonthName);
+      if (savedDay && savedDay !== '') {
+        formattedDay = String(savedDay).padStart(2, '0');
+      }
+      if (savedMonth && savedMonth !== '') {
+        formattedMonth = String(savedMonth).padStart(2, '0');
+      }
+      if (savedYear && savedYear !== '') {
+        formattedYear = String(savedYear);
+      }
+
+      if (dayInput && monthInput && yearInput) {
+        dayInput.value = formattedDay;
+        monthInput.value = formattedMonth;
+        yearInput.value = formattedYear;
+
+        dayInput.placeholder = formattedDay ? '' : '00';
+        monthInput.placeholder = formattedMonth ? '' : '00';
+        yearInput.placeholder = formattedYear ? '' : '0000';
+      }
+
+      if (calendarValueBlock) {
+        if (formattedDay && formattedMonth && formattedYear) {
+          if (savedIsRange && savedEndDay) {
+            var formattedEndDay = String(savedEndDay).padStart(2, '0');
+            var formattedEndMonth = String(savedEndMonth).padStart(2, '0');
+            calendarValueBlock.innerHTML = formattedDay + ' <span>/</span> ' + formattedMonth + ' <span>/</span> ' + formattedYear + ' - ' + formattedEndDay + ' <span>/</span> ' + formattedEndMonth + ' <span>/</span> ' + savedEndYear;
+          } else {
+            calendarValueBlock.innerHTML = formattedDay + ' <span>/</span> ' + formattedMonth + ' <span>/</span> ' + formattedYear;
+          }
+          calendarValueBlock.setAttribute('data-day', formattedDay);
+          calendarValueBlock.setAttribute('data-month', formattedMonth);
+          calendarValueBlock.setAttribute('data-year', formattedYear);
+          calendarValueBlock.setAttribute('data-month-name', savedMonthName);
+        } else if (formattedMonth && formattedYear) {
+          calendarValueBlock.innerHTML = '__ / ' + formattedMonth + ' / ' + formattedYear;
+        } else if (formattedYear) {
+          calendarValueBlock.innerHTML = '__ / __ / ' + formattedYear;
+        } else {
+          calendarValueBlock.innerHTML = '';
+        }
       }
 
       if (calendarInput) {
-        if (savedIsRange && savedEndDay) {
-          calendarInput.value = `${savedDay}-${savedMonth}-${savedYear} - ${savedEndDay}-${savedEndMonth}-${savedEndYear}`;
+        if (formattedDay && formattedMonth && formattedYear) {
+          calendarInput.value = formattedDay + ' / ' + formattedMonth + ' / ' + formattedYear;
+          calendarInput.setAttribute('data-day', formattedDay);
+          calendarInput.setAttribute('data-month', formattedMonth);
+          calendarInput.setAttribute('data-year', formattedYear);
+          calendarInput.setAttribute('data-month-name', savedMonthName);
         } else {
-          calendarInput.value = `${savedDay}-${savedMonth}-${savedYear}`;
+          calendarInput.value = '';
         }
-
-        calendarInput.setAttribute('data-day', savedDay);
-        calendarInput.setAttribute('data-month', savedMonth);
-        calendarInput.setAttribute('data-year', savedYear);
-        calendarInput.setAttribute('data-month-name', savedMonthName);
       }
     };
 
-    const updateCalendarValueDisplay = (startDate, endDate) => {
+    var updateCalendarValueDisplay = function (startDate, endDate) {
       updateSavedValues(startDate, endDate);
       updateDisplayFromSaved();
     };
 
-    const applySelection = () => {
+    var applySelection = function () {
       selectedStartDate = tempStartDate;
       selectedEndDate = tempEndDate;
       hasUserSelected = true;
-      updateCalendarValueDisplay(selectedStartDate, selectedEndDate);
+
+      if (selectedStartDate) {
+        var startDate = new Date(selectedStartDate);
+        savedDay = String(startDate.getDate()).padStart(2, '0');
+
+        if (!savedMonth || savedMonth === '') {
+          savedMonth = String(startDate.getMonth() + 1).padStart(2, '0');
+          savedMonthName = getMonthNameFromNumber(startDate.getMonth());
+        }
+
+        if (!savedYear || savedYear === '') {
+          savedYear = startDate.getFullYear();
+        }
+      }
+
+      if (selectedEndDate && !isSingleSelect) {
+        var endDate = new Date(selectedEndDate);
+        savedEndDay = String(endDate.getDate()).padStart(2, '0');
+        savedEndMonth = String(endDate.getMonth() + 1).padStart(2, '0');
+        savedEndYear = endDate.getFullYear();
+        savedIsRange = true;
+      }
+
+      updateDisplayFromSaved();
       closeCalendar();
     };
 
-    const cancelSelection = () => {
+    var cancelSelection = function () {
       tempStartDate = selectedStartDate;
       tempEndDate = selectedEndDate;
       setCalBody(monthDetails, tempStartDate, tempEndDate);
       closeCalendar();
     };
 
-    const closeCalendar = () => {
+    var closeCalendar = function () {
       calendar.classList.remove('active');
       calendar.classList.remove('calendar-month-active');
       calendar.classList.remove('calendar-data-active');
       document.documentElement.classList.remove('open-calendar');
     };
 
-    const openCalendar = () => {
+    var openCalendar = function () {
       tempStartDate = selectedStartDate;
       tempEndDate = selectedEndDate;
       isSelectingRange = false;
@@ -4429,15 +4979,15 @@ if (calendars) {
       document.documentElement.classList.add('open-calendar');
     };
 
-    const changeMonth = (offset) => {
-      let newMonth = month + offset;
-      let newYear = year;
+    var changeMonth = function (offset) {
+      var newMonth = month + offset;
+      var newYear = year;
 
       if (newMonth === -1) {
         newMonth = monthsList.length - 1;
         newYear--;
         if (yearsList.length > 0) {
-          const currentYearIndex = yearsList.indexOf(newYear);
+          var currentYearIndex = yearsList.indexOf(newYear);
           if (currentYearIndex !== -1) {
             newYear = yearsList[currentYearIndex];
           } else {
@@ -4452,7 +5002,7 @@ if (calendars) {
         newMonth = 0;
         newYear++;
         if (yearsList.length > 0) {
-          const currentYearIndex = yearsList.indexOf(newYear);
+          var currentYearIndex = yearsList.indexOf(newYear);
           if (currentYearIndex !== -1) {
             newYear = yearsList[currentYearIndex];
           } else {
@@ -4474,20 +5024,19 @@ if (calendars) {
       updateActiveYearInDropdown();
       setCalBody(monthDetails, tempStartDate, tempEndDate);
 
-      const monthName = monthsList[month];
-      savedMonth = getMonthNumber(monthName);
+      savedMonth = getMonthNumber(monthsList[month]);
+      savedMonthName = monthsList[month];
       savedYear = year.toString();
-      savedMonthName = monthName;
       updateDisplayFromSaved();
     };
 
-    const changeYear = (offset) => {
+    var changeYear = function (offset) {
       if (yearsList.length === 0) return;
 
-      const currentIndex = yearsList.indexOf(year);
+      var currentIndex = yearsList.indexOf(year);
 
       if (currentIndex !== -1) {
-        let newIndex = currentIndex + offset;
+        var newIndex = currentIndex + offset;
 
         if (newIndex < 0) {
           newIndex = yearsList.length - 1;
@@ -4510,8 +5059,53 @@ if (calendars) {
       setCalBody(monthDetails, tempStartDate, tempEndDate);
 
       savedYear = year.toString();
+      if (!savedMonth || savedMonth === '') {
+        savedMonth = getMonthNumber(monthsList[month]);
+        savedMonthName = monthsList[month];
+      }
       updateDisplayFromSaved();
     };
+
+    var updateSelectionFromInput = function (timestamp) {
+      var date = new Date(timestamp);
+      var day = String(date.getDate()).padStart(2, '0');
+      var month = String(date.getMonth() + 1).padStart(2, '0');
+      var year = date.getFullYear();
+
+      selectedStartDate = timestamp;
+      selectedEndDate = null;
+      tempStartDate = timestamp;
+      tempEndDate = null;
+
+      savedDay = day;
+
+      if (!savedMonth || savedMonth === '') {
+        savedMonth = month;
+        savedMonthName = getMonthNameFromNumber(date.getMonth());
+      }
+
+      if (!savedYear || savedYear === '') {
+        savedYear = year;
+      }
+
+      updateCalendarValueDisplay(selectedStartDate, selectedEndDate);
+      setCalBody(monthDetails, tempStartDate, tempEndDate);
+
+      var selectedMonth = date.getMonth();
+      var selectedYear = date.getFullYear();
+
+      if (selectedYear !== year || selectedMonth !== month) {
+        year = selectedYear;
+        month = selectedMonth;
+        monthDetails = getMonthDetails(year, month);
+        updateMonthSpan();
+        updateActiveMonthInDropdown();
+        updateActiveYearInDropdown();
+        setCalBody(monthDetails, tempStartDate, tempEndDate);
+      }
+    };
+
+    calendar.updateSelectionFromInput = updateSelectionFromInput;
 
     updateMonthSpan();
     updateActiveMonthInDropdown();
@@ -4521,43 +5115,43 @@ if (calendars) {
     updateSavedValues(selectedStartDate, selectedEndDate);
     updateDisplayFromSaved();
 
-    const monthPrevBtn = calendar.querySelector('.calendar-month .calendar-header__btn-prev');
-    const monthNextBtn = calendar.querySelector('.calendar-month .calendar-header__btn-next');
+    var monthPrevBtn = calendar.querySelector('.calendar-month .calendar-header__btn-prev');
+    var monthNextBtn = calendar.querySelector('.calendar-month .calendar-header__btn-next');
 
     if (monthPrevBtn) {
-      monthPrevBtn.addEventListener('click', (e) => {
+      monthPrevBtn.addEventListener('click', function (e) {
         e.stopPropagation();
         changeMonth(-1);
       });
     }
 
     if (monthNextBtn) {
-      monthNextBtn.addEventListener('click', (e) => {
+      monthNextBtn.addEventListener('click', function (e) {
         e.stopPropagation();
         changeMonth(1);
       });
     }
 
-    const yearPrevBtn = calendar.querySelector('.calendar-data .calendar-header__btn-prev');
-    const yearNextBtn = calendar.querySelector('.calendar-data .calendar-header__btn-next');
+    var yearPrevBtn = calendar.querySelector('.calendar-data .calendar-header__btn-prev');
+    var yearNextBtn = calendar.querySelector('.calendar-data .calendar-header__btn-next');
 
     if (yearPrevBtn) {
-      yearPrevBtn.addEventListener('click', (e) => {
+      yearPrevBtn.addEventListener('click', function (e) {
         e.stopPropagation();
         changeYear(-1);
       });
     }
 
     if (yearNextBtn) {
-      yearNextBtn.addEventListener('click', (e) => {
+      yearNextBtn.addEventListener('click', function (e) {
         e.stopPropagation();
         changeYear(1);
       });
     }
 
     if (monthItems.length > 0) {
-      monthItems.forEach((item, index) => {
-        item.addEventListener('click', (e) => {
+      monthItems.forEach(function (item, index) {
+        item.addEventListener('click', function (e) {
           e.stopPropagation();
           month = index;
           monthDetails = getMonthDetails(year, month);
@@ -4566,19 +5160,24 @@ if (calendars) {
           setCalBody(monthDetails, tempStartDate, tempEndDate);
           calendar.classList.remove('calendar-month-active');
 
-          const monthName = monthsList[month];
+          var monthName = monthsList[month];
           savedMonth = getMonthNumber(monthName);
           savedMonthName = monthName;
+
+          if (!savedYear || savedYear === '') {
+            savedYear = year.toString();
+          }
+
           updateDisplayFromSaved();
         });
       });
     }
 
     if (yearItems.length > 0) {
-      yearItems.forEach(item => {
-        item.addEventListener('click', (e) => {
+      yearItems.forEach(function (item) {
+        item.addEventListener('click', function (e) {
           e.stopPropagation();
-          const selectedYear = parseInt(item.querySelector('span').textContent);
+          var selectedYear = parseInt(item.querySelector('span').textContent);
           if (!isNaN(selectedYear) && yearsList.includes(selectedYear)) {
             year = selectedYear;
             monthDetails = getMonthDetails(year, month);
@@ -4588,20 +5187,27 @@ if (calendars) {
             calendar.classList.remove('calendar-data-active');
 
             savedYear = year.toString();
+
+            if (!savedMonth || savedMonth === '') {
+              var monthName = monthsList[month];
+              savedMonth = getMonthNumber(monthName);
+              savedMonthName = monthName;
+            }
+
             updateDisplayFromSaved();
           }
         });
       });
     }
 
-    const calendarMonthBlock = calendar.querySelector('.calendar-month');
+    var calendarMonthBlock = calendar.querySelector('.calendar-month');
     if (calendarMonthBlock) {
-      const monthSpan = calendarMonthBlock.querySelector('.calendar-header__button span');
+      var monthSpan = calendarMonthBlock.querySelector('.calendar-header__button span');
       if (monthSpan) {
-        monthSpan.addEventListener('click', (e) => {
+        monthSpan.addEventListener('click', function (e) {
           e.stopPropagation();
 
-          calendars.forEach(otherCalendar => {
+          calendars.forEach(function (otherCalendar) {
             if (otherCalendar !== calendar) {
               otherCalendar.classList.remove('calendar-month-active');
               otherCalendar.classList.remove('calendar-data-active');
@@ -4614,14 +5220,14 @@ if (calendars) {
       }
     }
 
-    const calendarDataBlock = calendar.querySelector('.calendar-data');
+    var calendarDataBlock = calendar.querySelector('.calendar-data');
     if (calendarDataBlock) {
-      const yearSpan = calendarDataBlock.querySelector('.calendar-header__button span');
+      var yearSpan = calendarDataBlock.querySelector('.calendar-header__button span');
       if (yearSpan) {
-        yearSpan.addEventListener('click', (e) => {
+        yearSpan.addEventListener('click', function (e) {
           e.stopPropagation();
 
-          calendars.forEach(otherCalendar => {
+          calendars.forEach(function (otherCalendar) {
             if (otherCalendar !== calendar) {
               otherCalendar.classList.remove('calendar-month-active');
               otherCalendar.classList.remove('calendar-data-active');
@@ -4635,18 +5241,34 @@ if (calendars) {
     }
 
     if (calendarMain) {
-      calendarMain.addEventListener("click", (e) => {
+      calendarMain.addEventListener("click", function (e) {
         e.stopPropagation();
 
-        const target = e.target.closest(".cell_wrapper");
+        var target = e.target.closest(".cell_wrapper");
 
         if (!target) {
           return;
         }
 
-        const cellTimestamp = parseInt(target.getAttribute("data-timestamp"));
+        var cellTimestamp = parseInt(target.getAttribute("data-timestamp"));
         if (!cellTimestamp) {
           return;
+        }
+
+        var selectedDate = new Date(cellTimestamp);
+        var clickedDay = String(selectedDate.getDate()).padStart(2, '0');
+        var clickedMonth = String(selectedDate.getMonth() + 1).padStart(2, '0');
+        var clickedYear = selectedDate.getFullYear();
+
+        savedDay = clickedDay;
+
+        if (!savedMonth || savedMonth === '') {
+          savedMonth = clickedMonth;
+          savedMonthName = getMonthNameFromNumber(selectedDate.getMonth());
+        }
+
+        if (!savedYear || savedYear === '') {
+          savedYear = clickedYear;
         }
 
         if (isSingleSelect) {
@@ -4655,14 +5277,14 @@ if (calendars) {
           }
           tempStartDate = cellTimestamp;
           tempEndDate = null;
-          updateCalendarValueDisplay(tempStartDate, null);
+          updateDisplayFromSaved();
           setCalBody(monthDetails, tempStartDate, tempEndDate);
         } else {
           if (tempStartDate === null) {
             tempStartDate = cellTimestamp;
             tempEndDate = null;
             isSelectingRange = true;
-            updateCalendarValueDisplay(tempStartDate, null);
+            updateDisplayFromSaved();
           } else if (tempStartDate !== null && tempEndDate === null) {
             if (cellTimestamp < tempStartDate) {
               tempEndDate = tempStartDate;
@@ -4672,38 +5294,52 @@ if (calendars) {
             } else {
               tempEndDate = null;
               isSelectingRange = false;
-              updateCalendarValueDisplay(tempStartDate, null);
+              updateDisplayFromSaved();
               setCalBody(monthDetails, tempStartDate, tempEndDate);
               return;
             }
             isSelectingRange = false;
-            updateCalendarValueDisplay(tempStartDate, tempEndDate);
+
+            if (tempEndDate) {
+              var endDate = new Date(tempEndDate);
+              savedEndDay = String(endDate.getDate()).padStart(2, '0');
+              savedEndMonth = String(endDate.getMonth() + 1).padStart(2, '0');
+              savedEndYear = endDate.getFullYear();
+            }
+
+            updateDisplayFromSaved();
           } else {
             tempStartDate = cellTimestamp;
             tempEndDate = null;
             isSelectingRange = true;
-            updateCalendarValueDisplay(tempStartDate, null);
+
+            savedEndDay = null;
+            savedEndMonth = null;
+            savedEndYear = null;
+            savedIsRange = false;
+
+            updateDisplayFromSaved();
           }
           setCalBody(monthDetails, tempStartDate, tempEndDate);
         }
       });
     }
 
-    const clearBtn = calendar.querySelector('.calendar-clear');
+    var clearBtn = calendar.querySelector('.calendar-clear');
     if (clearBtn) {
-      clearBtn.addEventListener('click', (e) => {
+      clearBtn.addEventListener('click', function (e) {
         e.stopPropagation();
-        selectedStartDate = todayTimestamp;
+        selectedStartDate = null;
         selectedEndDate = null;
-        tempStartDate = todayTimestamp;
+        tempStartDate = null;
         tempEndDate = null;
         isSelectingRange = false;
         hasUserSelected = false;
 
-        savedDay = todayDay;
-        savedMonth = todayMonth;
-        savedYear = todayYear;
-        savedMonthName = monthsList[today.getMonth()] || '';
+        savedDay = '';
+        savedMonth = '';
+        savedYear = '';
+        savedMonthName = '';
         savedIsRange = false;
         savedEndDay = null;
         savedEndMonth = null;
@@ -4711,20 +5347,24 @@ if (calendars) {
 
         updateCalendarValueDisplay(tempStartDate, tempEndDate);
         setCalBody(monthDetails, tempStartDate, tempEndDate);
+
+        if (dateSectionInput) {
+          dateSectionInput.clearValues();
+        }
       });
     }
 
-    const closeBtn = calendar.querySelector('.calendar-close');
+    var closeBtn = calendar.querySelector('.calendar-close');
     if (closeBtn) {
-      closeBtn.addEventListener('click', (e) => {
+      closeBtn.addEventListener('click', function (e) {
         e.stopPropagation();
         cancelSelection();
       });
     }
 
-    const applyBtn = calendar.querySelector('.calendar-apply');
+    var applyBtn = calendar.querySelector('.calendar-apply');
     if (applyBtn) {
-      applyBtn.addEventListener('click', (e) => {
+      applyBtn.addEventListener('click', function (e) {
         e.stopPropagation();
         if (tempStartDate !== selectedStartDate || tempEndDate !== selectedEndDate) {
           applySelection();
@@ -4734,9 +5374,9 @@ if (calendars) {
       });
     }
 
-    const calendarIcon = calendar.querySelector('.calendar__icon');
+    var calendarIcon = calendar.querySelector('.calendar__icon');
     if (calendarIcon) {
-      calendarIcon.addEventListener('click', (e) => {
+      calendarIcon.addEventListener('click', function (e) {
         e.stopPropagation();
         if (calendar.classList.contains('active')) {
           closeCalendar();
@@ -4746,8 +5386,13 @@ if (calendars) {
       });
     }
 
+    var dateSectionInput = null;
+    if (dayInput && monthInput && yearInput) {
+      dateSectionInput = new DateSectionInput(calendar, dayInput, monthInput, yearInput);
+    }
+
     if (calendarInput) {
-      calendarInput.addEventListener('click', (e) => {
+      calendarInput.addEventListener('click', function (e) {
         e.stopPropagation();
         if (calendar.classList.contains('active')) {
           closeCalendar();
@@ -4760,7 +5405,7 @@ if (calendars) {
     updateCalendarValueDisplay(selectedStartDate, selectedEndDate);
   });
 
-  document.addEventListener('click', (e) => {
+  document.addEventListener('click', function (e) {
     if (!e.target.closest('.calendar')) {
       closeAllCalendarStates();
     }
@@ -4815,6 +5460,8 @@ if (timers) {
     const timerValue = timer.querySelector('.timer__value');
     const timerContent = timer.querySelector('.timer__content');
     const timerItems = timer.querySelectorAll('.timer__item');
+    const inputField = timer.querySelector('.input-timer');
+    const timerIcon = timer.querySelector('.timer__icon');
 
     let currentValue = '';
 
@@ -4822,9 +5469,8 @@ if (timers) {
       if (timerValue) {
         timerValue.innerHTML = time.replace(':', ' <span>:</span> ');
       }
-      if (timerInput) {
-        const input = timerInput.querySelector('.input-timer');
-        if (input) input.value = time;
+      if (inputField) {
+        inputField.value = time;
       }
       currentValue = time;
     }
@@ -4864,6 +5510,31 @@ if (timers) {
       }
     }
 
+    if (inputField) {
+      inputField.addEventListener('click', function (e) {
+        e.stopPropagation();
+        this.value = '';
+        toggleDropdown();
+      });
+    }
+
+    if (timerIcon) {
+      timerIcon.addEventListener('click', function (e) {
+        e.stopPropagation();
+        toggleDropdown();
+      });
+    }
+
+    if (timerInput) {
+      timerInput.addEventListener('click', function (e) {
+        if (inputField && !inputField.contains(e.target) &&
+          timerIcon && !timerIcon.contains(e.target)) {
+          e.stopPropagation();
+          toggleDropdown();
+        }
+      });
+    }
+
     timerItems.forEach(item => {
       item.addEventListener('click', function (e) {
         e.stopPropagation();
@@ -4873,13 +5544,6 @@ if (timers) {
         }
       });
     });
-
-    if (timerInput) {
-      timerInput.addEventListener('click', function (e) {
-        e.stopPropagation();
-        toggleDropdown();
-      });
-    }
 
     const activeItem = timer.querySelector('.timer__item.active');
     if (activeItem) {
@@ -5752,133 +6416,46 @@ if (document.readyState === 'loading') {
 }
 
 //========================================================================================================================================================
-/*
-const columnsContainer = document.querySelector('.block-cabinet__columns');
+
+const columnsContainer = document.querySelector('.block-cabinet__dragging');
 if (columnsContainer) {
-  const columns = document.querySelectorAll('.block-cabinet__column');
+  const columns = columnsContainer.querySelectorAll('.block-cabinet__column');
   let draggedColumn = null;
-  let cloneColumn = null;
   let offsetX, offsetY;
-
-  columns.forEach(column => {
-    const picker = column.querySelector('.cabinet-objects-top__picker');
-
-    if (!picker) return;
-
-    picker.addEventListener('mousedown', initDrag);
-    picker.addEventListener('touchstart', initDrag, { passive: false });
-  });
-
-  function initDrag(e) {
-    const column = e.target.closest('.block-cabinet__column');
-    if (!column) return;
-
-    e.preventDefault();
-    e.stopPropagation();
-
-    draggedColumn = column;
-
-    const touch = e.touches ? e.touches[0] : e;
-    const rect = column.getBoundingClientRect();
-
-    offsetX = touch.clientX - rect.left;
-    offsetY = touch.clientY - rect.top;
-
-    cloneColumn = column.cloneNode(true);
-    cloneColumn.style.position = 'fixed';
-    cloneColumn.style.zIndex = '10000';
-    cloneColumn.style.pointerEvents = 'none';
-    cloneColumn.style.width = rect.width + 'px';
-    cloneColumn.style.left = rect.left + 'px';
-    cloneColumn.style.top = rect.top + 'px';
-
-    document.body.appendChild(cloneColumn);
-
-    document.addEventListener('mousemove', onDrag);
-    document.addEventListener('mouseup', stopDrag);
-    document.addEventListener('touchmove', onDrag, { passive: false });
-    document.addEventListener('touchend', stopDrag);
-  }
-
-  function onDrag(e) {
-    if (!draggedColumn || !cloneColumn) return;
-
-    e.preventDefault();
-
-    const touch = e.touches ? e.touches[0] : e;
-
-    cloneColumn.style.left = (touch.clientX - offsetX) + 'px';
-    cloneColumn.style.top = (touch.clientY - offsetY) + 'px';
-  }
-
-  function stopDrag(e) {
-    if (!draggedColumn) return;
-
-    const touch = e.touches ?
-      (e.changedTouches ? e.changedTouches[0] : { clientX: 0, clientY: 0 }) :
-      e;
-
-    const allColumns = document.querySelectorAll('.block-cabinet__column');
-    let targetColumn = null;
-    let insertBefore = false;
-
-    allColumns.forEach(column => {
-      if (column === draggedColumn || column === cloneColumn) return;
-
-      const rect = column.getBoundingClientRect();
-      const centerY = rect.top + rect.height / 2;
-      const distance = Math.abs(touch.clientY - centerY);
-
-      if (distance < 150) {
-        targetColumn = column;
-        insertBefore = touch.clientY < centerY;
-      }
-    });
-
-    if (cloneColumn) {
-      cloneColumn.remove();
-      cloneColumn = null;
-    }
-
-    if (targetColumn && targetColumn !== draggedColumn) {
-      if (insertBefore) {
-        columnsContainer.insertBefore(draggedColumn, targetColumn);
-      } else {
-        columnsContainer.insertBefore(draggedColumn, targetColumn.nextSibling);
-      }
-    }
-
-    document.removeEventListener('mousemove', onDrag);
-    document.removeEventListener('mouseup', stopDrag);
-    document.removeEventListener('touchmove', onDrag);
-    document.removeEventListener('touchend', stopDrag);
-
-    draggedColumn = null;
-  }
-}
-*/
-
-const columnsContainer = document.querySelector('.block-cabinet__columns');
-if (columnsContainer) {
-  const columns = document.querySelectorAll('.block-cabinet__column');
-  let draggedColumn = null;
-  let cloneColumn = null;
-  let offsetX, offsetY;
-  let lastSwappedColumn = null;
+  let startX, startY;
   let activePicker = null;
+  let isDragging = false;
+  let clone = null;
 
-  // Добавляем стили для анимации
+  const DRAG_THRESHOLD = 3;
+  const SWAP_THRESHOLD_DOWN_PERCENT = -35;
+  const SWAP_THRESHOLD_UP_PERCENT = -50;
+  const EDGE_SWAP_THRESHOLD = 50;
+  const ANIMATION_SPEED = 0.2;
+
   const style = document.createElement('style');
   style.textContent = `
-    .block-cabinet__column {
-      transition: transform 0.25s cubic-bezier(0.2, 0, 0, 1);
+    .block-cabinet__dragging .block-cabinet__column {
+      transition: transform ${ANIMATION_SPEED}s cubic-bezier(0.2, 0, 0, 1);
+      position: relative;
     }
-    .block-cabinet__column.dragging {
-      opacity: 0.4;
+    .block-cabinet__dragging .block-cabinet__column.drag-placeholder {
+      opacity: 0.3;
+      pointer-events: none;
+    }
+    .block-cabinet__drag-clone {
+      position: fixed;
+      z-index: 10000;
+      pointer-events: none;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      opacity: 0.95;
+      cursor: grabbing;
     }
     .cabinet-objects-top__picker {
       cursor: grab;
       transition: opacity 0.15s ease, transform 0.15s ease;
+      touch-action: none;
+      user-select: none;
     }
     .cabinet-objects-top__picker.active {
       cursor: grabbing;
@@ -5891,13 +6468,87 @@ if (columnsContainer) {
   `;
   document.head.appendChild(style);
 
-  // Сохраняем изначальные позиции для анимации
   function savePositions() {
-    const allColumns = document.querySelectorAll('.block-cabinet__column');
+    const allColumns = columnsContainer.querySelectorAll('.block-cabinet__column:not(.drag-placeholder)');
     allColumns.forEach(column => {
       const rect = column.getBoundingClientRect();
       column.dataset.prevTop = rect.top;
+      column.dataset.prevLeft = rect.left;
     });
+  }
+
+  function animatePositions() {
+    const allColumns = columnsContainer.querySelectorAll('.block-cabinet__column:not(.drag-placeholder)');
+    allColumns.forEach(column => {
+      const prevTop = parseFloat(column.dataset.prevTop || 0);
+      const prevLeft = parseFloat(column.dataset.prevLeft || 0);
+      const rect = column.getBoundingClientRect();
+
+      const deltaY = prevTop - rect.top;
+      const deltaX = prevLeft - rect.left;
+
+      if (Math.abs(deltaY) > 0 || Math.abs(deltaX) > 0) {
+        column.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
+        column.style.transition = 'none';
+
+        column.offsetHeight;
+
+        column.style.transform = '';
+        column.style.transition = '';
+      }
+    });
+  }
+
+  function createClone(column) {
+    const cloneEl = column.cloneNode(true);
+    const rect = column.getBoundingClientRect();
+
+    cloneEl.classList.add('block-cabinet__drag-clone');
+    cloneEl.style.width = rect.width + 'px';
+    cloneEl.style.height = rect.height + 'px';
+
+    return cloneEl;
+  }
+
+  function updateClonePosition(touch) {
+    if (!clone) return;
+
+    const containerRect = columnsContainer.getBoundingClientRect();
+
+    let newX = touch.clientX - offsetX;
+    let newY = touch.clientY - offsetY;
+
+    const minX = containerRect.left;
+    const maxX = containerRect.right - clone.offsetWidth;
+    const minY = containerRect.top;
+    const maxY = containerRect.bottom - clone.offsetHeight;
+
+    newX = Math.max(minX, Math.min(newX, maxX));
+    newY = Math.max(minY, Math.min(newY, maxY));
+
+    clone.style.left = newX + 'px';
+    clone.style.top = newY + 'px';
+  }
+
+  function getClosestInsertPosition(touchY) {
+    const allColumns = Array.from(columnsContainer.querySelectorAll('.block-cabinet__column:not(.drag-placeholder)'));
+    let closestColumn = null;
+    let minDistance = Infinity;
+    let insertBefore = false;
+
+    allColumns.forEach(column => {
+      const rect = column.getBoundingClientRect();
+      const centerY = rect.top + rect.height / 2;
+      const distance = Math.abs(touchY - centerY);
+
+      if (distance < minDistance) {
+        minDistance = distance;
+        closestColumn = column;
+        insertBefore = touchY < centerY;
+      }
+    });
+
+    return { closestColumn, insertBefore };
   }
 
   columns.forEach(column => {
@@ -5911,45 +6562,28 @@ if (columnsContainer) {
   function initDrag(e) {
     const column = e.target.closest('.block-cabinet__column');
     if (!column) return;
+    if (!columnsContainer.contains(column)) return;
 
     e.preventDefault();
     e.stopPropagation();
 
-    draggedColumn = column;
-    lastSwappedColumn = null;
+    const touch = e.touches ? e.touches[0] : e;
 
-    // Добавляем класс active на пикер
+    startX = touch.clientX;
+    startY = touch.clientY;
+
+    draggedColumn = column;
+    isDragging = false;
+
+    const rect = column.getBoundingClientRect();
+    offsetX = touch.clientX - rect.left;
+    offsetY = touch.clientY - rect.top;
+
     const picker = column.querySelector('.cabinet-objects-top__picker');
     if (picker) {
       picker.classList.add('active');
       activePicker = picker;
     }
-
-    const touch = e.touches ? e.touches[0] : e;
-    const rect = column.getBoundingClientRect();
-
-    offsetX = touch.clientX - rect.left;
-    offsetY = touch.clientY - rect.top;
-
-    // Сохраняем позиции всех колонок
-    savePositions();
-
-    // Создаём клон
-    cloneColumn = column.cloneNode(true);
-    cloneColumn.style.position = 'fixed';
-    cloneColumn.style.zIndex = '10000';
-    cloneColumn.style.pointerEvents = 'none';
-    cloneColumn.style.width = rect.width + 'px';
-    cloneColumn.style.left = rect.left + 'px';
-    cloneColumn.style.top = rect.top + 'px';
-    cloneColumn.style.opacity = '0.95';
-    cloneColumn.style.boxShadow = '0 10px 30px rgba(0,0,0,0.2)';
-    cloneColumn.style.transition = 'box-shadow 0.2s ease';
-
-    document.body.appendChild(cloneColumn);
-
-    // Делаем оригинал полупрозрачным
-    draggedColumn.classList.add('dragging');
 
     document.addEventListener('mousemove', onDrag);
     document.addEventListener('mouseup', stopDrag);
@@ -5958,53 +6592,93 @@ if (columnsContainer) {
   }
 
   function onDrag(e) {
-    if (!draggedColumn || !cloneColumn) return;
+    if (!draggedColumn) return;
 
     e.preventDefault();
 
     const touch = e.touches ? e.touches[0] : e;
+    const deltaX = touch.clientX - startX;
+    const deltaY = touch.clientY - startY;
 
-    // Двигаем клон
-    cloneColumn.style.left = (touch.clientX - offsetX) + 'px';
-    cloneColumn.style.top = (touch.clientY - offsetY) + 'px';
+    if (!isDragging) {
+      if (Math.abs(deltaX) < DRAG_THRESHOLD && Math.abs(deltaY) < DRAG_THRESHOLD) {
+        return;
+      }
+      isDragging = true;
 
-    // Определяем, с какой колонкой нужно поменяться местами
-    const allColumns = Array.from(document.querySelectorAll('.block-cabinet__column'));
+      savePositions();
+
+      clone = createClone(draggedColumn);
+      document.body.appendChild(clone);
+
+      draggedColumn.classList.add('drag-placeholder');
+
+      updateClonePosition(touch);
+    }
+
+    updateClonePosition(touch);
+
+    const allColumns = Array.from(columnsContainer.querySelectorAll('.block-cabinet__column:not(.drag-placeholder)'));
     const draggedIndex = allColumns.indexOf(draggedColumn);
+    const containerRect = columnsContainer.getBoundingClientRect();
+    const cloneRect = clone.getBoundingClientRect();
+    const cloneTop = cloneRect.top;
+    const cloneBottom = cloneRect.bottom;
+    const cloneCenterX = cloneRect.left + cloneRect.width / 2;
 
     let swapWithColumn = null;
     let swapBefore = false;
+    let isEdgeSwap = false;
 
-    allColumns.forEach((column, index) => {
-      if (column === draggedColumn) return;
-      if (column.classList.contains('dragging')) return;
-
-      const rect = column.getBoundingClientRect();
-      const centerY = rect.top + rect.height / 2;
-
-      // Проверяем, что курсор находится над этой колонкой по горизонтали
-      const isOverX = touch.clientX >= rect.left - 50 && touch.clientX <= rect.right + 50;
-
-      if (!isOverX) return;
-
-      // Определяем направление
-      if (index < draggedIndex) {
-        // Колонка выше перетаскиваемой
-        if (touch.clientY < centerY && touch.clientY > rect.top - 20) {
-          swapWithColumn = column;
-          swapBefore = true;
-        }
-      } else {
-        // Колонка ниже перетаскиваемой
-        if (touch.clientY > centerY && touch.clientY < rect.bottom + 20) {
-          swapWithColumn = column;
-          swapBefore = false;
-        }
+    if (draggedIndex > 0 && cloneTop - containerRect.top < EDGE_SWAP_THRESHOLD) {
+      const firstColumn = allColumns[0];
+      if (firstColumn !== draggedColumn) {
+        swapWithColumn = firstColumn;
+        swapBefore = true;
+        isEdgeSwap = true;
       }
-    });
+    }
+    else if (draggedIndex < allColumns.length - 1 && containerRect.bottom - cloneBottom < EDGE_SWAP_THRESHOLD) {
+      const lastColumn = allColumns[allColumns.length - 1];
+      if (lastColumn !== draggedColumn) {
+        swapWithColumn = lastColumn;
+        swapBefore = false;
+        isEdgeSwap = true;
+      }
+    }
 
-    // Меняем местами
-    if (swapWithColumn && swapWithColumn !== lastSwappedColumn) {
+    if (!isEdgeSwap) {
+      allColumns.forEach((column, index) => {
+        if (column === draggedColumn) return;
+
+        const rect = column.getBoundingClientRect();
+        const height = rect.height;
+        const isOverX = cloneCenterX >= rect.left && cloneCenterX <= rect.right;
+
+        if (!isOverX) return;
+
+        if (index > draggedIndex) {
+          const overlapFromTop = cloneTop - rect.top;
+          const overlapPercent = (overlapFromTop / height) * 100;
+
+          if (overlapPercent >= SWAP_THRESHOLD_DOWN_PERCENT) {
+            swapWithColumn = column;
+            swapBefore = false;
+          }
+        }
+        else if (index < draggedIndex) {
+          const overlapFromBottom = rect.bottom - cloneBottom;
+          const overlapPercent = (overlapFromBottom / height) * 100;
+
+          if (overlapPercent >= SWAP_THRESHOLD_UP_PERCENT) {
+            swapWithColumn = column;
+            swapBefore = true;
+          }
+        }
+      });
+    }
+
+    if (swapWithColumn) {
       savePositions();
 
       if (swapBefore) {
@@ -6013,43 +6687,56 @@ if (columnsContainer) {
         columnsContainer.insertBefore(draggedColumn, swapWithColumn.nextSibling);
       }
 
-      lastSwappedColumn = swapWithColumn;
+      animatePositions();
 
-      // Сбрасываем lastSwappedColumn после анимации
-      setTimeout(() => {
-        if (lastSwappedColumn === swapWithColumn) {
-          lastSwappedColumn = null;
-        }
-      }, 100);
+      const newDraggedIndex = Array.from(columnsContainer.querySelectorAll('.block-cabinet__column:not(.drag-placeholder)')).indexOf(draggedColumn);
+      if (newDraggedIndex !== draggedIndex) {
+        setTimeout(() => {
+          if (clone && draggedColumn) {
+            const newRect = draggedColumn.getBoundingClientRect();
+            const touchPoint = touch;
+            offsetX = touchPoint.clientX - newRect.left;
+            offsetY = touchPoint.clientY - newRect.top;
+            updateClonePosition(touchPoint);
+          }
+        }, ANIMATION_SPEED * 1000);
+      }
     }
   }
 
   function stopDrag(e) {
     if (!draggedColumn) return;
 
-    // Убираем класс active с пикера
     if (activePicker) {
       activePicker.classList.remove('active');
       activePicker = null;
     }
 
-    // Убираем классы
-    const allColumns = document.querySelectorAll('.block-cabinet__column');
-    allColumns.forEach(col => {
-      col.classList.remove('dragging');
-    });
+    if (isDragging && clone) {
+      const touch = e.changedTouches ? e.changedTouches[0] : e;
+      const { closestColumn, insertBefore } = getClosestInsertPosition(touch.clientY);
 
-    // Удаляем клон с анимацией
-    if (cloneColumn) {
-      cloneColumn.style.transition = 'opacity 0.15s ease';
-      cloneColumn.style.opacity = '0';
-
-      setTimeout(() => {
-        cloneColumn.remove();
-      }, 150);
-
-      cloneColumn = null;
+      if (closestColumn && closestColumn !== draggedColumn) {
+        if (insertBefore) {
+          columnsContainer.insertBefore(draggedColumn, closestColumn);
+        } else {
+          columnsContainer.insertBefore(draggedColumn, closestColumn.nextSibling);
+        }
+      }
     }
+
+    if (clone) {
+      clone.remove();
+      clone = null;
+    }
+
+    draggedColumn.classList.remove('drag-placeholder');
+
+    const allColumns = columnsContainer.querySelectorAll('.block-cabinet__column');
+    allColumns.forEach(col => {
+      col.style.transform = '';
+      col.style.transition = '';
+    });
 
     document.removeEventListener('mousemove', onDrag);
     document.removeEventListener('mouseup', stopDrag);
@@ -6057,7 +6744,7 @@ if (columnsContainer) {
     document.removeEventListener('touchend', stopDrag);
 
     draggedColumn = null;
-    lastSwappedColumn = null;
+    isDragging = false;
   }
 }
 
