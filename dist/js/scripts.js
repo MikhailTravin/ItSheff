@@ -1115,7 +1115,7 @@ class Popup {
             this.currentBtnSentElement = targetElement;
             setTimeout(() => {
               this.showBtnSentWithAnimation(targetElement);
-              this.startBtnSentTimer(5000);
+              this.startBtnSentTimer(2500);
               this.setupBtnSentHoverHandlers(targetElement);
             }, 500);
           }
@@ -1286,7 +1286,7 @@ class Popup {
         delete this.btnSentHideTimeouts[elementId];
       }
       this.stopBtnSentTimer();
-      this.startBtnSentTimer(5000);
+      this.startBtnSentTimer(2500);
       return;
     }
 
@@ -2492,14 +2492,11 @@ function formFieldsInit(options = { viewPass: true, autoHeight: false }) {
     }
   });
 
-  // Добавляем обработчик input для календарей
   document.body.addEventListener("input", function (e) {
     const targetElement = e.target;
-    // Если ввод происходит в инпуте календаря
     if (targetElement.closest('.date-picker-sections') && targetElement.hasAttribute('data-required')) {
       const calendar = targetElement.closest('.calendar');
       if (calendar) {
-        // Проверяем, все ли три инпута заполнены
         const dayInput = calendar.querySelector('.day-input');
         const monthInput = calendar.querySelector('.month-input');
         const yearInput = calendar.querySelector('.year-input');
@@ -2509,7 +2506,6 @@ function formFieldsInit(options = { viewPass: true, autoHeight: false }) {
           const monthValue = monthInput.value.trim();
           const yearValue = yearInput.value.trim();
 
-          // Если все три заполнены - убираем ошибку
           if (dayValue && monthValue && yearValue) {
             formValidate.removeCalendarError(calendar);
           }
@@ -2605,15 +2601,14 @@ let formValidate = {
     let error = 0;
     let formRequiredItems = form.querySelectorAll('*[data-required]');
     if (formRequiredItems.length) {
-      // Собираем календари, чтобы не валидировать их инпуты по отдельности
       const processedCalendars = new Set();
 
       formRequiredItems.forEach(formRequiredItem => {
         if ((formRequiredItem.offsetParent !== null || formRequiredItem.tagName === "SELECT") && !formRequiredItem.disabled) {
-          // Если инпут находится внутри календаря
+
           const calendar = formRequiredItem.closest('.calendar');
           if (calendar && formRequiredItem.closest('.date-picker-sections')) {
-            // Валидируем весь календарь один раз
+
             if (!processedCalendars.has(calendar)) {
               processedCalendars.add(calendar);
               error += this.validateCalendar(calendar);
@@ -2641,34 +2636,25 @@ let formValidate = {
     const monthValue = monthInput.value.trim();
     const yearValue = yearInput.value.trim();
 
-    // Если все три заполнены - успех
     if (dayValue && monthValue && yearValue) {
       this.removeCalendarError(calendar);
       return 0;
     }
-
-    // Если хоть один не заполнен - ошибка
-    // Добавляем _form-error на сам calendar
     calendar.classList.add('_form-error');
 
-    // Добавляем _form-error на все три инпута
     [dayInput, monthInput, yearInput].forEach(input => {
       input.classList.add('_form-error');
     });
 
-    // Добавляем _form-error на calendar__input
     if (calendarInput) {
       calendarInput.classList.add('_form-error');
     }
 
-    // Удаляем старую ошибку внутри calendar если есть
     const oldError = calendar.querySelector('.form__error');
     if (oldError) oldError.remove();
 
-    // Находим текст ошибки из data-error первого инпута
     const errorText = dayInput.dataset.error || 'Заполните дату';
 
-    // Вставляем одну ошибку в конец calendar
     calendar.insertAdjacentHTML('beforeend',
       `<div class="form__error">${errorText}</div>`
     );
@@ -2684,10 +2670,8 @@ let formValidate = {
     const yearInput = calendar.querySelector('.year-input');
     const calendarInput = calendar.querySelector('.calendar__input');
 
-    // Убираем _form-error с самого calendar
     calendar.classList.remove('_form-error');
 
-    // Убираем _form-error со всех инпутов и добавляем _form-success
     [dayInput, monthInput, yearInput].forEach(input => {
       if (input) {
         input.classList.remove('_form-error');
@@ -2695,13 +2679,11 @@ let formValidate = {
       }
     });
 
-    // Убираем _form-error с calendar__input и добавляем _form-success
     if (calendarInput) {
       calendarInput.classList.remove('_form-error');
       calendarInput.classList.add('_form-success');
     }
 
-    // Удаляем form__error внутри calendar
     const calendarErrors = calendar.querySelectorAll('.form__error');
     calendarErrors.forEach(error => error.remove());
   },
@@ -2904,7 +2886,6 @@ let formValidate = {
 
       form.querySelectorAll('.form__error').forEach(error => error.remove());
 
-      // Очищаем календари
       form.querySelectorAll('.calendar').forEach(calendar => {
         formValidate.removeCalendarError(calendar);
       });
@@ -4147,6 +4128,7 @@ class DateSectionInput {
     const input = this.getInputByField(field);
     if (input) {
       input.placeholder = '';
+      input.value = '';
     }
 
     this.prevDayValue = this.dayInput.value;

@@ -6937,10 +6937,22 @@ a {
 }
 @media (min-width: 1201px) {
   .cabinet-tabs-spollers .cabinet-tabs__titles:hover {
-    background-color: #f0f2f4;
+    background-color: #f8f8f8;
+  }
+  .cabinet-tabs-spollers .cabinet-tabs__titles:hover .cabinet-tabs__title {
+    color: #000;
+  }
+  .cabinet-tabs-spollers .cabinet-tabs__titles:hover .cabinet-tabs__arrow svg {
+    fill: #424242;
   }
   .cabinet-tabs-spollers .cabinet-tabs__titles:active {
-    background-color: #e1e4e7;
+    background-color: #f0f2f4;
+  }
+  .cabinet-tabs-spollers .cabinet-tabs__titles:active .cabinet-tabs__title {
+    color: #000;
+  }
+  .cabinet-tabs-spollers .cabinet-tabs__titles:active .cabinet-tabs__arrow svg {
+    fill: #424242;
   }
   .cabinet-tabs-spollers .cabinet-tabs__titles.disabled {
     color: #c0c0c0;
