@@ -74,6 +74,9 @@
 <symbol id="close2" viewBox="0 0 16 16">
   <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M8 14.667A6.667 6.667 0 1 0 8 1.334a6.667 6.667 0 0 0 0 13.333ZM10 6l-4 4m0-4 4 4"/>
 </symbol>
+<symbol id="close3" viewBox="0 0 14 14">
+  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 13 6-6m0 0 6-6M7 7 1 1m6 6 6 6"/>
+</symbol>
 <symbol id="coin" viewBox="0 0 33 33">
   <path d="M10.2 9.4a1 1 0 1 0 0 2v-2Zm12 2a1 1 0 1 0 0-2v2Zm-12 1.7a1 1 0 1 0 0 2v-2Zm11.9 2a1 1 0 1 0 0-2v2Zm-6.9 8.7a1 1 0 1 0 2 0h-2Zm16.2-7.6h-1c0 7.842-6.358 14.2-14.2 14.2v2c8.947 0 16.2-7.253 16.2-16.2h-1ZM16.2 31.4v-1C8.358 30.4 2 24.042 2 16.2H0c0 8.947 7.253 16.2 16.2 16.2v-1ZM1 16.2h1C2 8.358 8.358 2 16.2 2V0C7.253 0 0 7.253 0 16.2h1ZM16.2 1v1c7.842 0 14.2 6.358 14.2 14.2h2C32.4 7.253 25.147 0 16.2 0v1Zm-6 9.4v1h12v-2h-12v1Zm6 13.4h1v-9.5h-2v9.5h1Zm-6-9.7v1h5.95v-2H10.2v1Zm5.95 0v1h5.95v-2h-5.95v1Z"/>
 </symbol>
