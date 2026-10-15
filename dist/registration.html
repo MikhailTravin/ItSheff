@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+	<head>
+		<title>Регистрация</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<link rel="stylesheet" href="css/styles.css" />
+
+		<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+	</head>
+
+	<body class="preload mp">
+		<div class="main-wrapper-outer">
+			<main class="main main-login">
+
+				<div class="block-login">
+					<div class="block-login__images">
+						<a href="./" class="header__logo">
+							<svg aria-hidden="true" width="244" height="52">
+								<use xlink:href="img/sprite.svg#logo1"></use>
+							</svg>
+						</a>
+						<img src="img/image11.webp" alt="" class="block-login__pic1 desc">
+						<img src="img/image11-mob.webp" alt="" class="block-login__pic1 mob">
+					</div>
+					<div class="block-login__content">
+						<div class="block-login__body">
+							<div class="block-login__top">
+								<h1 class="title1">Регистрация</h1>
+								<div class="block-login__text">
+									Уже есть аккаунт?
+									<a href="./">Войти</a>
+								</div>
+							</div>
+							<form action="#" class="form">
+								<div class="form__inputs">
+									<div class="form__input big">
+										<label for="name3" class="big">
+											Имя<span class="placeholder">*</span>
+										</label>
+										<input data-required id="name3" data-error-number="Введите имя от 2 символов" data-error="Reason for the error" autocomplete="off" type="text" name="form[]" placeholder="" class="input">
+									</div>
+									<div class="form__input">
+										<label for="mail1">
+											Email <span class="placeholder">*</span>
+										</label>
+										<input data-required data-error="Reason for the error" id="mail1" autocomplete="off" type="text" name="form[]" placeholder="" value="" class="input">
+									</div>
+									<div class="form__input big">
+										<label class="big">
+											Ваш телефон<span class="placeholder">*</span>
+										</label>
+										<div class="form-input-tel">
+											<div data-required data-error="Введите номер полностью" class="form-select">
+												<div class="form-select__titles">
+													<img src="img/icons/flag1.svg" alt="">
+													<div class="form-select__arrow"></div>
+												</div>
+												<div class="form-select__value">
+													<span>+7</span>
+													<input oninput="this.value = this.value.replace(/[^0-9]/g, '')" onkeypress="return /[0-9]/.test(event.key)" autocomplete="off" name="form[]" placeholder="(000) 000-00-00" class="tel">
+												</div>
+												<div class="form-select__dropdown">
+													<div data-simplebar class="form-select__simplebar">
+														<div class="form-select__body">
+															<div class="form-select__column">
+																<div class="options">
+																	<label class="options__item">
+																		<input countryCode="+7" data-mask="(999) 999-99-99" hidden class="options__input" checked type="radio" value="1" name="option2">
+																		<span class="options__label options-label2">
+																			<span class="options__img">
+																				<img src="img/icons/flag1.svg" alt="">
+																			</span>
+																			<span class="options__text">
+																				Казахстан
+																			</span>
+																			<span class="options__icon">
+																				<svg aria-hidden="true" width="12" height="9">
+																					<use xlink:href="img/sprite.svg#check1">
+																					</use>
+																				</svg>
+																			</span>
+																		</span>
+																	</label>
+																	<label class="options__item">
+																		<input countryCode="+7" data-mask="(999) 999-99-99" hidden class="options__input" type="radio" value="2" name="option2">
+																		<span class="options__label options-label2">
+																			<span class="options__img">
+																				<img src="img/icons/flag2.svg" alt="">
+																			</span>
+																			<span class="options__text">
+																				Россия
+																			</span>
+																			<span class="options__icon">
+																				<svg aria-hidden="true" width="12" height="9">
+																					<use xlink:href="img/sprite.svg#check1">
+																					</use>
+																				</svg>
+																			</span>
+																		</span>
+																	</label>
+																	<label class="options__item">
+																		<input countryCode="+995" data-mask="(999) 999-99-99" hidden class="options__input" type="radio" value="3" name="option2">
+																		<span class="options__label options-label2">
+																			<span class="options__img">
+																				<img loading="lazy" src="img/icons/flag3.svg" alt="">
+																			</span>
+																			<span class="options__text">
+																				Киргизия
+																			</span>
+																			<span class="options__icon">
+																				<svg aria-hidden="true" width="12" height="9">
+																					<use xlink:href="img/sprite.svg#check1">
+																					</use>
+																				</svg>
+																			</span>
+																		</span>
+																	</label>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="tooltips">
+												<div class="tooltips__dropdown">
+													<span>
+														Дозвон техподдержки будет осуществлен на этот номер телефона
+													</span>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="form__captcha">
+									<img src="img/captcha.webp" alt="">
+								</div>
+								<button type="submit" class="btn btn-bg">Продолжить</button>
+								<div class="form__text">
+									Нажимая на кнопку продолжить вы принимаете условия <a href="./">Пользовательского
+										соглашения</a> и
+									даёте ITsheff согласие на обработку персональных данных на условиях и в целях,
+									определенных <a href="./">Политикой конфиденциальности</a>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+
+			</main>
+		</div>
+		<script src="js/inputmask.min.js"></script>
+		<script src="js/dynamic_adapt.js"></script>
+		<script src="js/simplebar.min.js"></script>
+		<script src="js/scripts.js"></script>
+	</body>
+
+</html>

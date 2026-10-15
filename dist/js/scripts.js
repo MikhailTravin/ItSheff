@@ -2485,7 +2485,6 @@ function formFieldsInit(options = { viewPass: true, autoHeight: false }) {
       }
       targetElement.hasAttribute('data-validate') ? formValidate.validateInput(targetElement) : null;
 
-      // При потере фокуса на инпуте календаря - проверяем весь календарь
       if (targetElement.closest('.date-picker-sections') && targetElement.hasAttribute('data-required')) {
         formValidate.validateCalendar(targetElement.closest('.calendar'));
       }
@@ -2688,6 +2687,22 @@ let formValidate = {
     calendarErrors.forEach(error => error.remove());
   },
 
+  isNumberConditionFailed(formRequiredItem) {
+    if (!formRequiredItem.hasAttribute('data-error-number')) return false;
+    const value = formRequiredItem.value ? formRequiredItem.value.trim() : '';
+    const minLength = formRequiredItem.hasAttribute('data-min-length')
+      ? parseInt(formRequiredItem.dataset.minLength, 10)
+      : 2;
+    return value.length > 0 && value.length < minLength;
+  },
+
+  getErrorText(formRequiredItem) {
+    if (this.isNumberConditionFailed(formRequiredItem)) {
+      return formRequiredItem.dataset.errorNumber;
+    }
+    return formRequiredItem.dataset.error || '';
+  },
+
   validateInput(formRequiredItem) {
     let error = 0;
 
@@ -2759,7 +2774,7 @@ let formValidate = {
         this.addSuccess(formRequiredItem);
       }
     } else {
-      if (!formRequiredItem.value.trim()) {
+      if (!formRequiredItem.value.trim() || this.isNumberConditionFailed(formRequiredItem)) {
         this.addError(formRequiredItem);
         this.removeSuccess(formRequiredItem);
         error++;
@@ -2790,14 +2805,15 @@ let formValidate = {
       nextEl.remove();
     }
 
-    if (formRequiredItem.dataset.error) {
+    const errorText = this.getErrorText(formRequiredItem);
+    if (errorText) {
       if (errorContainer.classList.contains('form__input')) {
         errorContainer.insertAdjacentHTML('beforeend',
-          `<div class="form__error">${formRequiredItem.dataset.error}</div>`
+          `<div class="form__error">${errorText}</div>`
         );
       } else {
         errorContainer.insertAdjacentHTML('afterend',
-          `<div class="form__error">${formRequiredItem.dataset.error}</div>`
+          `<div class="form__error">${errorText}</div>`
         );
       }
     }
@@ -3449,6 +3465,36 @@ function formSubmit() {
 }
 
 formSubmit();
+
+document.addEventListener('click', function (e) {
+  const targetElement = e.target.closest('button[data-popup].btn-next');
+  if (!targetElement) return;
+
+  const form = targetElement.closest('form');
+  if (!form) return;
+
+  if (targetElement.closest('.popup-details-tabs__step')) return;
+
+  e.preventDefault();
+  e.stopPropagation();
+  e.stopImmediatePropagation();
+
+  const error = !form.hasAttribute('data-no-validate') ? formValidate.getErrors(form) : 0;
+
+  if (error === 0) {
+    const popupAttribute = targetElement.dataset.popup;
+    if (popupAttribute && typeof modules_flsModules !== 'undefined' && modules_flsModules.popup) {
+      modules_flsModules.popup.open(popupAttribute);
+    }
+    formValidate.formClean(form);
+  } else {
+    const firstError = form.querySelector('._form-error');
+    if (firstError) {
+      firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      firstError.focus();
+    }
+  }
+}, true);
 
 //========================================================================================================================================================
 

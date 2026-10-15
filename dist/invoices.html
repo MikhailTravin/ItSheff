@@ -292,7 +292,7 @@
 										</div>
 									</div>
 									<div class="header-menu__buttons">
-										<a href="./" class="btn btn-registation">
+										<a href="./" data-popup="#registration" class="btn btn-registation">
 											<span>Регистрация</span>
 										</a>
 									</div>
@@ -303,10 +303,10 @@
 							</div>
 						</div>
 						<div class="header__buttons">
-							<a href="./" class="btn btn-registation">
+							<a href="./" data-popup="#registration" class="btn btn-registation">
 								<span>Регистрация</span>
 							</a>
-							<a href="./" class="btn btn-bg">
+							<a href="./" data-popup="#login" class="btn btn-bg">
 								<span>Войти</span>
 							</a>
 						</div>
@@ -1607,9 +1607,29 @@
 										</ul>
 									</div>
 									<div class="footer-top__column">
-										<a href="./" class="footer-top__main-title">
+										<div data-spoller class="footer-top__main-title">
 											<span>Услуги+</span>
-										</a>
+											<div class="footer-top__arrow">
+												<svg aria-hidden="true" width="7" height="10">
+													<use xlink:href="img/sprite.svg#arrow3"></use>
+												</svg>
+											</div>
+										</div>
+										<ul>
+											<li>
+												<a href="./">Помощь с базовыми настройками</a>
+											</li>
+											<li>
+												<a href="./">
+													Сервисы 1С
+												</a>
+											</li>
+											<li>
+												<a href="./">
+													Доработки и расширения
+												</a>
+											</li>
+										</ul>
 									</div>
 									<div class="footer-top__column">
 										<div data-spoller class="footer-top__main-title">
@@ -1824,7 +1844,18 @@
 							</div>
 						</div>
 						<div class="footer-bottom">
-							<div data-da=".footer-bottom__right, 1200, first" class="footer-bottom__left">
+							<div class="footer-bottom__right">
+								<a href="./" class="footer-bottom__link">
+									Соглашение публичной оферты ТОО "ITsheff.kz"
+								</a>
+								<a href="./" class="footer-bottom__link">
+									Соглашение публичной оферты ИП SAAS
+								</a>
+								<a href="./" class="footer-bottom__link">
+									Документация
+								</a>
+							</div>
+							<div class="footer-bottom__left">
 								<a href="./" class="footer-bottom__logo">
 									<svg aria-hidden="true" width="122" height="26">
 										<use xlink:href="img/sprite.svg#logo1"></use>
@@ -1833,14 +1864,6 @@
 								<div class="footer-bottom__copy">
 									© 2011-2024 ITSheff.<br> Все права защищены
 								</div>
-							</div>
-							<div class="footer-bottom__right">
-								<a href="./" class="footer-bottom__link">
-									Соглашение публичной оферты ТОО "ITsheff.kz"
-								</a>
-								<a href="./" class="footer-bottom__link">
-									Соглашение публичной оферты ИП SAAS
-								</a>
 							</div>
 						</div>
 					</div>
@@ -2334,6 +2357,247 @@
 							<span>Назад</span>
 						</button>
 					</div>
+				</div>
+			</div>
+		</div>
+		<!--Регистрация-->
+		<div id="registration" aria-hidden="false" class="popup popup-login">
+			<div class="popup__wrapper">
+				<div class="popup__content">
+					<form action="#" class="popup__step">
+						<div class="popup-top">
+							<div class="popup-top__titles">
+								<div class="popup-top__title">
+									Регистрация
+								</div>
+							</div>
+							<div data-close class="popup-top__close">
+								<svg aria-hidden="true" width="22" height="22">
+									<use xlink:href="img/sprite.svg#close"></use>
+								</svg>
+							</div>
+						</div>
+						<div class="popup-center">
+							<div class="form">
+								<div class="form__inputs">
+									<div class="form__input big">
+										<label for="name3" class="big">
+											Имя<span class="placeholder">*</span>
+										</label>
+										<input data-required id="name3" data-error-number="Введите имя от 2 символов" data-error="Reason for the error" autocomplete="off" type="text" name="form[]" placeholder="" class="input">
+									</div>
+									<div class="form__input">
+										<label for="mail1">
+											Email <span class="placeholder">*</span>
+										</label>
+										<input data-required data-error="Reason for the error" id="mail1" autocomplete="off" type="text" name="form[]" placeholder="" value="" class="input">
+									</div>
+									<div class="form__input big">
+										<label class="big">
+											Ваш телефон<span class="placeholder">*</span>
+										</label>
+										<div class="form-input-tel">
+											<div data-required data-error="Введите номер полностью" class="form-select">
+												<div class="form-select__titles">
+													<img src="img/icons/flag1.svg" alt="">
+													<div class="form-select__arrow"></div>
+												</div>
+												<div class="form-select__value">
+													<span>+7</span>
+													<input oninput="this.value = this.value.replace(/[^0-9]/g, '')" onkeypress="return /[0-9]/.test(event.key)" autocomplete="off" name="form[]" placeholder="(000) 000-00-00" class="tel">
+												</div>
+												<div class="form-select__dropdown">
+													<div data-simplebar class="form-select__simplebar">
+														<div class="form-select__body">
+															<div class="form-select__column">
+																<div class="options">
+																	<label class="options__item">
+																		<input countryCode="+7" data-mask="(999) 999-99-99" hidden class="options__input" checked type="radio" value="1" name="option2">
+																		<span class="options__label options-label2">
+																			<span class="options__img">
+																				<img src="img/icons/flag1.svg" alt="">
+																			</span>
+																			<span class="options__text">
+																				Казахстан
+																			</span>
+																			<span class="options__icon">
+																				<svg aria-hidden="true" width="12" height="9">
+																					<use xlink:href="img/sprite.svg#check1">
+																					</use>
+																				</svg>
+																			</span>
+																		</span>
+																	</label>
+																	<label class="options__item">
+																		<input countryCode="+7" data-mask="(999) 999-99-99" hidden class="options__input" type="radio" value="2" name="option2">
+																		<span class="options__label options-label2">
+																			<span class="options__img">
+																				<img src="img/icons/flag2.svg" alt="">
+																			</span>
+																			<span class="options__text">
+																				Россия
+																			</span>
+																			<span class="options__icon">
+																				<svg aria-hidden="true" width="12" height="9">
+																					<use xlink:href="img/sprite.svg#check1">
+																					</use>
+																				</svg>
+																			</span>
+																		</span>
+																	</label>
+																	<label class="options__item">
+																		<input countryCode="+995" data-mask="(999) 999-99-99" hidden class="options__input" type="radio" value="3" name="option2">
+																		<span class="options__label options-label2">
+																			<span class="options__img">
+																				<img loading="lazy" src="img/icons/flag3.svg" alt="">
+																			</span>
+																			<span class="options__text">
+																				Киргизия
+																			</span>
+																			<span class="options__icon">
+																				<svg aria-hidden="true" width="12" height="9">
+																					<use xlink:href="img/sprite.svg#check1">
+																					</use>
+																				</svg>
+																			</span>
+																		</span>
+																	</label>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="tooltips">
+												<div class="tooltips__dropdown">
+													<span>
+														Дозвон техподдержки будет осуществлен на этот номер телефона
+													</span>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="form__captcha">
+									<img src="img/captcha.webp" alt="">
+								</div>
+								<button type="submit" data-popup="#create-account" class="btn btn-bg btn-next">Продолжить</button>
+								<div class="form__account">
+									Уже есть аккаунт?
+									<a href="./">Войти</a>
+								</div>
+								<div class="form__text">
+									Нажимая на кнопку продолжить вы принимаете условия <a href="./">Пользовательского
+										соглашения</a> и
+									даёте ITsheff согласие на обработку персональных данных на условиях и в целях,
+									определенных <a href="./">Политикой конфиденциальности</a>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div id="create-account" aria-hidden="false" class="popup popup-base-created">
+			<div class="popup__wrapper">
+				<div class="popup__content popup-content-creat">
+					<div class="add-base-creat popup-create-account">
+						<div class="popup-top">
+							<div class="popup-top__titles">
+								<div class="popup-top__title">
+									Создаем аккаунт 1С
+								</div>
+							</div>
+							<div data-close class="popup-top__close">
+								<svg aria-hidden="true" width="22" height="22">
+									<use xlink:href="img/sprite.svg#close"></use>
+								</svg>
+							</div>
+						</div>
+						<div class="popup-center">
+							<div class="add-base-creat__animations">
+								<div class="add-base-creat__animation">
+									Цикличная анимация
+									кота
+								</div>
+								<div class="add-base-creat__body">
+									<div class="line">
+										<span></span>
+									</div>
+									<div class="add-base-creat__title">
+										Пожалуйста подождите...
+									</div>
+								</div>
+							</div>
+							<div class="popup-warning">
+								<div class="popup-warning__item">
+									<div class="popup-warning__title">
+										Не закрывайте окно
+									</div>
+									<div class="popup-warning__text">
+										<p>
+											Создаем и настраиваем аккаунт 1С. Не закрывайте окно.<br> После успешного
+											создания,
+											вы
+											будете перенаправлены в личный кабинет.
+										</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<form action="#" class="add-base-created">
+						<div class="popup-top">
+							<div class="popup-top__titles">
+								<div class="popup-top__title">
+									Вы зарегистрированы
+								</div>
+							</div>
+							<div data-close class="popup-top__close">
+								<svg aria-hidden="true" width="22" height="22">
+									<use xlink:href="img/sprite.svg#close"></use>
+								</svg>
+							</div>
+						</div>
+						<div class="popup-center">
+							<div class="popup-account-registered popup-account-registered2">
+								<div class="popup-account-registered__mail">
+									<div class="popup-account-registered__icon">
+										<svg aria-hidden="true" width="36" height="32">
+											<use xlink:href="img/sprite.svg#mail"></use>
+										</svg>
+									</div>
+									<p>
+										На почту <span>abc#gmail.com</span>
+										отправлены логин и пароль для входа в облако и личный кабинет
+									</p>
+								</div>
+								<div class="popup-account-registered__body popup-add-base">
+									<div class="popup-account-registered__title">
+										Для работы 1С необходимо:
+									</div>
+									<div class="popup-buttons">
+										<a href="./" data-popup="#upload-base" class="btn ">
+											<div class="btn__icon btn-icon">
+												<svg aria-hidden="true" width="24" height="21">
+													<use xlink:href="img/sprite.svg#download3"></use>
+												</svg>
+											</div>
+											<span>Загрузить свою БД</span>
+										</a>
+										<a href="./" data-popup="#create-new-base" class="btn btn-bg btn-plus">
+											<div class="btn__icon">
+												<svg aria-hidden="true" width="18" height="18">
+													<use xlink:href="img/sprite.svg#plus1"></use>
+												</svg>
+											</div>
+											<span>Создать новую БД</span>
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</form>
 				</div>
 			</div>
 		</div>
