@@ -53,7 +53,7 @@ body::after {
     min-height: 100%;
     flex: 1 1 auto;
     width: 100%;
-    justify-content: center;
+    justify-content: start;
 }
 
 .popup__content {
@@ -218,6 +218,15 @@ body::after {
             font-size: 14px;
             line-height: 143%;
             min-height: 36px;
+        }
+    }
+    &.popup-buttons-grid2 {
+        display: grid;
+        gap: 20px;
+        grid-template-columns: repeat(2, 1fr);
+        @media (max-width: 550px) {
+            grid-template-columns: 1fr;
+            gap: 10px;
         }
     }
     .link {
@@ -3215,5 +3224,214 @@ body::after {
             height: 100%;
             width: auto;
         }
+    }
+}
+
+.popup-balance {
+    @media (max-width: 650px) {
+        padding: 65px 8px;
+    }
+    .popup__content {
+        @media (max-width: 650px) {
+            border-radius: 12px;
+        }
+    }
+}
+.popup-balance-center {
+    background: #f8f8f8;
+    border-radius: 12px;
+    padding: 15px 20px 0px 20px;
+    margin-bottom: 40px;
+    margin-top: -25px;
+    @media (max-width: 650px) {
+        margin-top: -18px;
+        padding: 17px 20px 0px 20px;
+        margin-bottom: 32px;
+    }
+    // .popup-balance-center__title
+
+    &__title {
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 125%;
+        padding: 0px 0px 7px 0px;
+        border-bottom: 1px solid #e1e4e7;
+        @media (max-width: 650px) {
+            font-size: 14px;
+            line-height: 114%;
+            padding: 0px 0px 9px 0px;
+        }
+    }
+
+    // .popup-balance-center__body
+
+    &__body {
+    }
+
+    // .popup-balance-center__column
+
+    &__column {
+        display: flex;
+        align-items: start;
+        gap: 15px;
+        border-bottom: 1px solid #e1e4e7;
+        padding: 19px 0px 23px 0px;
+        @media (max-width: 650px) {
+            gap: 10px;
+            padding: 16px 0px 18px 0px;
+        }
+        &:last-child {
+            border-bottom: none;
+        }
+    }
+
+    // .popup-balance-center__price
+
+    &__price {
+        flex: 0 0 85px;
+        font-weight: 400;
+        font-size: 15px;
+        line-height: 133%;
+        @media (max-width: 650px) {
+            font-size: 14px;
+            line-height: 114%;
+            flex: 0 0 70px;
+        }
+    }
+
+    // .popup-balance-center__item
+
+    &__item {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        @media (max-width: 650px) {
+            gap: 4px;
+        }
+    }
+
+    // .popup-balance-center__name
+
+    &__name {
+        font-weight: 400;
+        font-size: 15px;
+        line-height: 133%;
+        @media (max-width: 650px) {
+            font-size: 14px;
+            line-height: 114%;
+        }
+    }
+
+    // .popup-balance-center__data
+
+    &__data {
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 100%;
+    }
+}
+.popup-buttons-balance {
+    max-width: 384px;
+    min-height: 224px;
+    width: 100%;
+    margin: 0 auto;
+    gap: 20px;
+    padding: 16px 0px 0px 0px;
+    @media (max-width: 650px) {
+        min-height: 170px;
+        max-width: 232px;
+        padding: 22px 0px 0px 0px;
+    }
+    .popup-buttons {
+        gap: 24px;
+        @media (max-width: 650px) {
+            gap: 16px;
+        }
+    }
+}
+.popup-balance-invoice {
+    background: #f8f8f8;
+    margin-bottom: 31px;
+    min-height: 259px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    padding: 33px 32px;
+    gap: 27px;
+    margin-top: -3px;
+    @media (max-width: 650px) {
+        margin-top: -18px;
+        min-height: fit-content;
+    }
+
+    // .popup-balance-invoice__titles
+
+    &__titles {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    // .popup-balance-invoice__title
+
+    &__title {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 150%;
+        text-align: center;
+    }
+
+    // .popup-balance-invoice__number
+
+    &__number {
+        font-weight: 600;
+        font-size: 18px;
+        line-height: 111%;
+        text-align: center;
+    }
+
+    // .popup-balance-invoice__price
+
+    &__price {
+        font-weight: 600;
+        font-size: 52px;
+        line-height: 100%;
+        text-align: center;
+        color: #7d8892;
+    }
+}
+
+.popup-login {
+    @media (max-width: 650px) {
+        padding: 65px 8px;
+    }
+    .popup__content {
+        max-width: 460px;
+        @media (max-width: 650px) {
+            border-radius: 12px;
+        }
+    }
+    .form {
+        gap: 36px;
+        margin: -10px 7px 20px 7px;
+        @media (max-width: 650px) {
+            margin: -4px 0px 32px 0px;
+        }
+        .btn {
+            width: 100%;
+            @media (min-width: 651px) {
+                min-height: 52px;
+                font-size: 18px;
+                line-height: 111%;
+            }
+            @media (max-width: 650px) {
+                margin-top: -28px;
+            }
+        }
+    }
+    .form__inputs {
+        gap: 35px;
     }
 }

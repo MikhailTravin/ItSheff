@@ -92,6 +92,7 @@
     // .form__input
 
     &__input {
+        position: relative;
         display: flex;
         flex-direction: column;
         gap: 8px;
@@ -241,11 +242,26 @@
                     font-style: normal;
                 }
             }
+            &.input-price {
+                padding: 0px 20px 2px 58px;
+                @media (max-width: 650px) {
+                    padding: 0px 16px 0px 47px;
+                }
+            }
             @media (max-width: 650px) {
                 height: 36px;
                 font-size: 16px;
                 line-height: 150%;
                 padding: 0px 16px 0px 16px;
+            }
+        }
+        &.form-price {
+            .form__error {
+                @media (min-width: 651px) {
+                    position: absolute;
+                    left: 0px;
+                    bottom: -23px;
+                }
             }
         }
         .tooltips {
@@ -421,6 +437,97 @@
                 &:active {
                     color: #c03b12;
                 }
+            }
+        }
+    }
+
+    // .form__currency
+
+    &__currency {
+        position: absolute;
+        top: 50%;
+        transform: translate(0px, -50%);
+        font-weight: 600;
+        font-size: 24px;
+        line-height: 217%;
+        color: #a3acb5;
+        left: 20px;
+        @media (max-width: 650px) {
+            font-size: 18px;
+            left: 16px;
+        }
+        &::after {
+            content: "";
+            position: absolute;
+            left: 26px;
+            width: 1px;
+            top: 13px;
+            height: calc(100% - 26px);
+            background: #d9d9d9;
+            @media (max-width: 650px) {
+                top: 8px;
+                left: 22px;
+                height: calc(100% - 16px);
+            }
+        }
+    }
+
+    // .form__captcha
+
+    &__captcha {
+        width: 100%;
+        img {
+            width: 100%;
+            height: auto;
+        }
+    }
+
+    // .form__text
+
+    &__text {
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 100%;
+        color: #5c5c5c;
+        margin: 0px 16px;
+        @media (max-width: 650px) {
+            text-align: center;
+        }
+        a {
+            color: #f26135;
+            transition: color 0.3s;
+            @media (any-hover: hover) {
+                &:hover {
+                    color: #f26135;
+                }
+            }
+            &:active {
+                color: #c03b12;
+            }
+        }
+    }
+
+    // .form__account
+
+    &__account {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 4px 12px;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 150%;
+        a {
+            color: #f26135;
+            transition: color 0.3s;
+            @media (any-hover: hover) {
+                &:hover {
+                    color: #f26135;
+                }
+            }
+            &:active {
+                color: #c03b12;
             }
         }
     }
