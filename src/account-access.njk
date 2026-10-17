@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <title>Восстановление доступа к аккаунту</title>
+    {% include 'blocks/head.njk' %}
+</head>
+
+<body class="preload mp">
+    <div class="main-wrapper-outer">
+        <main class="main main-other">
+
+            <div class="block-login">
+                <div class="block-login__images">
+                    <a href="./" class="header__logo">
+                        <svg aria-hidden="true" width="244" height="52">
+                            <use xlink:href="img/sprite.svg#logo1"></use>
+                        </svg>
+                    </a>
+                    <img src="img/image12.webp" alt="" class="block-login__pic1 pic-login">
+                </div>
+                <div class="block-login__content">
+                    <div class="block-login__body">
+                        <div class="block-login__top">
+                            <div class="block-login__titles">
+                                <h1 class="title1">Восстановление доступа к аккаунту</h1>
+                                <p>
+                                    Введите логин или E-mail. Новый пароль и регистрационные данные будут отправлены на
+                                    ваш E-mail
+                                </p>
+                            </div>
+                        </div>
+                        <form action="#" class="form form-account-access">
+                            <div class="form__inputs">
+                                <div class="form__input">
+                                    <label for="login1">
+                                        Логин или Email <span class="placeholder">*</span>
+                                    </label>
+                                    <input data-required data-error="Аккаунт с таким логином или Email не найден"
+                                        id="login1" autocomplete="off" type="text" name="form[]" placeholder="" value=""
+                                        class="input">
+                                </div>
+                            </div>
+                            <div class="form__bottom">
+                                <button type="submit" class="btn btn-bg">Отправить</button>
+                                <p style="display: none;" class="form-access-letters">
+                                    На ваш E-mail были отправлены инструкции по восстановлению
+                                </p>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!--Не получили письмо? Повторная отправка
+            <div class="block-login">
+                <div class="block-login__images">
+                    <a href="./" class="header__logo">
+                        <svg aria-hidden="true" width="244" height="52">
+                            <use xlink:href="img/sprite.svg#logo1"></use>
+                        </svg>
+                    </a>
+                    <img src="img/image12.webp" alt="" class="block-login__pic1 pic-login">
+                </div>
+                <div class="block-login__content">
+                    <div class="block-login__body">
+                        <div class="block-login__top">
+                            <div class="block-login__titles">
+                                <h1 class="title1">Восстановление доступа к аккаунту</h1>
+                                <p>
+                                    Не получили письмо? Повторная отправка через 00:45
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            -->
+
+            <!--Вы запросили слишком много писем
+            <div class="block-login">
+                <div class="block-login__images">
+                    <a href="./" class="header__logo">
+                        <svg aria-hidden="true" width="244" height="52">
+                            <use xlink:href="img/sprite.svg#logo1"></use>
+                        </svg>
+                    </a>
+                    <img src="img/image12.webp" alt="" class="block-login__pic1 pic-login">
+                </div>
+                <div class="block-login__content">
+                    <div class="block-login__body">
+                        <div class="block-login__top">
+                            <div class="block-login__titles">
+                                <h1 class="title1">Восстановление доступа к аккаунту</h1>
+                                <p>
+                                    Вы запросили слишком много писем. Пожалуйста, подождите 15 минут
+                                </p>
+                                <a href="./" class="link">Обратиться в поддержку</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            -->
+
+        </main>
+    </div>
+    {% include 'blocks/scripts.njk' %}
+</body>
+
+</html>

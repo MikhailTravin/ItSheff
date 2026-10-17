@@ -439,6 +439,22 @@
         }
     }
 
+    // .header-menu__simplebar
+
+    &__simplebar {
+        width: 100%;
+        max-height: 100vh;
+        @media (max-width: 1200px) {
+            max-height: calc(100dvh - 56px);
+        }
+        .simplebar-track.simplebar-vertical {
+            right: -24px;
+            @media (max-width: 1200px) {
+                right: 0;
+            }
+        }
+    }
+
     // .header-menu__button
 
     &__button {

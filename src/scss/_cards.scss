@@ -83,6 +83,116 @@
     }
 }
 
+.card-recommend {
+    width: 100%;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.12);
+    background: #fff;
+    border-radius: 8px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 17px;
+    @media (max-width: 992px) {
+        gap: 16px;
+    }
+    @media (max-width: 700px) {
+        padding: 16px;
+        gap: 10px;
+    }
+    p {
+        flex: 1 1 auto;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 114%;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 5;
+    }
+    // .card-recommend__top
+
+    &__top {
+        display: flex;
+        align-items: start;
+        gap: 16px;
+        @media (max-width: 700px) {
+            gap: 12px; align-items: center;
+        }
+    }
+
+    // .card-recommend__pic1
+
+    &__pic1 {
+        flex: 0 0 60px;
+        width: 60px;
+        height: auto;
+        @media (max-width: 700px) {
+            flex: 0 0 40px;
+            width: 40px;
+        }
+    }
+
+    // .card-recommend__titles
+
+    &__titles {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 5px;
+        p {
+            font-weight: 400;
+            font-size: 12px;
+            line-height: 100%;
+            color: #8c8c8c;
+            @media (max-width: 700px) {
+                display: none;
+            }
+        }
+    }
+
+    // .card-recommend__title
+
+    &__title {
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 125%;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        @media (max-width: 700px) {
+            font-size: 14px;
+            line-height: 114%;
+        }
+    }
+
+    // .card-recommend__badges
+
+    &__badges {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        @media (max-width: 700px) {
+            display: none;
+        }
+    }
+
+    // .card-recommend__badge
+
+    &__badge {
+        background: #f0f2f4;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 100%;
+        border-radius: 20px;
+        padding: 8px 12px;
+        &.badge-orange {
+            background: #ffe8ce;
+            color: #9a3110;
+        }
+    }
+}
+
 .card-news {
     width: 100%;
     border-radius: 10px;
@@ -444,7 +554,7 @@
 .card-subscriptions {
     position: relative;
     border-radius: 10px;
-    min-height: 241px;
+    min-height: 232px;
     &.active,
     &:hover {
         .card-subscriptions-hover {
@@ -461,19 +571,14 @@
         }
     }
     @media (max-width: 1200px) {
-        min-height: 227px;
-        flex: 1 1 calc(50% - 12px);
+        flex: 1 1 calc(50% - 4px);
     }
-    @media (max-width: 992px) {
-        min-height: 227px;
-        flex: 1 1 calc(33.3333% - 8px);
-    }
-    @media (max-width: 750px) {
-        flex: 1 1 calc(50% - 12px);
-        min-height: 202px;
+    @media (max-width: 550px) {
+        min-height: 180px;
     }
     @media (max-width: 370px) {
         flex: 1 1 auto;
+        min-height: fit-content;
     }
     // .card-subscriptions__items
 
@@ -490,17 +595,14 @@
     // .card-subscriptions__badge
 
     &__badge {
-        position: absolute;
-        top: 0;
-        right: 0;
         background: #f26135;
         display: flex;
         justify-content: center;
         gap: 4px;
         align-items: center;
         border-radius: 5px;
-        padding: 2px 8px;
-        min-height: 25px;
+        padding: 2px 4px;
+        min-height: 17px;
         font-weight: 600;
         font-size: 12px;
         line-height: 100%;
@@ -512,9 +614,10 @@
         &.badge-active {
             background: #89ce43;
         }
+        &.badge-red {
+            background: #ed4c52;
+        }
         &.badge-attention {
-            padding: 2px 8px 2px 4px;
-            min-height: 23px;
             background: #7d8892;
             svg {
                 fill: #fff;
@@ -525,8 +628,26 @@
     // .card-subscriptions__pic1
 
     &__pic1 {
-        height: 120px;
-        width: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex: 1 1 auto;
+        img {
+            height: 80px;
+            width: auto;
+            @media (max-width: 550px) {
+                height: 60px;
+            }
+        }
+    }
+
+    // .card-subscriptions__titles
+
+    &__titles {
+        display: flex;
+        align-items: center;
+        gap: 6px 12px;
+        flex-wrap: wrap;
     }
 
     // .card-subscriptions__item
@@ -535,15 +656,10 @@
         width: 100%;
         display: flex;
         flex-direction: column;
-        gap: 9px;
-        padding: 16px 7px;
-        @media (max-width: 992px) {
-            gap: 12px;
-            padding: 5px;
-        }
+        gap: 8px;
+        padding: 16px 4px 6px 4px;
         @media (max-width: 700px) {
-            gap: 8px;
-            padding: 6px 7px;
+            padding: 16px 4px 8px 4px;
         }
     }
 
@@ -551,10 +667,10 @@
 
     &__col {
         font-weight: 400;
-        font-size: 14px;
-        line-height: 114%;
-        @media (max-width: 992px) {
-            font-size: 12px;
+        font-size: 12px;
+        line-height: 100%;
+        @media (max-width: 550px) {
+            font-size: 10px;
             line-height: 100%;
         }
     }
@@ -567,8 +683,8 @@
         -webkit-box-orient: vertical;
         overflow: hidden;
         font-weight: 400;
-        font-size: 16px;
-        line-height: 125%;
+        font-size: 14px;
+        line-height: 114%;
         color: #000;
         @media (max-width: 1400px) {
             br {
@@ -595,7 +711,7 @@
     height: 100%;
     backdrop-filter: blur(10px);
     background: rgba(0, 0, 0, 0.7);
-    padding: 13px 16px 15px 16px;
+    padding: 16px 12px 12px 12px;
     border-radius: 10px 5px 10px 10px;
     display: flex;
     flex-direction: column;
@@ -604,13 +720,11 @@
     opacity: 0;
     transition: opacity 0.3s;
     pointer-events: none;
-    @media (max-width: 1200px) {
-        padding: 9px 12px 12px 12px;
-    }
 
     // .card-subscriptions-hover__name
 
     &__name {
+        padding: 0px 8px;
         position: relative;
         z-index: 10;
         font-weight: 600;
@@ -621,23 +735,17 @@
         -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
         overflow: hidden;
-        @media (max-width: 1200px) {
-            font-size: 12px;
-            line-height: 100%;
-        }
     }
 
     // .card-subscriptions-hover__text
 
     &__text {
+        padding: 0px 8px;
         position: relative;
         z-index: 10;
         display: flex;
         flex-direction: column;
         gap: 5px;
-        @media (max-width: 1200px) {
-            gap: 6px;
-        }
         a {
             font-weight: 600;
             font-size: 14px;
@@ -650,19 +758,12 @@
             &:active {
                 color: #c03b12;
             }
-            @media (max-width: 1200px) {
-                font-size: 12px;
-                line-height: 100%;
-            }
         }
         p {
             font-weight: 400;
             font-size: 12px;
             line-height: 100%;
             color: #f8f8f8;
-            @media (max-width: 1200px) {
-                font-size: 8px;
-            }
         }
     }
 
@@ -671,15 +772,11 @@
     &__buttons {
         display: flex;
         flex-direction: column;
-        gap: 10px;
+        gap: 12px;
         position: relative;
         z-index: 10;
         .btn {
             width: 100%;
-            @media (max-width: 1200px) {
-                min-height: 28px;
-                padding: 2px 10px;
-            }
         }
     }
 }

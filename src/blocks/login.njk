@@ -131,7 +131,8 @@
                         <div class="form__captcha">
                             <img src="img/captcha.webp" alt="">
                         </div>
-                        <button type="submit" data-popup="#create-account" class="btn btn-bg btn-next">Продолжить</button>
+                        <button type="submit" data-popup="#create-account"
+                            class="btn btn-bg btn-next">Продолжить</button>
                         <div class="form__account">
                             Уже есть аккаунт?
                             <a href="./">Войти</a>
@@ -243,6 +244,67 @@
                                     </div>
                                     <span>Создать новую БД</span>
                                 </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!--Вход-->
+<div id="login" aria-hidden="false" class="popup popup-login">
+    <div class="popup__wrapper">
+        <div class="popup__content">
+            <form action="#" class="popup__step">
+                <div class="popup-top">
+                    <div class="popup-top__titles">
+                        <div class="popup-top__title">
+                            Войти
+                        </div>
+                    </div>
+                    <div data-close class="popup-top__close">
+                        <svg aria-hidden="true" width="22" height="22">
+                            <use xlink:href="img/sprite.svg#close"></use>
+                        </svg>
+                    </div>
+                </div>
+                <div class="popup-center">
+                    <div class="form">
+                        <div class="form__inputs">
+                            <div class="form__input">
+                                <label for="login1">
+                                    Логин <span class="placeholder">*</span>
+                                </label>
+                                <input data-required data-error="Введите логин" id="login1" autocomplete="off"
+                                    type="text" name="form[]" placeholder="" value="" class="input">
+                            </div>
+                            <div class="form__input big">
+                                <label for="password3" class="big">
+                                    Пароль<span class="placeholder">*</span>
+                                    <a href="./" class="link forgot-password">Забыли пароль?</a>
+                                </label>
+                                <div class="form__input-pass input">
+                                    <input data-required id="password3" data-error="Неверный логин или пароль"
+                                        autocomplete="off" type="password" name="form[]" placeholder="" value="">
+                                    <button type="button" class="form__viewpass">
+                                        <svg aria-hidden="true" width="20" height="20" class="icon1">
+                                            <use xlink:href="img/sprite.svg#eye1"></use>
+                                        </svg>
+                                        <svg aria-hidden="true" width="20" height="20" class="icon2">
+                                            <use xlink:href="img/sprite.svg#eye2"></use>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form__bottom">
+                            <button type="submit" data-popup="#create-account"
+                                class="btn btn-bg btn-next">Войти</button>
+                            <div class="form__account">
+                                Еще нет аккаунта?
+                                <a href="./">Регистрация</a>
                             </div>
                         </div>
                     </div>
