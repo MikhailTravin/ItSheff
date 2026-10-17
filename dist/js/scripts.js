@@ -182,11 +182,11 @@ if (moreButtons) {
 
 //Количество
 function formQuantity() {
-  function getMinValue(quantityElement, currentValue) {
+  function getMinValue(quantityElement, fallback = 1) {
     if (quantityElement.dataset.quantityMin !== undefined) {
       return +quantityElement.dataset.quantityMin;
     }
-    return currentValue;
+    return fallback;
   }
 
   function updateButtonsState(quantityElement) {
@@ -197,7 +197,7 @@ function formQuantity() {
     if (!valueElement) return;
 
     const value = parseInt(valueElement.value) || 0;
-    const min = getMinValue(quantityElement, value);
+    const min = getMinValue(quantityElement);
     const max = quantityElement.dataset.quantityMax ? +quantityElement.dataset.quantityMax : null;
 
     if (value <= min) {
@@ -242,7 +242,7 @@ function formQuantity() {
         }
       } else if (minusBtn) {
         value--;
-        const currentMin = getMinValue(quantityElement, value + 1);
+        const currentMin = getMinValue(quantityElement);
         if (value < currentMin) {
           value = currentMin;
         }
@@ -1489,6 +1489,9 @@ class Popup {
         this._selectorOpen = false;
         this.isOpen = true;
         resetPopupSteps(this.targetOpen.element);
+        if (typeof window.refreshShowMore === 'function') {
+          requestAnimationFrame(() => window.refreshShowMore());
+        }
         this.options.on.afterOpen(this);
         document.dispatchEvent(new CustomEvent("afterPopupOpen", {
           detail: {
@@ -3495,6 +3498,58 @@ document.addEventListener('click', function (e) {
     }
   }
 }, true);
+
+function formAccountAccessInit() {
+  document.addEventListener('submit', function (e) {
+    const form = e.target.closest('form.form-account-access');
+    if (!form) return;
+
+    e.preventDefault();
+    e.stopPropagation();
+    e.stopImmediatePropagation();
+
+    const error = !form.hasAttribute('data-no-validate') ? formValidate.getErrors(form) : 0;
+
+    if (error !== 0) {
+      const firstError = form.querySelector('._form-error');
+      if (firstError) {
+        firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        firstError.focus();
+      }
+      return;
+    }
+
+    const input = form.querySelector('input.input');
+    const button = form.querySelector('button[type="submit"]');
+    const letters = form.querySelector('.form-access-letters');
+
+    if (input) {
+      input.setAttribute('value', input.value);
+      input.setAttribute('readonly', 'readonly');
+      input.classList.add('form-filled');
+      formValidate.removeError(input);
+      input.classList.remove('_form-error', '_form-success');
+      const containers = formValidate.getAllErrorContainers(input);
+      containers.forEach(container => {
+        container.classList.remove('_form-error', '_form-success');
+      });
+    }
+
+    if (button) {
+      button.style.display = 'none';
+    }
+
+    if (letters) {
+      letters.style.display = 'block';
+    }
+
+    form.dispatchEvent(new CustomEvent('formAccountAccessSent', {
+      detail: { form: form, input: input }
+    }));
+  }, true);
+}
+
+formAccountAccessInit();
 
 //========================================================================================================================================================
 
@@ -5622,6 +5677,30 @@ function showMore() {
         initItemsMedia(mdQueriesArray);
       }
     }
+
+    const createdBlock = document.querySelector('.add-base-created [data-showmore]');
+    if (createdBlock) {
+      let wasVisible = createdBlock.offsetParent !== null && createdBlock.offsetHeight > 0;
+
+      const checkVisibility = function () {
+        const isVisible = createdBlock.offsetParent !== null && createdBlock.offsetHeight > 0;
+        if (isVisible && !wasVisible) {
+          window.dispatchEvent(new Event('resize'));
+        }
+        wasVisible = isVisible;
+      };
+
+      const visibilityObserver = new MutationObserver(checkVisibility);
+      let el = createdBlock;
+      while (el && el !== document.body) {
+        visibilityObserver.observe(el, {
+          attributes: true,
+          attributeFilter: ['class', 'style', 'hidden']
+        });
+        el = el.parentElement;
+      }
+    }
+
     function initItemsMedia(mdQueriesArray) {
       mdQueriesArray.forEach(mdQueriesItem => {
         initItems(mdQueriesItem.itemsArray, mdQueriesItem.matchMedia);
@@ -5638,18 +5717,33 @@ function showMore() {
       let showMoreButton = showMoreBlock.querySelectorAll('[data-showmore-button]');
       showMoreContent = Array.from(showMoreContent).filter(item => item.closest('[data-showmore]') === showMoreBlock)[0];
       showMoreButton = Array.from(showMoreButton).filter(item => item.closest('[data-showmore]') === showMoreBlock)[0];
+
+      if (!showMoreContent) return;
+
+      const showMoreType = showMoreBlock.dataset.showmore ? showMoreBlock.dataset.showmore : 'size';
+      const showMoreTypeValue = parseInt(showMoreContent.dataset.showmoreContent) || 3;
+
+      if (showMoreType === 'items' && showMoreContent.children.length <= showMoreTypeValue) {
+        showMoreContent.style.removeProperty('height');
+        showMoreContent.style.removeProperty('overflow');
+        showMoreBlock.classList.remove('_showmore-active');
+        if (showMoreButton) showMoreButton.hidden = true;
+        return;
+      }
+
       const hiddenHeight = getHeight(showMoreBlock, showMoreContent);
+      const originalHeight = getOriginalHeight(showMoreContent);
       if (matchMedia.matches || !matchMedia) {
-        if (hiddenHeight < getOriginalHeight(showMoreContent)) {
-          _slideUp(showMoreContent, 0, showMoreBlock.classList.contains('_showmore-active') ? getOriginalHeight(showMoreContent) : hiddenHeight);
-          showMoreButton.hidden = false;
+        if (hiddenHeight < originalHeight) {
+          _slideUp(showMoreContent, 0, showMoreBlock.classList.contains('_showmore-active') ? originalHeight : hiddenHeight);
+          if (showMoreButton) showMoreButton.hidden = false;
         } else {
           _slideDown(showMoreContent, 0, hiddenHeight);
-          showMoreButton.hidden = true;
+          if (showMoreButton) showMoreButton.hidden = true;
         }
       } else {
         _slideDown(showMoreContent, 0, hiddenHeight);
-        showMoreButton.hidden = true;
+        if (showMoreButton) showMoreButton.hidden = true;
       }
     }
     function getHeight(showMoreBlock, showMoreContent) {
@@ -5657,17 +5751,19 @@ function showMore() {
       const showMoreType = showMoreBlock.dataset.showmore ? showMoreBlock.dataset.showmore : 'size';
       const rowGap = parseFloat(getComputedStyle(showMoreContent).rowGap) ? parseFloat(getComputedStyle(showMoreContent).rowGap) : 0;
       if (showMoreType === 'items') {
-        const showMoreTypeValue = showMoreContent.dataset.showmoreContent ? showMoreContent.dataset.showmoreContent : 3;
+        const showMoreTypeValue = showMoreContent.dataset.showmoreContent ? parseInt(showMoreContent.dataset.showmoreContent) : 3;
         const showMoreItems = showMoreContent.children;
-        for (let index = 1; index < showMoreItems.length; index++) {
-          const showMoreItem = showMoreItems[index - 1];
+        const itemsToShow = Math.min(showMoreTypeValue, showMoreItems.length);
+        for (let index = 0; index < itemsToShow; index++) {
+          const showMoreItem = showMoreItems[index];
           const marginTop = parseFloat(getComputedStyle(showMoreItem).marginTop) ? parseFloat(getComputedStyle(showMoreItem).marginTop) : 0;
           const marginBottom = parseFloat(getComputedStyle(showMoreItem).marginBottom) ? parseFloat(getComputedStyle(showMoreItem).marginBottom) : 0;
           hiddenHeight += showMoreItem.offsetHeight + marginTop;
-          if (index == showMoreTypeValue) break;
-          hiddenHeight += marginBottom;
+          if (index < itemsToShow - 1) hiddenHeight += marginBottom;
         }
-        rowGap ? hiddenHeight += (showMoreTypeValue - 1) * rowGap : null;
+        if (itemsToShow > 1) {
+          rowGap ? hiddenHeight += (itemsToShow - 1) * rowGap : null;
+        }
       } else {
         const showMoreTypeValue = showMoreContent.dataset.showmoreContent ? showMoreContent.dataset.showmoreContent : 150;
         hiddenHeight = showMoreTypeValue;
@@ -5679,6 +5775,7 @@ function showMore() {
       let parentHidden;
       let hiddenHeight = showMoreContent.offsetHeight;
       showMoreContent.style.removeProperty('height');
+      showMoreContent.style.removeProperty('overflow');
       if (showMoreContent.closest(`[hidden]`)) {
         parentHidden = showMoreContent.closest(`[hidden]`);
         parentHidden.hidden = false;
@@ -5708,6 +5805,15 @@ function showMore() {
         mdQueriesArray && mdQueriesArray.length ? initItemsMedia(mdQueriesArray) : null;
       }
     }
+
+    window.refreshShowMore = function () {
+      const blocks = document.querySelectorAll('[data-showmore]');
+      if (!blocks.length) return;
+      const regular = Array.from(blocks).filter(item => !item.dataset.showmoreMedia);
+      if (regular.length) initItems(regular);
+      const mdArr = dataMediaQueries(blocks, "showmoreMedia");
+      if (mdArr && mdArr.length) initItemsMedia(mdArr);
+    };
   });
 }
 showMore();
@@ -6851,3 +6957,245 @@ if (formBlocks) {
 }
 
 //========================================================================================================================================================
+
+//Прокрутка к блоку
+let gotoBlock = (targetBlock, noHeader = false, speed = 500, offsetTop = 0) => {
+  const targetBlockElement = document.querySelector(targetBlock);
+
+  if (!targetBlockElement) {
+    console.warn(`Element ${targetBlock} not found`);
+    return;
+  }
+
+  let headerItem = '';
+  let headerItemHeight = 0;
+
+  if (noHeader) {
+    headerItem = 'header.header';
+    const headerElement = document.querySelector(headerItem);
+    if (headerElement) {
+      if (!headerElement.classList.contains('_header-scroll')) {
+        headerElement.style.cssText = `transition-duration: 0s;`;
+        headerElement.classList.add('_header-scroll');
+        headerItemHeight = headerElement.offsetHeight;
+        headerElement.classList.remove('_header-scroll');
+        setTimeout(() => {
+          headerElement.style.cssText = ``;
+        }, 0);
+      } else {
+        headerItemHeight = headerElement.offsetHeight;
+      }
+    }
+  }
+
+  if (document.documentElement.classList.contains("menu-open")) {
+    if (typeof menuClose === 'function') {
+      menuClose();
+    }
+  }
+
+  if (typeof SmoothScroll !== 'undefined') {
+    let options = {
+      speedAsDuration: true,
+      speed: speed,
+      header: headerItem,
+      offset: offsetTop,
+      easing: 'easeOutQuad',
+    };
+    new SmoothScroll().animateScroll(targetBlockElement, '', options);
+  } else {
+    let targetBlockElementPosition = targetBlockElement.getBoundingClientRect().top + window.scrollY;
+
+    if (headerItemHeight) {
+      targetBlockElementPosition -= headerItemHeight;
+    }
+
+    if (offsetTop) {
+      targetBlockElementPosition -= offsetTop;
+    }
+
+    window.scrollTo({
+      top: targetBlockElementPosition,
+      behavior: "smooth"
+    });
+  }
+};
+function pageNavigation() {
+  document.addEventListener("click", pageNavigationAction);
+  document.addEventListener("watcherCallback", pageNavigationAction);
+
+  function pageNavigationAction(e) {
+    if (e.type === "click") {
+      const targetElement = e.target;
+      const gotoLink = targetElement.closest('[data-goto]');
+
+      if (gotoLink) {
+        const gotoLinkSelector = gotoLink.dataset.goto || '';
+        const noHeader = gotoLink.hasAttribute('data-goto-header');
+        const gotoSpeed = gotoLink.dataset.gotoSpeed ? parseInt(gotoLink.dataset.gotoSpeed) : 500;
+        const offsetTop = gotoLink.dataset.gotoTop ? parseInt(gotoLink.dataset.gotoTop) : 0;
+
+        if (window.modules_flsModules && modules_flsModules.fullpage) {
+          const fullpageSection = document.querySelector(`${gotoLinkSelector}`)?.closest('[data-fp-section]');
+          const fullpageSectionId = fullpageSection ? +fullpageSection.dataset.fpId : null;
+
+          if (fullpageSectionId !== null) {
+            modules_flsModules.fullpage.switchingSection(fullpageSectionId);
+            if (document.documentElement.classList.contains("menu-open") && typeof menuClose === 'function') {
+              menuClose();
+            }
+          }
+        } else {
+          gotoBlock(gotoLinkSelector, noHeader, gotoSpeed, offsetTop);
+        }
+
+        e.preventDefault();
+      }
+    } else if (e.type === "watcherCallback" && e.detail) {
+      const entry = e.detail.entry;
+      const targetElement = entry.target;
+
+      if (targetElement.dataset.watch === 'navigator') {
+        document.querySelectorAll('[data-goto]._navigator-active').forEach(el => {
+          el.classList.remove('_navigator-active');
+        });
+
+        const navigatorLinks = findNavigatorLinks(targetElement);
+        navigatorLinks.forEach(link => {
+          if (entry.isIntersecting) {
+            link.classList.add('_navigator-active');
+          } else {
+            link.classList.remove('_navigator-active');
+          }
+        });
+      }
+    }
+  }
+
+  function findNavigatorLinks(element) {
+    const links = [];
+
+    if (element.id) {
+      const idLinks = document.querySelectorAll(`[data-goto="#${element.id}"]`);
+      links.push(...idLinks);
+    }
+
+    if (element.classList.length) {
+      element.classList.forEach(className => {
+        const classLinks = document.querySelectorAll(`[data-goto=".${className}"]`);
+        links.push(...classLinks);
+      });
+    }
+
+    return links;
+  }
+}
+pageNavigation();
+
+//========================================================================================================================================================
+
+const buttonUp = document.querySelector('.button-up');
+
+if (buttonUp) {
+  buttonUp.addEventListener('click', () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  });
+}
+
+//========================================================================================================================================================
+
+const options3Input = document.querySelectorAll('.options3__input');
+
+if (options3Input) {
+  const btn = document.querySelector('.popup-buttons-cons .btn');
+
+  const updateBtn = () => {
+    const anyChecked = [...options3Input].some(input => input.checked);
+    btn.classList.toggle('disabled', !anyChecked);
+    btn.toggleAttribute('disabled', !anyChecked);
+    if (anyChecked) {
+      btn.setAttribute('href', './');
+    } else {
+      btn.removeAttribute('href');
+    }
+  };
+
+  options3Input.forEach(input => {
+    input.addEventListener('click', () => {
+      const label = input.nextElementSibling;
+
+      if (input.dataset.wasChecked === 'true') {
+        input.checked = false;
+        input.dataset.wasChecked = 'false';
+      } else {
+        options3Input.forEach(other => other.dataset.wasChecked = 'false');
+        input.dataset.wasChecked = 'true';
+      }
+
+      label.classList.add('no-hover');
+      label.addEventListener('mouseleave', () => {
+        label.classList.remove('no-hover');
+      }, { once: true });
+
+      updateBtn();
+    });
+  });
+
+  updateBtn();
+}
+
+//========================================================================================================================================================
+
+const btnOut = document.querySelector('.popup-systems__name.button-out');
+
+if (btnOut) {
+  const bottom = document.querySelector('.popup-systems__bottom');
+  const block = document.querySelector('.popup-systems-block');
+  const btnNext = document.querySelector('.popup-systems-block .btn-next');
+
+  btnOut.addEventListener('click', () => {
+    bottom.style.display = 'none';
+    block.style.display = 'flex';
+  });
+
+  if (btnNext) {
+    btnNext.addEventListener('click', () => {
+      block.style.display = 'none';
+      bottom.style.display = '';
+    });
+  }
+}
+
+//========================================================================================================================================================
+
+if (document.querySelector('.block-recommend__slider')) {
+  const recommendSwiper = new Swiper('.block-recommend__slider', {
+    observer: true,
+    observeParents: true,
+    slidesPerView: "auto",
+    spaceBetween: 8,
+    speed: 400,
+    preloadImages: true,
+    navigation: {
+      prevEl: '.recommend-arrow-prev',
+      nextEl: '.recommend-arrow-next',
+    },
+    breakpoints: {
+      768: {
+        slidesPerView: "auto",
+        spaceBetween: 24,
+      },
+      1200: {
+        slidesPerView: 4,
+        spaceBetween: 24,
+      },
+      1500: {
+        slidesPerView: 4,
+        spaceBetween: 0,
+      },
+    },
+  });
+}
