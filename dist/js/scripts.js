@@ -356,27 +356,35 @@ function spollers() {
     });
 
     function initSpollers(spollersArray, matchMedia = false) {
-      spollersArray.forEach((spollersBlock => {
+      spollersArray.forEach(spollersBlock => {
         spollersBlock = matchMedia ? spollersBlock.item : spollersBlock;
+
+        const showMoreParent = spollersBlock.closest('[data-showmore]');
+        if (spollersBlock.hasAttribute('data-showmore-content') && showMoreParent) {
+          spollersBlock = showMoreParent;
+        }
+
         if (matchMedia.matches || !matchMedia) {
           spollersBlock.classList.add("_spoller-init");
           initSpollerBody(spollersBlock);
           spollersBlock.addEventListener("click", setSpollerAction);
-
           initCloseButtons(spollersBlock);
         } else {
           spollersBlock.classList.remove("_spoller-init");
           initSpollerBody(spollersBlock, false);
           spollersBlock.removeEventListener("click", setSpollerAction);
         }
-      }));
+      });
     }
 
     function initSpollerBody(spollersBlock, hideSpollerBody = true) {
       let spollerTitles = spollersBlock.querySelectorAll("[data-spoller]");
       if (spollerTitles.length) {
-        spollerTitles = Array.from(spollerTitles).filter((item => item.closest("[data-spollers]") === spollersBlock));
-        spollerTitles.forEach((spollerTitle => {
+        spollerTitles = Array.from(spollerTitles).filter(item => {
+          return item.closest("[data-spollers]") === spollersBlock
+            || item.closest("[data-showmore]") === spollersBlock;
+        });
+        spollerTitles.forEach(spollerTitle => {
           if (hideSpollerBody) {
             spollerTitle.removeAttribute("tabindex");
             if (!spollerTitle.classList.contains("_spoller-active")) {
@@ -390,13 +398,12 @@ function spollers() {
               spollerTitle.nextElementSibling.hidden = false;
             }
           }
-        }));
+        });
       }
     }
 
     function initCloseButtons(spollersBlock) {
       const closeButtons = spollersBlock.querySelectorAll('.cabinet-orders-spollers__button');
-
       closeButtons.forEach(button => {
         button.removeEventListener('click', closeSpollerHandler);
         button.addEventListener('click', closeSpollerHandler);
@@ -408,14 +415,14 @@ function spollers() {
       e.stopPropagation();
 
       const button = e.currentTarget;
-      const spollersBlock = button.closest('[data-spollers]');
+      const spollersBlock = button.closest('[data-spollers]') || button.closest('[data-showmore]');
       const spollerItem = button.closest('.cabinet-orders-spollers__item');
 
       if (spollersBlock && spollerItem) {
         const spollerTitle = spollerItem.querySelector('[data-spoller]');
 
         if (spollerTitle && spollerTitle.classList.contains('_spoller-active')) {
-          const spollerSpeed = spollersBlock.dataset.spollersSpeed ? parseInt(spollersBlock.dataset.spollersSpeed) : 500;
+          const spollerSpeed = parseInt(spollersBlock.dataset.spollersSpeed || spollersBlock.dataset.showmoreButton || 500);
 
           spollerTitle.classList.remove('_spoller-active');
           spollerItem.classList.remove('_spoller-active');
@@ -438,10 +445,10 @@ function spollers() {
         const spollerTitle = el.closest("[data-spoller]");
 
         const spollerItem = spollerTitle.closest(".spollers__item, .cabinet-orders-spollers__item");
-        const spollersBlock = spollerTitle.closest("[data-spollers]");
+        const spollersBlock = spollerTitle.closest("[data-spollers]") || spollerTitle.closest("[data-showmore]");
 
         const oneSpoller = spollersBlock.hasAttribute("data-one-spoller");
-        const spollerSpeed = spollersBlock.dataset.spollersSpeed ? parseInt(spollersBlock.dataset.spollersSpeed) : 500;
+        const spollerSpeed = parseInt(spollersBlock.dataset.spollersSpeed || spollersBlock.dataset.showmoreButton || 500);
 
         if (!spollersBlock.querySelectorAll("._slide").length) {
           if (oneSpoller && !spollerTitle.classList.contains("_spoller-active")) {
@@ -461,7 +468,7 @@ function spollers() {
 
     function hideSpollersBody(spollersBlock) {
       const spollerActiveTitle = spollersBlock.querySelector("[data-spoller]._spoller-active");
-      const spollerSpeed = spollersBlock.dataset.spollersSpeed ? parseInt(spollersBlock.dataset.spollersSpeed) : 500;
+      const spollerSpeed = parseInt(spollersBlock.dataset.spollersSpeed || spollersBlock.dataset.showmoreButton || 500);
       if (spollerActiveTitle && !spollersBlock.querySelectorAll("._slide").length) {
         const spollerItem = spollerActiveTitle.closest(".spollers__item, .cabinet-orders-spollers__item");
 
@@ -475,10 +482,10 @@ function spollers() {
     if (spollersClose.length) {
       document.addEventListener("click", (function (e) {
         const el = e.target;
-        if (!el.closest("[data-spollers]")) {
+        if (!el.closest("[data-spollers]") && !el.closest("[data-showmore]")) {
           spollersClose.forEach((spollerClose => {
-            const spollersBlock = spollerClose.closest("[data-spollers]");
-            const spollerSpeed = spollersBlock.dataset.spollersSpeed ? parseInt(spollersBlock.dataset.spollersSpeed) : 500;
+            const spollersBlock = spollerClose.closest("[data-spollers]") || spollerClose.closest("[data-showmore]");
+            const spollerSpeed = parseInt(spollersBlock.dataset.spollersSpeed || spollersBlock.dataset.showmoreButton || 500);
             spollerClose.classList.remove("_spoller-active");
 
             const spollerItem = spollerClose.closest(".spollers__item, .cabinet-orders-spollers__item");
@@ -526,6 +533,14 @@ function tabs() {
     }
   }
 
+  function updateCartOpenClass() {
+    const cartTabs = document.querySelectorAll('[data-tabs-cart]');
+    const hasActive = Array.from(cartTabs).some(el => el.classList.contains('_tab-active'));
+    document.documentElement.classList.toggle('tabs-cart-open', hasActive);
+  }
+
+  updateCartOpenClass();
+
   function setTitlePosition(tabsMediaArray, matchMedia) {
     tabsMediaArray.forEach(tabsMediaItem => {
       tabsMediaItem = tabsMediaItem.item;
@@ -555,6 +570,7 @@ function tabs() {
         }
       });
     });
+    updateCartOpenClass();
   }
 
   function initTabs(tabsBlock) {
@@ -567,27 +583,34 @@ function tabs() {
       const tabsActiveTitle = tabsBlock.querySelector('[data-tabs-titles]>._tab-active');
       tabsActiveTitle ? tabsActiveTitle.classList.remove('_tab-active') : null;
     }
+
     if (tabsContent.length) {
+      const isSpollerMode = tabsBlock.classList.contains('_tab-spoller');
+
+      tabsTitles.forEach((title, i) => {
+        title.setAttribute('data-tabs-title', '');
+        title.classList.remove('_tab-active');
+      });
+
       tabsContent.forEach((tabsContentItem, index) => {
-        tabsTitles[index].setAttribute('data-tabs-title', '');
         tabsContentItem.setAttribute('data-tabs-item', '');
 
-        const isSpollerMode = tabsBlock.classList.contains('_tab-spoller');
+        let isActive = false;
 
         if (!isSpollerMode) {
           if (tabsActiveHashBlock && index == tabsActiveHash[1]) {
-            tabsTitles[index].classList.add('_tab-active');
+            isActive = true;
           } else if (!tabsActiveHashBlock && index === 0) {
-            tabsTitles[index].classList.add('_tab-active');
+            isActive = true;
           }
-        } else {
-          tabsTitles[index].classList.remove('_tab-active');
         }
 
-        tabsContentItem.hidden = !tabsTitles[index].classList.contains('_tab-active');
+        if (isActive) tabsTitles[index].classList.add('_tab-active');
+        tabsContentItem.hidden = !isActive;
       });
     }
     setTabsStatus(tabsBlock);
+    updateCartOpenClass();
   }
 
   function setTabsStatus(tabsBlock) {
@@ -626,6 +649,7 @@ function tabs() {
         }
       });
     }
+    updateCartOpenClass();
   }
 
   function setTabsAction(e) {
@@ -637,8 +661,6 @@ function tabs() {
 
       if (!tabsBlock.querySelector('._slide')) {
         if (isSpollerMode) {
-          const contentItem = tabsBlock.querySelector(`[data-tabs-item="${tabTitle.getAttribute('data-tabs-title')}"]`);
-
           if (tabTitle.classList.contains('_tab-active')) {
             tabTitle.classList.remove('_tab-active');
           } else {
@@ -650,9 +672,8 @@ function tabs() {
           }
         } else {
           if (!tabTitle.classList.contains('_tab-active')) {
-            let tabActiveTitle = tabsBlock.querySelectorAll('[data-tabs-title]._tab-active');
-            tabActiveTitle = Array.from(tabActiveTitle).filter(item => item.closest('[data-tabs]') === tabsBlock);
-            if (tabActiveTitle.length) tabActiveTitle[0].classList.remove('_tab-active');
+            let tabActiveTitles = tabsBlock.querySelectorAll('[data-tabs-title]._tab-active');
+            tabActiveTitles.forEach(t => t.classList.remove('_tab-active'));
             tabTitle.classList.add('_tab-active');
           }
         }
@@ -660,6 +681,7 @@ function tabs() {
       }
       e.preventDefault();
     }
+    updateCartOpenClass();
   }
 }
 tabs();
@@ -2447,6 +2469,16 @@ if (telephone) {
   }).mask(telephone);
 }
 
+
+//Маска
+const telephone2 = document.querySelectorAll('.telephone2');
+if (telephone2) {
+  Inputmask({
+    "mask": "(999) 999 - 99 - 99",
+    "showMaskOnHover": false,
+  }).mask(telephone2);
+}
+
 //Маска
 const inputTimer = document.querySelectorAll('.input-timer');
 if (inputTimer) {
@@ -3550,6 +3582,7 @@ function formAccountAccessInit() {
 }
 
 formAccountAccessInit();
+
 
 //========================================================================================================================================================
 
@@ -5658,8 +5691,9 @@ function showMore() {
     const showMoreBlocks = document.querySelectorAll('[data-showmore]');
     let showMoreBlocksRegular;
     let mdQueriesArray;
+
     if (showMoreBlocks.length) {
-      showMoreBlocksRegular = Array.from(showMoreBlocks).filter(function (item, index, self) {
+      showMoreBlocksRegular = Array.from(showMoreBlocks).filter(function (item) {
         return !item.dataset.showmoreMedia;
       });
       showMoreBlocksRegular.length ? initItems(showMoreBlocksRegular) : null;
@@ -5667,10 +5701,10 @@ function showMore() {
       document.addEventListener("click", showMoreActions);
       window.addEventListener("resize", showMoreActions);
 
-      mdQueriesArray = dataMediaQueries(showMoreBlocks, "showmoreMedia");
+      mdQueriesArray = buildMediaGroups(showMoreBlocks);
       if (mdQueriesArray && mdQueriesArray.length) {
-        mdQueriesArray.forEach(mdQueriesItem => {
-          mdQueriesItem.matchMedia.addEventListener("change", function () {
+        mdQueriesArray.forEach((mdQueriesItem, i) => {
+          mdQueriesItem.matchMedia.addEventListener("change", function (ev) {
             initItems(mdQueriesItem.itemsArray, mdQueriesItem.matchMedia);
           });
         });
@@ -5678,41 +5712,34 @@ function showMore() {
       }
     }
 
-    const createdBlock = document.querySelector('.add-base-created [data-showmore]');
-    if (createdBlock) {
-      let wasVisible = createdBlock.offsetParent !== null && createdBlock.offsetHeight > 0;
-
-      const checkVisibility = function () {
-        const isVisible = createdBlock.offsetParent !== null && createdBlock.offsetHeight > 0;
-        if (isVisible && !wasVisible) {
-          window.dispatchEvent(new Event('resize'));
-        }
-        wasVisible = isVisible;
-      };
-
-      const visibilityObserver = new MutationObserver(checkVisibility);
-      let el = createdBlock;
-      while (el && el !== document.body) {
-        visibilityObserver.observe(el, {
-          attributes: true,
-          attributeFilter: ['class', 'style', 'hidden']
-        });
-        el = el.parentElement;
-      }
+    function buildMediaGroups(blocks) {
+      const map = new Map();
+      blocks.forEach(block => {
+        const raw = block.dataset.showmoreMedia;
+        if (!raw) return;
+        const query = raw.trim();
+        if (!map.has(query)) map.set(query, []);
+        map.get(query).push({ value: query, type: 'max', item: block });
+      });
+      return Array.from(map.entries()).map(([query, items]) => ({
+        matchMedia: window.matchMedia(query),
+        itemsArray: items
+      }));
     }
 
     function initItemsMedia(mdQueriesArray) {
-      mdQueriesArray.forEach(mdQueriesItem => {
+      mdQueriesArray.forEach((mdQueriesItem, i) => {
         initItems(mdQueriesItem.itemsArray, mdQueriesItem.matchMedia);
       });
     }
     function initItems(showMoreBlocks, matchMedia) {
-      showMoreBlocks.forEach(showMoreBlock => {
+      showMoreBlocks.forEach((showMoreBlock, i) => {
         initItem(showMoreBlock, matchMedia);
       });
     }
     function initItem(showMoreBlock, matchMedia = false) {
       showMoreBlock = matchMedia ? showMoreBlock.item : showMoreBlock;
+
       let showMoreContent = showMoreBlock.querySelectorAll('[data-showmore-content]');
       let showMoreButton = showMoreBlock.querySelectorAll('[data-showmore-button]');
       showMoreContent = Array.from(showMoreContent).filter(item => item.closest('[data-showmore]') === showMoreBlock)[0];
@@ -5720,7 +5747,15 @@ function showMore() {
 
       if (!showMoreContent) return;
 
-      const showMoreType = showMoreBlock.dataset.showmore ? showMoreBlock.dataset.showmore : 'size';
+      if (matchMedia && !matchMedia.matches) {
+        showMoreContent.style.removeProperty('height');
+        showMoreContent.style.removeProperty('overflow');
+        showMoreBlock.classList.remove('_showmore-active');
+        if (showMoreButton) showMoreButton.hidden = true;
+        return;
+      }
+
+      const showMoreType = showMoreBlock.dataset.showmore ? showMoreBlock.dataset.showmore.split(',')[0] : 'size';
       const showMoreTypeValue = parseInt(showMoreContent.dataset.showmoreContent) || 3;
 
       if (showMoreType === 'items' && showMoreContent.children.length <= showMoreTypeValue) {
@@ -5733,14 +5768,10 @@ function showMore() {
 
       const hiddenHeight = getHeight(showMoreBlock, showMoreContent);
       const originalHeight = getOriginalHeight(showMoreContent);
-      if (matchMedia.matches || !matchMedia) {
-        if (hiddenHeight < originalHeight) {
-          _slideUp(showMoreContent, 0, showMoreBlock.classList.contains('_showmore-active') ? originalHeight : hiddenHeight);
-          if (showMoreButton) showMoreButton.hidden = false;
-        } else {
-          _slideDown(showMoreContent, 0, hiddenHeight);
-          if (showMoreButton) showMoreButton.hidden = true;
-        }
+
+      if (hiddenHeight < originalHeight - 1) {
+        _slideUp(showMoreContent, 0, showMoreBlock.classList.contains('_showmore-active') ? originalHeight : hiddenHeight);
+        if (showMoreButton) showMoreButton.hidden = false;
       } else {
         _slideDown(showMoreContent, 0, hiddenHeight);
         if (showMoreButton) showMoreButton.hidden = true;
@@ -5748,7 +5779,7 @@ function showMore() {
     }
     function getHeight(showMoreBlock, showMoreContent) {
       let hiddenHeight = 0;
-      const showMoreType = showMoreBlock.dataset.showmore ? showMoreBlock.dataset.showmore : 'size';
+      const showMoreType = showMoreBlock.dataset.showmore ? showMoreBlock.dataset.showmore.split(',')[0] : 'size';
       const rowGap = parseFloat(getComputedStyle(showMoreContent).rowGap) ? parseFloat(getComputedStyle(showMoreContent).rowGap) : 0;
       if (showMoreType === 'items') {
         const showMoreTypeValue = showMoreContent.dataset.showmoreContent ? parseInt(showMoreContent.dataset.showmoreContent) : 3;
@@ -5756,9 +5787,14 @@ function showMore() {
         const itemsToShow = Math.min(showMoreTypeValue, showMoreItems.length);
         for (let index = 0; index < itemsToShow; index++) {
           const showMoreItem = showMoreItems[index];
-          const marginTop = parseFloat(getComputedStyle(showMoreItem).marginTop) ? parseFloat(getComputedStyle(showMoreItem).marginTop) : 0;
-          const marginBottom = parseFloat(getComputedStyle(showMoreItem).marginBottom) ? parseFloat(getComputedStyle(showMoreItem).marginBottom) : 0;
-          hiddenHeight += showMoreItem.offsetHeight + marginTop;
+          const marginTop = parseFloat(getComputedStyle(showMoreItem).marginTop) || 0;
+          const marginBottom = parseFloat(getComputedStyle(showMoreItem).marginBottom) || 0;
+          let itemHeight = showMoreItem.offsetHeight;
+          const spollerBody = showMoreItem.querySelector('[data-spoller] + *');
+          if (spollerBody && !spollerBody.hidden) {
+            itemHeight = showMoreItem.offsetHeight - spollerBody.offsetHeight;
+          }
+          hiddenHeight += itemHeight + marginTop;
           if (index < itemsToShow - 1) hiddenHeight += marginBottom;
         }
         if (itemsToShow > 1) {
@@ -5770,7 +5806,6 @@ function showMore() {
       }
       return hiddenHeight;
     }
-
     function getOriginalHeight(showMoreContent) {
       let parentHidden;
       let hiddenHeight = showMoreContent.offsetHeight;
@@ -5801,8 +5836,10 @@ function showMore() {
           }
         }
       } else if (targetType === 'resize') {
-        showMoreBlocksRegular && showMoreBlocksRegular.length ? initItems(showMoreBlocksRegular) : null;
-        mdQueriesArray && mdQueriesArray.length ? initItemsMedia(mdQueriesArray) : null;
+        requestAnimationFrame(() => {
+          showMoreBlocksRegular && showMoreBlocksRegular.length ? initItems(showMoreBlocksRegular) : null;
+          mdQueriesArray && mdQueriesArray.length ? initItemsMedia(mdQueriesArray) : null;
+        });
       }
     }
 
@@ -5811,7 +5848,7 @@ function showMore() {
       if (!blocks.length) return;
       const regular = Array.from(blocks).filter(item => !item.dataset.showmoreMedia);
       if (regular.length) initItems(regular);
-      const mdArr = dataMediaQueries(blocks, "showmoreMedia");
+      const mdArr = buildMediaGroups(blocks);
       if (mdArr && mdArr.length) initItemsMedia(mdArr);
     };
   });
@@ -7109,19 +7146,22 @@ if (buttonUp) {
 
 const options3Input = document.querySelectorAll('.options3__input');
 
-if (options3Input) {
+if (options3Input.length) {
   const btn = document.querySelector('.popup-buttons-cons .btn');
+  let updateBtn = () => { };
 
-  const updateBtn = () => {
-    const anyChecked = [...options3Input].some(input => input.checked);
-    btn.classList.toggle('disabled', !anyChecked);
-    btn.toggleAttribute('disabled', !anyChecked);
-    if (anyChecked) {
-      btn.setAttribute('href', './');
-    } else {
-      btn.removeAttribute('href');
-    }
-  };
+  if (btn) {
+    updateBtn = () => {
+      const anyChecked = [...options3Input].some(input => input.checked);
+      btn.classList.toggle('disabled', !anyChecked);
+      btn.toggleAttribute('disabled', !anyChecked);
+      if (anyChecked) {
+        btn.setAttribute('href', './');
+      } else {
+        btn.removeAttribute('href');
+      }
+    };
+  }
 
   options3Input.forEach(input => {
     input.addEventListener('click', () => {
@@ -7177,6 +7217,7 @@ if (document.querySelector('.block-recommend__slider')) {
     observeParents: true,
     slidesPerView: "auto",
     spaceBetween: 8,
+    slidesPerGroup: 1,
     speed: 400,
     preloadImages: true,
     navigation: {
@@ -7187,15 +7228,345 @@ if (document.querySelector('.block-recommend__slider')) {
       768: {
         slidesPerView: "auto",
         spaceBetween: 24,
+        slidesPerGroup: 1,
       },
       1200: {
         slidesPerView: 4,
         spaceBetween: 24,
+        slidesPerGroup: 4,
       },
       1500: {
         slidesPerView: 4,
         spaceBetween: 0,
+        slidesPerGroup: 4,
       },
     },
   });
 }
+
+//========================================================================================================================================================
+
+const favoritesElements = document.querySelectorAll('.favorites');
+
+if (favoritesElements) {
+  favoritesElements.forEach(element => {
+    element.addEventListener('click', function (e) {
+      e.preventDefault();
+
+      this.classList.toggle('active');
+
+      e.stopPropagation();
+    });
+  });
+}
+
+//========================================================================================================================================================
+
+const menuSelect = document.querySelector('.header-menu-select');
+if (menuSelect) {
+
+  const menuTitle = menuSelect.querySelector('.header-menu-select__title');
+  const menuTitleSpan = menuTitle.querySelector('span');
+  const menuLinks = menuSelect.querySelectorAll('.header-menu-select__link');
+
+  menuTitle.addEventListener('click', function (e) {
+    e.stopPropagation();
+    menuSelect.classList.toggle('active');
+  });
+
+  menuLinks.forEach(function (link) {
+    link.addEventListener('click', function (e) {
+      e.stopPropagation();
+
+      menuLinks.forEach(function (item) {
+        item.classList.remove('active');
+      });
+
+      this.classList.add('active');
+
+      const linkText = this.querySelector('span').textContent.trim();
+      menuTitleSpan.textContent = linkText;
+
+      menuSelect.classList.remove('active');
+
+      if (this.hasAttribute('data-goto')) {
+        const selector = this.dataset.goto || '';
+        const noHeader = this.hasAttribute('data-goto-header');
+        const speed = this.dataset.gotoSpeed
+          ? parseInt(this.dataset.gotoSpeed, 10)
+          : 500;
+        const offsetTop = this.dataset.gotoTop
+          ? parseInt(this.dataset.gotoTop, 10)
+          : 0;
+
+        if (selector && typeof gotoBlock === 'function') {
+          gotoBlock(selector, noHeader, speed, offsetTop);
+        }
+      }
+    });
+  });
+
+  document.addEventListener('click', function (e) {
+    if (!menuSelect.contains(e.target)) {
+      menuSelect.classList.remove('active');
+    }
+  });
+}
+
+//========================================================================================================================================================
+
+//Наблюдатель
+class ScrollWatcher {
+  constructor(props) {
+    let defaultConfig = {
+      logging: true,
+    }
+    this.config = Object.assign(defaultConfig, props);
+    this.observer;
+    !document.documentElement.classList.contains('watcher') ? this.scrollWatcherRun() : null;
+  }
+  scrollWatcherUpdate() {
+    this.scrollWatcherRun();
+  }
+  scrollWatcherRun() {
+    document.documentElement.classList.add('watcher');
+    this.scrollWatcherConstructor(document.querySelectorAll('[data-watch]'));
+  }
+  scrollWatcherConstructor(items) {
+    if (items.length) {
+      let uniqParams = uniqArray(Array.from(items).map(function (item) {
+        if (item.dataset.watch === 'navigator' && !item.dataset.watchThreshold) {
+          let valueOfThreshold;
+          if (item.clientHeight > 2) {
+            valueOfThreshold =
+              window.innerHeight / 2 / (item.clientHeight - 1);
+            if (valueOfThreshold > 1) {
+              valueOfThreshold = 1;
+            }
+          } else {
+            valueOfThreshold = 1;
+          }
+          item.setAttribute(
+            'data-watch-threshold',
+            valueOfThreshold.toFixed(2)
+          );
+        }
+        return `${item.dataset.watchRoot ? item.dataset.watchRoot : null}|${item.dataset.watchMargin ? item.dataset.watchMargin : '0px'}|${item.dataset.watchThreshold ? item.dataset.watchThreshold : 0}`;
+      }));
+      uniqParams.forEach(uniqParam => {
+        let uniqParamArray = uniqParam.split('|');
+        let paramsWatch = {
+          root: uniqParamArray[0],
+          margin: uniqParamArray[1],
+          threshold: uniqParamArray[2]
+        }
+        let groupItems = Array.from(items).filter(function (item) {
+          let watchRoot = item.dataset.watchRoot ? item.dataset.watchRoot : null;
+          let watchMargin = item.dataset.watchMargin ? item.dataset.watchMargin : '0px';
+          let watchThreshold = item.dataset.watchThreshold ? item.dataset.watchThreshold : 0;
+          if (
+            String(watchRoot) === paramsWatch.root &&
+            String(watchMargin) === paramsWatch.margin &&
+            String(watchThreshold) === paramsWatch.threshold
+          ) {
+            return item;
+          }
+        });
+
+        let configWatcher = this.getScrollWatcherConfig(paramsWatch);
+
+        this.scrollWatcherInit(groupItems, configWatcher);
+      });
+    }
+  }
+  getScrollWatcherConfig(paramsWatch) {
+    let configWatcher = {}
+    if (document.querySelector(paramsWatch.root)) {
+      configWatcher.root = document.querySelector(paramsWatch.root);
+    }
+    configWatcher.rootMargin = paramsWatch.margin;
+    if (paramsWatch.margin.indexOf('px') < 0 && paramsWatch.margin.indexOf('%') < 0) {
+      return
+    }
+    if (paramsWatch.threshold === 'prx') {
+      paramsWatch.threshold = [];
+      for (let i = 0; i <= 1.0; i += 0.005) {
+        paramsWatch.threshold.push(i);
+      }
+    } else {
+      paramsWatch.threshold = paramsWatch.threshold.split(',');
+    }
+    configWatcher.threshold = paramsWatch.threshold;
+
+    return configWatcher;
+  }
+  scrollWatcherCreate(configWatcher) {
+    console.log(configWatcher);
+    this.observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        this.scrollWatcherCallback(entry, observer);
+      });
+    }, configWatcher);
+  }
+  scrollWatcherInit(items, configWatcher) {
+    this.scrollWatcherCreate(configWatcher);
+    items.forEach(item => this.observer.observe(item));
+  }
+  scrollWatcherIntersecting(entry, targetElement) {
+    if (entry.isIntersecting) {
+      !targetElement.classList.contains('_watcher-view') ? targetElement.classList.add('_watcher-view') : null;
+    } else {
+      targetElement.classList.contains('_watcher-view') ? targetElement.classList.remove('_watcher-view') : null;
+    }
+  }
+  scrollWatcherOff(targetElement, observer) {
+    observer.unobserve(targetElement);
+  }
+  scrollWatcherCallback(entry, observer) {
+    const targetElement = entry.target;
+    this.scrollWatcherIntersecting(entry, targetElement);
+    targetElement.hasAttribute('data-watch-once') && entry.isIntersecting ? this.scrollWatcherOff(targetElement, observer) : null;
+    document.dispatchEvent(new CustomEvent("watcherCallback", {
+      detail: {
+        entry: entry
+      }
+    }));
+  }
+}
+modules_flsModules.watcher = new ScrollWatcher({});
+
+//========================================================================================================================================================
+
+function updateBreadcrumbsOverflow() {
+  document.querySelectorAll('.breadcrumbs2').forEach((wrap) => {
+    const ul = wrap.querySelector('ul');
+    if (!ul) return;
+    wrap.classList.toggle('is-overflow', ul.scrollWidth > ul.clientWidth);
+  });
+}
+
+updateBreadcrumbsOverflow();
+window.addEventListener('resize', updateBreadcrumbsOverflow);
+
+//========================================================================================================================================================
+
+(() => {
+  const header = document.querySelector('.header');
+  if (!header) return;
+
+  const headerTop = header.querySelector('.header__top');
+  const headerBottom = header.querySelector('.header-bottom');
+  const main = document.querySelector('.main');
+  const body = document.body;
+
+  if (!headerTop) return;
+
+  let lastScrollY = window.scrollY;
+  let isHidden = false;
+  let ticking = false;
+
+  let topH = 0;
+  let bottomH = 0;
+
+  function measure() {
+    topH = headerTop ? headerTop.offsetHeight : 0;
+    bottomH = headerBottom ? headerBottom.offsetHeight : 0;
+  }
+
+  function getVisibleHeight() {
+    return isHidden ? bottomH : topH + bottomH;
+  }
+
+  function applyHeaderHeight() {
+    const full = topH + bottomH;
+    const visible = getVisibleHeight();
+
+    document.documentElement.style.setProperty('--header-height-full', full + 'px');
+    document.documentElement.style.setProperty('--header-height', visible + 'px');
+    document.documentElement.style.setProperty('--header-top-height', topH + 'px');
+  }
+
+  function updateHeaderHeight() {
+    measure();
+    applyHeaderHeight();
+  }
+
+  function setHidden(hidden) {
+    if (hidden === isHidden) return;
+    isHidden = hidden;
+
+    if (hidden) {
+      header.classList.add('_header-hidden');
+      header.classList.remove('_header-fast');
+      body.classList.remove('_header-fast');
+    } else {
+      header.classList.add('_header-fast');
+      body.classList.add('_header-fast');
+      header.classList.remove('_header-hidden');
+
+      setTimeout(() => {
+        header.classList.remove('_header-fast');
+        body.classList.remove('_header-fast');
+      }, 280);
+    }
+
+    applyHeaderHeight();
+  }
+
+  const SCROLL_THRESHOLD = 10;
+  const START_HIDE_AFTER = 100;
+
+  function onScroll() {
+    if (body.classList.contains('_lock')) {
+      ticking = false;
+      return;
+    }
+
+    const currentY = window.scrollY;
+    const diff = currentY - lastScrollY;
+
+    if (Math.abs(diff) < SCROLL_THRESHOLD) {
+      ticking = false;
+      return;
+    }
+
+    if (diff > 0 && currentY > START_HIDE_AFTER) {
+      setHidden(true);
+    } else if (diff < 0) {
+      setHidden(false);
+    }
+
+    if (currentY <= START_HIDE_AFTER && isHidden) {
+      setHidden(false);
+    }
+
+    lastScrollY = currentY;
+    ticking = false;
+  }
+
+  window.addEventListener(
+    'scroll',
+    () => {
+      if (!ticking) {
+        window.requestAnimationFrame(onScroll);
+        ticking = true;
+      }
+    },
+    { passive: true }
+  );
+
+  window.addEventListener('resize', updateHeaderHeight);
+  window.addEventListener('load', updateHeaderHeight);
+
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(updateHeaderHeight);
+  }
+
+  if ('ResizeObserver' in window) {
+    const ro = new ResizeObserver(updateHeaderHeight);
+    ro.observe(headerTop);
+    if (headerBottom) ro.observe(headerBottom);
+  }
+
+  updateHeaderHeight();
+})();

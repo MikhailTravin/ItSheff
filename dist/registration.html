@@ -6,6 +6,8 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+		<script src="https://smartcaptcha.yandexcloud.net/captcha.js" defer=""></script>
+
 		<link rel="stylesheet" href="css/styles.css" />
 
 		<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
@@ -136,7 +138,9 @@
 									</div>
 								</div>
 								<div class="form__captcha">
-									<img src="img/captcha.webp" alt="">
+									<div class="g-recaptcha smart-captcha" data-sitekey="" data-callback="onCaptchaSuccess" data-testid="smartCaptcha-container">
+										<div style="display: none;"></div>
+									</div>
 								</div>
 								<button type="submit" class="btn btn-bg">Продолжить</button>
 								<div class="form__text">

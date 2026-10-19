@@ -6,6 +6,8 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+		<link rel="stylesheet" href="css/swagger-ui.css" />
+		<link rel="stylesheet" href="css/swagger-custom.css" />
 		<link rel="stylesheet" href="css/styles.css" />
 
 		<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
@@ -185,196 +187,506 @@
 									</ul>
 								</div>
 							</div>
+
 							<div class="block-documents-api">
 								<div class="block-documents-api__column">
-									<div class="block-documents-api__title">
-										ClientUser
-									</div>
-									<div data-spollers class="spollers-documents-api">
-										<div class="spollers-documents-api__item">
-											<button type="button" data-spoller class="spollers-documents-api__title">
-												<div class="spollers-documents-api__arrow">
-													<svg aria-hidden="true" width="10" height="17">
-														<use xlink:href="img/sprite.svg#arrow3"></use>
-													</svg>
-												</div>
-											</button>
-											<div class="spollers-documents-api__body">
-												<div class="opblock-body">
-													<div class="opblock-section">
-														<div class="opblock-section-header">
-															<div class="tab-header">
-																<div class="tab-item active">
-																	<h4 class="opblock-title"><span>Parameters</span></h4>
-																</div>
-															</div>
-															<div class="try-out"><button class="btn try-out__btn">Try it out
-																</button></div>
-														</div>
-														<div class="parameters-container">
-															<div class="table-container">
-																<table class="parameters">
-																	<thead>
-																		<tr>
-																			<th class="col_header parameters-col_name">Name
-																			</th>
-																			<th class="col_header parameters-col_description">
-																				Description</th>
-																		</tr>
-																	</thead>
-																	<tbody>
-																		<tr data-param-name="Authorization" data-param-in="header">
-																			<td class="parameters-col_name">
-																				<div class="parameter__name required">
-																					Authorization<span>&nbsp;*</span></div>
-																				<div class="parameter__type">string</div>
-																				<div class="parameter__deprecated"></div>
-																				<div class="parameter__in">(header)</div>
-																			</td>
-																			<td class="parameters-col_description">
-																				<div class="renderedMarkdown">
-																					<p>JWT-токен в формате:
-																						<code>Bearer &lt;токен&gt;</code>
-																					</p>
-																				</div><input type="text" class="" title="" placeholder="Authorization" disabled="" value="Bearer xxxxxxxx">
-																			</td>
-																		</tr>
-																		<tr data-param-name="login" data-param-in="path">
-																			<td class="parameters-col_name">
-																				<div class="parameter__name required">
-																					login<span>&nbsp;*</span></div>
-																				<div class="parameter__type">string</div>
-																				<div class="parameter__deprecated"></div>
-																				<div class="parameter__in">(path)</div>
-																			</td>
-																			<td class="parameters-col_description">
-																				<div class="renderedMarkdown">
-																					<p>login пользователя, которому нужно
-																						предоставить доступ</p>
-																				</div><input type="text" class="" title="" placeholder="login" disabled="" value="client_user_login">
-																			</td>
-																		</tr>
-																		<tr data-param-name="base" data-param-in="path">
-																			<td class="parameters-col_name">
-																				<div class="parameter__name required">
-																					base<span>&nbsp;*</span></div>
-																				<div class="parameter__type">integer</div>
-																				<div class="parameter__deprecated"></div>
-																				<div class="parameter__in">(path)</div>
-																			</td>
-																			<td class="parameters-col_description">
-																				<div class="renderedMarkdown">
-																					<p>идентификатор базы, к которой нужно
-																						предоставить доступ</p>
-																				</div><input type="text" class="" title="" placeholder="base" disabled="" value="345">
-																			</td>
-																		</tr>
-																	</tbody>
-																</table>
-															</div>
-														</div>
-													</div>
-													<div class="execute-wrapper"></div>
-													<div class="responses-wrapper">
-														<div class="opblock-section-header">
-															<h4>Responses</h4>
-														</div>
-														<div class="responses-inner">
-															<table aria-live="polite" class="responses-table" id="put_api_client_user_grant_access__login___base__responses" role="region">
-																<thead>
-																	<tr class="responses-header">
-																		<td class="col_header response-col_status">Code</td>
-																		<td class="col_header response-col_description">
-																			Description</td>
-																		<td class="col col_header response-col_links">Links
-																		</td>
-																	</tr>
-																</thead>
-																<tbody>
-																	<tr class="response " data-code="200">
-																		<td class="response-col_status">200</td>
-																		<td class="response-col_description">
-																			<div class="response-col_description__inner">
-																				<div class="renderedMarkdown">
-																					<p>Доступ предоставлен</p>
-																				</div>
-																			</div>
-																			<section class="response-controls">
-																				<div class="response-control-media-type response-control-media-type--accept-controller">
-																					<small class="response-control-media-type__title">Media
-																						type</small>
-																					<div class="content-type-wrapper ">
-																						<select aria-label="Media Type" class="content-type">
-																							<option value="application/json">
-																								application/json</option>
-																						</select>
-																					</div><small class="response-control-media-type__accept-message">Controls
-																						<code>Accept</code> header.</small>
-																				</div>
-																			</section>
-																			<div class="model-example">
-																				<ul class="tab" role="tablist">
-																					<li class="tabitem active" role="presentation"><button aria-controls="VogHgdc=" aria-selected="true" class="tablinks" data-name="example" id="WYpqP5w=" role="tab">Example
-																							Value</button></li>
-																					<li class="tabitem" role="presentation">
-																						<button aria-controls="A97oLj8=" aria-selected="false" class="tablinks" data-name="model" id="poCxeZc=" role="tab">Schema</button>
-																					</li>
-																				</ul>
-																				<div aria-hidden="false" aria-labelledby="WYpqP5w=" data-name="examplePanel" id="VogHgdc=" role="tabpanel" tabindex="0">
-																					<div>
-																						<div class="highlight-code">
-																							<pre class="example microlight" style="display: block; overflow-x: auto; padding: 0.5em; background: rgb(51, 51, 51); color: white;"><code class="language-json" style="white-space: pre;"><span>{
-</span><span>  </span><span class="hljs-attr">"success"</span><span>: </span><span style="color: rgb(252, 194, 140);">true</span><span>
-</span>}</code></pre>
-																						</div>
-																					</div>
-																				</div>
-																			</div>
-																		</td>
-																		<td class="response-col_links"><i>No links</i></td>
-																	</tr>
-																	<tr class="response " data-code="400">
-																		<td class="response-col_status">400</td>
-																		<td class="response-col_description">
-																			<div class="response-col_description__inner">
-																				<div class="renderedMarkdown">
-																					<p>Неверные параметры запроса</p>
-																				</div>
-																			</div>
-																		</td>
-																		<td class="response-col_links"><i>No links</i></td>
-																	</tr>
-																	<tr class="response " data-code="401">
-																		<td class="response-col_status">401</td>
-																		<td class="response-col_description">
-																			<div class="response-col_description__inner">
-																				<div class="renderedMarkdown">
-																					<p>Требуется авторизация (Bearer JWT)
-																					</p>
-																				</div>
-																			</div>
-																		</td>
-																		<td class="response-col_links"><i>No links</i></td>
-																	</tr>
-																	<tr class="response " data-code="500">
-																		<td class="response-col_status">500</td>
-																		<td class="response-col_description">
-																			<div class="response-col_description__inner">
-																				<div class="renderedMarkdown">
-																					<p>Внутренняя ошибка сервера</p>
-																				</div>
-																			</div>
-																		</td>
-																		<td class="response-col_links"><i>No links</i></td>
-																	</tr>
-																</tbody>
-															</table>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
+									<script id="swagger-data" type="application/json">
+										{
+											"spec": {
+												"openapi": "3.0.0",
+												"info": {
+													"title": "Public ITSheff API",
+													"version": "1.0.0"
+												},
+												"paths": {
+													"/api/client_user/create": {
+														"post": {
+															"tags": [
+																"ClientUser"
+															],
+															"summary": "Создать нового пользователя клиента",
+															"operationId": "post_api_client_user_create",
+															"parameters": [{
+																"name": "Authorization",
+																"in": "header",
+																"description": "JWT-токен в формате: `Bearer <токен>`",
+																"required": true,
+																"schema": {
+																	"type": "string",
+																	"pattern": "^Bearer .+$",
+																	"example": "Bearer xxxxxxxx"
+																}
+															}],
+															"requestBody": {
+																"description": "Параметры запроса (form-data)",
+																"content": {
+																	"application/x-www-form-urlencoded": {
+																		"schema": {
+																			"required": [
+																				"fio",
+																				"role"
+																			],
+																			"properties": {
+																				"fio": {
+																					"description": "ФИО пользователя",
+																					"type": "string",
+																					"example": "Иванов Иван Иванович"
+																				},
+																				"role": {
+																					"description": "Роль пользователя. Допустимые значения: manager, buh, admin",
+																					"type": "string",
+																					"enum": [
+																						"manager",
+																						"buh",
+																						"admin"
+																					],
+																					"example": "manager"
+																				},
+																				"azure_login": {
+																					"description": "Логин Azure, имеет смысл только если подключена OAuth Azure(не обязательный параметр)",
+																					"type": "string",
+																					"example": "azure_login"
+																				}
+																			},
+																			"type": "object"
+																		}
+																	}
+																}
+															},
+															"responses": {
+																"200": {
+																	"description": "Пользователь создан успешно",
+																	"content": {
+																		"application/json": {
+																			"schema": {
+																				"properties": {
+																					"login": {
+																						"type": "string",
+																						"example": "ivanov"
+																					},
+																					"password": {
+																						"type": "string",
+																						"example": "secure123"
+																					}
+																				},
+																				"type": "object"
+																			}
+																		}
+																	}
+																},
+																"400": {
+																	"description": "Неверные параметры запроса"
+																},
+																"401": {
+																	"description": "Требуется авторизация (Bearer JWT)"
+																},
+																"500": {
+																	"description": "Внутренняя ошибка сервера"
+																}
+															}
+														}
+													},
+													"/api/client_user/{login}": {
+														"delete": {
+															"tags": [
+																"ClientUser"
+															],
+															"summary": "Удалить пользователя клиента",
+															"operationId": "delete_api_client_user_delete",
+															"parameters": [{
+																	"name": "Authorization",
+																	"in": "header",
+																	"description": "JWT-токен в формате: `Bearer <токен>`",
+																	"required": true,
+																	"schema": {
+																		"type": "string",
+																		"pattern": "^Bearer .+$",
+																		"example": "Bearer xxxxxxxx"
+																	}
+																},
+																{
+																	"name": "login",
+																	"in": "path",
+																	"description": "login пользователя, который нужно удалить",
+																	"required": true,
+																	"schema": {
+																		"type": "string",
+																		"example": "client_user_login"
+																	}
+																}
+															],
+															"responses": {
+																"200": {
+																	"description": "Пользователь удален успешно",
+																	"content": {
+																		"application/json": {
+																			"schema": {
+																				"properties": {
+																					"success": {
+																						"type": "boolean",
+																						"example": "true"
+																					}
+																				},
+																				"type": "object"
+																			}
+																		}
+																	}
+																},
+																"400": {
+																	"description": "Неверные параметры запроса"
+																},
+																"401": {
+																	"description": "Требуется авторизация (Bearer JWT)"
+																},
+																"500": {
+																	"description": "Внутренняя ошибка сервера"
+																}
+															}
+														}
+													},
+													"/api/token": {
+														"post": {
+															"tags": [
+																"Token"
+															],
+															"summary": "Получить токен для работы с API. токен действует год",
+															"operationId": "post_api_get_token",
+															"requestBody": {
+																"description": "Параметры запроса (form-data)",
+																"content": {
+																	"application/x-www-form-urlencoded": {
+																		"schema": {
+																			"required": [
+																				"login",
+																				"password"
+																			],
+																			"properties": {
+																				"login": {
+																					"description": "логин пользователя",
+																					"type": "string",
+																					"example": "ivanov"
+																				},
+																				"password": {
+																					"description": "пароль пользователя",
+																					"type": "string",
+																					"example": "secure123"
+																				}
+																			},
+																			"type": "object"
+																		}
+																	}
+																}
+															},
+															"responses": {
+																"200": {
+																	"description": "Токен создан успешно",
+																	"content": {
+																		"application/json": {
+																			"schema": {
+																				"properties": {
+																					"token": {
+																						"type": "string",
+																						"example": "xxxxx.xxxxx.xxxx"
+																					}
+																				},
+																				"type": "object"
+																			}
+																		}
+																	}
+																},
+																"400": {
+																	"description": "Неверные параметры запроса"
+																},
+																"401": {
+																	"description": "Требуется авторизация (логин пароль)"
+																},
+																"500": {
+																	"description": "Внутренняя ошибка сервера"
+																}
+															}
+														}
+													},
+													"/api/client_base/list": {
+														"get": {
+															"tags": [
+																"ClientBase"
+															],
+															"summary": "Получить список баз клиента",
+															"operationId": "get_api_get_client_base_list",
+															"parameters": [{
+																"name": "Authorization",
+																"in": "header",
+																"description": "JWT-токен в формате: `Bearer <токен>`",
+																"required": true,
+																"schema": {
+																	"type": "string",
+																	"pattern": "^Bearer .+$",
+																	"example": "Bearer xxxxxxxx"
+																}
+															}],
+															"responses": {
+																"200": {
+																	"description": "Запрос успешно выполнен. Возвращен список баз.",
+																	"content": {
+																		"application/json": {
+																			"schema": {
+																				"properties": {
+																					"bases": {
+																						"type": "array",
+																						"items": {
+																							"properties": {
+																								"id": {
+																									"type": "integer",
+																									"example": 3334
+																								},
+																								"name": {
+																									"type": "string",
+																									"example": "ТОО База Клиента"
+																								}
+																							},
+																							"type": "object"
+																						}
+																					}
+																				},
+																				"type": "object"
+																			}
+																		}
+																	}
+																},
+																"400": {
+																	"description": "Неверные параметры запроса"
+																},
+																"401": {
+																	"description": "Требуется авторизация (Bearer JWT)"
+																},
+																"500": {
+																	"description": "Внутренняя ошибка сервера"
+																}
+															}
+														}
+													},
+													"/api/client_user/grant_access/{login}/{base}": {
+														"put": {
+															"tags": [
+																"ClientUser",
+																"ClientBase"
+															],
+															"summary": "Предоставить доступ пользователю к базе",
+															"operationId": "put_api_client_user_grant_access_to_base",
+															"parameters": [{
+																	"name": "Authorization",
+																	"in": "header",
+																	"description": "JWT-токен в формате: `Bearer <токен>`",
+																	"required": true,
+																	"schema": {
+																		"type": "string",
+																		"pattern": "^Bearer .+$",
+																		"example": "Bearer xxxxxxxx"
+																	}
+																},
+																{
+																	"name": "login",
+																	"in": "path",
+																	"description": "login пользователя, которому нужно предоставить доступ",
+																	"required": true,
+																	"schema": {
+																		"type": "string",
+																		"example": "client_user_login"
+																	}
+																},
+																{
+																	"name": "base",
+																	"in": "path",
+																	"description": "идентификатор базы, к которой нужно предоставить доступ",
+																	"required": true,
+																	"schema": {
+																		"type": "integer",
+																		"example": 345
+																	}
+																}
+															],
+															"responses": {
+																"200": {
+																	"description": "Доступ предоставлен",
+																	"content": {
+																		"application/json": {
+																			"schema": {
+																				"properties": {
+																					"success": {
+																						"type": "boolean",
+																						"example": "true"
+																					}
+																				},
+																				"type": "object"
+																			}
+																		}
+																	}
+																},
+																"400": {
+																	"description": "Неверные параметры запроса"
+																},
+																"401": {
+																	"description": "Требуется авторизация (Bearer JWT)"
+																},
+																"500": {
+																	"description": "Внутренняя ошибка сервера"
+																}
+															}
+														}
+													},
+													"/api/client_user/remove_access/{login}/{base}": {
+														"put": {
+															"tags": [
+																"ClientUser",
+																"ClientBase"
+															],
+															"summary": "Запретить доступ пользователя  к базе",
+															"operationId": "put_api_client_user_remove_access_to_base",
+															"parameters": [{
+																	"name": "Authorization",
+																	"in": "header",
+																	"description": "JWT-токен в формате: `Bearer <токен>`",
+																	"required": true,
+																	"schema": {
+																		"type": "string",
+																		"pattern": "^Bearer .+$",
+																		"example": "Bearer xxxxxxxx"
+																	}
+																},
+																{
+																	"name": "login",
+																	"in": "path",
+																	"description": "login пользователя, которому нужно запретить доступ",
+																	"required": true,
+																	"schema": {
+																		"type": "string",
+																		"example": "client_user_login"
+																	}
+																},
+																{
+																	"name": "base",
+																	"in": "path",
+																	"description": "идентификатор базы, к которой нужно запретить доступ",
+																	"required": true,
+																	"schema": {
+																		"type": "integer",
+																		"example": 345
+																	}
+																}
+															],
+															"responses": {
+																"200": {
+																	"description": "Доступ запрещен",
+																	"content": {
+																		"application/json": {
+																			"schema": {
+																				"properties": {
+																					"success": {
+																						"type": "boolean",
+																						"example": "true"
+																					}
+																				},
+																				"type": "object"
+																			}
+																		}
+																	}
+																},
+																"400": {
+																	"description": "Неверные параметры запроса"
+																},
+																"401": {
+																	"description": "Требуется авторизация (Bearer JWT)"
+																},
+																"500": {
+																	"description": "Внутренняя ошибка сервера"
+																}
+															}
+														}
+													},
+													"/api/client_user/reset_password/{login}": {
+														"put": {
+															"tags": [
+																"ClientUser"
+															],
+															"summary": "Сброс пароля пользователя клиента",
+															"operationId": "put_api_client_user_reset_password",
+															"parameters": [{
+																	"name": "Authorization",
+																	"in": "header",
+																	"description": "JWT-токен в формате: `Bearer <токен>`",
+																	"required": true,
+																	"schema": {
+																		"type": "string",
+																		"pattern": "^Bearer .+$",
+																		"example": "Bearer xxxxxxxx"
+																	}
+																},
+																{
+																	"name": "login",
+																	"in": "path",
+																	"description": "login пользователя, который нужно удалить",
+																	"required": true,
+																	"schema": {
+																		"type": "string",
+																		"example": "client_user_login"
+																	}
+																}
+															],
+															"responses": {
+																"200": {
+																	"description": "Сброс пароля выполнен успешно",
+																	"content": {
+																		"application/json": {
+																			"schema": {
+																				"properties": {
+																					"login": {
+																						"type": "string",
+																						"example": "ivanov"
+																					},
+																					"new_password": {
+																						"type": "string",
+																						"example": "secure123"
+																					},
+																					"success": {
+																						"type": "boolean",
+																						"example": "true"
+																					}
+																				},
+																				"type": "object"
+																			}
+																		}
+																	}
+																},
+																"400": {
+																	"description": "Неверные параметры запроса"
+																},
+																"401": {
+																	"description": "Требуется авторизация (Bearer JWT)"
+																},
+																"500": {
+																	"description": "Внутренняя ошибка сервера"
+																}
+															}
+														}
+													}
+												},
+												"tags": [{
+														"name": "ClientUser",
+														"description": "ClientUser"
+													},
+													{
+														"name": "Token",
+														"description": "Token"
+													},
+													{
+														"name": "ClientBase",
+														"description": "ClientBase"
+													}
+												]
+											}
+										}
+									</script>
+									<div id="swagger-ui"></div>
 								</div>
 							</div>
 						</div>
@@ -387,6 +699,14 @@
 		<script src="js/dynamic_adapt.js"></script>
 		<script src="js/simplebar.min.js"></script>
 		<script src="js/scripts.js"></script>
+
+		<script src="js/swagger-ui-bundle.js"></script>
+		<script src="js/init-swagger-ui.js"></script>
+		<script>
+			document.addEventListener('DOMContentLoaded', function() {
+				loadSwaggerUI();
+			});
+		</script>
 	</body>
 
 </html>
