@@ -1,0 +1,1437 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <title>Корзина</title>
+    {% include 'blocks/head.njk' %}
+</head>
+
+<body class="preload mp">
+    <div class="main-wrapper-outer">
+        {% include 'blocks/header.njk' %}
+        <main class="main">
+
+            <div class="block-cabinet block-cabinet-support">
+                <div class="container">
+                    <div class="block-cabinet__content">
+                        <div class="cabinet-menu">
+                            <div class="cabinet-menu__body">
+                                <div class="cabinet-menu__column">
+                                    <ul>
+                                        <li>
+                                            <a href="./" class="cabinet-menu__link">
+                                                <div class="cabinet-menu__icon">
+                                                    <svg class="cabinet-menu-def" aria-hidden="true" width="21"
+                                                        height="21">
+                                                        <use xlink:href="img/sprite.svg#cabinet"></use>
+                                                    </svg>
+                                                    <svg class="cabinet-menu-active" aria-hidden="true" width="21"
+                                                        height="21">
+                                                        <use xlink:href="img/sprite.svg#cabinet-active"></use>
+                                                    </svg>
+                                                </div>
+                                                <div class="cabinet-menu__name">
+                                                    <span>Личный</span> кабинет
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="./" class="cabinet-menu__link">
+                                                <div class="cabinet-menu__icon">
+                                                    <svg class="cabinet-menu-def" aria-hidden="true" width="20"
+                                                        height="23">
+                                                        <use xlink:href="img/sprite.svg#documents"></use>
+                                                    </svg>
+                                                    <svg class="cabinet-menu-active" aria-hidden="true" width="20"
+                                                        height="23">
+                                                        <use xlink:href="img/sprite.svg#documents-active"></use>
+                                                    </svg>
+                                                    <div class="cabinet-menu__circle"></div>
+                                                </div>
+                                                <div class="cabinet-menu__name">
+                                                    Счета<span>, документы</span>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="./" class="cabinet-menu__link">
+                                                <div class="cabinet-menu__icon">
+                                                    <svg class="cabinet-menu-def" aria-hidden="true" width="21"
+                                                        height="23">
+                                                        <use xlink:href="img/sprite.svg#databases"></use>
+                                                    </svg>
+                                                    <svg class="cabinet-menu-active" aria-hidden="true" width="21"
+                                                        height="23">
+                                                        <use xlink:href="img/sprite.svg#databases-active"></use>
+                                                    </svg>
+                                                </div>
+                                                <div class="cabinet-menu__name">
+                                                    Базы <span>данных</span>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="./" class="cabinet-menu__link">
+                                                <div class="cabinet-menu__icon">
+                                                    <svg class="cabinet-menu-def" aria-hidden="true" width="21"
+                                                        height="23">
+                                                        <use xlink:href="img/sprite.svg#users"></use>
+                                                    </svg>
+                                                    <svg class="cabinet-menu-active" aria-hidden="true" width="21"
+                                                        height="23">
+                                                        <use xlink:href="img/sprite.svg#users-active"></use>
+                                                    </svg>
+                                                </div>
+                                                <div class="cabinet-menu__name">
+                                                    Пользователи
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="./" class="cabinet-menu__link">
+                                                <div class="cabinet-menu__icon">
+                                                    <svg class="cabinet-menu-def" aria-hidden="true" width="23"
+                                                        height="23">
+                                                        <use xlink:href="img/sprite.svg#support"></use>
+                                                    </svg>
+                                                    <svg class="cabinet-menu-active" aria-hidden="true" width="23"
+                                                        height="23">
+                                                        <use xlink:href="img/sprite.svg#support-active"></use>
+                                                    </svg>
+                                                </div>
+                                                <div class="cabinet-menu__name">
+                                                    Поддержка
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="cabinet-menu__column column-service">
+                                    <ul>
+                                        <li>
+                                            <a href="./" class="cabinet-menu__link link-service">
+                                                <div class="cabinet-menu__icon">
+                                                    <svg class="cabinet-menu-def" aria-hidden="true" width="21"
+                                                        height="23">
+                                                        <use xlink:href="img/sprite.svg#service"></use>
+                                                    </svg>
+                                                    <svg class="cabinet-menu-active" aria-hidden="true" width="21"
+                                                        height="23">
+                                                        <use xlink:href="img/sprite.svg#service-active"></use>
+                                                    </svg>
+                                                </div>
+                                                <div class="cabinet-menu__titles">
+                                                    Услуги+
+                                                    <div class="cabinet-menu__number">
+                                                        <span>843</span>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="./" class="cabinet-menu__link link-cart active">
+                                                <div class="cabinet-menu__icon">
+                                                    <svg class="cabinet-menu-def" aria-hidden="true" width="20"
+                                                        height="19">
+                                                        <use xlink:href="img/sprite.svg#cart"></use>
+                                                    </svg>
+                                                    <svg class="cabinet-menu-active" aria-hidden="true" width="21"
+                                                        height="23">
+                                                        <use xlink:href="img/sprite.svg#cart-active"></use>
+                                                    </svg>
+                                                    <div class="cabinet-menu__circle"></div>
+                                                </div>
+                                                <div class="cabinet-menu__titles">
+                                                    Корзина
+                                                    <div class="cabinet-menu__number number-bg">
+                                                        <span>8</span>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="cabinet-menu__column column-download">
+                                    <ul>
+                                        <li>
+                                            <a href="./" download="#download" class="cabinet-menu__link link-download">
+                                                <div class="cabinet-menu__icon">
+                                                    <svg aria-hidden="true" width="14" height="17">
+                                                        <use xlink:href="img/sprite.svg#download1"></use>
+                                                    </svg>
+                                                </div>
+                                                Программа для<br> входа 1С
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="header-account-top">
+                                <a href="./" class="header-account-top__titles">
+                                    <div class="header-account-top__name">Username</div>
+                                    <div class="header-account-top__subname">
+                                        Бухгалтер
+                                    </div>
+                                </a>
+                                <a href="./" class="header-account-top__icon">
+                                    <span>Выйти </span>
+                                    <svg aria-hidden="true" width="22" height="22">
+                                        <use xlink:href="img/sprite.svg#exit"></use>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="block-cabinet__body block-cabinet__body block-cabinet-cart body-long">
+                            <div class="block-cabinet__columns columns2">
+                                <div data-tabs class="cabinet-tabs">
+                                    <div class="cabinet-tabs__top">
+                                        <nav data-tabs-titles class="cabinet-tabs__navigation">
+                                            <button data-tabs-cart type="button"
+                                                class="cabinet-tabs__titles _tab-active">
+                                                <span class="cabinet-tabs__title">
+                                                    <span>Корзина</span>
+                                                </span>
+                                            </button>
+                                            <button type="button" class="cabinet-tabs__titles">
+                                                <span class="cabinet-tabs__title">
+                                                    <span>Избранное</span>
+                                                </span>
+                                            </button>
+                                            <button type="button" class="cabinet-tabs__titles">
+                                                <span class="cabinet-tabs__title">
+                                                    <span>Покупки</span>
+                                                </span>
+                                            </button>
+                                        </nav>
+                                    </div>
+                                    <div data-tabs-body class="cabinet-tabs__content">
+                                        <div class="cabinet-tabs__body">
+                                            <form action="#" class="cabinet-cart">
+                                                <div class="cabinet-cart__body">
+                                                    <div class="cabinet-cart__column">
+                                                        <div class="cabinet-cart__top">
+                                                            <img src="img/icons/box.svg" alt="">
+                                                            <span>Корректировка остатков ТМЗ по источникам
+                                                                происхождения</span>
+                                                        </div>
+                                                        <div class="cabinet-cart__content">
+                                                            <div class="cabinet-cart__center">
+                                                                <div class="form">
+                                                                    <div class="form__inputs">
+                                                                        <div class="form__input big">
+                                                                            <label for="name1" class="big">
+                                                                                Ваше имя<span
+                                                                                    class="placeholder">*</span>
+                                                                            </label>
+                                                                            <input data-required id="name1"
+                                                                                data-error="Reason for the error"
+                                                                                autocomplete="off" type="text"
+                                                                                name="form[]" placeholder=""
+                                                                                class="input">
+                                                                        </div>
+                                                                        <div class="form__input big">
+                                                                            <label class="big">
+                                                                                Ваш телефон<span
+                                                                                    class="placeholder">*</span>
+                                                                            </label>
+                                                                            <div class="input-tel input">
+                                                                                <span>+7</span>
+                                                                                <input data-required
+                                                                                    data-error="Reason for the error"
+                                                                                    autocomplete="off" name="form[]"
+                                                                                    placeholder="(000) 000-00-00"
+                                                                                    class="telephone2">
+                                                                            </div>
+                                                                            <div class="tooltips">
+                                                                                <div class="tooltips__dropdown">
+                                                                                    <span>
+                                                                                        Дозвон техподдержки будет
+                                                                                        осуществлен на
+                                                                                        этот номер телефона
+                                                                                    </span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="cabinet-cart__bottom">
+                                                                <div class="cabinet-cart__icons">
+                                                                    <button type="button" class="cabinet-cart__icon">
+                                                                        <div class="favorites">
+                                                                            <img loading="lazy"
+                                                                                src="img/icons/heart.svg" alt=""
+                                                                                class="favorites__icon1">
+                                                                            <img loading="lazy"
+                                                                                src="img/icons/heart-active.svg" alt=""
+                                                                                class="favorites__icon2">
+                                                                        </div>
+                                                                    </button>
+                                                                    <a href="./" class="cabinet-cart__icon">
+                                                                        <svg aria-hidden="true" width="20" height="20">
+                                                                            <use xlink:href="img/sprite.svg#share2">
+                                                                            </use>
+                                                                        </svg>
+                                                                    </a>
+                                                                    <button type="button" class="cabinet-cart__icon">
+                                                                        <svg aria-hidden="true" width="21" height="22">
+                                                                            <use xlink:href="img/sprite.svg#trash">
+                                                                            </use>
+                                                                        </svg>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="cabinet-cart__price">
+                                                                    58 200 ₸
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="cabinet-cart__column">
+                                                        <div class="cabinet-cart__top">
+                                                            <img src="img/icons/vat2.svg" alt="">
+                                                            <span>Сервис 1С: ЭСФ</span>
+                                                        </div>
+                                                        <div class="cabinet-cart__content">
+                                                            <div class="cabinet-cart__center">
+                                                                <div class="form">
+                                                                    <div class="form__inputs">
+                                                                        <div class="form__input big">
+                                                                            <label for="name1" class="big">
+                                                                                Ваше имя<span
+                                                                                    class="placeholder">*</span>
+                                                                            </label>
+                                                                            <input data-required id="name1"
+                                                                                data-error="Reason for the error"
+                                                                                autocomplete="off" type="text"
+                                                                                name="form[]" placeholder=""
+                                                                                class="input">
+                                                                        </div>
+                                                                        <div class="form__input big">
+                                                                            <label class="big">
+                                                                                Ваш телефон<span
+                                                                                    class="placeholder">*</span>
+                                                                            </label>
+                                                                            <div class="input-tel input">
+                                                                                <span>+7</span>
+                                                                                <input data-required
+                                                                                    data-error="Reason for the error"
+                                                                                    autocomplete="off" name="form[]"
+                                                                                    placeholder="(000) 000-00-00"
+                                                                                    class="telephone2">
+                                                                            </div>
+                                                                            <div class="tooltips">
+                                                                                <div class="tooltips__dropdown">
+                                                                                    <span>
+                                                                                        Дозвон техподдержки будет
+                                                                                        осуществлен на
+                                                                                        этот номер телефона
+                                                                                    </span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <a href="./" data-popup="#available-users"
+                                                                    class="cabinet-cart-base">
+                                                                    <div class="cabinet-cart-base__title">
+                                                                        <div class="cabinet-cart-base__icon">
+                                                                            <svg aria-hidden="true" width="19"
+                                                                                height="20">
+                                                                                <use
+                                                                                    xlink:href="img/sprite.svg#databases">
+                                                                                </use>
+                                                                            </svg>
+                                                                        </div>
+                                                                        Укажите базы
+                                                                    </div>
+                                                                    <span>Выбрано: 0</span>
+                                                                </a>
+                                                                <div class="popup-subscribe-service__buttons">
+                                                                    <div class="popup-subscribe-service__button">
+                                                                        <div class="popup-subscribe-service__label">
+                                                                            Количество доп. БИН
+                                                                        </div>
+                                                                        <div data-quantity class="quantity">
+                                                                            <button data-quantity-minus type="button"
+                                                                                class="quantity__button quantity__button_minus">
+                                                                                <svg aria-hidden="true" width="18"
+                                                                                    height="2">
+                                                                                    <use
+                                                                                        xlink:href="img/sprite.svg#minus1">
+                                                                                    </use>
+                                                                                </svg>
+                                                                            </button>
+                                                                            <div class="quantity__input">
+                                                                                <input data-quantity-value
+                                                                                    autocomplete="off" type="text"
+                                                                                    name="form[]" value="0">
+                                                                            </div>
+                                                                            <button data-quantity-plus type="button"
+                                                                                class="quantity__button quantity__button_plus">
+                                                                                <svg aria-hidden="true" width="18"
+                                                                                    height="18">
+                                                                                    <use
+                                                                                        xlink:href="img/sprite.svg#plus1">
+                                                                                    </use>
+                                                                                </svg>
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="popup-subscribe-service__button">
+                                                                        <div class="popup-subscribe-service__label">
+                                                                            Срок в месяцах
+                                                                        </div>
+                                                                        <div data-quantity class="quantity">
+                                                                            <button data-quantity-minus type="button"
+                                                                                class="quantity__button quantity__button_minus">
+                                                                                <svg aria-hidden="true" width="18"
+                                                                                    height="2">
+                                                                                    <use
+                                                                                        xlink:href="img/sprite.svg#minus1">
+                                                                                    </use>
+                                                                                </svg>
+                                                                            </button>
+                                                                            <div class="quantity__input">
+                                                                                <input data-quantity-value
+                                                                                    autocomplete="off" type="text"
+                                                                                    name="form[]" value="12">
+                                                                            </div>
+                                                                            <button data-quantity-plus type="button"
+                                                                                class="quantity__button quantity__button_plus">
+                                                                                <svg aria-hidden="true" width="18"
+                                                                                    height="18">
+                                                                                    <use
+                                                                                        xlink:href="img/sprite.svg#plus1">
+                                                                                    </use>
+                                                                                </svg>
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="calendar calendar-one calendar-input">
+                                                                        <div class="calendar__title">
+                                                                            Дата активации
+                                                                        </div>
+                                                                        <div class="calendar__input">
+                                                                            <div class="date-picker-sections">
+                                                                                <div class="date-section">
+                                                                                    <input data-required
+                                                                                        data-error="Reason for the error + more text (2th row)"
+                                                                                        type="text"
+                                                                                        class="date-section-input day-input"
+                                                                                        maxlength="2" placeholder="00"
+                                                                                        inputmode="numeric">
+                                                                                    <span
+                                                                                        class="date-separator">/</span>
+                                                                                </div>
+                                                                                <div class="date-section">
+                                                                                    <input data-required
+                                                                                        data-error="Reason for the error + more text (2th row)"
+                                                                                        type="text"
+                                                                                        class="date-section-input month-input"
+                                                                                        maxlength="2" placeholder="00"
+                                                                                        inputmode="numeric">
+                                                                                    <span
+                                                                                        class="date-separator">/</span>
+                                                                                </div>
+                                                                                <div class="date-section">
+                                                                                    <input data-required
+                                                                                        data-error="Reason for the error + more text (2th row)"
+                                                                                        type="text"
+                                                                                        class="date-section-input year-input"
+                                                                                        maxlength="4" placeholder="0000"
+                                                                                        inputmode="numeric">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="calendar__icon">
+                                                                                <svg aria-hidden="true" width="18"
+                                                                                    height="20">
+                                                                                    <use
+                                                                                        xlink:href="img/sprite.svg#calendar">
+                                                                                    </use>
+                                                                                </svg>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="calendar__content">
+                                                                            <div class="calendar-header">
+                                                                                <div
+                                                                                    class="calendar-header__column calendar-month">
+                                                                                    <div
+                                                                                        class="calendar-header__button">
+                                                                                        <button type="button"
+                                                                                            class="calendar-header__btn-prev calendar-btn">
+                                                                                            <svg aria-hidden="true"
+                                                                                                width="8" height="12">
+                                                                                                <use
+                                                                                                    xlink:href="img/sprite.svg#arrow1">
+                                                                                                </use>
+                                                                                            </svg>
+                                                                                        </button>
+                                                                                        <span>Авг</span>
+                                                                                        <button type="button"
+                                                                                            class="calendar-header__btn-next calendar-btn">
+                                                                                            <svg aria-hidden="true"
+                                                                                                width="8" height="12">
+                                                                                                <use
+                                                                                                    xlink:href="img/sprite.svg#arrow1">
+                                                                                                </use>
+                                                                                            </svg>
+                                                                                        </button>
+                                                                                    </div>
+                                                                                    <div
+                                                                                        class="calendar-header__dropdown">
+                                                                                        <ul data-simplebar>
+                                                                                            <li
+                                                                                                class="calendar-header__item">
+                                                                                                <div
+                                                                                                    class="calendar-header__icon">
+                                                                                                    <svg aria-hidden="true"
+                                                                                                        width="17"
+                                                                                                        height="13">
+                                                                                                        <use
+                                                                                                            xlink:href="img/sprite.svg#check1">
+                                                                                                        </use>
+                                                                                                    </svg>
+                                                                                                </div>
+                                                                                                <span>Апрель</span>
+                                                                                            </li>
+                                                                                            <li
+                                                                                                class="calendar-header__item">
+                                                                                                <div
+                                                                                                    class="calendar-header__icon">
+                                                                                                    <svg aria-hidden="true"
+                                                                                                        width="17"
+                                                                                                        height="13">
+                                                                                                        <use
+                                                                                                            xlink:href="img/sprite.svg#check1">
+                                                                                                        </use>
+                                                                                                    </svg>
+                                                                                                </div>
+                                                                                                <span>Май</span>
+                                                                                            </li>
+                                                                                            <li
+                                                                                                class="calendar-header__item">
+                                                                                                <div
+                                                                                                    class="calendar-header__icon">
+                                                                                                    <svg aria-hidden="true"
+                                                                                                        width="17"
+                                                                                                        height="13">
+                                                                                                        <use
+                                                                                                            xlink:href="img/sprite.svg#check1">
+                                                                                                        </use>
+                                                                                                    </svg>
+                                                                                                </div>
+                                                                                                <span>Июнь</span>
+                                                                                            </li>
+                                                                                            <li
+                                                                                                class="calendar-header__item">
+                                                                                                <div
+                                                                                                    class="calendar-header__icon">
+                                                                                                    <svg aria-hidden="true"
+                                                                                                        width="17"
+                                                                                                        height="13">
+                                                                                                        <use
+                                                                                                            xlink:href="img/sprite.svg#check1">
+                                                                                                        </use>
+                                                                                                    </svg>
+                                                                                                </div>
+                                                                                                <span>Июль</span>
+                                                                                            </li>
+                                                                                            <li
+                                                                                                class="calendar-header__item active">
+                                                                                                <div
+                                                                                                    class="calendar-header__icon">
+                                                                                                    <svg aria-hidden="true"
+                                                                                                        width="17"
+                                                                                                        height="13">
+                                                                                                        <use
+                                                                                                            xlink:href="img/sprite.svg#check1">
+                                                                                                        </use>
+                                                                                                    </svg>
+                                                                                                </div>
+                                                                                                <span>Август</span>
+                                                                                            </li>
+                                                                                            <li
+                                                                                                class="calendar-header__item">
+                                                                                                <div
+                                                                                                    class="calendar-header__icon">
+                                                                                                    <svg aria-hidden="true"
+                                                                                                        width="17"
+                                                                                                        height="13">
+                                                                                                        <use
+                                                                                                            xlink:href="img/sprite.svg#check1">
+                                                                                                        </use>
+                                                                                                    </svg>
+                                                                                                </div>
+                                                                                                <span>Сентябрь</span>
+                                                                                            </li>
+                                                                                            <li
+                                                                                                class="calendar-header__item">
+                                                                                                <div
+                                                                                                    class="calendar-header__icon">
+                                                                                                    <svg aria-hidden="true"
+                                                                                                        width="17"
+                                                                                                        height="13">
+                                                                                                        <use
+                                                                                                            xlink:href="img/sprite.svg#check1">
+                                                                                                        </use>
+                                                                                                    </svg>
+                                                                                                </div>
+                                                                                                <span>Октябрь</span>
+                                                                                            </li>
+                                                                                            <li
+                                                                                                class="calendar-header__item">
+                                                                                                <div
+                                                                                                    class="calendar-header__icon">
+                                                                                                    <svg aria-hidden="true"
+                                                                                                        width="17"
+                                                                                                        height="13">
+                                                                                                        <use
+                                                                                                            xlink:href="img/sprite.svg#check1">
+                                                                                                        </use>
+                                                                                                    </svg>
+                                                                                                </div>
+                                                                                                <span>Ноябрь</span>
+                                                                                            </li>
+                                                                                            <li
+                                                                                                class="calendar-header__item">
+                                                                                                <div
+                                                                                                    class="calendar-header__icon">
+                                                                                                    <svg aria-hidden="true"
+                                                                                                        width="17"
+                                                                                                        height="13">
+                                                                                                        <use
+                                                                                                            xlink:href="img/sprite.svg#check1">
+                                                                                                        </use>
+                                                                                                    </svg>
+                                                                                                </div>
+                                                                                                <span>Декабрь</span>
+                                                                                            </li>
+                                                                                            <li
+                                                                                                class="calendar-header__item">
+                                                                                                <div
+                                                                                                    class="calendar-header__icon">
+                                                                                                    <svg aria-hidden="true"
+                                                                                                        width="17"
+                                                                                                        height="13">
+                                                                                                        <use
+                                                                                                            xlink:href="img/sprite.svg#check1">
+                                                                                                        </use>
+                                                                                                    </svg>
+                                                                                                </div>
+                                                                                                <span>Январь</span>
+                                                                                            </li>
+                                                                                            <li
+                                                                                                class="calendar-header__item">
+                                                                                                <div
+                                                                                                    class="calendar-header__icon">
+                                                                                                    <svg aria-hidden="true"
+                                                                                                        width="17"
+                                                                                                        height="13">
+                                                                                                        <use
+                                                                                                            xlink:href="img/sprite.svg#check1">
+                                                                                                        </use>
+                                                                                                    </svg>
+                                                                                                </div>
+                                                                                                <span>Февраль</span>
+                                                                                            </li>
+                                                                                            <li
+                                                                                                class="calendar-header__item">
+                                                                                                <div
+                                                                                                    class="calendar-header__icon">
+                                                                                                    <svg aria-hidden="true"
+                                                                                                        width="17"
+                                                                                                        height="13">
+                                                                                                        <use
+                                                                                                            xlink:href="img/sprite.svg#check1">
+                                                                                                        </use>
+                                                                                                    </svg>
+                                                                                                </div>
+                                                                                                <span>Март</span>
+                                                                                            </li>
+                                                                                        </ul>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div
+                                                                                    class="calendar-header__column calendar-data">
+                                                                                    <div
+                                                                                        class="calendar-header__button">
+                                                                                        <button type="button"
+                                                                                            class="calendar-header__btn-prev calendar-btn">
+                                                                                            <svg aria-hidden="true"
+                                                                                                width="8" height="12">
+                                                                                                <use
+                                                                                                    xlink:href="img/sprite.svg#arrow1">
+                                                                                                </use>
+                                                                                            </svg>
+                                                                                        </button>
+                                                                                        <span>2025</span>
+                                                                                        <button type="button"
+                                                                                            class="calendar-header__btn-next calendar-btn">
+                                                                                            <svg aria-hidden="true"
+                                                                                                width="8" height="12">
+                                                                                                <use
+                                                                                                    xlink:href="img/sprite.svg#arrow1">
+                                                                                                </use>
+                                                                                            </svg>
+                                                                                        </button>
+                                                                                    </div>
+                                                                                    <div
+                                                                                        class="calendar-header__dropdown">
+                                                                                        <ul data-simplebar>
+                                                                                            <li
+                                                                                                class="calendar-header__item">
+                                                                                                <div
+                                                                                                    class="calendar-header__icon">
+                                                                                                    <svg aria-hidden="true"
+                                                                                                        width="17"
+                                                                                                        height="13">
+                                                                                                        <use
+                                                                                                            xlink:href="img/sprite.svg#check1">
+                                                                                                        </use>
+                                                                                                    </svg>
+                                                                                                </div>
+                                                                                                <span>2021</span>
+                                                                                            </li>
+                                                                                            <li
+                                                                                                class="calendar-header__item">
+                                                                                                <div
+                                                                                                    class="calendar-header__icon">
+                                                                                                    <svg aria-hidden="true"
+                                                                                                        width="17"
+                                                                                                        height="13">
+                                                                                                        <use
+                                                                                                            xlink:href="img/sprite.svg#check1">
+                                                                                                        </use>
+                                                                                                    </svg>
+                                                                                                </div>
+                                                                                                <span>2022</span>
+                                                                                            </li>
+                                                                                            <li
+                                                                                                class="calendar-header__item">
+                                                                                                <div
+                                                                                                    class="calendar-header__icon">
+                                                                                                    <svg aria-hidden="true"
+                                                                                                        width="17"
+                                                                                                        height="13">
+                                                                                                        <use
+                                                                                                            xlink:href="img/sprite.svg#check1">
+                                                                                                        </use>
+                                                                                                    </svg>
+                                                                                                </div>
+                                                                                                <span>2023</span>
+                                                                                            </li>
+                                                                                            <li
+                                                                                                class="calendar-header__item">
+                                                                                                <div
+                                                                                                    class="calendar-header__icon">
+                                                                                                    <svg aria-hidden="true"
+                                                                                                        width="17"
+                                                                                                        height="13">
+                                                                                                        <use
+                                                                                                            xlink:href="img/sprite.svg#check1">
+                                                                                                        </use>
+                                                                                                    </svg>
+                                                                                                </div>
+                                                                                                <span>2024</span>
+                                                                                            </li>
+                                                                                            <li
+                                                                                                class="calendar-header__item active">
+                                                                                                <div
+                                                                                                    class="calendar-header__icon">
+                                                                                                    <svg aria-hidden="true"
+                                                                                                        width="17"
+                                                                                                        height="13">
+                                                                                                        <use
+                                                                                                            xlink:href="img/sprite.svg#check1">
+                                                                                                        </use>
+                                                                                                    </svg>
+                                                                                                </div>
+                                                                                                <span>2025</span>
+                                                                                            </li>
+                                                                                        </ul>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="calendar__wrapper">
+                                                                                <div class="calendar__days">
+                                                                                    <div class="cell_wrapper cal_days">
+                                                                                        <span
+                                                                                            class="cell_item">Пн</span>
+                                                                                    </div>
+                                                                                    <div class="cell_wrapper cal_days">
+                                                                                        <span
+                                                                                            class="cell_item">Вт</span>
+                                                                                    </div>
+                                                                                    <div class="cell_wrapper cal_days">
+                                                                                        <span
+                                                                                            class="cell_item">Ср</span>
+                                                                                    </div>
+                                                                                    <div class="cell_wrapper cal_days">
+                                                                                        <span
+                                                                                            class="cell_item">Чт</span>
+                                                                                    </div>
+                                                                                    <div class="cell_wrapper cal_days">
+                                                                                        <span
+                                                                                            class="cell_item">Пт</span>
+                                                                                    </div>
+                                                                                    <div class="cell_wrapper cal_days">
+                                                                                        <span
+                                                                                            class="cell_item">Сб</span>
+                                                                                    </div>
+                                                                                    <div class="cell_wrapper cal_days">
+                                                                                        <span
+                                                                                            class="cell_item">Вс</span>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="calendar__main"></div>
+                                                                            </div>
+                                                                            <div class="calendar-buttons">
+                                                                                <button type="button"
+                                                                                    class="calendar-buttons__btn calendar-clear">
+                                                                                    Очистить
+                                                                                </button>
+                                                                                <div class="calendar-buttons__button">
+                                                                                    <button type="button"
+                                                                                        class="calendar-buttons__btn calendar-close">
+                                                                                        Отмена
+                                                                                    </button>
+                                                                                    <button type="button"
+                                                                                        class="calendar-buttons__btn calendar-apply">
+                                                                                        OK
+                                                                                    </button>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="popup-warning">
+                                                                    <div class="popup-warning__item">
+                                                                        <div class="popup-warning__title">
+                                                                            Внимание!
+                                                                        </div>
+                                                                        <div class="popup-warning__text">
+                                                                            <p>
+                                                                                Согласно условий правообладателя. Оплата
+                                                                                данной услуги возврату не подлежит.
+                                                                            </p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="cabinet-cart__bottom">
+                                                                <div class="cabinet-cart__icons">
+                                                                    <button type="button" class="cabinet-cart__icon">
+                                                                        <div class="favorites">
+                                                                            <img loading="lazy"
+                                                                                src="img/icons/heart.svg" alt=""
+                                                                                class="favorites__icon1">
+                                                                            <img loading="lazy"
+                                                                                src="img/icons/heart-active.svg" alt=""
+                                                                                class="favorites__icon2">
+                                                                        </div>
+                                                                    </button>
+                                                                    <a href="./" class="cabinet-cart__icon">
+                                                                        <svg aria-hidden="true" width="20" height="20">
+                                                                            <use xlink:href="img/sprite.svg#share2">
+                                                                            </use>
+                                                                        </svg>
+                                                                    </a>
+                                                                    <button type="button" class="cabinet-cart__icon">
+                                                                        <svg aria-hidden="true" width="21" height="22">
+                                                                            <use xlink:href="img/sprite.svg#trash">
+                                                                            </use>
+                                                                        </svg>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="cabinet-cart__price">
+                                                                    58 200 ₸
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="cabinet-cart-total">
+                                                    <div class="cabinet-cart-total__titles">
+                                                        <div class="cabinet-cart-total__title">
+                                                            Итоговая сумма
+                                                        </div>
+                                                        <div class="cabinet-cart-total__price">
+                                                            12 530 ₸
+                                                        </div>
+                                                    </div>
+                                                    <button type="submit" data-popup="#cart-pay"
+                                                        class="btn btn-bg btn-big">
+                                                        <span>Оформить</span>
+                                                        <span class="btn-price">12 530 ₸</span>
+                                                    </button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="cabinet-tabs__body">
+                                            <div class="cabinet-favorites">
+                                                <div class="card-recommend">
+                                                    <div class="card-recommend__top">
+                                                        <img loading="lazy" src="img/icons/setup.svg" alt=""
+                                                            class="card-recommend__pic1">
+                                                        <div class="card-recommend__titles">
+                                                            <div class="card-recommend__title">
+                                                                Диагностика базы на ошибки и исправление
+                                                            </div>
+                                                            <p>
+                                                                купили 1708 раз
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <a href="./">
+                                                        <p>
+                                                            Проверка параметров учета и настроек системы. Анализ
+                                                            автоматического заполнения субконто
+                                                            по доходам, расходам и номенклатуре. Поиск и исправление
+                                                            ошибок,
+                                                            влияющих на
+                                                            бухгалтерскую деятельность. Поиск и исправление ошибок,
+                                                            влияющих
+                                                            на бухгалтерскую
+                                                            деятельность.
+                                                        </p>
+                                                    </a>
+                                                    <div class="card-recommend__bottom">
+                                                        <div class="card-recommend__left">
+                                                            <div class="favorites active">
+                                                                <img loading="lazy" src="img/icons/heart.svg" alt=""
+                                                                    class="favorites__icon1">
+                                                                <img loading="lazy" src="img/icons/heart-active.svg"
+                                                                    alt="" class="favorites__icon2">
+                                                            </div>
+                                                            <div class="card-recommend__price"><span>от</span> 700 ₸
+                                                            </div>
+                                                        </div>
+                                                        <button type="button" class="btn btn-bg">
+                                                            <span class="desc">Добавить в
+                                                                корзину</span>
+                                                            <span class="mob">
+                                                                В корзину
+                                                            </span>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="card-recommend">
+                                                    <div class="card-recommend__top">
+                                                        <img loading="lazy" src="img/icons/cloud-key.svg" alt=""
+                                                            class="card-recommend__pic1">
+                                                        <div class="card-recommend__titles">
+                                                            <div class="card-recommend__title">
+                                                                Авторизация в ITsheff через SSO
+                                                            </div>
+                                                            <p>
+                                                                купили 1708 раз
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <a href="./">
+                                                        <p>
+                                                            Услуга настройки единого безопасного входа, которая
+                                                            позволяет
+                                                            вашим сотрудникам
+                                                            использовать свои корпоративные учетные записи.
+                                                        </p>
+                                                    </a>
+                                                    <div class="card-recommend__bottom">
+                                                        <div class="card-recommend__left">
+                                                            <div class="favorites active">
+                                                                <img loading="lazy" src="img/icons/heart.svg" alt=""
+                                                                    class="favorites__icon1">
+                                                                <img loading="lazy" src="img/icons/heart-active.svg"
+                                                                    alt="" class="favorites__icon2">
+                                                            </div>
+                                                            <div class="card-recommend__price"><span>от</span> 700 ₸
+                                                            </div>
+                                                        </div>
+                                                        <button type="button" class="btn btn-bg">В корзине: 1</button>
+                                                    </div>
+                                                </div>
+                                                <div class="card-recommend">
+                                                    <div class="card-recommend__top">
+                                                        <img loading="lazy" src="img/icons/excel-table.svg" alt=""
+                                                            class="card-recommend__pic1">
+                                                        <div class="card-recommend__titles">
+                                                            <div class="card-recommend__title">
+                                                                Обработка: Загрузка данных из Excel в 1С
+                                                            </div>
+                                                            <p>
+                                                                купили 1708 раз
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <a href="./">
+                                                        <p>
+                                                            Готовое техническое решение, которое автоматизирует перенос
+                                                            любой информации из таблиц Excel в базу данных 1С, полностью
+                                                            исключая ручной ввод и связанные с ним ошибки
+                                                        </p>
+                                                    </a>
+                                                    <div class="card-recommend__bottom">
+                                                        <div class="card-recommend__left">
+                                                            <div class="favorites active">
+                                                                <img loading="lazy" src="img/icons/heart.svg" alt=""
+                                                                    class="favorites__icon1">
+                                                                <img loading="lazy" src="img/icons/heart-active.svg"
+                                                                    alt="" class="favorites__icon2">
+                                                            </div>
+                                                            <div class="card-recommend__price"><span>от</span> 700 ₸
+                                                            </div>
+                                                        </div>
+                                                        <button type="button" class="btn btn-bg">
+                                                            <span class="desc">Добавить в
+                                                                корзину</span>
+                                                            <span class="mob">
+                                                                В корзину
+                                                            </span>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="card-recommend">
+                                                    <div class="card-recommend__top">
+                                                        <img loading="lazy" src="img/icons/vat.svg" alt=""
+                                                            class="card-recommend__pic1">
+                                                        <div class="card-recommend__titles">
+                                                            <div class="card-recommend__title">
+                                                                Сервис 1С: ЭСФ
+                                                            </div>
+                                                            <p>
+                                                                купили 1708 раз
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <a href="./">
+                                                        <p>
+                                                            Связывает вашу программу 1С напрямую с государственной
+                                                            Информационной системой электронных счетов-фактур (ИС ЭСФ
+                                                            РК) Он позволяет отправлять и принимать электронные
+                                                            документы без ручной выгрузки и загрузки XML-файлов
+                                                        </p>
+                                                    </a>
+                                                    <div class="card-recommend__bottom">
+                                                        <div class="card-recommend__left">
+                                                            <div class="favorites active">
+                                                                <img loading="lazy" src="img/icons/heart.svg" alt=""
+                                                                    class="favorites__icon1">
+                                                                <img loading="lazy" src="img/icons/heart-active.svg"
+                                                                    alt="" class="favorites__icon2">
+                                                            </div>
+                                                            <div class="card-recommend__price"><span>от</span> 700 ₸
+                                                            </div>
+                                                        </div>
+                                                        <button type="button" class="btn btn-bg">
+                                                            <span class="desc">Добавить в
+                                                                корзину</span>
+                                                            <span class="mob">
+                                                                В корзину
+                                                            </span>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="card-recommend">
+                                                    <div class="card-recommend__top">
+                                                        <img loading="lazy" src="img/icons/cloud-key.svg" alt=""
+                                                            class="card-recommend__pic1">
+                                                        <div class="card-recommend__titles">
+                                                            <div class="card-recommend__title">
+                                                                Авторизация в ITsheff через SSO
+                                                            </div>
+                                                            <p>
+                                                                купили 1708 раз
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <a href="./">
+                                                        <p>
+                                                            Услуга настройки единого безопасного входа, которая
+                                                            позволяет
+                                                            вашим сотрудникам
+                                                            использовать свои корпоративные учетные записи.
+                                                        </p>
+                                                    </a>
+                                                    <div class="card-recommend__bottom">
+                                                        <div class="card-recommend__left">
+                                                            <div class="favorites active">
+                                                                <img loading="lazy" src="img/icons/heart.svg" alt=""
+                                                                    class="favorites__icon1">
+                                                                <img loading="lazy" src="img/icons/heart-active.svg"
+                                                                    alt="" class="favorites__icon2">
+                                                            </div>
+                                                            <div class="card-recommend__price"><span>от</span> 700 ₸
+                                                            </div>
+                                                        </div>
+                                                        <button type="button" class="btn btn-bg">В корзине: 1</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="cabinet-tabs__body">
+                                            <div class="cabinet-buy">
+                                                <div class="cabinet-buy__body">
+                                                    <div class="cabinet-buy__column">
+                                                        <div class="cabinet-buy__left">
+                                                            <div class="cabinet-buy__data">
+                                                                23
+                                                                <span>авг</span>
+                                                            </div>
+                                                            <div class="cabinet-buy__year">
+                                                                2026
+                                                            </div>
+                                                        </div>
+                                                        <div class="cabinet-buy__right">
+                                                            <div class="cabinet-buy__cards">
+                                                                <div class="cabinet-buy__card">
+                                                                    <div class="cabinet-buy__titles">
+                                                                        <div class="cabinet-buy__title">
+                                                                            1С: Электронные трудовые договоры
+                                                                        </div>
+                                                                        <ul>
+                                                                            <li>Иван Иванов Ивановичи</li>
+                                                                            <li>+77071234567</li>
+                                                                        </ul>
+                                                                    </div>
+                                                                    <div class="cabinet-buy__price">
+                                                                        700 ₸
+                                                                    </div>
+                                                                </div>
+                                                                <div class="cabinet-buy__card">
+                                                                    <div class="cabinet-buy__titles">
+                                                                        <div class="cabinet-buy__title">
+                                                                            Сервис 1С: ЭСФ
+                                                                        </div>
+                                                                        <ul>
+                                                                            <li>Иван Иванов Ивановичи</li>
+                                                                            <li>+77071234567</li>
+                                                                            <li>1 БИН</li>
+                                                                            <li>2 месяца</li>
+                                                                            <li>1 База данных</li>
+                                                                        </ul>
+                                                                    </div>
+                                                                    <div class="cabinet-buy__price">
+                                                                        1 200 ₸
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <button type="button" class="btn btn-bg">Добавить в
+                                                                корзину</button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="cabinet-buy__column">
+                                                        <div class="cabinet-buy__left">
+                                                            <div class="cabinet-buy__data">
+                                                                8
+                                                                <span>авг</span>
+                                                            </div>
+                                                            <div class="cabinet-buy__year">
+                                                                2026
+                                                            </div>
+                                                        </div>
+                                                        <div class="cabinet-buy__right">
+                                                            <div class="cabinet-buy__cards">
+                                                                <div class="cabinet-buy__card">
+                                                                    <div class="cabinet-buy__titles">
+                                                                        <div class="cabinet-buy__title">
+                                                                            1С: Электронные трудовые договоры
+                                                                        </div>
+                                                                        <ul>
+                                                                            <li>Иван Иванов Ивановичи</li>
+                                                                            <li>+77071234567</li>
+                                                                        </ul>
+                                                                    </div>
+                                                                    <div class="cabinet-buy__price">
+                                                                        700 ₸
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <button type="button" class="btn btn-bg">В корзине:
+                                                                1</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="pagging">
+                                                    <a class="pagging__item pagging__item_active" href="./">1</a>
+                                                    <a class="pagging__item" href="./">2</a>
+                                                    <a class="pagging__item" href="./">3</a>
+                                                    <a class="pagging__item" href="./">4</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="btn-sents">
+                <div id="btn-sent1" class="btn-sent">
+                    <span>Сохранено</span>
+                </div>
+            </div>
+
+        </main>
+        {% include 'blocks/footer.njk' %}
+    </div>
+    <!--Оплатить-->
+    <div id="cart-pay" aria-hidden="false" class="popup">
+        <div class="popup__wrapper">
+            <form action="#" class="popup__content">
+                <div class="popup-top">
+                    <div class="popup-top__titles">
+                        <div class="popup-top__title">
+                            Способ оплаты
+                        </div>
+                    </div>
+                    <div data-close class="popup-top__close">
+                        <svg aria-hidden="true" width="22" height="22">
+                            <use xlink:href="img/sprite.svg#close"></use>
+                        </svg>
+                    </div>
+                </div>
+                <div class="popup-center">
+                    <div class="options-pay">
+                        <label class="options-pay__item">
+                            <input class="options-pay__input" type="radio" value="1" name="form[option]">
+                            <span class="options-pay__label">
+                                <span class="options-pay__titles">
+                                    <img src="img/icons/cabinet2.svg" alt="">
+                                    <span class="options-pay__text">Баланс личного кабинета - <span>доступно 21
+                                            500₸</span></span>
+                                </span>
+                                <span class="options-pay__icon"></span>
+                            </span>
+                        </label>
+                        <label class="options-pay__item">
+                            <input class="options-pay__input" type="radio" value="2" name="form[option]">
+                            <span class="options-pay__label">
+                                <span class="options-pay__titles">
+                                    <img src="img/icons/bill.svg" alt="">
+                                    <span class="options-pay__text">Счет оплата</span>
+                                </span>
+                                <span class="options-pay__icon"></span>
+                            </span>
+                        </label>
+                        <label class="options-pay__item">
+                            <input class="options-pay__input" checked type="radio" value="3" name="form[option]">
+                            <span class="options-pay__label">
+                                <span class="options-pay__titles">
+                                    <img src="img/icons/card-pay.svg" alt="">
+                                    <span class="options-pay__text">Картой</span>
+                                </span>
+                                <span class="options-pay__icon"></span>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+                <div class="popup-buttons">
+                    <button data-close data-btn="#btn-sent3" type="submit" class="btn btn-bg">
+                        <span>Оплатить</span>
+                    </button>
+                    <p>
+                        Нажимая «Оплатить», вы принимаете условие <a href="./">оферты</a>
+                    </p>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!--Доступно пользователям-->
+    <div id="available-users" aria-hidden="false" class="popup">
+        <div class="popup__wrapper">
+            <form action="#" class="popup__content">
+                <div class="popup-top">
+                    <div class="popup-top__titles">
+                        <div class="popup-top__title">
+                            Укажите базы
+                        </div>
+                    </div>
+                    <div data-close class="popup-top__close">
+                        <svg aria-hidden="true" width="22" height="22">
+                            <use xlink:href="img/sprite.svg#close"></use>
+                        </svg>
+                    </div>
+                </div>
+                <div class="popup-center">
+                    <div class="popup-select-bases popup-select-bases-card">
+                        <div data-showmore="items" class="select-bases-showmore">
+                            <div data-showmore-content="5" class="select-bases-showmore__checkboxes">
+                                <label class="checkbox">
+                                    <input class="checkbox__input" type="checkbox" value="1" name="checkbox1">
+                                    <span class="checkbox__label">
+                                        <span class="checkbox__icon">
+                                            <svg aria-hidden="true" width="10" height="9">
+                                                <use xlink:href="img/sprite.svg#check2">
+                                                </use>
+                                            </svg>
+                                        </span>
+                                        <span class="checkbox__text">Бестерекова Гаухар -
+                                            <strong>gbesterekova</strong></span>
+                                    </span>
+                                </label>
+                                <label class="checkbox">
+                                    <input checked class="checkbox__input" type="checkbox" value="2" name="checkbox1">
+                                    <span class="checkbox__label">
+                                        <span class="checkbox__icon">
+                                            <svg aria-hidden="true" width="10" height="9">
+                                                <use xlink:href="img/sprite.svg#check2">
+                                                </use>
+                                            </svg>
+                                        </span>
+                                        <span class="checkbox__text">
+                                            Александровский-Черноморцев Владислав Викентьевич -
+                                            <strong>tarkhaevvladimir</strong>
+                                        </span>
+                                    </span>
+                                </label>
+                                <label class="checkbox">
+                                    <input class="checkbox__input" type="checkbox" value="3" name="checkbox1">
+                                    <span class="checkbox__label">
+                                        <span class="checkbox__icon">
+                                            <svg aria-hidden="true" width="10" height="9">
+                                                <use xlink:href="img/sprite.svg#check2">
+                                                </use>
+                                            </svg>
+                                        </span>
+                                        <span class="checkbox__text">
+                                            Михавич Юлия Александровна - <strong>mikhaevichyuliya</strong>
+                                        </span>
+                                    </span>
+                                </label>
+                                <label class="checkbox">
+                                    <input class="checkbox__input" type="checkbox" value="4" name="checkbox1">
+                                    <span class="checkbox__label">
+                                        <span class="checkbox__icon">
+                                            <svg aria-hidden="true" width="10" height="9">
+                                                <use xlink:href="img/sprite.svg#check2">
+                                                </use>
+                                            </svg>
+                                        </span>
+                                        <span class="checkbox__text">
+                                            Ирина Охлопкова - <strong>irinaokhlopkova</strong>
+                                        </span>
+                                    </span>
+                                </label>
+                                <label class="checkbox">
+                                    <input class="checkbox__input" type="checkbox" value="5" name="checkbox1">
+                                    <span class="checkbox__label">
+                                        <span class="checkbox__icon">
+                                            <svg aria-hidden="true" width="10" height="9">
+                                                <use xlink:href="img/sprite.svg#check2">
+                                                </use>
+                                            </svg>
+                                        </span>
+                                        <span class="checkbox__text">
+                                            Гусев Сергей Владимирович - <strong>gusevsergeyvlad</strong>
+                                        </span>
+                                    </span>
+                                </label>
+                                <label class="checkbox">
+                                    <input class="checkbox__input" type="checkbox" value="6" name="checkbox1">
+                                    <span class="checkbox__label">
+                                        <span class="checkbox__icon">
+                                            <svg aria-hidden="true" width="10" height="9">
+                                                <use xlink:href="img/sprite.svg#check2">
+                                                </use>
+                                            </svg>
+                                        </span>
+                                        <span class="checkbox__text">
+                                            Гусев Сергей Владимирович - <strong>gusevsergeyvlad</strong>
+                                        </span>
+                                    </span>
+                                </label>
+                                <label class="checkbox">
+                                    <input class="checkbox__input" type="checkbox" value="7" name="checkbox1">
+                                    <span class="checkbox__label">
+                                        <span class="checkbox__icon">
+                                            <svg aria-hidden="true" width="10" height="9">
+                                                <use xlink:href="img/sprite.svg#check2">
+                                                </use>
+                                            </svg>
+                                        </span>
+                                        <span class="checkbox__text">
+                                            Гусев Сергей Владимирович - <strong>gusevsergeyvlad</strong>
+                                        </span>
+                                    </span>
+                                </label>
+                                <label class="checkbox">
+                                    <input class="checkbox__input" type="checkbox" value="8" name="checkbox1">
+                                    <span class="checkbox__label">
+                                        <span class="checkbox__icon">
+                                            <svg aria-hidden="true" width="10" height="9">
+                                                <use xlink:href="img/sprite.svg#check2">
+                                                </use>
+                                            </svg>
+                                        </span>
+                                        <span class="checkbox__text">
+                                            Гусев Сергей Владимирович - <strong>gusevsergeyvlad</strong>
+                                        </span>
+                                    </span>
+                                </label>
+                                <label class="checkbox">
+                                    <input class="checkbox__input" type="checkbox" value="9" name="checkbox1">
+                                    <span class="checkbox__label">
+                                        <span class="checkbox__icon">
+                                            <svg aria-hidden="true" width="10" height="9">
+                                                <use xlink:href="img/sprite.svg#check2">
+                                                </use>
+                                            </svg>
+                                        </span>
+                                        <span class="checkbox__text">
+                                            Гусев Сергей Владимирович - <strong>gusevsergeyvlad</strong>
+                                        </span>
+                                    </span>
+                                </label>
+                                <label class="checkbox">
+                                    <input class="checkbox__input" type="checkbox" value="10" name="checkbox1">
+                                    <span class="checkbox__label">
+                                        <span class="checkbox__icon">
+                                            <svg aria-hidden="true" width="10" height="9">
+                                                <use xlink:href="img/sprite.svg#check2">
+                                                </use>
+                                            </svg>
+                                        </span>
+                                        <span class="checkbox__text">
+                                            Гусев Сергей Владимирович - <strong>gusevsergeyvlad</strong>
+                                        </span>
+                                    </span>
+                                </label>
+                            </div>
+                            <button hidden data-showmore-button type="button" class="select-bases-showmore__more">
+                                <svg aria-hidden="true" width="14" height="14">
+                                    <use xlink:href="img/sprite.svg#plus1"></use>
+                                </svg>
+                                Показать еще (7)
+                            </button>
+                        </div>
+                        <div class="popup-warning">
+                            <div class="popup-warning__item">
+                                <div class="popup-warning__title">
+                                    Внимание!
+                                </div>
+                                <div class="popup-warning__text">
+                                    <p>
+                                        Выбор базы нужен специалистам Технической Поддержки для настройки ЭСФ в 1С.
+                                        Закрепление подписки на дополнительные БИНы осуществляется не при покупке, а при
+                                        отправке ЭСФ с базы 1С.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="popup-buttons">
+                    <button data-close data-btn="#btn-sent3" type="submit" class="btn btn-bg">
+                        <span>Сохранить</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    {% include 'blocks/login.njk' %}
+    {% include 'blocks/scripts.njk' %}
+</body>
+
+</html>

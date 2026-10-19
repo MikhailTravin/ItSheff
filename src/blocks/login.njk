@@ -129,7 +129,10 @@
                             </div>
                         </div>
                         <div class="form__captcha">
-                            <img src="img/captcha.webp" alt="">
+                            <div class="g-recaptcha smart-captcha" data-sitekey="" data-callback="onCaptchaSuccess"
+                                data-testid="smartCaptcha-container">
+                                <div style="display: none;"></div>
+                            </div>
                         </div>
                         <button type="submit" data-popup="#create-account"
                             class="btn btn-bg btn-next">Продолжить</button>

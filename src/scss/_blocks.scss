@@ -23,9 +23,9 @@
         }
         li {
             display: flex;
-            gap: 28px;
+            gap: 8px 28px;
             @media (max-width: 767px) {
-                gap: 21px;
+                gap: 8px 21px;
             }
             &::after {
                 content: "";
@@ -39,6 +39,8 @@
                 background-repeat: 100% 100%;
             }
             &:last-child {
+                flex-wrap: wrap;
+                gap: 8px 12px;
                 &::after {
                     content: "";
                     display: none;
@@ -98,12 +100,12 @@
         display: flex;
         align-items: center;
         gap: 8px;
-        margin-left: 12px;
     }
 
     // .breadcrumbs__badge
 
     &__badge {
+        white-space: nowrap;
         border-radius: 40px;
         padding: 7px 13px;
         background: #f0f2f4;
@@ -290,9 +292,12 @@
         gap: 22px;
         height: 100%;
         &.columns2 {
-            padding: 0px 28px 28px;
+            padding: 0px 20px 20px;
             @media (max-width: 1200px) {
                 padding: 0px 20px 36px 20px;
+            }
+            @media (max-width: 992px) {
+                padding: 0px 16px 9px 16px;
             }
             @media (max-width: 700px) {
                 padding: 0px 16px 16px 16px;
@@ -4456,6 +4461,12 @@
     @media (max-width: 700px) {
         padding: 10px 0px 0px 0px;
     }
+    .tabs-cart-open & {
+        display: none;
+        @media (max-width: 1250px) {
+            display: block;
+        }
+    }
     // .block-recommend__content
 
     &__content {
@@ -4509,6 +4520,12 @@
         font-weight: 600;
         font-size: 20px;
         line-height: 120%;
+        transition: color 0.3s;
+        @media (any-hover: hover) {
+            &:hover {
+                color: #000;
+            }
+        }
         @media (max-width: 700px) {
             font-weight: 600;
             font-size: 16px;
@@ -6603,6 +6620,7 @@
         .header-menu {
             @media (min-width: 1201px) {
                 position: sticky;
+                height: auto;
                 align-items: stretch;
                 width: 100%;
                 top: 0;
@@ -7125,3 +7143,5 @@
         }
     }
 }
+
+//========================================================================================================================================================

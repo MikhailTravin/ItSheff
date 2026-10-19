@@ -35,7 +35,7 @@ body::after {
     }
 
     @media (max-width: 650px) {
-        padding: 60px 0px;
+        padding: 60px 8px;
     }
 }
 
@@ -81,8 +81,9 @@ body::after {
     }
 
     @media (max-width: 650px) {
-        border-radius: 0px;
-        max-width: 100%;
+        ///border-radius: 0px;
+        //max-width: 100%;
+        border-radius: 12px;
     }
 
     .lock & {
@@ -235,6 +236,28 @@ body::after {
             max-width: 280px;
             @media (max-width: 650px) {
                 max-width: 100%;
+            }
+        }
+    }
+
+    p {
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 100%;
+        text-align: center;
+        margin-top: 4px;
+        @media (max-width: 650px) {
+            margin-top: 0px;
+        }
+        a {
+            color: #f26135;
+            @media (any-hover: hover) {
+                &:hover {
+                    color: #d9481c;
+                }
+            }
+            &:active {
+                color: #c03b12;
             }
         }
     }
@@ -2058,6 +2081,15 @@ body::after {
     padding: 0px 0px 48px 0px;
     @media (max-width: 650px) {
         padding: 0px 0px 40px 0px;
+    }
+    &.popup-select-bases-card {
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+        margin-top: -20px;
+        @media (max-width: 650px) {
+            gap: 20px;
+        }
     }
 }
 .select-bases-top {

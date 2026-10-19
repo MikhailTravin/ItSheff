@@ -27,15 +27,15 @@
     @media (any-hover: hover) {
         &:hover {
             svg {
-                stroke: #000;
-                color: #000;
+                stroke: #64707a;
+                color: #64707a;
             }
         }
     }
     &:active {
         svg {
-            stroke: #000;
-            color: #000;
+            stroke: #2c333a;
+            color: #2c333a;
         }
     }
 }

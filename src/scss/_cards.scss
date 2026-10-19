@@ -99,6 +99,9 @@
         padding: 16px;
         gap: 10px;
     }
+    a {
+        flex: 1 1 auto;
+    }
     p {
         flex: 1 1 auto;
         font-weight: 400;
@@ -116,7 +119,8 @@
         align-items: start;
         gap: 16px;
         @media (max-width: 700px) {
-            gap: 12px; align-items: center;
+            gap: 12px;
+            align-items: center;
         }
     }
 
@@ -189,6 +193,60 @@
         &.badge-orange {
             background: #ffe8ce;
             color: #9a3110;
+        }
+    }
+
+    // .card-recommend__bottom
+
+    &__bottom {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px 24px;
+        border-top: 1px solid #e1e4e7;
+        padding: 20px 0px 0px 0px;
+        margin-top: 12px;
+        @media (max-width: 700px) {
+            padding: 16px 0px 0px 0px;
+            margin-top: 6px;
+        }
+        @media (max-width: 370px) {
+            flex-direction: column;
+        }
+        .btn {
+            flex: 0 0 190px;
+            @media (max-width: 700px) {
+                flex: 0 0 135px;
+            }
+            @media (max-width: 370px) {
+                width: 100%;
+                flex: 0 1 auto;
+            }
+        }
+    }
+
+    // .card-recommend__left
+
+    &__left {
+        flex: 1 1 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+    }
+
+    // .card-recommend__price
+
+    &__price {
+        white-space: nowrap;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        font-weight: 600;
+        font-size: 20px;
+        line-height: 120%;
+        span {
+            font-weight: 400;
+            font-size: 12px;
         }
     }
 }
