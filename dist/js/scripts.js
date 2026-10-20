@@ -688,9 +688,10 @@ tabs();
 
 //========================================================================================================================================================
 
-const notificationIcon = document.querySelector('.header-notifications');
+const notifications = document.querySelector('.header .header-notifications');
 
-if (notificationIcon) {
+if (notifications) {
+  const notificationIcon = notifications;
   const documentElement = document.documentElement;
 
   function isDesktop() {
@@ -712,9 +713,7 @@ if (notificationIcon) {
   function handleClick(event) {
     event.stopPropagation();
     event.preventDefault();
-
     closeOtherMenu();
-
     if (documentElement.classList.contains('open-notifications')) {
       documentElement.classList.remove('open-notifications');
     } else {
@@ -731,8 +730,7 @@ if (notificationIcon) {
   }
 
   function handleClickOutside(event) {
-    const notifications = document.querySelector('.header-notifications');
-    if (notifications && !notifications.contains(event.target)) {
+    if (!notificationIcon.contains(event.target)) {
       documentElement.classList.remove('open-notifications');
     }
   }
@@ -761,7 +759,6 @@ if (notificationIcon) {
         notificationIcon.addEventListener('click', handleClick);
         documentElement.classList.remove('open-notifications');
       }
-
       if (documentElement.classList.contains('menu-open')) {
         documentElement.classList.remove('menu-open');
       }
@@ -6588,9 +6585,21 @@ if (document.readyState === 'loading') {
 
 //========================================================================================================================================================
 
-const columnsContainer = document.querySelector('.block-cabinet__dragging');
-if (columnsContainer) {
-  const columns = columnsContainer.querySelectorAll('.block-cabinet__column');
+function initDraggable(containerSelector, itemSelector, handleSelector, options = {}) {
+  const columnsContainer = document.querySelector(containerSelector);
+  if (!columnsContainer) return;
+
+  const {
+    dragThreshold = 3,
+    swapDownPercent = -35,
+    swapUpPercent = -50,
+    edgeSwapThreshold = 50,
+    animationSpeed = 0.2,
+  } = options;
+
+  const columns = columnsContainer.querySelectorAll(itemSelector);
+  if (!columns.length) return;
+
   let draggedColumn = null;
   let offsetX, offsetY;
   let startX, startY;
@@ -6598,49 +6607,53 @@ if (columnsContainer) {
   let isDragging = false;
   let clone = null;
 
-  const DRAG_THRESHOLD = 3;
-  const SWAP_THRESHOLD_DOWN_PERCENT = -35;
-  const SWAP_THRESHOLD_UP_PERCENT = -50;
-  const EDGE_SWAP_THRESHOLD = 50;
-  const ANIMATION_SPEED = 0.2;
+  const DRAG_THRESHOLD = dragThreshold;
+  const SWAP_THRESHOLD_DOWN_PERCENT = swapDownPercent;
+  const SWAP_THRESHOLD_UP_PERCENT = swapUpPercent;
+  const EDGE_SWAP_THRESHOLD = edgeSwapThreshold;
+  const ANIMATION_SPEED = animationSpeed;
 
-  const style = document.createElement('style');
-  style.textContent = `
-    .block-cabinet__dragging .block-cabinet__column {
-      transition: transform ${ANIMATION_SPEED}s cubic-bezier(0.2, 0, 0, 1);
-      position: relative;
-    }
-    .block-cabinet__dragging .block-cabinet__column.drag-placeholder {
-      opacity: 0.3;
-      pointer-events: none;
-    }
-    .block-cabinet__drag-clone {
-      position: fixed;
-      z-index: 10000;
-      pointer-events: none;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-      opacity: 0.95;
-      cursor: grabbing;
-    }
-    .cabinet-objects-top__picker {
-      cursor: grab;
-      transition: opacity 0.15s ease, transform 0.15s ease;
-      touch-action: none;
-      user-select: none;
-    }
-    .cabinet-objects-top__picker.active {
-      cursor: grabbing;
-      opacity: 0.7;
-      transform: scale(0.9);
-    }
-    .cabinet-objects-top__picker svg {
-      pointer-events: none;
-    }
-  `;
-  document.head.appendChild(style);
+  const styleId = 'drag-style-' + containerSelector.replace(/\W/g, '') + '-' + itemSelector.replace(/\W/g, '');
+  if (!document.getElementById(styleId)) {
+    const style = document.createElement('style');
+    style.id = styleId;
+    style.textContent = `
+      ${containerSelector} ${itemSelector} {
+        transition: transform ${ANIMATION_SPEED}s cubic-bezier(0.2, 0, 0, 1);
+        position: relative;
+      }
+      ${containerSelector} ${itemSelector}.drag-placeholder {
+        opacity: 0.3;
+        pointer-events: none;
+      }
+      .block-cabinet__drag-clone {
+        position: fixed;
+        z-index: 10000;
+        pointer-events: none;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        opacity: 0.95;
+        cursor: grabbing;
+      }
+      ${handleSelector} {
+        cursor: grab;
+        transition: opacity 0.15s ease, transform 0.15s ease;
+        touch-action: none;
+        user-select: none;
+      }
+      ${handleSelector}.active {
+        cursor: grabbing;
+        opacity: 0.7;
+        transform: scale(0.9);
+      }
+      ${handleSelector} svg {
+        pointer-events: none;
+      }
+    `;
+    document.head.appendChild(style);
+  }
 
   function savePositions() {
-    const allColumns = columnsContainer.querySelectorAll('.block-cabinet__column:not(.drag-placeholder)');
+    const allColumns = columnsContainer.querySelectorAll(`${itemSelector}:not(.drag-placeholder)`);
     allColumns.forEach(column => {
       const rect = column.getBoundingClientRect();
       column.dataset.prevTop = rect.top;
@@ -6649,7 +6662,7 @@ if (columnsContainer) {
   }
 
   function animatePositions() {
-    const allColumns = columnsContainer.querySelectorAll('.block-cabinet__column:not(.drag-placeholder)');
+    const allColumns = columnsContainer.querySelectorAll(`${itemSelector}:not(.drag-placeholder)`);
     allColumns.forEach(column => {
       const prevTop = parseFloat(column.dataset.prevTop || 0);
       const prevLeft = parseFloat(column.dataset.prevLeft || 0);
@@ -6678,6 +6691,12 @@ if (columnsContainer) {
     cloneEl.style.width = rect.width + 'px';
     cloneEl.style.height = rect.height + 'px';
 
+    // Отключаем инпуты в клоне, чтобы не мешали radio-группам
+    cloneEl.querySelectorAll('input').forEach(i => {
+      i.disabled = true;
+      i.tabIndex = -1;
+    });
+
     return cloneEl;
   }
 
@@ -6702,7 +6721,7 @@ if (columnsContainer) {
   }
 
   function getClosestInsertPosition(touchY) {
-    const allColumns = Array.from(columnsContainer.querySelectorAll('.block-cabinet__column:not(.drag-placeholder)'));
+    const allColumns = Array.from(columnsContainer.querySelectorAll(`${itemSelector}:not(.drag-placeholder)`));
     let closestColumn = null;
     let minDistance = Infinity;
     let insertBefore = false;
@@ -6723,7 +6742,7 @@ if (columnsContainer) {
   }
 
   columns.forEach(column => {
-    const picker = column.querySelector('.cabinet-objects-top__picker');
+    const picker = column.querySelector(handleSelector);
     if (!picker) return;
 
     picker.addEventListener('mousedown', initDrag);
@@ -6731,7 +6750,7 @@ if (columnsContainer) {
   });
 
   function initDrag(e) {
-    const column = e.target.closest('.block-cabinet__column');
+    const column = e.target.closest(itemSelector);
     if (!column) return;
     if (!columnsContainer.contains(column)) return;
 
@@ -6750,7 +6769,7 @@ if (columnsContainer) {
     offsetX = touch.clientX - rect.left;
     offsetY = touch.clientY - rect.top;
 
-    const picker = column.querySelector('.cabinet-objects-top__picker');
+    const picker = column.querySelector(handleSelector);
     if (picker) {
       picker.classList.add('active');
       activePicker = picker;
@@ -6789,7 +6808,7 @@ if (columnsContainer) {
 
     updateClonePosition(touch);
 
-    const allColumns = Array.from(columnsContainer.querySelectorAll('.block-cabinet__column:not(.drag-placeholder)'));
+    const allColumns = Array.from(columnsContainer.querySelectorAll(`${itemSelector}:not(.drag-placeholder)`));
     const draggedIndex = allColumns.indexOf(draggedColumn);
     const containerRect = columnsContainer.getBoundingClientRect();
     const cloneRect = clone.getBoundingClientRect();
@@ -6860,7 +6879,7 @@ if (columnsContainer) {
 
       animatePositions();
 
-      const newDraggedIndex = Array.from(columnsContainer.querySelectorAll('.block-cabinet__column:not(.drag-placeholder)')).indexOf(draggedColumn);
+      const newDraggedIndex = Array.from(columnsContainer.querySelectorAll(`${itemSelector}:not(.drag-placeholder)`)).indexOf(draggedColumn);
       if (newDraggedIndex !== draggedIndex) {
         setTimeout(() => {
           if (clone && draggedColumn) {
@@ -6903,8 +6922,7 @@ if (columnsContainer) {
 
     draggedColumn.classList.remove('drag-placeholder');
 
-    const allColumns = columnsContainer.querySelectorAll('.block-cabinet__column');
-    allColumns.forEach(col => {
+    columnsContainer.querySelectorAll(itemSelector).forEach(col => {
       col.style.transform = '';
       col.style.transition = '';
     });
@@ -6918,6 +6936,18 @@ if (columnsContainer) {
     isDragging = false;
   }
 }
+
+initDraggable(
+  '.block-cabinet__dragging',
+  '.block-cabinet__column',
+  '.cabinet-objects-top__picker'
+);
+
+initDraggable(
+  '.block-cabinet__dragging',
+  '.checkbox-bases',
+  '.cabinet-objects-top__picker'
+);
 
 //========================================================================================================================================================
 
