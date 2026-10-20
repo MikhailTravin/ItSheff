@@ -7277,6 +7277,31 @@ if (document.querySelector('.block-recommend__slider')) {
   });
 }
 
+document.querySelectorAll('.block-recommend__slider.recommend-slider3').forEach((sliderEl) => {
+  const block = sliderEl.closest('.block-recommend');
+  const prevEl = block.querySelector('.recommend-arrow-prev');
+  const nextEl = block.querySelector('.recommend-arrow-next');
+
+  new Swiper(sliderEl, {
+    observer: true,
+    observeParents: true,
+    slidesPerView: "auto",
+    spaceBetween: 8,
+    slidesPerGroup: 1,
+    speed: 400,
+    preloadImages: true,
+    navigation: {
+      prevEl: prevEl,
+      nextEl: nextEl,
+    },
+    breakpoints: {
+      768: { slidesPerView: "auto", spaceBetween: 24, slidesPerGroup: 1 },
+      1200: { slidesPerView: 3, spaceBetween: 24, slidesPerGroup: 3 },
+      1500: { slidesPerView: 3, spaceBetween: 0, slidesPerGroup: 3 },
+    },
+  });
+});
+
 //========================================================================================================================================================
 
 const favoritesElements = document.querySelectorAll('.favorites');
@@ -7631,3 +7656,152 @@ if (document.readyState === 'loading') {
 } else {
   initFixedBottomSpacing();
 }
+
+//========================================================================================================================================================
+
+// Анимация цифр
+function digitsCounter() {
+  const VISIBLE_THRESHOLD = 0.5;
+
+  function digitsCountersInit(digitsCountersItems) {
+    const digitsCounters = digitsCountersItems
+      ? digitsCountersItems
+      : document.querySelectorAll("[data-digits-counter]");
+
+    digitsCounters.forEach(digitsCounter => {
+      if (digitsCounter.hasAttribute('data-go')) return;
+      const element = digitsCounter.closest('[data-watch]') || digitsCounter;
+      if (!isElementVisible(element, VISIBLE_THRESHOLD)) return;
+      startCounterAnimation(digitsCounter);
+    });
+  }
+
+  function isElementVisible(element, threshold = 0.5) {
+    const rect = element.getBoundingClientRect();
+    const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+    const visibleHeight = Math.min(rect.bottom, windowHeight) - Math.max(rect.top, 0);
+    const elementHeight = rect.height;
+    if (elementHeight === 0) return false;
+    return (visibleHeight / elementHeight) >= threshold
+      && rect.top < windowHeight && rect.bottom > 0;
+  }
+
+  function getWatchAppearDuration(watchEl) {
+    if (!watchEl) return 0;
+    const style = window.getComputedStyle(watchEl);
+    const durations = style.transitionDuration
+      .split(',')
+      .map(v => v.trim())
+      .map(v => v.endsWith('ms') ? parseFloat(v) : parseFloat(v) * 1000)
+      .filter(v => !isNaN(v));
+    return durations.length ? Math.max(...durations) : 0;
+  }
+
+  function startCounterAnimation(digitsCounter) {
+    digitsCounter.setAttribute('data-go', '');
+
+    const plusSpan = digitsCounter.querySelector('.counter-plus');
+    if (plusSpan) plusSpan.classList.remove('is-visible');
+
+    const raw = (digitsCounter.dataset.originalValue || '0').replace(/\s/g, '');
+    digitsCounter.dataset.originalValue = raw;
+
+    Array.from(digitsCounter.childNodes).forEach(node => {
+      if (node.nodeType === Node.TEXT_NODE) node.remove();
+    });
+
+    let numberNode = digitsCounter.querySelector('.counter-number');
+    if (!numberNode) {
+      numberNode = document.createElement('span');
+      numberNode.className = 'counter-number';
+      digitsCounter.insertBefore(numberNode, digitsCounter.firstChild);
+    }
+    numberNode.textContent = '0';
+
+    const watchEl = digitsCounter.closest('[data-watch]');
+    const cardDelay = watchEl ? (parseInt(watchEl.dataset.watchDelay, 10) || 0) : 0;
+    const appearDuration = getWatchAppearDuration(watchEl);
+    const totalDelay = cardDelay + appearDuration;
+
+    setTimeout(() => {
+      digitsCountersAnimate(numberNode, plusSpan);
+    }, totalDelay);
+  }
+
+  function digitsCountersAnimate(numberNode, plusSpan) {
+    const digitsCounter = numberNode.closest('[data-digits-counter]');
+    const duration = parseFloat(digitsCounter.dataset.digitsCounterSpeed) || 1000;
+    const originalValue = digitsCounter.dataset.originalValue;
+    const hasDecimal = originalValue.includes(',') || originalValue.includes('.');
+    const numericValue = parseFloat(originalValue.replace(',', '.'));
+    const decimalPlaces = hasDecimal
+      ? (originalValue.split(/[,.]/)[1] || '').length
+      : 0;
+    let startTimestamp = null;
+
+    const step = (timestamp) => {
+      if (!startTimestamp) startTimestamp = timestamp;
+      const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+      let currentValue = progress * numericValue;
+      currentValue = decimalPlaces > 0
+        ? parseFloat(currentValue.toFixed(decimalPlaces))
+        : Math.floor(currentValue);
+      numberNode.textContent = formatNumber(currentValue, decimalPlaces);
+
+      if (progress < 1) {
+        window.requestAnimationFrame(step);
+      } else {
+        numberNode.textContent = formatNumber(numericValue, decimalPlaces);
+        if (plusSpan) {
+          requestAnimationFrame(() => plusSpan.classList.add('is-visible'));
+        }
+        digitsCounter.removeAttribute('data-go');
+      }
+    };
+    window.requestAnimationFrame(step);
+  }
+
+  function formatNumber(value, decimalPlaces) {
+    if (decimalPlaces > 0) {
+      return value.toFixed(decimalPlaces).replace('.', ',');
+    }
+    return Math.floor(value).toString();
+  }
+
+  function digitsCounterAction(e) {
+    const entry = e.detail.entry;
+    if (!entry.isIntersecting) return;
+    const target = entry.target;
+    const counters = target.querySelectorAll("[data-digits-counter]");
+    if (counters.length) digitsCountersInit(counters);
+  }
+
+  function initIntersectionObserver() {
+    const counters = document.querySelectorAll("[data-digits-counter]");
+    if (!('IntersectionObserver' in window)) {
+      digitsCountersInit();
+      return;
+    }
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && entry.intersectionRatio >= VISIBLE_THRESHOLD) {
+          const counter = entry.target;
+          if (!counter.hasAttribute('data-go')) startCounterAnimation(counter);
+        }
+      });
+    }, { threshold: VISIBLE_THRESHOLD });
+    counters.forEach(counter => observer.observe(counter));
+  }
+
+  document.addEventListener("watcherCallback", digitsCounterAction);
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initIntersectionObserver);
+  } else {
+    initIntersectionObserver();
+  }
+
+  setTimeout(() => digitsCountersInit(), 100);
+}
+
+digitsCounter();

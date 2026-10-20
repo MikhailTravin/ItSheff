@@ -905,8 +905,194 @@
 							<div class="product-info-steps">
 								<div class="product-info-steps__step step1">
 									<div class="product-info-steps__image">
-										<img src="img/" alt="">
+										<img loading="lazy" src="img/image40.webp" alt="">
 										<span>Подпись к картинке (опционально)</span>
+									</div>
+									<div class="product-info-steps__body">
+										<div class="product-info-steps__head">
+											<span class="product-info-steps__number">1</span>
+											<h3 class="product-info-steps__title">Подключите ИТС</h3>
+										</div>
+										<div class="product-info-steps__text">
+											<p>Перед настройкой ЭСФ необходимо подключить интернет-поддержку 1С.</p>
+											<p>
+												Откройте:<br>
+												<strong>Администрирование → Интернет-поддержка и сервисы →
+													Подключить</strong>
+											</p>
+											<p>Введите логин и пароль от ИТС.</p>
+											<p>
+												Если вы не знаете свои учетные данные, ничего искать не нужно. Они хранятся
+												в системе
+												вашего провайдера услуг. Просто <a href="./">обратитесь в поддержку</a>, и
+												они отправят
+												логин и пароль на основную электронную почту вашей организации.
+											</p>
+										</div>
+									</div>
+								</div>
+								<div class="product-info-steps__step step2">
+									<div class="product-info-steps__head">
+										<span class="product-info-steps__number">2</span>
+										<h3 class="product-info-steps__title">Настройте криптографическую библиотеку</h3>
+									</div>
+									<div class="product-info-steps__text">
+										<p>Теперь необходимо выбрать способ работы с электронной подписью.</p>
+									</div>
+									<div class="product-info-steps__image">
+										<img loading="lazy" src="img/image41.webp" alt="">
+										<span>Подпись к картинке (опционально)</span>
+									</div>
+									<div class="product-info-steps__text">
+										<p>
+											Перейдите в раздел:<br>
+											<strong>Администрирование → Общие настройки → Криптографическая библиотека →
+												Настройка криптографии</strong>
+										</p>
+										<p>Выберите подходящий вариант:</p>
+										<ol>
+											<li>Если работаете через тонкий клиент выберите <strong>NCALayer</strong>;</li>
+											<li>Если через <strong>RDP</strong> — <strong>Kalkan</strong>.</li>
+										</ol>
+									</div>
+								</div>
+								<div class="product-info-steps__step step3">
+									<div class="product-info-steps__head">
+										<span class="product-info-steps__number">3</span>
+										<h3 class="product-info-steps__title">Настройте обмен с ИС ЭСФ</h3>
+									</div>
+									<div class="product-info-steps__text">
+										<p>
+											Перейдите:<br>
+											<strong>Администрирование → Общие настройки → Электронные счета-фактуры →
+												Настройка электронных счетов-фактур</strong>
+										</p>
+									</div>
+									<div class="product-info-steps__cols">
+										<div class="product-info-steps__col">
+											<div class="product-info-steps__image">
+												<img loading="lazy" src="img/image40.webp" alt="">
+											</div>
+											<div class="product-info-steps__text">
+												<p>
+													Включите способы обмена в разделе «<strong>Способы обмена с ИС
+														ЭСФ</strong>»
+													установите галочки напротив пунктов:
+												</p>
+												<ol>
+													<li>Прямой обмен с ИС ЭСФ;</li>
+													<li>Обмен с ИС ЭСФ через выгрузку/загрузку XML-файлов.</li>
+												</ol>
+											</div>
+										</div>
+										<div class="product-info-steps__col">
+											<div class="product-info-steps__image">
+												<img loading="lazy" src="img/image40.webp" alt="">
+											</div>
+											<div class="product-info-steps__text">
+												<p>
+													Укажите время активности тикетов.<br>
+													Ниже находится раздел «Криптографическая библиотека».
+												</p>
+												<p>В полях:</p>
+												<ol>
+													<li>Время активности тикета ЭСФ;</li>
+													<li>Время активности тикета ВС.</li>
+												</ol>
+												<p>
+													Укажите значение 1440. Это позволит использовать тикет в течение суток
+													без повторной
+													авторизации.
+												</p>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="product-info-steps__step step4">
+									<div class="product-info-steps__head">
+										<span class="product-info-steps__number">4</span>
+										<h3 class="product-info-steps__title">Настройте обмен с ИС ЭСФ</h3>
+									</div>
+									<div class="product-info-steps__cols cols3">
+										<div class="product-info-steps__col">
+											<div class="product-info-steps__text">
+												<p>
+													В разделе «<strong>Пользователи ИС ЭСФ</strong>» нажмите кнопку
+													«<strong>Создать</strong>».
+												</p>
+											</div>
+											<div class="product-info-steps__image">
+												<img loading="lazy" src="img/image40.webp" alt="">
+											</div>
+										</div>
+										<div class="product-info-steps__col">
+											<div class="product-info-steps__text">
+												<p>
+													После этого нажмите «<strong>Выбрать сертификат для входа в ИС
+														ЭСФ</strong>».
+												</p>
+											</div>
+											<div class="product-info-steps__image">
+												<img loading="lazy" src="img/image40.webp" alt="">
+											</div>
+											<div class="product-info-steps__text">
+												<p>
+													Выберите файл ключа <strong>ЭЦП</strong> на компьютере и нажмите
+													«<strong>Далее</strong>».
+												</p>
+											</div>
+										</div>
+										<div class="product-info-steps__col">
+											<div class="product-info-steps__text">
+												<p>
+													Затем введите пароль от портала ИС ЭСФ в поле «<strong>Пароль</strong>»
+													для входа в ИС ЭСФ.
+												</p>
+											</div>
+											<div class="product-info-steps__image">
+												<img loading="lazy" src="img/image40.webp" alt="">
+											</div>
+											<div class="product-info-steps__text">
+												<p>
+													На следующем шаге отметьте галочками организации, для которых будет
+													использоваться
+													выбранный сертификат.
+												</p>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="product-info-steps__step step5">
+									<div class="product-info-steps__head">
+										<span class="product-info-steps__number">5</span>
+										<h3 class="product-info-steps__title">Что делать, если настройка не выполняется</h3>
+									</div>
+									<div class="product-info-steps__cols">
+										<div class="product-info-steps__col">
+											<div class="product-info-steps__text">
+												<p>
+													Если проблема осталась, специалисты ITsheff помогут найти причину и
+													завершить настройку.
+													Для наших клиентов эта процедура занимает минимум времени — мы хорошо
+													знаем особенности
+													работы облачной 1С и настройки обмена с ИС ЭСФ.
+												</p>
+											</div>
+											<div class="product-info-steps__buttons">
+												<a href="./" class="btn btn-bg btn-big">Заказать настройку 1С:ЭСФ</a>
+												<a href="./" class="btn btn-big">Инструкция</a>
+											</div>
+										</div>
+										<div class="product-info-steps__col">
+											<div class="product-info-steps__text">
+												<p>Если при настройке возникают ошибки, проверьте несколько моментов:</p>
+												<ol>
+													<li>правильно ли выбрана криптографическая библиотека;</li>
+													<li>действителен ли сертификат ЭЦП;</li>
+													<li>верно ли указан пароль для входа в ИС ЭСФ.</li>
+												</ol>
+											</div>
+										</div>
 									</div>
 								</div>
 							</div>
