@@ -95,22 +95,28 @@ class ScrollWatcher {
         this.scrollWatcherCreate(configWatcher);
         items.forEach(item => this.observer.observe(item));
     }
-    applyWatchDelay(targetElement, isIntersecting) {
-        if (!targetElement.hasAttribute('data-watch-delay')) return;
-        const delay = parseInt(targetElement.dataset.watchDelay, 10) || 0;
-        if (isIntersecting) {
-            targetElement.style.setProperty('--watch-delay', `${delay}ms`);
-        }
-    }
     scrollWatcherIntersecting(entry, targetElement) {
         if (entry.isIntersecting) {
-            this.applyWatchDelay(targetElement, true);
-            !targetElement.classList.contains('_watcher-view') ? targetElement.classList.add('_watcher-view') : null;
-        } else {
-            targetElement.classList.contains('_watcher-view') ? targetElement.classList.remove('_watcher-view') : null;
-            if (targetElement.hasAttribute('data-watch-delay')) {
-                targetElement.style.removeProperty('--watch-delay');
+            if (!targetElement.classList.contains('_watcher-view')) {
+                if (targetElement.hasAttribute('data-watch-duration')) {
+                    const duration = targetElement.dataset.watchDuration;
+                    targetElement.style.transition = `all ${duration}`;
+                }
+                if (targetElement.hasAttribute('data-watch-delay')) {
+                    const delay = parseInt(targetElement.dataset.watchDelay);
+                    setTimeout(() => {
+                        targetElement.classList.add('_watcher-view');
+                    }, delay);
+                } else {
+                    targetElement.classList.add('_watcher-view');
+                }
             }
+        } else {
+            if (targetElement.hasAttribute('data-watch-duration')) {
+                const duration = targetElement.dataset.watchDuration;
+                targetElement.style.transition = `all ${duration}`;
+            }
+            targetElement.classList.contains('_watcher-view') ? targetElement.classList.remove('_watcher-view') : null;
         }
     }
     scrollWatcherOff(targetElement, observer) {

@@ -394,7 +394,7 @@
 									</div>
 								</div>
 							</div>
-							<div data-da=".header, 992, last" class="header-bottom__right">
+							<div data-da=".header, 992, last" class="header-bottom__right header-right-auto">
 								<div class="header-bottom__descr">
 									<div class="favorites">
 										<img loading="lazy" src="img/icons/heart.svg" alt="" class="favorites__icon1">
@@ -416,13 +416,13 @@
 			</header>
 			<main class="main main-white">
 
-				<div class="btn-sents">
+				<section class="btn-sents">
 					<div id="btn-sent1" class="btn-sent">
 						<span>Заявка оптравлена</span>
 					</div>
-				</div>
+				</section>
 
-				<div class="block-intro">
+				<section class="block-intro">
 					<img src="img/image14.webp" alt="" class="block-intro__bg desc">
 					<img src="img/image14-mob.webp" alt="" class="block-intro__bg mob">
 					<div class="container">
@@ -465,7 +465,7 @@
 							</div>
 						</div>
 					</div>
-				</div>
+				</section>
 
 				<div class="block-products block2">
 					<div class="container">
@@ -758,7 +758,7 @@
 					</div>
 				</div>
 
-				<div class="block-benefits block2">
+				<section class="block-benefits block2">
 					<div class="container">
 						<div class="heading-complex2">
 							<h2 class="title2" data-watch data-watch-once data-watch-delay="0">
@@ -853,9 +853,9 @@
 							</div>
 						</div>
 					</div>
-				</div>
+				</section>
 
-				<div class="block-info-number block2">
+				<section class="block-info-number block2">
 					<div class="container">
 						<div class="heading-complex2">
 							<h2 class="title2" data-watch data-watch-once data-watch-delay="0">
@@ -903,56 +903,296 @@
 							</div>
 						</div>
 					</div>
-				</div>
+				</section>
 
-				<div class="block-home-cabinet block2">
+				<section class="block-home-cabinet block2" data-cabinet data-autoplay="0">
 					<div class="container">
 						<div class="block-home-cabinet__content">
+							<div class="block-home-cabinet__left">
+								<div class="heading-complex2">
+									<h2 class="title2" data-watch data-watch-once data-watch-delay="0">
+										<span class="line-mask">
+											<span class="line-inner">Личный кабинет</span>
+										</span>
+									</h2>
+								</div>
+								<div class="spollers-home-cabinet">
+									<div class="spollers-home-cabinet__item is-active" data-cabinet-item>
+										<button type="button" class="spollers-home-cabinet__button" data-cabinet-tab id="cabinet-tab-1">
+											<span class="spollers-home-cabinet__icon">
+												<svg aria-hidden="true" width="22" height="22">
+													<use xlink:href="img/sprite.svg#cabinet"></use>
+												</svg>
+											</span>
+											<span class="spollers-home-cabinet__title">Подписки</span>
+										</button>
+										<div class="spollers-home-cabinet__body" data-cabinet-body id="cabinet-panel-1" role="tabpanel" aria-labelledby="cabinet-tab-1">
+											<div class="spollers-home-cabinet__text">
+												<p>Контролируйте состояние подписок на 1С, продлевайте или приостанавливайте
+													их.</p>
+											</div>
+										</div>
+									</div>
+									<div class="spollers-home-cabinet__item" data-cabinet-item>
+										<button type="button" class="spollers-home-cabinet__button" data-cabinet-tab id="cabinet-tab-2" role="tab" aria-selected="false" aria-expanded="false" aria-controls="cabinet-panel-2">
+											<span class="spollers-home-cabinet__icon">
+												<svg aria-hidden="true" width="20" height="23">
+													<use xlink:href="img/sprite.svg#documents"></use>
+												</svg>
+											</span>
+											<span class="spollers-home-cabinet__title">Счета и документы</span>
+										</button>
+										<div class="spollers-home-cabinet__body" data-cabinet-body id="cabinet-panel-2" role="tabpanel" aria-labelledby="cabinet-tab-2">
+											<div class="spollers-home-cabinet__text">
+												<p>Просматривайте начисления, оплачивайте счета и скачивайте закрывающие
+													документы.</p>
+											</div>
+										</div>
+									</div>
+									<div class="spollers-home-cabinet__item" data-cabinet-item>
+										<button type="button" class="spollers-home-cabinet__button" data-cabinet-tab id="cabinet-tab-3">
+											<span class="spollers-home-cabinet__icon">
+												<svg aria-hidden="true" width="22" height="24">
+													<use xlink:href="img/sprite.svg#databases"></use>
+												</svg>
+											</span>
+											<span class="spollers-home-cabinet__title">Базы данных</span>
+										</button>
+										<div class="spollers-home-cabinet__body" data-cabinet-body id="cabinet-panel-3">
+											<div class="spollers-home-cabinet__text">
+												<p>Загружайте базы, открывайте архивы и скачивайте данные на свой компьютер.
+												</p>
+											</div>
+										</div>
+									</div>
 
+									<div class="spollers-home-cabinet__item" data-cabinet-item>
+										<button type="button" class="spollers-home-cabinet__button" data-cabinet-tab id="cabinet-tab-4">
+											<span class="spollers-home-cabinet__icon">
+												<svg aria-hidden="true" width="22" height="24">
+													<use xlink:href="img/sprite.svg#users"></use>
+												</svg>
+											</span>
+											<span class="spollers-home-cabinet__title">Пользователи</span>
+										</button>
+										<div class="spollers-home-cabinet__body" data-cabinet-body id="cabinet-panel-4">
+											<div class="spollers-home-cabinet__text">
+												<p>Добавляйте сотрудников и управляйте их доступом к базам.</p>
+											</div>
+										</div>
+									</div>
+
+								</div>
+							</div>
+							<div class="block-home-cabinet__videos">
+								<div class="block-home-cabinet__video is-active" data-cabinet-slide>
+									<video muted loop playsinline preload="none" poster="img/image26.webp" data-src="files/video.mp4"></video>
+								</div>
+								<div class="block-home-cabinet__video" data-cabinet-slide>
+									<video muted loop playsinline preload="none" poster="img/image26.webp" data-src="files/video.mp4"></video>
+								</div>
+								<div class="block-home-cabinet__video" data-cabinet-slide>
+									<video muted loop playsinline preload="none" poster="img/image26.webp" data-src="files/video.mp4"></video>
+								</div>
+								<div class="block-home-cabinet__video" data-cabinet-slide>
+									<video muted loop playsinline preload="none" poster="img/image26.webp" data-src="files/video.mp4"></video>
+								</div>
+							</div>
 						</div>
 					</div>
-				</div>
+				</section>
 
-				<div class="block-services block2">
+				<section class="block-services block2">
 					<div class="container">
 						<div class="heading-complex2">
 							<h2 class="title2" data-watch data-watch-once data-watch-delay="0">
-								<span class="line-mask"><span class="line-inner">Услуги <span class="color">+</span></span></span>
+								<span class="line-mask">
+									<span class="line-inner">Услуги <span class="color">+</span>
+									</span>
+								</span>
 							</h2>
 						</div>
-						<div class="block-services__cards">
-							<div class="services-heading">
-								<div style="background: #edf7fe;" class="services-heading__icon">
-									<img src="img/icons/gear.svg" alt="">
-								</div>
-								<div class="services-heading__titles">
-									<div class="services-heading__title">
-										Помощь с базовыми настройками <span>(19)</span>
+						<div class="block-services__contents">
+							<div class="block-services__content">
+								<div class="services-heading">
+									<div style="background: #edf7fe;" class="services-heading__icon">
+										<img src="img/icons/gear.svg" alt="">
 									</div>
-									<p>
-										Помогаем подготовить 1С к работ`е: проверяем базу и настраиваем учет
-									</p>
+									<div class="services-heading__titles">
+										<div class="services-heading__title">
+											Помощь с базовыми настройками <span>(19)</span>
+										</div>
+										<p>
+											Помогаем подготовить 1С к работ`е: проверяем базу и настраиваем учет
+										</p>
+									</div>
+								</div>
+								<div class="block-services__body">
+									<div class="block-services__cards">
+										<a href="./" class="card-services">
+											<img loading="lazy" src="img/icons/cloud-key2.svg" alt="" class="card-services__pic1">
+											<p>
+												Авторизация в ITsheff через SSO
+											</p>
+										</a>
+										<a href="./" class="card-services">
+											<img loading="lazy" src="img/icons/setup.svg" alt="" class="card-services__pic1">
+											<p>
+												Диагностика базы на ошибки и исправление
+											</p>
+										</a>
+										<a href="./" class="card-services">
+											<img loading="lazy" src="img/icons/box-search.svg" alt="" class="card-services__pic1">
+											<p>
+												Корректировка остатков ТМЗ по источникам происхождения
+											</p>
+										</a>
+										<a href="./" class="card-services">
+											<img loading="lazy" src="img/icons/user-write.svg" alt="" class="card-services__pic1">
+											<p>
+												Налоговое консультирование (письменно)
+											</p>
+										</a>
+										<a href="./" class="card-services">
+											<img loading="lazy" src="img/icons/user-voice.svg" alt="" class="card-services__pic1">
+											<p>
+												Налоговое консультирование (устно)
+											</p>
+										</a>
+									</div>
+									<a href="./" class="btn btn-bg btn-big">
+										<svg aria-hidden="true" width="24" height="24">
+											<use xlink:href="img/sprite.svg#gear-svg"></use>
+										</svg>
+										<span>Все базовые настройки</span>
+									</a>
 								</div>
 							</div>
-							<div class="card-services">
-
+							<div class="block-services__content">
+								<div class="services-heading">
+									<div style="background: #fff5f5;" class="services-heading__icon">
+										<img src="img/icons/logo-1С.svg" alt="">
+									</div>
+									<div class="services-heading__titles">
+										<div class="services-heading__title">
+											Сервисы 1С <span>(8)</span>
+										</div>
+										<p>
+											Подключаем инструменты для отчетности, обмена документами и проверки
+											контрагентов
+										</p>
+									</div>
+								</div>
+								<div class="block-services__body">
+									<div class="block-services__cards">
+										<a href="./" class="card-services">
+											<img loading="lazy" src="img/icons/electronic-employment.svg" alt="" class="card-services__pic1">
+											<p>
+												1С: Электронные трудовые договоры
+											</p>
+										</a>
+										<a href="./" class="card-services">
+											<img loading="lazy" src="img/icons/QR-Box.svg" alt="" class="card-services__pic1">
+											<p>
+												1С: Маркировка для Казахстана
+											</p>
+										</a>
+										<a href="./" class="card-services">
+											<img loading="lazy" src="img/icons/report-document.svg" alt="" class="card-services__pic1">
+											<p>
+												1С:Отчетность для Казахстана. Пилотный (3 месяца)
+											</p>
+										</a>
+										<a href="./" class="card-services">
+											<img loading="lazy" src="img/icons/edo-documents.svg" alt="" class="card-services__pic1">
+											<p>
+												Сервис 1С:ЭДО для Казахстана
+											</p>
+										</a>
+										<a href="./" class="card-services">
+											<img loading="lazy" src="img/icons/vat2.svg" alt="" class="card-services__pic1">
+											<p>
+												Сервис 1С: ЭСФ
+											</p>
+										</a>
+									</div>
+									<a href="./" class="btn btn-bg btn-big">
+										<svg aria-hidden="true" width="28" height="17">
+											<use xlink:href="img/sprite.svg#logo-1c"></use>
+										</svg>
+										<span>Все сервисы 1С</span>
+									</a>
+								</div>
+							</div>
+							<div class="block-services__content">
+								<div class="services-heading">
+									<div style="background: #fff8ec;" class="services-heading__icon">
+										<img src="img/icons/improvements-expansions.svg" alt="">
+									</div>
+									<div class="services-heading__titles">
+										<div class="services-heading__title">
+											Доработки и
+											расширения <span>(15)</span>
+										</div>
+										<p>
+											Подбираем готовые решения для ваших задач и расширяем возможности 1С
+										</p>
+									</div>
+								</div>
+								<div class="block-services__body">
+									<div class="block-services__cards">
+										<a href="./" class="card-services">
+											<img loading="lazy" src="img/icons/ckeckbo-sync.svg" alt="" class="card-services__pic1">
+											<p>
+												Обработка — выборочная синхронизация между 1С:Управление торговлей и
+												1С:Бухгалтерия
+											</p>
+										</a>
+										<a href="./" class="card-services">
+											<img loading="lazy" src="img/icons/excel-table.svg" alt="" class="card-services__pic1">
+											<p>
+												Обработка: Загрузка данных из Excel в 1С
+											</p>
+										</a>
+										<a href="./" class="card-services">
+											<img loading="lazy" src="img/icons/list-document.svg" alt="" class="card-services__pic1">
+											<p>
+												Внешняя печатная форма: Печать авансового отчета на 1 странице
+											</p>
+										</a>
+										<a href="./" class="card-services">
+											<img loading="lazy" src="img/icons/reverse-database.svg" alt="" class="card-services__pic1">
+											<p>
+												Приведение доработанной базы к типовой
+											</p>
+										</a>
+										<a href="./" class="card-services">
+											<img loading="lazy" src="img/icons/user-gpx.svg" alt="" class="card-services__pic1">
+											<p>
+												Расширение: Договор ГПХ в 1С
+											</p>
+										</a>
+									</div>
+									<a href="./" class="btn btn-bg btn-big">
+										<svg aria-hidden="true" width="25" height="24">
+											<use xlink:href="img/sprite.svg#improvements-svg"></use>
+										</svg>
+										<span>Все доработки и расширения</span>
+									</a>
+								</div>
 							</div>
 						</div>
-						<div class="block-services__content">
-							<div class="block-reviews__bottom">
-								<p>
-									Помощь с базовыми настройками, доработки и расширения, настройка оборудования —
-									все дополнительные решения в одном месте.
-								</p>
-								<div class="block-reviews__buttons">
-									<a href="./" class="btn btn-big">Подключиться</a>
-								</div>
-							</div>
+						<div class="block-services__bottom">
+							<p>
+								Помощь с базовыми настройками, доработки и расширения, настройка оборудования —
+								все дополнительные решения в одном месте.
+							</p>
+							<a href="./" class="btn btn-big btn-bg">Подключиться</a>
 						</div>
 					</div>
-				</div>
+				</section>
 
-				<div data-watch data-watch-once data-watch-delay="0" class="block-reviews block2">
+				<section data-watch data-watch-once data-watch-delay="0" class="block-reviews block2">
 					<div data-watch data-watch-once data-watch-delay="0" class="block-reviews__bg1"></div>
 					<div data-watch data-watch-once data-watch-delay="0" class="block-reviews__bg2">
 						<div class="block-reviews-map">
@@ -1641,9 +1881,9 @@
 							</div>
 						</div>
 					</div>
-				</div>
+				</section>
 
-				<div class="block-news block2">
+				<section class="block-news block2">
 					<div class="container">
 						<div class="block-news__content">
 							<div class="block-news__top">
@@ -2045,9 +2285,9 @@
 							</a>
 						</div>
 					</div>
-				</div>
+				</section>
 
-				<div class="block-faq block2">
+				<section class="block-faq block2">
 					<div class="container">
 						<div class="block-faq__content">
 							<div class="block-faq__left">
@@ -2450,9 +2690,9 @@
 							</div>
 						</div>
 					</div>
-				</div>
+				</section>
 
-				<div class="block-clients block2">
+				<section class="block-clients block2">
 					<div class="container">
 						<div class="block-clients__content">
 							<div class="heading-complex2">
@@ -2482,7 +2722,7 @@
 							</div>
 						</div>
 					</div>
-				</div>
+				</section>
 
 			</main>
 			<footer class="footer">

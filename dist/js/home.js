@@ -470,3 +470,227 @@ function blockReviews() {
 }
 
 blockReviews();
+
+//========================================================================================================================================================
+
+function initCabinetTabs() {
+    document.querySelectorAll('[data-cabinet]').forEach(setupCabinet);
+}
+
+function setupCabinet(root) {
+    const items = [...root.querySelectorAll('[data-cabinet-item]')];
+    const tabs = items.map((item) => item.querySelector('[data-cabinet-tab]'));
+
+    const slidesContainer = root.querySelector('.block-home-cabinet__videos');
+    const slides = slidesContainer ? [...slidesContainer.querySelectorAll('[data-cabinet-slide]')] : [];
+
+    const originalParent = slidesContainer?.parentElement;
+    const originalNextSibling = slidesContainer?.nextElementSibling;
+    const spollersList = items[0]?.parentElement || null;
+
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const delay = reduceMotion ? 0 : parseInt(root.dataset.autoplay, 10) || 0;
+    const spollerSpeed = parseInt(root.dataset.spollersSpeed || 500, 10);
+    const mobileBreakpoint = 1100;
+
+    let current = -1;
+    let timer = null;
+    let inView = true;
+
+    root.style.setProperty('--cabinet-delay', `${delay}ms`);
+
+    function playVideo(video) {
+        if (!video) return;
+        const src = video.dataset.src;
+        if (!src) return;
+        if (!video.getAttribute('src')) {
+            video.src = src;
+            video.load();
+        }
+        video.play().catch(() => { });
+    }
+
+    function stopVideo(video) {
+        if (!video) return;
+        video.pause();
+        if (video.getAttribute('src')) video.currentTime = 0;
+    }
+
+    function startAutoplay() {
+        clearTimeout(timer);
+        items.forEach((item) => item.classList.remove('is-running'));
+        if (!delay || !inView || current < 0) return;
+        void root.offsetWidth;
+        items[current].classList.add('is-running');
+        timer = setTimeout(() => activate((current + 1) % items.length), delay);
+    }
+
+    function openBody(item, open) {
+        const tab = item.querySelector('[data-cabinet-tab]');
+        const body = item.querySelector('[data-cabinet-body]');
+        if (!tab || !body) return;
+
+        const isOpen = tab.classList.contains('_spoller-active');
+
+        if (open && !isOpen) {
+            tab.classList.add('_spoller-active');
+            item.classList.add('_spoller-active');
+            if (body.hidden) body.hidden = false;
+            _slideDown(body, spollerSpeed);
+        } else if (!open && isOpen) {
+            tab.classList.remove('_spoller-active');
+            item.classList.remove('_spoller-active');
+            _slideUp(body, spollerSpeed);
+        }
+    }
+
+    function moveContainerAfterActiveItem(index) {
+        if (!slidesContainer || !items[index] || !spollersList) return;
+        if (window.innerWidth > mobileBreakpoint) return;
+
+        const activeItem = items[index];
+
+        if (slidesContainer.previousElementSibling === activeItem) return;
+
+        if (activeItem.nextSibling) {
+            spollersList.insertBefore(slidesContainer, activeItem.nextSibling);
+        } else {
+            spollersList.appendChild(slidesContainer);
+        }
+    }
+
+    function resetContainerPosition() {
+        if (!slidesContainer || !originalParent) return;
+        if (window.innerWidth > mobileBreakpoint) {
+            if (slidesContainer.parentElement !== originalParent) {
+                if (originalNextSibling) {
+                    originalParent.insertBefore(slidesContainer, originalNextSibling);
+                } else {
+                    originalParent.appendChild(slidesContainer);
+                }
+            }
+        }
+    }
+
+    function activate(index) {
+        if (index === current) return;
+        current = index;
+
+        items.forEach((item, i) => {
+            const on = i === index;
+            const tab = tabs[i];
+            const body = item.querySelector('[data-cabinet-body]');
+
+            item.classList.toggle('is-active', on);
+
+            tab.setAttribute('aria-expanded', String(on));
+            tab.setAttribute('aria-selected', String(on));
+            tab.tabIndex = on ? 0 : -1;
+
+            if (body) body.inert = !on;
+
+            openBody(item, on);
+        });
+
+        slides.forEach((slide, i) => {
+            const on = i === index;
+            slide.classList.toggle('is-active', on);
+            slide.classList.toggle('is-before', i < index);
+            slide.setAttribute('aria-hidden', String(!on));
+
+            const video = slide.querySelector('video');
+            on ? playVideo(video) : stopVideo(video);
+        });
+
+        moveContainerAfterActiveItem(index);
+
+        startAutoplay();
+    }
+
+    tabs.forEach((tab, i) => {
+        tab.addEventListener('click', (e) => {
+            e.preventDefault();
+            activate(i);
+        });
+
+        tab.addEventListener('keydown', (e) => {
+            const keys = { ArrowDown: 1, ArrowRight: 1, ArrowUp: -1, ArrowLeft: -1 };
+            if (e.key in keys) {
+                e.preventDefault();
+                const next = (i + keys[e.key] + tabs.length) % tabs.length;
+                tabs[next].focus();
+                activate(next);
+            }
+        });
+    });
+
+    if ('IntersectionObserver' in window) {
+        new IntersectionObserver(
+            ([entry]) => {
+                inView = entry.isIntersecting;
+                const activeSlide = slides[current];
+                const video = activeSlide?.querySelector('video');
+
+                if (inView) {
+                    playVideo(video);
+                    startAutoplay();
+                } else {
+                    video?.pause();
+                    clearTimeout(timer);
+                    items.forEach((item) => item.classList.remove('is-running'));
+                }
+            },
+            { threshold: 0.35 }
+        ).observe(root);
+    }
+
+    root.classList.add('_spoller-init');
+    tabs.forEach((tab, i) => {
+        const body = items[i].querySelector('[data-cabinet-body]');
+        const on = i === 0;
+        tab.classList.toggle('_spoller-active', on);
+        items[i].classList.toggle('_spoller-active', on);
+        if (body) {
+            body.hidden = !on;
+            if (on) {
+                body.style.height = 'auto';
+                body.style.overflow = '';
+            }
+        }
+        tab.setAttribute('aria-expanded', String(on));
+        tab.setAttribute('aria-selected', String(on));
+        tab.tabIndex = on ? 0 : -1;
+        if (body) body.inert = !on;
+    });
+
+    current = 0;
+    items[0].classList.add('is-active');
+
+    slides.forEach((slide, i) => {
+        const on = i === 0;
+        slide.classList.toggle('is-active', on);
+        slide.classList.toggle('is-before', false);
+        slide.setAttribute('aria-hidden', String(!on));
+
+        const video = slide.querySelector('video');
+        on ? playVideo(video) : stopVideo(video);
+    });
+
+    moveContainerAfterActiveItem(0);
+
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+            if (window.innerWidth > mobileBreakpoint) {
+                resetContainerPosition();
+            } else {
+                moveContainerAfterActiveItem(current);
+            }
+        }, 100);
+    });
+
+    startAutoplay();
+}
+
+document.addEventListener('DOMContentLoaded', initCabinetTabs);
