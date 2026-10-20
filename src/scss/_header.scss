@@ -12,7 +12,6 @@
             pointer-events: none;
         }
         .header-bottom {
-            // поднимаем на высоту верхней части, а не на свою
             transform: translateY(calc(-1 * var(--header-top-height, 0px)));
         }
     }
@@ -1388,12 +1387,14 @@
     @media (max-width: 1200px) {
         flex: 0 0 56px;
     }
+    @media (max-width: 550px) {
+        flex: 0 0 48px;
+    }
+    @media (max-width: 390px) {
+        flex: 0 0 40px;
+    }
     @media (min-width: 1201px) {
         &:hover {
-            .header-notifications__dropdown {
-                opacity: 1;
-                pointer-events: auto;
-            }
             .header-notifications__icon {
                 &::after {
                     content: "";
@@ -1402,13 +1403,6 @@
             }
         }
     }
-    @media (max-width: 550px) {
-        flex: 0 0 48px;
-    }
-    @media (max-width: 390px) {
-        flex: 0 0 40px;
-    }
-
     // .header-notifications__icon
 
     &__icon {
@@ -1625,6 +1619,16 @@
         line-height: 133%;
     }
 }
+.header .header-notifications {
+    @media (min-width: 1201px) {
+        &:hover {
+            .header-notifications__dropdown {
+                opacity: 1;
+                pointer-events: auto;
+            }
+        }
+    }
+}
 
 .header-cart {
     @media (max-width: 1200px) {
@@ -1735,11 +1739,6 @@
         font-size: 10px;
         line-height: 160%;
         color: #fff;
-        @media (max-width: 1200px) {
-            .open-notifications & {
-                opacity: 0;
-            }
-        }
     }
 }
 
@@ -1990,6 +1989,7 @@
             a {
                 align-items: center;
                 display: none;
+                transition: color 0.3s;
                 @media (max-width: 992px) {
                     display: flex;
                 }
@@ -2008,6 +2008,11 @@
                         margin: 0 5.5px;
                     }
                 }
+                @media (any-hover: hover) {
+                    &:hover {
+                        color: #000;
+                    }
+                }
             }
 
             span {
@@ -2023,7 +2028,7 @@
         transform: translateY(-50%);
         padding-left: 4px;
         line-height: 1;
-        background: linear-gradient(to right, transparent, #f8f8f8 30%);
+        background: linear-gradient(to right, transparent, #f8f8f8 10%);
         pointer-events: none;
         display: none;
     }

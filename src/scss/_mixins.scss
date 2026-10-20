@@ -27,13 +27,26 @@
   height: 100%;
 }
 
+$loader-width: 550px;
+
+@mixin mq($bp) {
+  @media (max-width: $bp) {
+    @content;
+  }
+  @if $bp >= $loader-width {
+    .loader-page & {
+      @content;
+    }
+  }
+}
+
 /*
 Псевдоэлемент-расширитель для кнопок:
 1. Помогает попадать по небольшим кнопкам
 2. Помогает отлавливать событие нажатия на кнопку при наличии в ней различных элементов
 */
 @mixin btn-filler-inset($gap: 0) {
-  content: '';
+  content: "";
   position: absolute;
   inset: $gap $gap $gap $gap;
 }
@@ -59,7 +72,7 @@
 
   /* Hide scrollbar for IE, Edge and Firefox */
   & {
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
   }
 }
