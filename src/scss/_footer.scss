@@ -5,7 +5,11 @@
     }
     @media (max-width: 700px) {
         margin-bottom: 48px;
-        display: none;
+    }
+    &.footer-none {
+        @media (max-width: 700px) {
+            display: none;
+        }
     }
     .container {
         @media (max-width: 700px) {

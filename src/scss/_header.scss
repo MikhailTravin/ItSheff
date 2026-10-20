@@ -1989,7 +1989,6 @@
             white-space: nowrap;
             a {
                 align-items: center;
-                gap: 11px;
                 display: none;
                 @media (max-width: 992px) {
                     display: flex;
@@ -2093,6 +2092,7 @@
         background: #fff;
         width: 100%;
         opacity: 0;
+        z-index: 30;
         pointer-events: none;
         transition: opacity 0.3s;
         ul {

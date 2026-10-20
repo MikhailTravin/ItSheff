@@ -250,6 +250,24 @@
         }
     }
 }
+.card-recommend-other {
+    padding: 16px;
+    gap: 14px;
+    .card-recommend__pic1 {
+        width: 40px;
+        flex: 0 0 40px;
+    }
+    .card-recommend__titles {
+        gap: 8px;
+    }
+    .card-recommend__title {
+        font-size: 14px;
+        line-height: 114%;
+    }
+    .card-recommend__top {
+        gap: 12px;
+    }
+}
 
 .card-news {
     width: 100%;
