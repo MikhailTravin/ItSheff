@@ -1,0 +1,4 @@
+{# Список скриптов задаётся на самой странице: {% set scripts = ['core/helpers', ...] %} перед include этого блока. #}
+{% for script in scripts %}
+<script src="js/{{ script }}.js"></script>
+{% endfor %}

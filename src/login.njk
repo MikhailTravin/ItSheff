@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <title>Вход</title>
+    {% include 'blocks/head.njk' %}
+</head>
+
+<body class="preload mp">
+    <div class="main-wrapper-outer">
+        <main class="main main-other">
+
+            <div class="block-login">
+                <div class="block-login__images">
+                    <a href="./" class="header__logo">
+                        <svg aria-hidden="true" width="244" height="52">
+                            <use xlink:href="img/sprite.svg#logo1"></use>
+                        </svg>
+                    </a>
+                    <img src="img/image12.webp" alt="" class="block-login__pic1 pic-login">
+                </div>
+                <div class="block-login__content">
+                    <div class="block-login__body">
+                        <div class="block-login__top">
+                            <h1 class="title1">Войти</h1>
+                            <div class="block-login__text">
+                                Уже есть аккаунт?
+                                <a href="./">Регистрация</a>
+                            </div>
+                        </div>
+                        <form action="#" class="form">
+                            <div class="form__inputs">
+                                <div class="form__input">
+                                    <label for="login1">
+                                        Логин <span class="placeholder">*</span>
+                                    </label>
+                                    <input data-required data-error="Введите логин" id="login1" autocomplete="off"
+                                        type="text" name="form[]" placeholder="" value="" class="input">
+                                </div>
+                                <div class="form__input big">
+                                    <label for="password3" class="big">
+                                        Пароль<span class="placeholder">*</span>
+                                        <a href="./" class="link forgot-password">Забыли пароль?</a>
+                                    </label>
+                                    <div class="form__input-pass input">
+                                        <input data-required id="password3" data-error="Неверный логин или пароль"
+                                            autocomplete="off" type="password" name="form[]" placeholder="" value="">
+                                        <button type="button" class="form__viewpass">
+                                            <svg aria-hidden="true" width="20" height="20" class="icon1">
+                                                <use xlink:href="img/sprite.svg#eye1"></use>
+                                            </svg>
+                                            <svg aria-hidden="true" width="20" height="20" class="icon2">
+                                                <use xlink:href="img/sprite.svg#eye2"></use>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-bg">Войти</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+    {% set scripts = [
+        'core/helpers',
+        'core/shared-refs',
+        'core/menu',
+        'core/scroll-to',
+        'forms/form-validate',
+        'popups/popup',
+        'forms/form-fields',
+        'forms/form-submit',
+        'components/fixed-bottom-spacing'
+    ] %}
+    {% include 'blocks/scripts.njk' %}
+</body>
+
+</html>

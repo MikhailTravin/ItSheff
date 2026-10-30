@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <title>Загрузчик - логин (ошибка)</title>
+    {% include 'blocks/head.njk' %}
+</head>
+
+<body class="preload mp loader-page">
+    <div class="main-wrapper-outer">
+        {% include 'blocks/header-loader.njk' %}
+        <main class="main">
+
+            <div class="loader-login">
+                <form action="#" class="form">
+                    <div class="form__inputs">
+                        <div class="form__input">
+                            <div class="form-select">
+                                <div class="form-select__titles">
+                                    <div class="form-select__icon">
+                                        <svg aria-hidden="true" width="18" height="20">
+                                            <use xlink:href="img/sprite.svg#users"></use>
+                                        </svg>
+                                    </div>
+                                    <span>Логин</span>
+                                    <div class="form-select__arrow"></div>
+                                </div>
+                                <div class="form-select__dropdown">
+                                    <div data-simplebar class="form-select__simplebar">
+                                        <div class="form-select__body">
+                                            <div class="form-select__column">
+                                                <div class="options">
+                                                    <label class="options__item">
+                                                        <input hidden class="options__input" type="radio" value="1"
+                                                            name="option2">
+                                                        <span class="options__label options-label2">
+                                                            <span class="options__text">
+                                                                cadan92435
+                                                            </span>
+                                                            <span class="options__icon">
+                                                                <svg aria-hidden="true" width="12" height="9">
+                                                                    <use xlink:href="img/sprite.svg#check1">
+                                                                    </use>
+                                                                </svg>
+                                                            </span>
+                                                        </span>
+                                                    </label>
+                                                    <label class="options__item">
+                                                        <input hidden class="options__input" type="radio" value="2"
+                                                            name="option2">
+                                                        <span class="options__label options-label2">
+                                                            <span class="options__text">
+                                                                myregester
+                                                            </span>
+                                                            <span class="options__icon">
+                                                                <svg aria-hidden="true" width="12" height="9">
+                                                                    <use xlink:href="img/sprite.svg#check1">
+                                                                    </use>
+                                                                </svg>
+                                                            </span>
+                                                        </span>
+                                                    </label>
+                                                    <label class="options__item">
+                                                        <input hidden class="options__input" type="radio" value="3"
+                                                            name="option2">
+                                                        <span class="options__label options-label2">
+                                                            <span class="options__text">
+                                                                medeh88161
+                                                            </span>
+                                                            <span class="options__icon">
+                                                                <svg aria-hidden="true" width="12" height="9">
+                                                                    <use xlink:href="img/sprite.svg#check1">
+                                                                    </use>
+                                                                </svg>
+                                                            </span>
+                                                        </span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form__input">
+                            <div class="form__input-pass input">
+                                <div class="form-select__icon">
+                                    <svg aria-hidden="true" width="22" height="24">
+                                        <use xlink:href="img/sprite.svg#password-lock"></use>
+                                    </svg>
+                                </div>
+                                <input data-required id="password1" data-error="Неверный пароль или логин"
+                                    autocomplete="off" type="password" name="form[]" placeholder="Пароль" value="">
+                                <button type="button" class="form__viewpass">
+                                    <svg aria-hidden="true" width="20" height="20" class="icon1">
+                                        <use xlink:href="img/sprite.svg#eye1"></use>
+                                    </svg>
+                                    <svg aria-hidden="true" width="20" height="20" class="icon2">
+                                        <use xlink:href="img/sprite.svg#eye2"></use>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="form__bottom">
+                            <label class="checkbox">
+                                <input class="checkbox__input" type="checkbox" value="1" name="checkbox1">
+                                <span class="checkbox__label">
+                                    <span class="checkbox__icon">
+                                        <svg aria-hidden="true" width="10" height="8">
+                                            <use xlink:href="img/sprite.svg#check2">
+                                            </use>
+                                        </svg>
+                                    </span>
+                                    <span class="checkbox__text">Запомнить меня</span>
+                                </span>
+                            </label>
+                            <a href="./" class="link forgot-password">Забыли пароль?</a>
+                        </div>
+                    </div>
+                    <div class="form__buttons">
+                        <button type="submit" class="btn btn-bg">
+                            <span>Войти</span>
+                        </button>
+                        <div class="login-alt">
+                            <button class="login-alt__btn" type="button">
+                                <img class="login-alt__icon" src="img/icons/anydesk.svg" alt="">
+                                <span>AnyDesk</span>
+                            </button>
+                            <button class="login-alt__btn" type="button" disabled>
+                                <img class="login-alt__icon" src="img/icons/azure.svg" alt="">
+                                <span>Azure</span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                <div class="loader-login-footer">
+                    <div class="socials">
+                        <a href="./">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M10.0001 0C4.48615 0 6.45327e-05 4.48609 6.45327e-05 10C6.45327e-05 11.7217 0.444847 13.4148 1.28833 14.9087L0.0161515 19.4478C-0.0255877 19.597 0.0148472 19.757 0.122673 19.8678C0.205717 19.9535 0.31876 20 0.434847 20C0.46963 20 0.504847 19.9957 0.539195 19.9874L5.27659 18.8139C6.72311 19.5904 8.35224 20 10.0001 20C15.514 20 20.0001 15.5139 20.0001 10C20.0001 4.48609 15.514 0 10.0001 0ZM15.0305 13.5287C14.8166 14.1209 13.7905 14.6613 13.2975 14.7339C12.8548 14.7987 12.2948 14.8265 11.6801 14.6335C11.3075 14.5161 10.8292 14.3604 10.2166 14.0991C7.64137 13.0009 5.95963 10.4404 5.83093 10.2713C5.70267 10.1022 4.78267 8.89696 4.78267 7.64956C4.78267 6.40217 5.44572 5.7887 5.68137 5.53478C5.91702 5.28087 6.19485 5.21739 6.36615 5.21739C6.53746 5.21739 6.70833 5.21956 6.85833 5.22652C7.01615 5.23435 7.22789 5.16696 7.43615 5.66174C7.65007 6.16957 8.16354 7.41696 8.22702 7.54435C8.29137 7.6713 8.33398 7.81957 8.24876 7.9887C8.16354 8.15783 8.12093 8.26348 7.99224 8.41174C7.86354 8.56 7.72267 8.74217 7.60702 8.85609C7.47833 8.98261 7.34485 9.11957 7.49441 9.37348C7.64398 9.62739 8.15919 10.4574 8.92267 11.1296C9.90311 11.993 10.7305 12.2609 10.987 12.3878C11.2435 12.5148 11.3935 12.4935 11.5431 12.3243C11.6927 12.1548 12.1848 11.5839 12.3557 11.3304C12.5266 11.077 12.6979 11.1187 12.9335 11.2035C13.1692 11.2878 14.4314 11.9009 14.6879 12.0278C14.9444 12.1548 15.1157 12.2183 15.1801 12.3239C15.2444 12.4291 15.2444 12.937 15.0305 13.5287Z"
+                                    fill="#CCCCCC" />
+                            </svg>
+                        </a>
+                        <a href="./">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M11.028 0C12.153 0.00299993 12.7239 0.00899978 13.2169 0.0229994L13.4109 0.0299992C13.6349 0.037999 13.8559 0.0479988 14.1229 0.0599985C15.1868 0.109997 15.9128 0.277993 16.5497 0.524987C17.2097 0.778981 17.7657 1.12297 18.3216 1.67796C18.8303 2.17768 19.2238 2.7824 19.4746 3.44992C19.7216 4.0869 19.8896 4.81288 19.9396 5.87786C19.9516 6.14385 19.9616 6.36485 19.9696 6.58984L19.9756 6.78384C19.9906 7.27582 19.9966 7.84681 19.9986 8.97178L19.9996 9.71776V11.0277C20.002 11.7571 19.9943 12.4865 19.9766 13.2157L19.9706 13.4097C19.9626 13.6347 19.9526 13.8557 19.9406 14.1217C19.8906 15.1866 19.7206 15.9116 19.4746 16.5496C19.2238 17.2171 18.8303 17.8218 18.3216 18.3216C17.8219 18.8302 17.2172 19.2237 16.5497 19.4745C15.9128 19.7215 15.1868 19.8895 14.1229 19.9395L13.4109 19.9695L13.2169 19.9755C12.7239 19.9895 12.153 19.9965 11.028 19.9985L10.282 19.9995H8.97311C8.24341 20.0021 7.51371 19.9944 6.78423 19.9765L6.59024 19.9705C6.35286 19.9615 6.11553 19.9512 5.87827 19.9395C4.81433 19.8895 4.08836 19.7215 3.45039 19.4745C2.78326 19.2236 2.1789 18.8301 1.67948 18.3216C1.17046 17.8219 0.776638 17.2172 0.525542 16.5496C0.278555 15.9126 0.110563 15.1866 0.0605657 14.1217L0.0305672 13.4097L0.0255676 13.2157C0.00713457 12.4865 -0.00119923 11.7571 0.000568768 11.0277V8.97178C-0.00219899 8.2424 0.00513476 7.51302 0.0225677 6.78384L0.0295673 6.58984C0.0375669 6.36485 0.0475664 6.14385 0.0595658 5.87786C0.109563 4.81288 0.277555 4.0879 0.524542 3.44992C0.776224 2.78213 1.17073 2.17738 1.68048 1.67796C2.17961 1.16952 2.78362 0.776055 3.45039 0.524987C4.08836 0.277993 4.81333 0.109997 5.87827 0.0599985C6.14426 0.0479988 6.36625 0.037999 6.59024 0.0299992L6.78423 0.0239993C7.51338 0.00623256 8.24275 -0.00143466 8.97212 0.000999903L11.028 0ZM10.0001 4.99988C8.67405 4.99988 7.40234 5.52665 6.46471 6.46431C5.52707 7.40197 5.00032 8.67371 5.00032 9.99976C5.00032 11.3258 5.52707 12.5975 6.46471 13.5352C7.40234 14.4729 8.67405 14.9996 10.0001 14.9996C11.3261 14.9996 12.5978 14.4729 13.5354 13.5352C14.4731 12.5975 14.9998 11.3258 14.9998 9.99976C14.9998 8.67371 14.4731 7.40197 13.5354 6.46431C12.5978 5.52665 11.3261 4.99988 10.0001 4.99988ZM10.0001 6.99983C10.394 6.99976 10.7841 7.0773 11.1481 7.228C11.5121 7.3787 11.8428 7.59961 12.1214 7.87814C12.4 8.15666 12.6211 8.48733 12.7719 8.85127C12.9227 9.21522 13.0003 9.6053 13.0004 9.99926C13.0005 10.3932 12.923 10.7833 12.7723 11.1473C12.6216 11.5113 12.4006 11.8421 12.1221 12.1207C11.8436 12.3993 11.513 12.6203 11.149 12.7711C10.7851 12.922 10.395 12.9996 10.0011 12.9997C9.20545 12.9997 8.44243 12.6836 7.87985 12.121C7.31727 11.5584 7.00122 10.7954 7.00122 9.99976C7.00122 9.20413 7.31727 8.44108 7.87985 7.87849C8.44243 7.31589 9.20545 6.99983 10.0011 6.99983M15.2508 3.49991C14.9193 3.49991 14.6014 3.63161 14.367 3.86602C14.1326 4.10044 14.0009 4.41837 14.0009 4.74989C14.0009 5.0814 14.1326 5.39933 14.367 5.63375C14.6014 5.86816 14.9193 5.99985 15.2508 5.99985C15.5823 5.99985 15.9002 5.86816 16.1346 5.63375C16.369 5.39933 16.5007 5.0814 16.5007 4.74989C16.5007 4.41837 16.369 4.10044 16.1346 3.86602C15.9002 3.63161 15.5823 3.49991 15.2508 3.49991Z"
+                                    fill="#CCCCCC" />
+                            </svg>
+                        </a>
+                        <a href="./">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M20 10C20 4.47715 15.5229 0 10 0C4.47715 0 0 4.47715 0 10C0 14.9912 3.65684 19.1283 8.4375 19.8785V12.8906H5.89844V10H8.4375V7.79688C8.4375 5.29063 9.93047 3.90625 12.2146 3.90625C13.3084 3.90625 14.4531 4.10156 14.4531 4.10156V6.5625H13.1922C11.95 6.5625 11.5625 7.3334 11.5625 8.125V10H14.3359L13.8926 12.8906H11.5625V19.8785C16.3432 19.1283 20 14.9912 20 10Z"
+                                    fill="#CCCCCC" />
+                            </svg>
+                        </a>
+                        <a href="./">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M18.5225 0C19.3387 0 20 0.641613 20 1.43262V18.5674C20 19.3587 19.3387 20 18.5225 20H1.47852C0.662262 20 3.24119e-05 19.3587 0 18.5674V1.43262C3.28733e-05 0.641613 0.662262 0 1.47852 0H18.5225ZM3.56445 16.667H6.60156V7.66992H3.56445V16.667ZM14.0557 7.45898C12.4445 7.45898 11.7219 8.3313 11.3184 8.94434V7.66992H8.28125C8.3211 8.51409 8.28125 16.667 8.28125 16.667H11.3184V11.6426C11.3184 11.3738 11.3379 11.1053 11.418 10.9131C11.6375 10.3759 12.1376 9.81934 12.9766 9.81934C14.0753 9.81941 14.5146 10.6443 14.5146 11.8535V16.667H17.5518V11.5078C17.5516 8.74499 16.0534 7.45916 14.0557 7.45898ZM11.3184 8.97461H11.2979C11.3044 8.96449 11.3116 8.95461 11.3184 8.94434V8.97461ZM5.10254 3.33301C4.06393 3.33315 3.3848 4.00506 3.38477 4.8877C3.38477 5.75103 4.04434 6.44238 5.06348 6.44238H5.08301C6.14189 6.44229 6.80078 5.75097 6.80078 4.8877C6.78101 4.00496 6.14144 3.33301 5.10254 3.33301Z"
+                                    fill="#CCCCCC" />
+                            </svg>
+                        </a>
+                        <a href="./">
+                            <svg width="20" height="15" viewBox="0 0 20 15" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M10 0C10.0014 5.70258e-09 16.2496 -0.000198539 17.8135 0.447266C18.2382 0.570533 18.6252 0.811102 18.9355 1.14355C19.2457 1.47596 19.469 1.88897 19.582 2.3418C20.0002 4.01349 20 7.49968 20 7.5C20 7.5 20.0002 10.9864 19.582 12.6582C19.469 13.111 19.2457 13.524 18.9355 13.8564C18.6252 14.1889 18.2382 14.4295 17.8135 14.5527C16.2496 15.0002 10.0014 15 10 15C10 15 3.75054 15.0002 2.18652 14.5527C1.76177 14.4295 1.37476 14.1889 1.06445 13.8564C0.754252 13.524 0.531027 13.111 0.417969 12.6582C-0.000213057 10.9864 0 7.5 0 7.5C8.78091e-10 7.49968 -0.000193943 4.01349 0.417969 2.3418C0.531027 1.88897 0.754253 1.47596 1.06445 1.14355C1.37476 0.811102 1.76177 0.570533 2.18652 0.447266C3.75054 -0.000248933 10 0 10 0ZM7.5 10.833L14.167 7.5L7.5 4.16699V10.833Z"
+                                    fill="#CCCCCC" />
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="loader-login-footer__bottom">
+                        <div class="loader-login-footer__copy">
+                            ©2025 ITSheff.kz
+                        </div>
+                        <div class="loader-login-footer__version">
+                            V 1.2.4
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+    {% set scripts = [
+        'vendor/inputmask.min',
+        'vendor/simplebar.min',
+        'vendor/nouislider.min',
+        'core/helpers',
+        'core/shared-refs',
+        'core/menu',
+        'core/scroll-to',
+        'forms/form-validate',
+        'popups/popup',
+        'forms/form-fields',
+        'forms/form-submit',
+        'forms/form-select',
+        'components/breadcrumbs',
+        'components/fixed-bottom-spacing',
+        'loader/quiz',
+        'loader/notifications'
+    ] %}
+    {% include 'blocks/scripts.njk' %}
+</body>
+
+</html>

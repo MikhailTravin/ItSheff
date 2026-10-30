@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <title>Загрузчик - ошибка подключения</title>
+    {% include 'blocks/head.njk' %}
+</head>
+
+<body class="preload mp loader-page">
+    <div class="main-wrapper-outer">
+        {% include 'blocks/header-loader.njk' %}
+        <main class="main">
+            <div class="loader-ssl">
+                <div class="loader-ssl__body">
+                    <div class="loader-ssl-card">
+                        <div class="loader-ssl-card__icon">
+                            <svg aria-hidden="true" width="50" height="46" viewBox="0 0 50 46" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M25 0L50 46H0L25 0Z" fill="#D8342B" />
+                                <rect x="23" y="14" width="4" height="18" rx="1" fill="#fff" />
+                                <rect x="23" y="35" width="4" height="4" rx="1" fill="#fff" />
+                            </svg>
+                        </div>
+                        <h1 class="loader-ssl-card__title">Ваше подключение не является закрытым</h1>
+                        <p class="loader-ssl-card__text">
+                            Злоумышленники могут пытаться украсть ваши данные (например, пароли, сообщения или номера
+                            кредитных карт) с <b>devauth.itsheff.cloud</b>. <a href="./">Подробнее об этом
+                                предупреждении</a>
+                        </p>
+                        <div class="loader-ssl-card__code">NET::ERR_CERT_DATE_INVALID</div>
+                        <div class="loader-ssl-card__buttons">
+                            <a href="./" class="loader-ssl-card__btn">Дополнительно</a>
+                            <a href="./" class="loader-ssl-card__btn loader-ssl-card__btn--primary">Назад</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="loader-status-buttons">
+                    <a href="./" class="btn btn-bg btn-big">Назад</a>
+                </div>
+            </div>
+        </main>
+    </div>
+    {% set scripts = [
+    'vendor/inputmask.min',
+    'vendor/simplebar.min',
+    'vendor/nouislider.min',
+    'core/helpers',
+    'core/shared-refs',
+    'core/menu',
+    'core/scroll-to',
+    'forms/form-validate',
+    'popups/popup',
+    'forms/form-fields',
+    'forms/form-submit',
+    'forms/form-select',
+    'components/breadcrumbs',
+    'components/fixed-bottom-spacing',
+    'loader/quiz',
+    'loader/notifications'
+    ] %}
+    {% include 'blocks/scripts.njk' %}
+</body>
+
+</html>

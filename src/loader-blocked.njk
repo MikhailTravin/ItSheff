@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <title>Загрузчик - аккаунт заблокирован</title>
+    {% include 'blocks/head.njk' %}
+</head>
+
+<body class="preload mp loader-page">
+    <div class="main-wrapper-outer">
+        {% include 'blocks/header-loader.njk' %}
+        <main class="main">
+            <div class="loader-blocked">
+                <div class="loader-blocked__tabs">
+                    <span class="loader-blocked__tab">Базы данных</span>
+                    <span class="loader-blocked__tab">Счета, документы</span>
+                    <span class="loader-blocked__tab">Пользователи</span>
+                    <span class="loader-blocked__tab">Поддержка</span>
+                </div>
+                <div class="loader-blocked__body">
+                    <div class="loader-blocked__top">
+                        <div class="loader-blocked__icon">
+                            <img src="img/icons/attention.svg" alt="">
+                        </div>
+                        <div class="loader-blocked__title">Аккаунт заблокирован</div>
+                    </div>
+                    <p class="loader-blocked__text">
+                        Ваш аккаунт был заблокирован из-за длительного периода неактивности или отсутствия платежей.
+                        Чтобы восстановить доступ, пожалуйста, свяжитесь со службой поддержки
+                    </p>
+                </div>
+                <div class="loader-status-buttons">
+                    <a href="./" class="btn btn-bg btn-big">Обратиться в поддержку</a>
+                </div>
+            </div>
+        </main>
+    </div>
+    {% set scripts = [
+    'vendor/inputmask.min',
+    'vendor/simplebar.min',
+    'vendor/nouislider.min',
+    'core/helpers',
+    'core/shared-refs',
+    'core/menu',
+    'core/scroll-to',
+    'forms/form-validate',
+    'popups/popup',
+    'forms/form-fields',
+    'forms/form-submit',
+    'forms/form-select',
+    'components/breadcrumbs',
+    'components/fixed-bottom-spacing',
+    'loader/quiz',
+    'loader/notifications'
+    ] %}
+    {% include 'blocks/scripts.njk' %}
+</body>
+
+</html>
