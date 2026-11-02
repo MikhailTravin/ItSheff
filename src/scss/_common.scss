@@ -19,6 +19,11 @@ body {
   .open-notifications & {
     overflow: hidden;
   }
+  .open-calendar & {
+    @media (max-width: 760px) {
+      overflow: hidden;
+    }
+  }
 }
 
 body.noscroll {

@@ -1,21 +1,3 @@
-body::after {
-    content: "";
-    background: rgba(0, 0, 0, 0.5);
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    opacity: 0;
-    transition: opacity 0.3s ease 0s;
-    pointer-events: none;
-    z-index: 149;
-}
-
-.popup-show body::after {
-    opacity: 1;
-}
-
 .popup {
     position: fixed;
     top: 0;
@@ -3049,7 +3031,7 @@ body::after {
         background: #f0f2f4;
         border-radius: 0px 0px 24px 24px;
         @include mq(650px) {
-            border-radius: 0px;
+            border-radius: 0px 0px 12px 12px;
         }
     }
     .popup-buttons__bottom {
