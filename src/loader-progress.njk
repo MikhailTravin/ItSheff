@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <title>Загрузчик - загрузка</title>
+    {% include 'blocks/head.njk' %}
+</head>
+
+<body class="preload mp loader-page loader-progress-page">
+    <div class="main-wrapper-outer">
+        {% include 'blocks/header-loader.njk' %}
+        <main class="main">
+
+            <div class="loader-progress loader-progress--indeterminate">
+                <div class="loader-progress__percent">0%</div>
+                <div class="loader-progress__bar">
+                    <span class="loader-progress__fill"></span>
+                </div>
+                <div class="loader-progress__text">Подготовка к запуску</div>
+            </div>
+
+        </main>
+    </div>
+    {% set scripts = [
+        'vendor/simplebar.min',
+        'vendor/nouislider.min',
+        'core/helpers',
+        'core/shared-refs',
+        'core/menu',
+        'core/scroll-to',
+        'forms/form-validate',
+        'forms/form-fields',
+        'components/breadcrumbs',
+        'components/fixed-bottom-spacing',
+        'loader/quiz',
+        'loader/progress',
+        'loader/notifications'
+    ] %}
+    {% include 'blocks/scripts.njk' %}
+</body>
+
+</html>

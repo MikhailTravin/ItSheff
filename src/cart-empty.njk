@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <title>Корзина (пусто)</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://smartcaptcha.yandexcloud.net/captcha.js" defer=""></script>
+
+    <link rel="stylesheet" href="css/swiper.min.css" />
+    <link rel="stylesheet" href="css/styles.css" />
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+</head>
+
+<body class="preload mp">
+    <div class="main-wrapper-outer">
+        {% include 'blocks/header-cabinet.njk' %}
+        <main class="main">
+
+            <div class="block-cabinet block-cabinet-support">
+                <div class="container">
+                    <div class="block-cabinet__content">
+                        <div class="cabinet-menu">
+                            <div class="cabinet-menu__body">
+                                <div class="cabinet-menu__column">
+                                    <ul>
+                                        <li>
+                                            <a href="./" class="cabinet-menu__link">
+                                                <div class="cabinet-menu__icon">
+                                                    <svg class="cabinet-menu-def" aria-hidden="true" width="21"
+                                                        height="21">
+                                                        <use xlink:href="img/sprite.svg#cabinet"></use>
+                                                    </svg>
+                                                    <svg class="cabinet-menu-active" aria-hidden="true" width="21"
+                                                        height="21">
+                                                        <use xlink:href="img/sprite.svg#cabinet-active"></use>
+                                                    </svg>
+                                                </div>
+                                                <div class="cabinet-menu__name">
+                                                    <span>Личный</span> кабинет
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="./" class="cabinet-menu__link">
+                                                <div class="cabinet-menu__icon">
+                                                    <svg class="cabinet-menu-def" aria-hidden="true" width="20"
+                                                        height="23">
+                                                        <use xlink:href="img/sprite.svg#documents"></use>
+                                                    </svg>
+                                                    <svg class="cabinet-menu-active" aria-hidden="true" width="20"
+                                                        height="23">
+                                                        <use xlink:href="img/sprite.svg#documents-active"></use>
+                                                    </svg>
+                                                    <div class="cabinet-menu__circle"></div>
+                                                </div>
+                                                <div class="cabinet-menu__name">
+                                                    Счета<span>, документы</span>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="./" class="cabinet-menu__link">
+                                                <div class="cabinet-menu__icon">
+                                                    <svg class="cabinet-menu-def" aria-hidden="true" width="21"
+                                                        height="23">
+                                                        <use xlink:href="img/sprite.svg#databases"></use>
+                                                    </svg>
+                                                    <svg class="cabinet-menu-active" aria-hidden="true" width="21"
+                                                        height="23">
+                                                        <use xlink:href="img/sprite.svg#databases-active"></use>
+                                                    </svg>
+                                                </div>
+                                                <div class="cabinet-menu__name">
+                                                    Базы <span>данных</span>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="./" class="cabinet-menu__link">
+                                                <div class="cabinet-menu__icon">
+                                                    <svg class="cabinet-menu-def" aria-hidden="true" width="21"
+                                                        height="23">
+                                                        <use xlink:href="img/sprite.svg#users"></use>
+                                                    </svg>
+                                                    <svg class="cabinet-menu-active" aria-hidden="true" width="21"
+                                                        height="23">
+                                                        <use xlink:href="img/sprite.svg#users-active"></use>
+                                                    </svg>
+                                                </div>
+                                                <div class="cabinet-menu__name">
+                                                    Пользователи
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="./" class="cabinet-menu__link">
+                                                <div class="cabinet-menu__icon">
+                                                    <svg class="cabinet-menu-def" aria-hidden="true" width="23"
+                                                        height="23">
+                                                        <use xlink:href="img/sprite.svg#support"></use>
+                                                    </svg>
+                                                    <svg class="cabinet-menu-active" aria-hidden="true" width="23"
+                                                        height="23">
+                                                        <use xlink:href="img/sprite.svg#support-active"></use>
+                                                    </svg>
+                                                </div>
+                                                <div class="cabinet-menu__name">
+                                                    Поддержка
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="cabinet-menu__column column-service">
+                                    <ul>
+                                        <li>
+                                            <a href="./" class="cabinet-menu__link link-service">
+                                                <div class="cabinet-menu__icon">
+                                                    <svg class="cabinet-menu-def" aria-hidden="true" width="21"
+                                                        height="23">
+                                                        <use xlink:href="img/sprite.svg#service"></use>
+                                                    </svg>
+                                                    <svg class="cabinet-menu-active" aria-hidden="true" width="21"
+                                                        height="23">
+                                                        <use xlink:href="img/sprite.svg#service-active"></use>
+                                                    </svg>
+                                                </div>
+                                                <div class="cabinet-menu__titles">
+                                                    Услуги+
+                                                    <div class="cabinet-menu__number">
+                                                        <span>843</span>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="./" class="cabinet-menu__link link-cart active">
+                                                <div class="cabinet-menu__icon">
+                                                    <svg class="cabinet-menu-def" aria-hidden="true" width="20"
+                                                        height="19">
+                                                        <use xlink:href="img/sprite.svg#cart"></use>
+                                                    </svg>
+                                                    <svg class="cabinet-menu-active" aria-hidden="true" width="21"
+                                                        height="23">
+                                                        <use xlink:href="img/sprite.svg#cart-active"></use>
+                                                    </svg>
+                                                    <div class="cabinet-menu__circle"></div>
+                                                </div>
+                                                <div class="cabinet-menu__titles">
+                                                    Корзина
+                                                    <div class="cabinet-menu__number number-bg">
+                                                        <span>8</span>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="cabinet-menu__column column-download">
+                                    <ul>
+                                        <li>
+                                            <a href="./" download="#download" class="cabinet-menu__link link-download">
+                                                <div class="cabinet-menu__icon">
+                                                    <svg aria-hidden="true" width="14" height="17">
+                                                        <use xlink:href="img/sprite.svg#download1"></use>
+                                                    </svg>
+                                                </div>
+                                                Программа для<br> входа 1С
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="header-account-top">
+                                <a href="./" class="header-account-top__titles">
+                                    <div class="header-account-top__name">Username</div>
+                                    <div class="header-account-top__subname">
+                                        Бухгалтер
+                                    </div>
+                                </a>
+                                <a href="./" class="header-account-top__icon">
+                                    <span>Выйти </span>
+                                    <svg aria-hidden="true" width="22" height="22">
+                                        <use xlink:href="img/sprite.svg#exit"></use>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="block-cabinet__body block-cabinet__body block-cabinet-cart-empty">
+                            <div class="block-cabinet__columns columns2">
+                                <div data-tabs class="cabinet-tabs">
+                                    <div class="cabinet-tabs__top">
+                                        <nav data-tabs-titles class="cabinet-tabs__navigation">
+                                            <button data-tabs-cart type="button"
+                                                class="cabinet-tabs__titles _tab-active">
+                                                <span class="cabinet-tabs__title">
+                                                    <span>Корзина</span>
+                                                </span>
+                                            </button>
+                                            <button type="button" class="cabinet-tabs__titles">
+                                                <span class="cabinet-tabs__title">
+                                                    <span>Избранное</span>
+                                                </span>
+                                            </button>
+                                            <button type="button" class="cabinet-tabs__titles disabled">
+                                                <span class="cabinet-tabs__title">
+                                                    <span>Покупки</span>
+                                                </span>
+                                            </button>
+                                        </nav>
+                                    </div>
+                                    <div data-tabs-body class="cabinet-tabs__content">
+                                        <div class="cabinet-tabs__body">
+                                            <div class="cabinet-cart-empty">
+                                                <div class="cabinet-cart-empty__body">
+                                                    <div class="cabinet-cart-empty__pic1">
+                                                        <svg aria-hidden="true" width="116" height="111">
+                                                            <use xlink:href="img/sprite.svg#cart2"></use>
+                                                        </svg>
+                                                    </div>
+                                                    <div class="cabinet-cart-empty__titles">
+                                                        <div class="cabinet-cart-empty__title">
+                                                            В корзине пока пусто
+                                                        </div>
+                                                        <p>
+                                                            Загляните на Услуги+ <br>
+                                                            Мы собрали все предложения, которые могут вам понравиться
+                                                        </p>
+                                                    </div>
+                                                    <a href="./" class="btn btn-bg btn-big">Услуги+</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="cabinet-tabs__body">
+                                            <div class="cabinet-favorites">
+                                                <div class="card-recommend">
+                                                    <div class="card-recommend__top">
+                                                        <img loading="lazy" src="img/icons/setup.svg" alt=""
+                                                            class="card-recommend__pic1">
+                                                        <div class="card-recommend__titles">
+                                                            <div class="card-recommend__title">
+                                                                Диагностика базы на ошибки и исправление
+                                                            </div>
+                                                            <p>
+                                                                купили 1708 раз
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <a href="./">
+                                                        <p>
+                                                            Проверка параметров учета и настроек системы. Анализ
+                                                            автоматического заполнения субконто
+                                                            по доходам, расходам и номенклатуре. Поиск и исправление
+                                                            ошибок,
+                                                            влияющих на
+                                                            бухгалтерскую деятельность. Поиск и исправление ошибок,
+                                                            влияющих
+                                                            на бухгалтерскую
+                                                            деятельность.
+                                                        </p>
+                                                    </a>
+                                                    <div class="card-recommend__bottom">
+                                                        <div class="card-recommend__left">
+                                                            <div class="favorites active">
+                                                                <img loading="lazy" src="img/icons/heart.svg" alt=""
+                                                                    class="favorites__icon1">
+                                                                <img loading="lazy" src="img/icons/heart-active.svg"
+                                                                    alt="" class="favorites__icon2">
+                                                            </div>
+                                                            <div class="card-recommend__price"><span>от</span> 700 ₸
+                                                            </div>
+                                                        </div>
+                                                        <button type="button" class="btn btn-bg">
+                                                            <span class="desc">Добавить в
+                                                                корзину</span>
+                                                            <span class="mob">
+                                                                В корзину
+                                                            </span>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="card-recommend">
+                                                    <div class="card-recommend__top">
+                                                        <img loading="lazy" src="img/icons/cloud-key.svg" alt=""
+                                                            class="card-recommend__pic1">
+                                                        <div class="card-recommend__titles">
+                                                            <div class="card-recommend__title">
+                                                                Авторизация в ITsheff через SSO
+                                                            </div>
+                                                            <p>
+                                                                купили 1708 раз
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <a href="./">
+                                                        <p>
+                                                            Услуга настройки единого безопасного входа, которая
+                                                            позволяет
+                                                            вашим сотрудникам
+                                                            использовать свои корпоративные учетные записи.
+                                                        </p>
+                                                    </a>
+                                                    <div class="card-recommend__bottom">
+                                                        <div class="card-recommend__left">
+                                                            <div class="favorites active">
+                                                                <img loading="lazy" src="img/icons/heart.svg" alt=""
+                                                                    class="favorites__icon1">
+                                                                <img loading="lazy" src="img/icons/heart-active.svg"
+                                                                    alt="" class="favorites__icon2">
+                                                            </div>
+                                                            <div class="card-recommend__price"><span>от</span> 700 ₸
+                                                            </div>
+                                                        </div>
+                                                        <button type="button" class="btn btn-bg">В корзине: 1</button>
+                                                    </div>
+                                                </div>
+                                                <div class="card-recommend">
+                                                    <div class="card-recommend__top">
+                                                        <img loading="lazy" src="img/icons/icon-orange/icon17.svg"
+                                                            alt="" class="card-recommend__pic1">
+                                                        <div class="card-recommend__titles">
+                                                            <div class="card-recommend__title">
+                                                                Обработка: Загрузка данных из Excel в 1С
+                                                            </div>
+                                                            <p>
+                                                                купили 1708 раз
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <a href="./">
+                                                        <p>
+                                                            Готовое техническое решение, которое автоматизирует перенос
+                                                            любой информации из таблиц Excel в базу данных 1С, полностью
+                                                            исключая ручной ввод и связанные с ним ошибки
+                                                        </p>
+                                                    </a>
+                                                    <div class="card-recommend__bottom">
+                                                        <div class="card-recommend__left">
+                                                            <div class="favorites active">
+                                                                <img loading="lazy" src="img/icons/heart.svg" alt=""
+                                                                    class="favorites__icon1">
+                                                                <img loading="lazy" src="img/icons/heart-active.svg"
+                                                                    alt="" class="favorites__icon2">
+                                                            </div>
+                                                            <div class="card-recommend__price"><span>от</span> 700 ₸
+                                                            </div>
+                                                        </div>
+                                                        <button type="button" class="btn btn-bg">
+                                                            <span class="desc">Добавить в
+                                                                корзину</span>
+                                                            <span class="mob">
+                                                                В корзину
+                                                            </span>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="card-recommend">
+                                                    <div class="card-recommend__top">
+                                                        <img loading="lazy" src="img/icons/vat.svg" alt=""
+                                                            class="card-recommend__pic1">
+                                                        <div class="card-recommend__titles">
+                                                            <div class="card-recommend__title">
+                                                                Сервис 1С: ЭСФ
+                                                            </div>
+                                                            <p>
+                                                                купили 1708 раз
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <a href="./">
+                                                        <p>
+                                                            Связывает вашу программу 1С напрямую с государственной
+                                                            Информационной системой электронных счетов-фактур (ИС ЭСФ
+                                                            РК) Он позволяет отправлять и принимать электронные
+                                                            документы без ручной выгрузки и загрузки XML-файлов
+                                                        </p>
+                                                    </a>
+                                                    <div class="card-recommend__bottom">
+                                                        <div class="card-recommend__left">
+                                                            <div class="favorites active">
+                                                                <img loading="lazy" src="img/icons/heart.svg" alt=""
+                                                                    class="favorites__icon1">
+                                                                <img loading="lazy" src="img/icons/heart-active.svg"
+                                                                    alt="" class="favorites__icon2">
+                                                            </div>
+                                                            <div class="card-recommend__price"><span>от</span> 700 ₸
+                                                            </div>
+                                                        </div>
+                                                        <button type="button" class="btn btn-bg">
+                                                            <span class="desc">Добавить в
+                                                                корзину</span>
+                                                            <span class="mob">
+                                                                В корзину
+                                                            </span>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="card-recommend">
+                                                    <div class="card-recommend__top">
+                                                        <img loading="lazy" src="img/icons/cloud-key.svg" alt=""
+                                                            class="card-recommend__pic1">
+                                                        <div class="card-recommend__titles">
+                                                            <div class="card-recommend__title">
+                                                                Авторизация в ITsheff через SSO
+                                                            </div>
+                                                            <p>
+                                                                купили 1708 раз
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <a href="./">
+                                                        <p>
+                                                            Услуга настройки единого безопасного входа, которая
+                                                            позволяет
+                                                            вашим сотрудникам
+                                                            использовать свои корпоративные учетные записи.
+                                                        </p>
+                                                    </a>
+                                                    <div class="card-recommend__bottom">
+                                                        <div class="card-recommend__left">
+                                                            <div class="favorites active">
+                                                                <img loading="lazy" src="img/icons/heart.svg" alt=""
+                                                                    class="favorites__icon1">
+                                                                <img loading="lazy" src="img/icons/heart-active.svg"
+                                                                    alt="" class="favorites__icon2">
+                                                            </div>
+                                                            <div class="card-recommend__price"><span>от</span> 700 ₸
+                                                            </div>
+                                                        </div>
+                                                        <button type="button" class="btn btn-bg">В корзине: 1</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="cabinet-tabs__body">
+                                            <div class="cabinet-buy">
+                                                <div class="cabinet-buy__body">
+                                                    <div class="cabinet-buy__column">
+                                                        <div class="cabinet-buy__left">
+                                                            <div class="cabinet-buy__data">
+                                                                23
+                                                                <span>авг</span>
+                                                            </div>
+                                                            <div class="cabinet-buy__year">
+                                                                2026
+                                                            </div>
+                                                        </div>
+                                                        <div class="cabinet-buy__right">
+                                                            <div class="cabinet-buy__cards">
+                                                                <div class="cabinet-buy__card">
+                                                                    <div class="cabinet-buy__titles">
+                                                                        <div class="cabinet-buy__title">
+                                                                            1С: Электронные трудовые договоры
+                                                                        </div>
+                                                                        <ul>
+                                                                            <li>Иван Иванов Ивановичи</li>
+                                                                            <li>+77071234567</li>
+                                                                        </ul>
+                                                                    </div>
+                                                                    <div class="cabinet-buy__price">
+                                                                        700 ₸
+                                                                    </div>
+                                                                </div>
+                                                                <div class="cabinet-buy__card">
+                                                                    <div class="cabinet-buy__titles">
+                                                                        <div class="cabinet-buy__title">
+                                                                            Сервис 1С: ЭСФ
+                                                                        </div>
+                                                                        <ul>
+                                                                            <li>Иван Иванов Ивановичи</li>
+                                                                            <li>+77071234567</li>
+                                                                            <li>1 БИН</li>
+                                                                            <li>2 месяца</li>
+                                                                            <li>1 База данных</li>
+                                                                        </ul>
+                                                                    </div>
+                                                                    <div class="cabinet-buy__price">
+                                                                        1 200 ₸
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <button type="button" class="btn btn-bg">Добавить в
+                                                                корзину</button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="cabinet-buy__column">
+                                                        <div class="cabinet-buy__left">
+                                                            <div class="cabinet-buy__data">
+                                                                8
+                                                                <span>авг</span>
+                                                            </div>
+                                                            <div class="cabinet-buy__year">
+                                                                2026
+                                                            </div>
+                                                        </div>
+                                                        <div class="cabinet-buy__right">
+                                                            <div class="cabinet-buy__cards">
+                                                                <div class="cabinet-buy__card">
+                                                                    <div class="cabinet-buy__titles">
+                                                                        <div class="cabinet-buy__title">
+                                                                            1С: Электронные трудовые договоры
+                                                                        </div>
+                                                                        <ul>
+                                                                            <li>Иван Иванов Ивановичи</li>
+                                                                            <li>+77071234567</li>
+                                                                        </ul>
+                                                                    </div>
+                                                                    <div class="cabinet-buy__price">
+                                                                        700 ₸
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <button type="button" class="btn btn-bg">В корзине:
+                                                                1</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="pagging">
+                                                    <a class="pagging__item pagging__item_active" href="./">1</a>
+                                                    <a class="pagging__item" href="./">2</a>
+                                                    <a class="pagging__item" href="./">3</a>
+                                                    <a class="pagging__item" href="./">4</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="block-recommend2">
+                            <div class="block-recommend2__title">
+                                ITsheff рекомендует
+                            </div>
+                            <div class="block-recommend2__cards">
+                                <a href="./" class="block-recommend2__card">
+                                    <img src="img/icons/cloud-key2.svg" alt="">
+                                    <p>
+                                        Авторизация в ITsheff через SSO
+                                    </p>
+                                </a>
+                                <a href="./" class="block-recommend2__card">
+                                    <img src="img/icons/vat3.svg" alt="">
+                                    <p>
+                                        Настройка ЭСФ и ЭАВР
+                                    </p>
+                                </a>
+                                <a href="./" class="block-recommend2__card">
+                                    <img src="img/icons/print2.svg" alt="">
+                                    <p>
+                                        Подключение принтера этикеток чеков
+                                    </p>
+                                </a>
+                                <a href="./" class="block-recommend2__card">
+                                    <img src="img/icons/icons-blue/icon11.svg" alt="">
+                                    <p>
+                                        Первоначальная настройка (новой) базы (1С:Бухгалтерия)
+                                    </p>
+                                </a>
+                                <a href="./" class="block-recommend2__card">
+                                    <img src="img/icons/QR-Box.svg" alt="">
+                                    <p>
+                                        1С: Маркировка для Казахстана
+                                    </p>
+                                </a>
+                                <a href="./" class="block-recommend2__card">
+                                    <img src="img/icons/setup2.svg" alt="">
+                                    <p>
+                                        Настройка Webkassa в 1С
+                                    </p>
+                                </a>
+                                <a href="./" class="block-recommend2__card">
+                                    <img src="img/icons/icons-orange/icon17.svg" alt="">
+                                    <p>
+                                        Обработка: Загрузка данных из Excel в 1С
+                                    </p>
+                                </a>
+                                <a href="./" class="block-recommend2__card">
+                                    <img src="img/icons/icons-orange/icon17.svg" alt="">
+                                    <p>
+                                        Обработка: Загрузка данных из Excel в 1С
+                                    </p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {% include 'blocks/recommend.njk' %}
+
+        </main>
+        {% include 'blocks/footer.njk' %}
+    </div>
+    {% include 'blocks/popups.njk' %}
+    {% set scripts = [
+    'vendor/swiper-8.4.7.min',
+    'vendor/simplebar.min',
+    'core/helpers',
+    'core/shared-refs',
+    'core/menu',
+    'core/scroll-to',
+    'forms/form-validate',
+    'popups/popup',
+    'components/spollers',
+    'components/tabs',
+    'components/header-notifications',
+    'components/header-menu',
+    'forms/form-fields',
+    'forms/form-submit',
+    'components/page-navigation',
+    'components/recommend-sliders',
+    'components/favorites',
+    'components/header-height',
+    'components/fixed-bottom-spacing',
+    'core/scroll-watcher'
+    ] %}
+    {% include 'blocks/scripts.njk' %}
+</body>
+
+</html>
