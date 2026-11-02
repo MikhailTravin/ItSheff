@@ -302,7 +302,10 @@ class DateSectionInput {
       this.validateAndUpdate(true);
       const calendar = this.calendar;
       if (calendar && calendar.classList.contains('active')) {
-        const applyBtn = calendar.querySelector('.calendar-apply');
+        // контент может быть временно вынесен в body (мобильная шторка в попапе)
+        const applyBtn =
+          calendar.querySelector('.calendar-apply') ||
+          (calendar.calendarContent && calendar.calendarContent.querySelector('.calendar-apply'));
         if (applyBtn) applyBtn.click();
       }
     }
@@ -386,21 +389,24 @@ class DateSectionInput {
     }
 
     if (updateCalendar && day && day.length === 2 && month && month.length === 2 && year && year.length === 4) {
-      const dayNum = parseInt(day);
+      let dayNum = parseInt(day);
       const monthNum = parseInt(month);
       const yearNum = parseInt(year);
+      let maxDays = 31; // вынесено из блока if: раньше было ReferenceError
 
       if (monthNum >= 1 && monthNum <= 12) {
-        const maxDays = new Date(yearNum, monthNum, 0).getDate();
+        maxDays = new Date(yearNum, monthNum, 0).getDate();
 
         if (dayNum > maxDays) {
           day = String(maxDays).padStart(2, '0');
           this.dayInput.value = day;
+          dayNum = maxDays;
         }
 
         if (dayNum < 1) {
           day = '01';
           this.dayInput.value = day;
+          dayNum = 1;
         }
       }
 
@@ -454,6 +460,82 @@ class DateSectionInput {
 
 /** Календари .calendar */
 class Calendars {
+  /**
+   * Мобильная шторка для календарей внутри попапа.
+   * У .popup__content есть transform, из-за чего position: fixed у
+   * .calendar__content считается от попапа, а не от окна. Поэтому на
+   * max-width: 760px на время открытия контент переносится в body
+   * внутрь обёртки с теми же классами, что у .calendar, чтобы все
+   * SCSS-селекторы (.calendar.active .calendar__content и т.д.) работали.
+   */
+  static initPopupSheet(calendar) {
+    if (!calendar.closest('.popup')) return; // календари вне попапа не трогаем
+
+    var content = calendar.querySelector('.calendar__content');
+    if (!content) return;
+
+    calendar.calendarContent = content;
+
+    var mq = window.matchMedia('(max-width: 760px)');
+    var ghost = null;
+
+    var syncClasses = function () {
+      if (ghost) ghost.className = calendar.className;
+    };
+
+    var moveOut = function () {
+      ghost = document.createElement('div');
+      // классы без active, чтобы отработала анимация выезда
+      ghost.className = calendar.className.replace(/\bactive\b/, '').trim();
+      ghost.style.cssText = 'position:static;display:block;flex:none;gap:0;';
+      content.style.zIndex = '160'; // выше .popup_show (z-index: 150)
+      ghost.appendChild(content);
+      document.body.appendChild(ghost);
+
+      ghost.getBoundingClientRect(); // reflow, чтобы transition сработал
+      syncClasses();                 // добавится active
+    };
+
+    var moveBack = function () {
+      if (!ghost) return;
+      calendar.appendChild(content);
+      content.style.zIndex = '';
+      ghost.remove();
+      ghost = null;
+    };
+
+    var scheduleMoveBack = function () {
+      var done = function (e) {
+        if (e && e.target !== content) return; // transitionend от вложенных элементов
+        content.removeEventListener('transitionend', done);
+        if (ghost && !calendar.classList.contains('active')) moveBack();
+      };
+      content.addEventListener('transitionend', done);
+      setTimeout(function () { done(); }, 450); // страховка
+    };
+
+    new MutationObserver(function () {
+      var isActive = calendar.classList.contains('active');
+
+      if (isActive && mq.matches && !ghost) {
+        moveOut();
+      } else if (ghost) {
+        syncClasses();
+        if (!isActive) scheduleMoveBack();
+      }
+    }).observe(calendar, { attributes: true, attributeFilter: ['class'] });
+
+    // если окно расширили выше 760px при открытой шторке
+    var onMqChange = function () {
+      if (!mq.matches && ghost) moveBack();
+    };
+    if (mq.addEventListener) {
+      mq.addEventListener('change', onMqChange);
+    } else if (mq.addListener) {
+      mq.addListener(onMqChange);
+    }
+  }
+
   static init() {
     var calendars = document.querySelectorAll(".calendar");
     if (calendars.length > 0) {
@@ -1312,10 +1394,14 @@ class Calendars {
         }
 
         updateCalendarValueDisplay(selectedStartDate, selectedEndDate);
+
+        // мобильная шторка для календарей внутри попапа
+        Calendars.initPopupSheet(calendar);
       });
 
       document.addEventListener('click', function (e) {
-        if (!e.target.closest('.calendar')) {
+        // .calendar покрывает и обёртку-двойник в body (у неё те же классы)
+        if (!e.target.closest('.calendar') && !e.target.closest('.calendar__content')) {
           closeAllCalendarStates();
         }
       });
