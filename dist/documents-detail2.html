@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+	<head>
+		<title>Документация - детальная 2</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<link rel="stylesheet" href="css/swagger-ui.css" />
+		<link rel="stylesheet" href="css/swagger-custom.css" />
+		<link rel="stylesheet" href="css/styles.css" />
+
+		<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+	</head>
+
+	<body class="preload mp">
+		<div class="main-wrapper-outer">
+			<main class="main main-other main-documents">
+
+				<div class="block-documents">
+					<div class="block-documents__header">
+						<div class="header__left">
+							<div class="header__burger">
+								<div class="icon-menu">
+									<span></span>
+								</div>
+							</div>
+							<a href="./" class="header__logo">
+								<svg aria-hidden="true" width="200" height="42">
+									<use xlink:href="img/sprite.svg#logo1"></use>
+								</svg>
+							</a>
+							<div class="header-menu">
+								<div data-simplebar class="header-menu__simplebar">
+									<div class="header-menu__body">
+										<ul data-spollers class="header-menu__list">
+											<li class="header-menu__item header-button-mini">
+												<div data-spoller class="header-menu__button">
+													<span>
+														О персональных данных
+													</span>
+													<div class="header-menu__arrow">
+														<svg aria-hidden="true" width="7" height="10">
+															<use xlink:href="img/sprite.svg#arrow3"></use>
+														</svg>
+													</div>
+												</div>
+												<div class="header-menu__dropdown2">
+													<ul>
+														<li>
+															<a href="./">Политика конфиденциальности</a>
+														</li>
+														<li>
+															<a href="./">Политика конфиденциальности Партнёра ITsheff</a>
+														</li>
+														<li>
+															<a href="./">Соглашение с партнёром ITsheff</a>
+														</li>
+														<li>
+															<a href="./">Перечень Партнёров ITsheff</a>
+														</li>
+														<li>
+															<a href="./">Политика обработки персональных данных соискателей
+																ITsheff</a>
+														</li>
+														<li>
+															<a href="./">Соглашение о содействии в трудоустройстве</a>
+														</li>
+														<li>
+															<a href="./">Политика в отношении обработки персональных данных
+																субъектов персональных данных ITsheff</a>
+														</li>
+													</ul>
+												</div>
+											</li>
+											<li class="header-menu__item header-button-mini">
+												<div class="header-menu__button">
+													<span>
+														Дополнительные сервисы
+													</span>
+												</div>
+											</li>
+											<li class="header-menu__item header-button-mini">
+												<div data-spoller class="header-menu__button">
+													<span>
+														Документы для пользователей
+													</span>
+													<div class="header-menu__arrow">
+														<svg aria-hidden="true" width="7" height="10">
+															<use xlink:href="img/sprite.svg#arrow3"></use>
+														</svg>
+													</div>
+												</div>
+												<div class="header-menu__dropdown2">
+													<ul>
+														<li>
+															<a href="./">Лицензионное соглашение</a>
+														</li>
+														<li>
+															<a href="./">Соглашение с партнёром ITsheff</a>
+														</li>
+														<li>
+															<a href="./">Перечень Партнёров ITsheff</a>
+														</li>
+														<li>
+															<a href="./">Политика обработки персональных данных соискателей
+																ITsheff</a>
+														</li>
+														<li>
+															<a href="./">Соглашение о содействии в трудоустройстве</a>
+														</li>
+													</ul>
+												</div>
+											</li>
+											<li class="header-menu__item header-button-mini">
+												<div data-spoller class="header-menu__button">
+													<span>
+														Интеллектуальная собственность
+													</span>
+													<div class="header-menu__arrow">
+														<svg aria-hidden="true" width="7" height="10">
+															<use xlink:href="img/sprite.svg#arrow3"></use>
+														</svg>
+													</div>
+												</div>
+												<div class="header-menu__dropdown2">
+													<ul>
+														<li>
+															<a href="./">Политика конфиденциальности</a>
+														</li>
+														<li>
+															<a href="./">Соглашение с партнёром ITsheff</a>
+														</li>
+														<li>
+															<a href="./">Перечень Партнёров ITsheff</a>
+														</li>
+														<li>
+															<a href="./">Политика обработки персональных данных соискателей
+																ITsheff</a>
+														</li>
+														<li>
+															<a href="./">Соглашение о содействии в трудоустройстве</a>
+														</li>
+													</ul>
+												</div>
+											</li>
+											<li class="header-menu__item header-button-mini">
+												<div class="header-menu__button">
+													<span>
+														В силу требований закона
+													</span>
+												</div>
+											</li>
+											<li class="header-menu__item header-button-mini">
+												<a href="./" class="header-menu__button active">
+													<span>
+														ITSheff API
+													</span>
+												</a>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="block-documents__contents">
+						<div class="block-documents__content">
+							<div class="block-documents__top">
+								<div class="breadcrumbs">
+									<ul>
+										<li>
+											<a href="#" class="home">
+												<svg aria-hidden="true" width="20" height="22">
+													<use xlink:href="img/sprite.svg#home"></use>
+												</svg>
+											</a>
+										</li>
+										<li>
+											<span>ITsheff API</span>
+											<div class="breadcrumbs__badges">
+												<div class="breadcrumbs__badge">1.0.0 </div>
+												<div class="breadcrumbs__badge">OAS 3.0</div>
+											</div>
+										</li>
+									</ul>
+								</div>
+							</div>
+
+							<div class="block-documents-api">
+								<div class="block-documents-api__column">
+									<script id="swagger-data" type="application/json">
+										{
+											"spec": {
+												"openapi": "3.0.0",
+												"info": {
+													"title": "Public ITSheff API",
+													"version": "1.0.0"
+												},
+												"paths": {
+													"/api/client_user/create": {
+														"post": {
+															"tags": [
+																"ClientUser"
+															],
+															"summary": "Создать нового пользователя клиента",
+															"operationId": "post_api_client_user_create",
+															"parameters": [{
+																"name": "Authorization",
+																"in": "header",
+																"description": "JWT-токен в формате: `Bearer <токен>`",
+																"required": true,
+																"schema": {
+																	"type": "string",
+																	"pattern": "^Bearer .+$",
+																	"example": "Bearer xxxxxxxx"
+																}
+															}],
+															"requestBody": {
+																"description": "Параметры запроса (form-data)",
+																"content": {
+																	"application/x-www-form-urlencoded": {
+																		"schema": {
+																			"required": [
+																				"fio",
+																				"role"
+																			],
+																			"properties": {
+																				"fio": {
+																					"description": "ФИО пользователя",
+																					"type": "string",
+																					"example": "Иванов Иван Иванович"
+																				},
+																				"role": {
+																					"description": "Роль пользователя. Допустимые значения: manager, buh, admin",
+																					"type": "string",
+																					"enum": [
+																						"manager",
+																						"buh",
+																						"admin"
+																					],
+																					"example": "manager"
+																				},
+																				"azure_login": {
+																					"description": "Логин Azure, имеет смысл только если подключена OAuth Azure(не обязательный параметр)",
+																					"type": "string",
+																					"example": "azure_login"
+																				}
+																			},
+																			"type": "object"
+																		}
+																	}
+																}
+															},
+															"responses": {
+																"200": {
+																	"description": "Пользователь создан успешно",
+																	"content": {
+																		"application/json": {
+																			"schema": {
+																				"properties": {
+																					"login": {
+																						"type": "string",
+																						"example": "ivanov"
+																					},
+																					"password": {
+																						"type": "string",
+																						"example": "secure123"
+																					}
+																				},
+																				"type": "object"
+																			}
+																		}
+																	}
+																},
+																"400": {
+																	"description": "Неверные параметры запроса"
+																},
+																"401": {
+																	"description": "Требуется авторизация (Bearer JWT)"
+																},
+																"500": {
+																	"description": "Внутренняя ошибка сервера"
+																}
+															}
+														}
+													},
+													"/api/client_user/{login}": {
+														"delete": {
+															"tags": [
+																"ClientUser"
+															],
+															"summary": "Удалить пользователя клиента",
+															"operationId": "delete_api_client_user_delete",
+															"parameters": [{
+																	"name": "Authorization",
+																	"in": "header",
+																	"description": "JWT-токен в формате: `Bearer <токен>`",
+																	"required": true,
+																	"schema": {
+																		"type": "string",
+																		"pattern": "^Bearer .+$",
+																		"example": "Bearer xxxxxxxx"
+																	}
+																},
+																{
+																	"name": "login",
+																	"in": "path",
+																	"description": "login пользователя, который нужно удалить",
+																	"required": true,
+																	"schema": {
+																		"type": "string",
+																		"example": "client_user_login"
+																	}
+																}
+															],
+															"responses": {
+																"200": {
+																	"description": "Пользователь удален успешно",
+																	"content": {
+																		"application/json": {
+																			"schema": {
+																				"properties": {
+																					"success": {
+																						"type": "boolean",
+																						"example": "true"
+																					}
+																				},
+																				"type": "object"
+																			}
+																		}
+																	}
+																},
+																"400": {
+																	"description": "Неверные параметры запроса"
+																},
+																"401": {
+																	"description": "Требуется авторизация (Bearer JWT)"
+																},
+																"500": {
+																	"description": "Внутренняя ошибка сервера"
+																}
+															}
+														}
+													},
+													"/api/token": {
+														"post": {
+															"tags": [
+																"Token"
+															],
+															"summary": "Получить токен для работы с API. токен действует год",
+															"operationId": "post_api_get_token",
+															"requestBody": {
+																"description": "Параметры запроса (form-data)",
+																"content": {
+																	"application/x-www-form-urlencoded": {
+																		"schema": {
+																			"required": [
+																				"login",
+																				"password"
+																			],
+																			"properties": {
+																				"login": {
+																					"description": "логин пользователя",
+																					"type": "string",
+																					"example": "ivanov"
+																				},
+																				"password": {
+																					"description": "пароль пользователя",
+																					"type": "string",
+																					"example": "secure123"
+																				}
+																			},
+																			"type": "object"
+																		}
+																	}
+																}
+															},
+															"responses": {
+																"200": {
+																	"description": "Токен создан успешно",
+																	"content": {
+																		"application/json": {
+																			"schema": {
+																				"properties": {
+																					"token": {
+																						"type": "string",
+																						"example": "xxxxx.xxxxx.xxxx"
+																					}
+																				},
+																				"type": "object"
+																			}
+																		}
+																	}
+																},
+																"400": {
+																	"description": "Неверные параметры запроса"
+																},
+																"401": {
+																	"description": "Требуется авторизация (логин пароль)"
+																},
+																"500": {
+																	"description": "Внутренняя ошибка сервера"
+																}
+															}
+														}
+													},
+													"/api/client_base/list": {
+														"get": {
+															"tags": [
+																"ClientBase"
+															],
+															"summary": "Получить список баз клиента",
+															"operationId": "get_api_get_client_base_list",
+															"parameters": [{
+																"name": "Authorization",
+																"in": "header",
+																"description": "JWT-токен в формате: `Bearer <токен>`",
+																"required": true,
+																"schema": {
+																	"type": "string",
+																	"pattern": "^Bearer .+$",
+																	"example": "Bearer xxxxxxxx"
+																}
+															}],
+															"responses": {
+																"200": {
+																	"description": "Запрос успешно выполнен. Возвращен список баз.",
+																	"content": {
+																		"application/json": {
+																			"schema": {
+																				"properties": {
+																					"bases": {
+																						"type": "array",
+																						"items": {
+																							"properties": {
+																								"id": {
+																									"type": "integer",
+																									"example": 3334
+																								},
+																								"name": {
+																									"type": "string",
+																									"example": "ТОО База Клиента"
+																								}
+																							},
+																							"type": "object"
+																						}
+																					}
+																				},
+																				"type": "object"
+																			}
+																		}
+																	}
+																},
+																"400": {
+																	"description": "Неверные параметры запроса"
+																},
+																"401": {
+																	"description": "Требуется авторизация (Bearer JWT)"
+																},
+																"500": {
+																	"description": "Внутренняя ошибка сервера"
+																}
+															}
+														}
+													},
+													"/api/client_user/grant_access/{login}/{base}": {
+														"put": {
+															"tags": [
+																"ClientUser",
+																"ClientBase"
+															],
+															"summary": "Предоставить доступ пользователю к базе",
+															"operationId": "put_api_client_user_grant_access_to_base",
+															"parameters": [{
+																	"name": "Authorization",
+																	"in": "header",
+																	"description": "JWT-токен в формате: `Bearer <токен>`",
+																	"required": true,
+																	"schema": {
+																		"type": "string",
+																		"pattern": "^Bearer .+$",
+																		"example": "Bearer xxxxxxxx"
+																	}
+																},
+																{
+																	"name": "login",
+																	"in": "path",
+																	"description": "login пользователя, которому нужно предоставить доступ",
+																	"required": true,
+																	"schema": {
+																		"type": "string",
+																		"example": "client_user_login"
+																	}
+																},
+																{
+																	"name": "base",
+																	"in": "path",
+																	"description": "идентификатор базы, к которой нужно предоставить доступ",
+																	"required": true,
+																	"schema": {
+																		"type": "integer",
+																		"example": 345
+																	}
+																}
+															],
+															"responses": {
+																"200": {
+																	"description": "Доступ предоставлен",
+																	"content": {
+																		"application/json": {
+																			"schema": {
+																				"properties": {
+																					"success": {
+																						"type": "boolean",
+																						"example": "true"
+																					}
+																				},
+																				"type": "object"
+																			}
+																		}
+																	}
+																},
+																"400": {
+																	"description": "Неверные параметры запроса"
+																},
+																"401": {
+																	"description": "Требуется авторизация (Bearer JWT)"
+																},
+																"500": {
+																	"description": "Внутренняя ошибка сервера"
+																}
+															}
+														}
+													},
+													"/api/client_user/remove_access/{login}/{base}": {
+														"put": {
+															"tags": [
+																"ClientUser",
+																"ClientBase"
+															],
+															"summary": "Запретить доступ пользователя  к базе",
+															"operationId": "put_api_client_user_remove_access_to_base",
+															"parameters": [{
+																	"name": "Authorization",
+																	"in": "header",
+																	"description": "JWT-токен в формате: `Bearer <токен>`",
+																	"required": true,
+																	"schema": {
+																		"type": "string",
+																		"pattern": "^Bearer .+$",
+																		"example": "Bearer xxxxxxxx"
+																	}
+																},
+																{
+																	"name": "login",
+																	"in": "path",
+																	"description": "login пользователя, которому нужно запретить доступ",
+																	"required": true,
+																	"schema": {
+																		"type": "string",
+																		"example": "client_user_login"
+																	}
+																},
+																{
+																	"name": "base",
+																	"in": "path",
+																	"description": "идентификатор базы, к которой нужно запретить доступ",
+																	"required": true,
+																	"schema": {
+																		"type": "integer",
+																		"example": 345
+																	}
+																}
+															],
+															"responses": {
+																"200": {
+																	"description": "Доступ запрещен",
+																	"content": {
+																		"application/json": {
+																			"schema": {
+																				"properties": {
+																					"success": {
+																						"type": "boolean",
+																						"example": "true"
+																					}
+																				},
+																				"type": "object"
+																			}
+																		}
+																	}
+																},
+																"400": {
+																	"description": "Неверные параметры запроса"
+																},
+																"401": {
+																	"description": "Требуется авторизация (Bearer JWT)"
+																},
+																"500": {
+																	"description": "Внутренняя ошибка сервера"
+																}
+															}
+														}
+													},
+													"/api/client_user/reset_password/{login}": {
+														"put": {
+															"tags": [
+																"ClientUser"
+															],
+															"summary": "Сброс пароля пользователя клиента",
+															"operationId": "put_api_client_user_reset_password",
+															"parameters": [{
+																	"name": "Authorization",
+																	"in": "header",
+																	"description": "JWT-токен в формате: `Bearer <токен>`",
+																	"required": true,
+																	"schema": {
+																		"type": "string",
+																		"pattern": "^Bearer .+$",
+																		"example": "Bearer xxxxxxxx"
+																	}
+																},
+																{
+																	"name": "login",
+																	"in": "path",
+																	"description": "login пользователя, который нужно удалить",
+																	"required": true,
+																	"schema": {
+																		"type": "string",
+																		"example": "client_user_login"
+																	}
+																}
+															],
+															"responses": {
+																"200": {
+																	"description": "Сброс пароля выполнен успешно",
+																	"content": {
+																		"application/json": {
+																			"schema": {
+																				"properties": {
+																					"login": {
+																						"type": "string",
+																						"example": "ivanov"
+																					},
+																					"new_password": {
+																						"type": "string",
+																						"example": "secure123"
+																					},
+																					"success": {
+																						"type": "boolean",
+																						"example": "true"
+																					}
+																				},
+																				"type": "object"
+																			}
+																		}
+																	}
+																},
+																"400": {
+																	"description": "Неверные параметры запроса"
+																},
+																"401": {
+																	"description": "Требуется авторизация (Bearer JWT)"
+																},
+																"500": {
+																	"description": "Внутренняя ошибка сервера"
+																}
+															}
+														}
+													}
+												},
+												"tags": [{
+														"name": "ClientUser",
+														"description": "ClientUser"
+													},
+													{
+														"name": "Token",
+														"description": "Token"
+													},
+													{
+														"name": "ClientBase",
+														"description": "ClientBase"
+													}
+												]
+											}
+										}
+									</script>
+									<div id="swagger-ui"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</main>
+		</div>
+
+
+
+		<script src="js/vendor/simplebar.min.js"></script>
+
+		<script src="js/core/helpers.js"></script>
+
+		<script src="js/core/shared-refs.js"></script>
+
+		<script src="js/core/menu.js"></script>
+
+		<script src="js/core/scroll-to.js"></script>
+
+		<script src="js/components/spollers.js"></script>
+
+		<script src="js/components/header-menu.js"></script>
+
+		<script src="js/components/fixed-bottom-spacing.js"></script>
+
+		<script src="js/vendor/swagger-ui-bundle.js"></script>
+
+		<script src="js/pages/init-swagger-ui.js"></script>
+
+
+
+		<script src="js/swagger-ui-bundle.js"></script>
+		<script src="js/init-swagger-ui.js"></script>
+		<script>
+			document.addEventListener('DOMContentLoaded', function() {
+				loadSwaggerUI();
+			});
+		</script>
+	</body>
+
+</html>
