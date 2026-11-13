@@ -1,0 +1,58 @@
+.slider-navs {
+    display: flex;
+    gap: 20px;
+    @media (max-width: 1200px) {
+        display: none;
+    }
+}
+.slider-nav {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &.arrow-prev {
+        svg {
+            transform: rotate(-180deg);
+        }
+    }
+    svg {
+        stroke: #909aa4;
+        color: #909aa4;
+        fill: none;
+        transition:
+            stroke 0.3s,
+            color 0.3s;
+    }
+    @media (any-hover: hover) {
+        &:hover {
+            svg {
+                stroke: #64707a;
+                color: #64707a;
+            }
+        }
+    }
+    &:active {
+        svg {
+            stroke: #2c333a;
+            color: #2c333a;
+        }
+    }
+}
+
+.swiper-pagination-lock {
+    display: none;
+}
+.swiper-button-lock {
+    svg {
+        stroke: #d6dbe0;
+        color: #d6dbe0;
+    }
+}
+.swiper-button-disabled {
+    pointer-events: none;
+    svg {
+        stroke: #d6dbe0;
+        color: #d6dbe0;
+    }
+}

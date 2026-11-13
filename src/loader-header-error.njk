@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <title>Загрузчик - yведомления ошибка</title>
+    {% include 'blocks/head.njk' %}
+</head>
+
+<body class="preload mp loader-page">
+    <div class="main-wrapper-outer">
+        <header class="header-loader">
+            <div class="header-loader__content">
+                <a href="./" class="header-loader__logo">
+                    <svg aria-hidden="true" width="120" height="26">
+                        <use xlink:href="img/sprite.svg#logo1"></use>
+                    </svg>
+                </a>
+                <div class="header-loader__right">
+                    <a href="./" class="header-loader-chat">
+                        <div class="header-loader-chat__icon">
+                            <svg aria-hidden="true" width="20" height="21">
+                                <use xlink:href="img/sprite.svg#chat2"></use>
+                            </svg>
+                        </div>
+                        <span>Спросить онлайн</span>
+                    </a>
+                    <div class="header-notifications">
+                        <div class="header-notifications__icon">
+                            <div class="header-notifications__image">
+                                <svg aria-hidden="true" width="20" height="22" class="icon1">
+                                    <use xlink:href="img/sprite.svg#notification2"></use>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="header-notifications__dropdown header-dropdown">
+                            <div class="header-notifications__top">
+                                <div class="breadcrumbs2">
+                                    <ul>
+                                        <li>
+                                            <a href="./">Уведомления</a>
+                                        </li>
+                                        <li><span>Ошибка авторизации</span></li>
+                                    </ul>
+                                </div>
+                                <button type="button" class="header-notifications__close">
+                                    <svg aria-hidden="true" width="14" height="14">
+                                        <use xlink:href="img/sprite.svg#close"></use>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="header-notifications-error">
+                                <div data-simplebar class="header-notifications-error__simplebar">
+                                    <div class="header-notifications-error__body">
+                                        <div class="header-notifications-error__top">
+                                            <div class="header-notifications-error__icon">
+                                                <img src="img/icons/icons-orange/warning.svg" alt="">
+                                            </div>
+                                            <div class="header-notifications-error__ttile">
+                                                Ошибка
+                                            </div>
+                                        </div>
+                                        <p>
+                                            Вы были отключены за неуплату.<br> Оплатите счета
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="header-notifications-buttons">
+                                    <a href="./" class="btn btn-big">Оплатить</a>
+                                    <button type="button" href="./" class="btn btn-bg btn-big btn-close">Назад</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <main class="main">
+
+        </main>
+    </div>
+    {% set scripts = [
+    'vendor/simplebar.min',
+    'vendor/nouislider.min',
+    'core/helpers',
+    'core/shared-refs',
+    'core/menu',
+    'core/scroll-to',
+    'forms/form-validate',
+    'popups/popup',
+    'components/more-buttons',
+    'components/form-quantity',
+    'components/card-subscriptions',
+    'components/loader-databases',
+    'components/tabs',
+    'forms/form-fields',
+    'forms/form-submit',
+    'forms/search',
+    'forms/form-rating',
+    'forms/file-uploaders',
+    'popups/popup-base-observer',
+    'components/tooltips',
+    'components/show-more',
+    'components/applications-cards',
+    'components/applications-columns',
+    'components/draggable',
+    'forms/form-textareas',
+    'popups/popup-systems',
+    'components/breadcrumbs',
+    'components/fixed-bottom-spacing',
+    'loader/quiz',
+    'loader/notifications'
+    ] %}
+    {% include 'blocks/scripts.njk' %}
+</body>
+
+</html>
