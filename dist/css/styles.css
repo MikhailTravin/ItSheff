@@ -795,10 +795,12 @@ a {
   height: 40px;
   position: relative;
   font-size: 40px;
+  width: calc(100% - 35px);
   letter-spacing: -4px;
 }
 @media (max-width: 650px) {
   .form__input-pass input {
+    width: calc(100% - 25px);
     font-size: 32px;
     height: 26px;
     letter-spacing: -2px;
