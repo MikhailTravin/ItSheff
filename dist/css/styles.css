@@ -36576,7 +36576,7 @@ svg.icon-flip {
   overflow: hidden;
 }
 .loader-quiz__slider .noUi-base {
-  width: calc(100% - 13.5px);
+  width: calc(100% - 14.5px);
 }
 .loader-quiz__slider .noUi-connect {
   top: 0;
