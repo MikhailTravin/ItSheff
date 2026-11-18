@@ -2210,6 +2210,8 @@ a {
   border-radius: 50%;
   cursor: pointer;
   background-color: transparent;
+  -webkit-transition: background-color 0.3s;
+  transition: background-color 0.3s;
 }
 @media (max-width: 992px) {
   .quantity__button {
@@ -2220,14 +2222,12 @@ a {
             flex: 0 0 22px;
   }
 }
-@media (any-hover: hover) {
-  .quantity__button:hover {
-    background-color: #f8f8f8;
-  }
-  .quantity__button:hover svg {
-    stroke: #1a1a1a;
-    color: #1a1a1a;
-  }
+.quantity__button:hover {
+  background-color: #f8f8f8;
+}
+.quantity__button:hover svg {
+  stroke: #1a1a1a;
+  color: #1a1a1a;
 }
 .quantity__button:active {
   background-color: #f0f2f4;
@@ -6258,6 +6258,11 @@ svg.icon-flip {
     padding: 6px;
   }
 }
+.card-subscriptions-hover__buttons .quantity__input input {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+}
 .card-subscriptions-hover__buttons .btn {
   width: 100%;
 }
@@ -7400,6 +7405,9 @@ svg.icon-flip {
   color: #fff;
   -webkit-transition: background-color 0.3s;
   transition: background-color 0.3s;
+}
+.block-cabinet-top__badge.badge-red {
+  background: #ed4c52;
 }
 .block-cabinet-top__badge.badge-link:hover {
   background-color: #d9481c;
@@ -19068,8 +19076,34 @@ svg.icon-flip {
   }
 }
 @media (max-width: 992px) {
+  .cabinet-cart__center .popup-subscribe-service__button .quantity__button svg {
+    width: 15px;
+    height: auto;
+  }
+}
+@media (max-width: 992px) {
+  .cabinet-cart__center .popup-subscribe-service__button .quantity__button.quantity__button_minus svg {
+    height: 2px;
+  }
+}
+.cabinet-cart__center .popup-subscribe-service__button .quantity__input input {
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 130%;
+}
+@media (max-width: 992px) {
   .cabinet-cart__center .popup-subscribe-service__button .quantity__input input {
     font-size: 16px;
+  }
+}
+.cabinet-cart__center .popup-subscribe-service__label {
+  font-size: 16px;
+  line-height: 125%;
+}
+@media (max-width: 1330px) {
+  .cabinet-cart__center .popup-subscribe-service__label {
+    font-size: 14px;
+    line-height: 114%;
   }
 }
 @media (max-width: 992px) {
@@ -34540,6 +34574,8 @@ svg.icon-flip {
 }
 .loader-page .popup-buttons .quantity__input input {
   font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
 }
 .loader-page .popup-buttons .quantity__button {
   width: 28px;
@@ -35152,6 +35188,19 @@ svg.icon-flip {
       -ms-flex: 0 0 auto;
           flex: 0 0 auto;
 }
+.header-notifications-descr .header-notifications-buttons .btn-grey {
+  background-color: #f0f2f4 !important;
+}
+@media (any-hover: hover) {
+  .header-notifications-descr .header-notifications-buttons .btn-grey:hover {
+    color: #000;
+    background-color: #e1e4e7 !important;
+  }
+}
+.header-notifications-descr .header-notifications-buttons .btn-grey:active {
+  color: #000;
+  background-color: #d6dbe0 !important;
+}
 .header-notifications-descr__simplebar {
   -webkit-box-flex: 1;
       -ms-flex: 1 1 auto;
@@ -35455,6 +35504,7 @@ svg.icon-flip {
   transition: background-color 0.3s, color 0.3s;
 }
 .loader-tabs__title._tab-active {
+  pointer-events: none;
   background-color: #fff;
   color: #000;
 }
@@ -35512,8 +35562,9 @@ svg.icon-flip {
   border-radius: 8px;
 }
 .loader-tabs .block-cabinet-top {
-  min-height: 40px;
+  min-height: 41px;
   gap: 16px;
+  border-radius: 8px;
   background: radial-gradient(68.78% 277.54% at 113.28% 310%, #d7181f 0%, #f8f8f8 100%);
 }
 .loader-tabs .block-cabinet-top.cabinet-top-blue {
@@ -35531,8 +35582,8 @@ svg.icon-flip {
 .loader-tabs .block-cabinet-top__pic1 {
   display: block;
   width: auto;
-  height: 36.5px;
-  margin: auto -5px 0px 0px;
+  height: 37.5px;
+  margin: auto -14px 0px 0px;
 }
 .loader-tabs .block-cabinet-top.cabinet-top-blue .block-cabinet-top__pic1 {
   height: 40px;
@@ -35603,6 +35654,12 @@ svg.icon-flip {
 .loader-tabs .block-cabinet__column .block-cabinet-cards .block-cabinet-cards__icon {
   display: none;
 }
+.loader-tabs .block-cabinet-cards__cards1 .block-cabinet-cards__card p {
+  margin: -6px 0px 2px 0px !important;
+}
+.loader-tabs .block-cabinet-cards__cards2 .block-cabinet-cards__items {
+  padding: 14px 15px 18px 17px !important;
+}
 .loader-tabs .block-cabinet-cards__items .block-cabinet-cards__add {
   margin-top: 18px !important;
   gap: 10px !important;
@@ -35631,6 +35688,16 @@ svg.icon-flip {
   line-height: 114%;
   color: #8c8c8c;
   -webkit-line-clamp: 2;
+}
+.loader-tabs .block-cabinet__column .block-cabinet-bottom .block-cabinet-bottom__items .btn {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 132px;
+          flex: 0 0 132px;
+}
+.loader-tabs .block-cabinet__column .block-cabinet-bottom .block-cabinet-bottom__items .btn.btn-long {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 149px;
+          flex: 0 0 149px;
 }
 .loader-tabs .block-cabinet__column .block-cabinet-bottom .block-cabinet-bottom__items.items-list {
   display: -webkit-box;
@@ -36112,6 +36179,7 @@ svg.icon-flip {
   padding: 0px 18px 0px 16px;
 }
 .loader-login .form__input-pass input {
+  width: calc(100% - 70px);
   height: 100%;
   font-weight: 400;
   font-size: 20px !important;
@@ -36328,7 +36396,7 @@ svg.icon-flip {
       -ms-flex-pack: justify;
           justify-content: space-between;
   min-height: 40px;
-  padding: 0px 18px 0px 16px;
+  padding: 0px 0px 0px 16px;
   background: #f0f2f4;
 }
 .loader-quiz__top-title {
@@ -36338,11 +36406,11 @@ svg.icon-flip {
   color: #000;
 }
 .loader-quiz__close {
-  width: 16px;
-  height: 16px;
+  width: 56px;
+  height: 40px;
   -webkit-box-flex: 0;
-      -ms-flex: 0 0 16px;
-          flex: 0 0 16px;
+      -ms-flex: 0 0 56px;
+          flex: 0 0 56px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -36352,6 +36420,8 @@ svg.icon-flip {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -webkit-transition: background-color 0.3s;
+  transition: background-color 0.3s;
 }
 .loader-quiz__close svg {
   fill: none;
@@ -36361,9 +36431,12 @@ svg.icon-flip {
   transition: stroke 0.3s, color 0.3s;
 }
 @media (any-hover: hover) {
+  .loader-quiz__close:hover {
+    background-color: #e1e4e7;
+  }
   .loader-quiz__close:hover svg {
-    stroke: #000;
-    color: #000;
+    stroke: #64707a;
+    color: #64707a;
   }
 }
 .loader-quiz__step {
@@ -36503,7 +36576,7 @@ svg.icon-flip {
   overflow: hidden;
 }
 .loader-quiz__slider .noUi-base {
-  width: calc(100% - 12px);
+  width: calc(100% - 13.5px);
 }
 .loader-quiz__slider .noUi-connect {
   top: 0;
