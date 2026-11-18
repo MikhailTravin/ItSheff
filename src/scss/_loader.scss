@@ -63,6 +63,8 @@
         }
         .quantity__input input {
             font-weight: 400;
+            font-size: 16px;
+            line-height: 150%;
         }
         .quantity__button {
             width: 28px;
@@ -568,6 +570,19 @@
     .header-notifications-buttons {
         padding: 16px 40px;
         flex: 0 0 auto;
+        .btn-grey {
+            background-color: #f0f2f4 !important;
+            @media (any-hover: hover) {
+                &:hover {
+                    color: #000;
+                    background-color: #e1e4e7 !important;
+                }
+            }
+            &:active {
+                color: #000;
+                background-color: #d6dbe0 !important;
+            }
+        }
     }
 
     // .header-notifications-descr__simplebar
@@ -821,6 +836,7 @@
             background-color 0.3s,
             color 0.3s;
         &._tab-active {
+            pointer-events: none;
             background-color: #fff;
             color: #000;
         }
@@ -888,8 +904,9 @@
     }
 
     .block-cabinet-top {
-        min-height: 40px;
+        min-height: 41px;
         gap: 16px;
+        border-radius: 8px;
         background: radial-gradient(68.78% 277.54% at 113.28% 310%, #d7181f 0%, #f8f8f8 100%);
         &.cabinet-top-blue {
             background: radial-gradient(68.78% 277.54% at 113.28% 310%, #009dff 0%, #f8f8f8 100%);
@@ -906,8 +923,8 @@
         &__pic1 {
             display: block;
             width: auto;
-            height: 36.5px;
-            margin: auto -5px 0px 0px;
+            height: 37.5px;
+            margin: auto -14px 0px 0px;
         }
     }
     .block-cabinet-top.cabinet-top-blue .block-cabinet-top__pic1 {
@@ -917,6 +934,7 @@
     .block-cabinet-cards__card-other .block-cabinet-cards__add {
         padding: 19px 25px 16px 46px;
     }
+
     .block-cabinet__column .block-cabinet-cards {
         flex-direction: row;
         gap: 8px;
@@ -974,6 +992,12 @@
             display: none;
         }
     }
+    .block-cabinet-cards__cards1 .block-cabinet-cards__card p {
+        margin: -6px 0px 2px 0px !important;
+    }
+    .block-cabinet-cards__cards2 .block-cabinet-cards__items {
+        padding: 14px 15px 18px 17px !important;
+    }
     .block-cabinet-cards__items .block-cabinet-cards__add {
         margin-top: 18px !important;
         gap: 10px !important;
@@ -994,6 +1018,12 @@
             line-height: 114%;
             color: #8c8c8c;
             -webkit-line-clamp: 2;
+        }
+        .btn {
+            flex: 0 0 132px;
+            &.btn-long {
+                flex: 0 0 149px;
+            }
         }
         &.items-list {
             display: flex;
@@ -1443,6 +1473,7 @@
         height: 52px;
         padding: 0px 18px 0px 16px;
         input {
+            width: calc(100% - 70px);
             height: 100%;
             font-weight: 400;
             font-size: 20px !important;
@@ -1627,7 +1658,7 @@
         align-items: center;
         justify-content: space-between;
         min-height: 40px;
-        padding: 0px 18px 0px 16px;
+        padding: 0px 0px 0px 16px;
         background: #f0f2f4;
     }
 
@@ -1643,12 +1674,13 @@
     // .loader-quiz__close
 
     &__close {
-        width: 16px;
-        height: 16px;
-        flex: 0 0 16px;
+        width: 56px;
+        height: 40px;
+        flex: 0 0 56px;
         display: flex;
         justify-content: center;
         align-items: center;
+        transition: background-color 0.3s;
         svg {
             fill: none;
             stroke: #909aa4;
@@ -1659,9 +1691,10 @@
         }
         @media (any-hover: hover) {
             &:hover {
+                background-color: #e1e4e7;
                 svg {
-                    stroke: #000;
-                    color: #000;
+                    stroke: #64707a;
+                    color: #64707a;
                 }
             }
         }
@@ -1791,7 +1824,7 @@
         }
 
         .noUi-base {
-            width: calc(100% - 12px);
+            width: calc(100% - 13.5px);
         }
 
         .noUi-connect {

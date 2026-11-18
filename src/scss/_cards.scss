@@ -1001,6 +1001,11 @@
                 padding: 6px;
             }
         }
+        .quantity__input input {
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 150%;
+        }
         .btn {
             width: 100%;
             @media (max-width: 700px) {

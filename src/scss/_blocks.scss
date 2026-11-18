@@ -557,6 +557,9 @@
         line-height: 100%;
         color: #fff;
         transition: background-color 0.3s;
+        &.badge-red{
+            background: #ed4c52;
+        }
         &.badge-link {
             &:hover {
                 background-color: #d9481c;

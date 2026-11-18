@@ -1635,18 +1635,17 @@
         border-radius: 50%;
         cursor: pointer;
         background-color: transparent;
+        transition: background-color 0.3s;
         @media (max-width: 992px) {
             width: 22px;
             height: 22px;
             flex: 0 0 22px;
         }
-        @media (any-hover: hover) {
-            &:hover {
-                background-color: #f8f8f8;
-                svg {
-                    stroke: #1a1a1a;
-                    color: #1a1a1a;
-                }
+        &:hover {
+            background-color: #f8f8f8;
+            svg {
+                stroke: #1a1a1a;
+                color: #1a1a1a;
             }
         }
         &:active {
