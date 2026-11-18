@@ -10,6 +10,10 @@ class ApplicationsCards {
 
       allForms.forEach(form => {
         form.style.display = 'none';
+
+        form.addEventListener('click', function (event) {
+          event.stopPropagation();
+        });
       });
 
       function showFormByCard(cardId) {

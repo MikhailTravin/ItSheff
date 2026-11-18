@@ -17,7 +17,7 @@ class LoaderQuiz {
     const SENT_DELAY = 500;
 
     // Шкала
-    const DEFAULT_SCORE = 5;
+    const DEFAULT_SCORE = 0;
     const SCORE_MIN = -5;
     const SCORE_MAX = 5;
 
