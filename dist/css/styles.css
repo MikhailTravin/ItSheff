@@ -21415,7 +21415,6 @@ svg.icon-flip {
 }
 @media (max-width: 750px) {
   .block-reviews__bg2 {
-    top: 100px;
     height: 540px;
   }
 }
@@ -29903,27 +29902,6 @@ svg.icon-flip {
     max-width: 100%;
   }
 }
-.popup-buttons .quantity__input input {
-  font-size: 20px;
-  line-height: 130%;
-}
-@media (max-width: 650px) {
-  .popup-buttons .quantity__input input {
-    font-size: 16px;
-    line-height: 150%;
-  }
-}
-@media (max-width: 650px) {
-  .popup-buttons .quantity__button svg {
-    width: 15px;
-    height: auto;
-  }
-}
-@media (max-width: 650px) {
-  .popup-buttons .quantity__button.quantity__button_minus svg {
-    height: 2px;
-  }
-}
 .popup-buttons p {
   font-weight: 400;
   font-size: 12px;
@@ -33981,12 +33959,14 @@ svg.icon-flip {
   height: auto;
   background: #fff;
 }
-@media (max-width: 550px) {
+@media (max-width: 650px) {
   .popup-system .popup-buttons .quantity {
     -webkit-box-flex: 0;
         -ms-flex: 0 0 126px;
             flex: 0 0 126px;
     width: 126px;
+    height: 36px;
+    padding: 3px;
   }
 }
 @media (max-width: 370px) {
@@ -33994,7 +33974,6 @@ svg.icon-flip {
     -webkit-box-flex: 0;
         -ms-flex: 0 1 auto;
             flex: 0 1 auto;
-    height: 36px;
     width: 100%;
   }
 }
@@ -34005,13 +33984,39 @@ svg.icon-flip {
       -ms-flex: 0 0 46px;
           flex: 0 0 46px;
 }
-@media (max-width: 992px) {
+@media (max-width: 650px) {
   .popup-system .popup-buttons .quantity__button {
     width: 28px;
     height: 28px;
     -webkit-box-flex: 0;
         -ms-flex: 0 0 28px;
             flex: 0 0 28px;
+  }
+}
+@media (max-width: 650px) {
+  .popup-system .popup-buttons .quantity__button svg {
+    width: 15px;
+    height: auto;
+  }
+}
+@media (max-width: 650px) {
+  .popup-system .popup-buttons .quantity__button.quantity__button_minus svg {
+    height: 2px;
+  }
+}
+.popup-system .popup-buttons .quantity__input input {
+  font-size: 20px;
+  line-height: 130%;
+}
+@media (max-width: 650px) {
+  .popup-system .popup-buttons .quantity__input input {
+    font-size: 16px;
+    line-height: 150%;
+  }
+}
+@media (max-width: 650px) {
+  .popup-system .popup-buttons .btn {
+    min-height: 36px;
   }
 }
 
