@@ -23,13 +23,6 @@
   font-display: swap;
 }
 @font-face {
-  font-family: "Open Sans";
-  src: url("../fonts/OpenSans-VariableFont.woff2") format("woff2-variations");
-  font-weight: 300 800;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
   font-family: OpenSans;
   src: url("../fonts/OpenSans-Regular.woff2") format("woff2");
   font-weight: 400;
@@ -45,6 +38,13 @@
 }
 @font-face {
   font-family: OpenSans;
+  src: url("../fonts/OpenSans-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: OpenSans;
   src: url("../fonts/OpenSans-SemiBold.woff2") format("woff2");
   font-weight: 600;
   font-style: normal;
@@ -54,6 +54,13 @@
   font-family: OpenSans;
   src: url("../fonts/OpenSans-Bold.woff2") format("woff2");
   font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "OpenSans";
+  src: url("../fonts/OpenSans-VariableFont.woff2") format("woff2-variations");
+  font-weight: 300 800;
   font-style: normal;
   font-display: swap;
 }
@@ -21654,6 +21661,8 @@ svg.icon-flip {
 }
 
 .card-review {
+  cursor: default;
+  pointer-events: none;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -29894,6 +29903,27 @@ svg.icon-flip {
     max-width: 100%;
   }
 }
+.popup-buttons .quantity__input input {
+  font-size: 20px;
+  line-height: 130%;
+}
+@media (max-width: 650px) {
+  .popup-buttons .quantity__input input {
+    font-size: 16px;
+    line-height: 150%;
+  }
+}
+@media (max-width: 650px) {
+  .popup-buttons .quantity__button svg {
+    width: 15px;
+    height: auto;
+  }
+}
+@media (max-width: 650px) {
+  .popup-buttons .quantity__button.quantity__button_minus svg {
+    height: 2px;
+  }
+}
 .popup-buttons p {
   font-weight: 400;
   font-size: 12px;
@@ -34003,11 +34033,12 @@ svg.icon-flip {
 .popup-systems-top::after {
   content: "";
   display: block;
-  height: 2px;
+  height: 4px;
   width: 100%;
   border-radius: 8px;
-  background: #fff;
   margin-top: 25px;
+  border-top: 2px solid #e1e4e7;
+  border-bottom: 2px solid #fff;
 }
 @media (max-width: 650px) {
   .popup-systems-top::after {
@@ -34177,6 +34208,14 @@ svg.icon-flip {
   text-align: left;
   -webkit-transition: color 0.3s;
   transition: color 0.3s;
+}
+.popup-systems__name span br {
+  display: none;
+}
+@media (max-width: 500px) {
+  .popup-systems__name span br {
+    display: block;
+  }
 }
 @media (max-width: 650px) {
   .popup-systems__name {
