@@ -896,6 +896,8 @@ $reveal-duration: 0.8s; // раскрытие по кнопке "Еще отзы
         }
     }
 
+     // .block-reviews__bg2
+
     &__bg2 {
         position: absolute;
         top: 174px;
@@ -906,7 +908,6 @@ $reveal-duration: 0.8s; // раскрытие по кнопке "Еще отзы
             top: 132px;
         }
         @media (max-width: 750px) {
-            top: 100px;
             height: 540px;
         }
     }
