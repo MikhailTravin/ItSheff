@@ -225,7 +225,29 @@
             }
         }
     }
-
+    .quantity__input input {
+        font-size: 20px;
+        line-height: 130%;
+        @media (max-width: 650px) {
+            font-size: 16px;
+            line-height: 150%;
+        }
+    }
+    .quantity__button {
+        @media (max-width: 650px) {
+            svg {
+                width: 15px;
+                height: auto;
+            }
+        }
+        &.quantity__button_minus {
+            @media (max-width: 650px) {
+                svg {
+                    height: 2px;
+                }
+            }
+        }
+    }
     p {
         font-weight: 400;
         font-size: 12px;
@@ -3587,11 +3609,12 @@
     &::after {
         content: "";
         display: block;
-        height: 2px;
+        height: 4px;
         width: 100%;
         border-radius: 8px;
-        background: #fff;
         margin-top: 25px;
+        border-top: 2px solid #e1e4e7;
+        border-bottom: 2px solid #fff;
         @media (max-width: 650px) {
             margin-top: 12px;
         }
@@ -3746,6 +3769,14 @@
         line-height: 125%;
         text-align: left;
         transition: color 0.3s;
+        span {
+            br {
+                display: none;
+                @media (max-width: 500px) {
+                    display: block;
+                }
+            }
+        }
         @media (max-width: 650px) {
             font-size: 14px;
             line-height: 114%;

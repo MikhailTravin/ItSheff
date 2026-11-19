@@ -1041,6 +1041,8 @@ $reveal-duration: 0.8s; // раскрытие по кнопке "Еще отзы
     }
 }
 .card-review {
+    cursor: default;
+    pointer-events: none;
     display: flex;
     margin-bottom: 24px;
     break-inside: avoid;
